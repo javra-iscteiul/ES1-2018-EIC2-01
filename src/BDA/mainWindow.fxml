@@ -8,7 +8,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="166.0" layoutY="5.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
@@ -16,7 +15,7 @@
             <Font name="Times New Roman" size="21.0" />
          </font>
       </Label>
-      <FlowPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" style="-fx-background-color: #1558c4;">
+      <FlowPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" >
          <children>
             <GridPane prefHeight="402.0" prefWidth="200.0">
               <columnConstraints>
@@ -28,7 +27,7 @@
                <children>
                   <ImageView fitHeight="199.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/twitter%20logo.png" />
+                        <Image url="@../../Graphics/emaillogo.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -43,7 +42,7 @@
                <children>
                   <ImageView fitHeight="206.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/emaillogo.jpg" />
+                        <Image url="@../../Graphics/facebookLogo.png" />
                      </image>
                   </ImageView>
                </children>
@@ -52,7 +51,7 @@
                <children>
                   <ImageView fitHeight="198.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/facebookLogo.png" />
+                        <Image url="@../../Graphics/twitter%20logo.png" />
                      </image>
                   </ImageView>
                </children>
@@ -67,12 +66,12 @@
       </FlowPane>
       <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="341.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/ISCTE-IUL__360_x_358__400x400.png" />
+            <Image url="@../../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="104.0" layoutX="516.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/iscteLogo.png" />
+            <Image url="@../../Graphics/iscteLogo.png" />
          </image>
       </ImageView>
    </children>
