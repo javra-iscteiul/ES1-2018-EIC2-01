@@ -9,7 +9,7 @@ import javafx.application.Application;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage primaryStage){
+	public void start(Stage primaryStage){ 
 		try{
 			// Load the FXML File
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
