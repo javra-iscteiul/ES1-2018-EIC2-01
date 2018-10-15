@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
+         <children>
+            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" text="Procurar" textFill="#514c4c">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0">
+         <children>
+            <TextArea layoutX="2.0" layoutY="4.0" opacity="0.48" prefHeight="114.0" prefWidth="415.0" promptText="Publique algo...." />
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="56.0" prefHeight="216.0" prefWidth="415.0">
+         <children>
+            <ListView layoutY="14.0" prefHeight="199.0" prefWidth="415.0" />
+         </children>
+      </Pane>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Opções">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Voltar ao menu anterior" />
+              <MenuItem mnemonicParsing="false" text="Fechar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ajuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Sobre nós" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane layoutX="445.0" layoutY="71.0" prefHeight="163.0" prefWidth="130.0">
+         <children>
+            <ImageView fitHeight="114.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Graphics/twitter%20logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="35.0" layoutY="141.0" text="\@utilizador" />
+         </children>
+      </Pane>
+      <Button layoutX="510.0" layoutY="361.0" mnemonicParsing="false" text="Sair" />
+   </children>
+</AnchorPane>
