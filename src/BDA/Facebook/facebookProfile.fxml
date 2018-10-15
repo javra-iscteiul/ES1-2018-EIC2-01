@@ -15,8 +15,8 @@
       </ImageView>
       <Button layoutX="614.0" layoutY="555.0" mnemonicParsing="false" text="Log Off" />
       <Button layoutX="547.0" layoutY="555.0" mnemonicParsing="false" text="Settings" />
-      <TextField layoutX="39.0" layoutY="14.0" prefHeight="31.0" prefWidth="457.0" />
-      <ImageView fitHeight="31.0" fitWidth="49.0" layoutX="447.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <TextField layoutX="122.0" layoutY="14.0" prefHeight="31.0" prefWidth="457.0" />
+      <ImageView fitHeight="31.0" fitWidth="49.0" layoutX="530.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../OneDrive/Imagens/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
          </image>
@@ -35,7 +35,7 @@
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextField layoutX="229.0" layoutY="93.0" prefHeight="31.0" prefWidth="150.0" text="Twitter: @username" />
+      <TextField layoutX="229.0" layoutY="93.0" prefHeight="31.0" prefWidth="156.0" text="Twitter: @username" />
       <TextField layoutX="229.0" layoutY="137.0" prefHeight="31.0" prefWidth="171.0" text="Email: 123@email.com" />
    </children>
 </AnchorPane>
