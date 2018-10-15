@@ -35,7 +35,7 @@
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextField layoutX="229.0" layoutY="93.0" prefHeight="31.0" prefWidth="163.0" text="Twitter: @username" />
+      <TextField layoutX="229.0" layoutY="93.0" prefHeight="31.0" prefWidth="150.0" text="Twitter: @username" />
       <TextField layoutX="229.0" layoutY="137.0" prefHeight="31.0" prefWidth="171.0" text="Email: 123@email.com" />
    </children>
 </AnchorPane>
