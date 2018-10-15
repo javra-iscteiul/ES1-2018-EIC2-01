@@ -12,7 +12,7 @@ import twitter4j.auth.RequestToken;
 
 public class test {
 	public static void main(String args[]) throws Exception{
-	    // The factory instance is re-useable and thread safe.
+	  /*  // The factory instance is re-useable and thread safe.
 	    Twitter twitter = TwitterFactory.getSingleton();
 	    twitter.setOAuthConsumer("[consumer key]", "[consumer secret]");
 	    RequestToken requestToken = twitter.getOAuthRequestToken();
@@ -41,7 +41,7 @@ public class test {
 	    storeAccessToken(twitter.verifyCredentials().getId() , accessToken);
 	    Status status = twitter.updateStatus(args[0]);
 	    System.out.println("Successfully updated the status to [" + status.getText() + "].");
-	    System.exit(0);
+	    System.exit(0);*/
 	  }
 	  private static void storeAccessToken(int useId, AccessToken accessToken){
 	    //store accessToken.getToken()
