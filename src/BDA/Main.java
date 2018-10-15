@@ -1,26 +1,21 @@
 package BDA;
 
+import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.application.Application;
 
 public class Main extends Application {
-
+	
 	@Override
-	public void start(Stage primaryStage){ 
-		try{
-			// Load the FXML File
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
-			// Create the Scene
-			Scene scene = new Scene(root,600,400);
-			// Set the Title to the Stage
-			primaryStage.setTitle("A FXML Example created with e(fx)clipse");
-			// Add the Scene to the Stage
-			primaryStage.setScene(scene);
-			// Show the Stage
-			primaryStage.show();
+	public void start(Stage janelaInicial){ 
+		try{			
+			janelaInicial.setTitle("Bom Dia Academia");
+			janelaInicial.setScene(new Scene((Pane)FXMLLoader.load(getClass().getResource("mainWindow.fxml"))));
+			janelaInicial.show();
 		}
 		catch(Exception e)
 		{
@@ -28,8 +23,24 @@ public class Main extends Application {
 		}
 	}
 	
+	@FXML
+    private void twitterLogo_clicked(MouseEvent event)
+    {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/loginTwitter.fxml"));
+    }
 	
-
+	@FXML
+    private void facebookLogo_clicked(MouseEvent event)
+    {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Facebook/login.fxml"));		
+    }
+	
+	@FXML
+    private void emailLogo_clicked(MouseEvent event)
+    {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("login.fxml"));
+    }
+	
 	public static void main(String[] args)
 	{
 		launch(args);
