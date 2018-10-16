@@ -26,5 +26,6 @@
             <PasswordField layoutX="33.0" layoutY="172.0" />
          </children>
       </AnchorPane>
+      <Button layoutY="374.0" mnemonicParsing="false" text="Voltar" />
    </children>
 </AnchorPane>

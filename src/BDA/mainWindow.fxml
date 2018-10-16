@@ -10,17 +10,12 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Main">
    <children>
-      <ImageView fitHeight="371.0" fitWidth="600.0" layoutY="29.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../Graphics/intersection.png" />
-         </image>
-      </ImageView>
       <Label layoutX="166.0" layoutY="5.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
          <font>
             <Font name="Times New Roman" size="21.0" />
          </font>
       </Label>
-      <FlowPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0">
+      <FlowPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="600.0" style="-fx-background-image: url('file:///../Graphics/intersection.png')">
          <children>
             <GridPane prefHeight="402.0" prefWidth="200.0">
               <columnConstraints>
