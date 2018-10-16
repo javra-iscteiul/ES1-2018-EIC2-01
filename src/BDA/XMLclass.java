@@ -81,7 +81,7 @@ public class XMLclass {
 		         StreamResult result = new StreamResult(new FileOutputStream("config.xml"));
 		         DOMSource source = new DOMSource(doc);
 		         transformer.transform(source, result);
-		      } catch (Exception e) { e.printStackTrace(); }  
+		      } catch (Exception e) { e.printStackTrace(); }   
 		
 	      
 	 }
