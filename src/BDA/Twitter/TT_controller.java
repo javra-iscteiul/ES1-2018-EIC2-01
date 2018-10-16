@@ -3,6 +3,9 @@ package BDA.Twitter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -10,7 +13,14 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
-public class test {
+public class TT_controller {
+	
+	
+	public void TT_controller () {
+		
+	}
+	
+	
 	public static void main(String args[]) throws Exception{
 	  /*  // The factory instance is re-useable and thread safe.
 	    Twitter twitter = TwitterFactory.getSingleton();
