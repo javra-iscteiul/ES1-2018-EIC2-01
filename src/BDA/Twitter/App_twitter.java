@@ -45,7 +45,7 @@ public class App_twitter {
 	    		int counterTotal = 0;
 	            for (Status status : statuses) {
 	            	String s = status.getUser().getName() + ":" + status.getText();
-					
+					 
 					tweets.add(counter, s);
 					counter++;
 					counterTotal++;
