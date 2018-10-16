@@ -39,7 +39,7 @@ public class App_twitter {
 		    	TwitterFactory tf = new TwitterFactory(cb.build());
 				Twitter twitter = tf.getInstance();
 		             
-				 List<Status> statuses = twitter.getHomeTimeline();  
+				 List<Status> statuses = twitter.getHomeTimeline();   
 
 	           
 	    		int counter=0;
