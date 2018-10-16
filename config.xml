@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <eu>
 <Service Protocol="smtp" TokenAPI="yPv2NQ8ozCWIQ1jZeXjWLGUce" TokenUSER="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8"/>
+<twitter Protocol="smtp" TokenAPI="yPv2NQ8ozCWIQ1jZeXjWLGUce" TokenUSER="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8"/>
 </eu>
