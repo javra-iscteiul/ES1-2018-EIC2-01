@@ -26,7 +26,7 @@ public class App_twitter {
 	
 	public void getTimeline(){
 		
-			try {
+			try { 
 				ConfigurationBuilder cb = new ConfigurationBuilder();
 		    	cb.setDebugEnabled(true)
 		    	  .setOAuthConsumerKey("yPv2NQ8ozCWIQ1jZeXjWLGUce")
