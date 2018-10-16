@@ -1,18 +1,41 @@
 package BDA.Twitter;
 import java.util.List;
 
+import BDA.FuncoesGerais;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 
 public class App_twitter {
-
+	private ObservableList<String> tweets = FXCollections.observableArrayList();
+	
+	@FXML
+	private ListView<String> tweetsList;
+	
 	public static void main(String[] args) {
 		
 	}
+//	@FXML
+//    private void twitterLogin_clicked(ActionEvent event)
+//    {
+//		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("twitter.fxml"));
+//    }
+	
+	@FXML
+    private void refresh_timeline_Clicked(MouseEvent event)
+    {
+		getTimeline();
+		//FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/loginTwitter.fxml"));
+    }
 	
 	public void getTimeline(){
-		try {
+		try {  
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 	    	cb.setDebugEnabled(true)
 	    	  .setOAuthConsumerKey("yPv2NQ8ozCWIQ1jZeXjWLGUce")
@@ -26,13 +49,13 @@ public class App_twitter {
     		int counter=0;
     		int counterTotal = 0;
             for (Status status : statuses) {
-				// Filters only tweets from user "catarina"
-				//if (status.getUser().getName() != null && status.getUser().getName().contains("iscte")) {
-					System.out.println(status.getUser().getName() + ":" + status.getText());
-					counter++;
-				//}
+            	String s = status.getUser().getName() + ":" + status.getText();
+				
+				tweets.add(counter, s);
+				counter++;
 				counterTotal++;
             }
+            tweetsList.setItems(tweets);
     		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
         } catch (Exception e) { System.out.println(e.getMessage()); }
 	}

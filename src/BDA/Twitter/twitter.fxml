@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Twitter.App_twitter">
    <children>
       <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
          <children>
@@ -27,7 +26,12 @@
       </Pane>
       <Pane layoutX="14.0" layoutY="56.0" prefHeight="216.0" prefWidth="415.0">
          <children>
-            <ListView layoutY="14.0" prefHeight="199.0" prefWidth="415.0" />
+            <ListView fx:id="tweetsList" layoutY="14.0" prefHeight="199.0" prefWidth="415.0" />
+            <ImageView fitHeight="42.0" fitWidth="80.0" layoutX="187.0" layoutY="171.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Graphics/refresh.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -49,7 +53,7 @@
          <children>
             <ImageView fitHeight="114.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Graphics/twitter%20logo.png" />
+                  <Image url="@../../../Graphics/twitter%20logo.png" />
                </image>
             </ImageView>
             <Label layoutX="35.0" layoutY="141.0" text="\@utilizador" />

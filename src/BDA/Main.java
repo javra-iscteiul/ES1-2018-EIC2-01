@@ -1,6 +1,7 @@
 package BDA;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class Main extends Application {
 	@FXML
     private void twitterLogo_clicked(MouseEvent event)
     {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/loginTwitter.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/twitter.fxml"));
     }
 	
 	@FXML
