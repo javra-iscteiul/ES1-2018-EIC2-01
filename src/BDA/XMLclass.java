@@ -33,7 +33,8 @@ public class XMLclass {
 	   }
 
 	
-	 public static void addElement(String service, String protocol, String tokenapi , String tokenuser ){
+	 public static void addElement(String service, String protocol, String username, String password,
+			 String consumerKey, String consumerSecret, String token , String tokensecret ){
 	      try {	
 		         File inputFile = new File("config.xml");
 		         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -65,8 +66,12 @@ public class XMLclass {
 
 		         Element newElement1 = doc.createElement(service);
 		         newElement1.setAttribute("Protocol", protocol);
-		         newElement1.setAttribute("TokenAPI", tokenapi);
-		         newElement1.setAttribute("TokenUSER", tokenuser);
+		         newElement1.setAttribute("UserName", username);
+		         newElement1.setAttribute("Password", password);
+		         newElement1.setAttribute("ConsumerKey", consumerKey);
+		         newElement1.setAttribute("ConsumerSecret", consumerSecret);
+		         newElement1.setAttribute("AccessToken", token);
+		         newElement1.setAttribute("AccessTokenSecret", tokensecret);
 
 		         Node n = doc.getDocumentElement();
 		         n.appendChild(newElement1);
