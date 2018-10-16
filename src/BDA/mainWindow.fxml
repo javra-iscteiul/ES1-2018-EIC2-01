@@ -21,7 +21,7 @@
                <image>
                   <Image url="@../../Graphics/iscteLogo.png" /> 
                </image> 
-            </ImageView>
+            </ImageView> 
             <Label layoutX="181.0" layoutY="5.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
                <font>
                   <Font name="Times New Roman" size="21.0" />

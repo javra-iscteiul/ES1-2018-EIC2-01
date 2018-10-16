@@ -37,7 +37,7 @@ public class App_twitter {
 		  //  	XMLclass.saveXML();     mete um try catch aqui 
 		    	TwitterFactory tf = new TwitterFactory(cb.build());
 				Twitter twitter = tf.getInstance();
-		            
+		             
 				 List<Status> statuses = twitter.getHomeTimeline();
 
 	           
