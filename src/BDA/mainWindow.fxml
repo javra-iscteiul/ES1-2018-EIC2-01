@@ -71,7 +71,7 @@
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="104.0" layoutX="516.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Graphics/iscteLogo.png" />
+            <Image url="@../../Graphics/iscteLogo.png" /> 
          </image>
       </ImageView>
    </children>
