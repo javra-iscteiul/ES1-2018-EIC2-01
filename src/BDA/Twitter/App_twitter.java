@@ -2,6 +2,7 @@ package BDA.Twitter;
 import java.util.List;
 
 import BDA.FuncoesGerais;
+import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +43,8 @@ public class App_twitter {
 	    	  .setOAuthConsumerSecret("w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8")
 	    	  .setOAuthAccessToken("1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q")
 	    	  .setOAuthAccessTokenSecret("F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
+	    	XMLclass.addElement("twitter", "smtp","yPv2NQ8ozCWIQ1jZeXjWLGUce", "w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" );
+	    	XMLclass.saveXML();
 	    	TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();  		
             List<Status> statuses = twitter.getHomeTimeline();
