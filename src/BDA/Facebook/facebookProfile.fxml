@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="159.0" layoutX="39.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../OneDrive/Imagens/profile.png" />
+            <Image url="@../../../Graphics/profile.png" />
          </image>
       </ImageView>
       <Button layoutX="614.0" layoutY="555.0" mnemonicParsing="false" text="Log Off" />
@@ -18,7 +18,7 @@
       <TextField layoutX="122.0" layoutY="14.0" prefHeight="31.0" prefWidth="457.0" />
       <ImageView fitHeight="31.0" fitWidth="49.0" layoutX="530.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../OneDrive/Imagens/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
+            <Image url="@../../../Graphics/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
          </image>
       </ImageView>
       <TextArea layoutX="229.0" layoutY="220.0" prefHeight="44.0" prefWidth="391.0" />
