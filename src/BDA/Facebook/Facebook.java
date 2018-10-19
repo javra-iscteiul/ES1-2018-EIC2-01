@@ -35,8 +35,6 @@ public class Facebook{
 	public static List<String> getTimeLine() {
 		Node facebookConfig = XMLclass.getElement("facebook");
 		
-		System.out.println(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
-		
 		FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
 		
 		Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
