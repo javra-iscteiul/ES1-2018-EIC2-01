@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Twitter.App_twitter">
+   <children>
+      <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
+         <children>
+            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" text="Procurar" textFill="#514c4c">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0" />
+      <Pane layoutX="14.0" layoutY="72.0" prefHeight="313.0" prefWidth="415.0">
+         <children>
+            <ListView fx:id="tweetsList" layoutY="27.0" prefHeight="287.0" prefWidth="415.0" />
+            <ImageView fitHeight="42.0" fitWidth="80.0" layoutX="187.0" layoutY="263.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Graphics/refresh.png" />
+               </image>
+            </ImageView>
+            <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="415.0" text="Pastas">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Caixa de entrada" />
+                <MenuItem mnemonicParsing="false" text="Itens Enviados" />
+              </items>
+            </MenuButton>
+         </children>
+      </Pane>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Opções">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Voltar ao menu anterior" />
+              <MenuItem mnemonicParsing="false" text="Fechar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ajuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Sobre nós" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane layoutX="430.0" layoutY="72.0" prefHeight="313.0" prefWidth="168.0">
+         <children>
+            <Button layoutX="8.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
+            <TextArea layoutX="4.0" layoutY="38.0" prefHeight="247.0" prefWidth="160.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
+            <Button layoutX="128.0" layoutY="287.0" mnemonicParsing="false" text="Sair" />
+         </children>
+      </Pane>
+      <TextField layoutX="439.0" layoutY="37.0" prefHeight="25.0" prefWidth="150.0" text="username" />
+   </children>
+</AnchorPane>
