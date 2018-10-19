@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
+import org.w3c.dom.Node;
 
 
 public class App_twitter {
@@ -28,14 +29,12 @@ public class App_twitter {
 		
 			try { 
 				ConfigurationBuilder cb = new ConfigurationBuilder();
+				Node twitterConfig = XMLclass.getElement("twitter");
 		    	cb.setDebugEnabled(true)
-		    	  .setOAuthConsumerKey("yPv2NQ8ozCWIQ1jZeXjWLGUce")
-		    	  .setOAuthConsumerSecret("w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8")
-		    	  .setOAuthAccessToken("1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q")
-		    	  .setOAuthAccessTokenSecret("F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
-		    	XMLclass.addElement("twitter", "smtp","EsJarh","grupo1grupo"
-		    		,"yPv2NQ8ozCWIQ1jZeXjWLGUce", "w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8",
-		    		"1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q","F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
+		    	  .setOAuthConsumerKey(twitterConfig.getAttributes().getNamedItem("ConsumerKey").getNodeValue())
+		    	  .setOAuthConsumerSecret(twitterConfig.getAttributes().getNamedItem("ConsumerSecret").getNodeValue())
+		    	  .setOAuthAccessToken(twitterConfig.getAttributes().getNamedItem("AccessToken").getNodeValue())
+		    	  .setOAuthAccessTokenSecret(twitterConfig.getAttributes().getNamedItem("AccessTokenSecret").getNodeValue());
 		    	TwitterFactory tf = new TwitterFactory(cb.build());
 				Twitter twitter = tf.getInstance();
 		             

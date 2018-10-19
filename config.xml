@@ -1,1 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Services>
+<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
+<facebook AccessToken="EAAEq0X5xdpMBABA5S6XKTbsjaQ50MkZCE0AlCMWSX5L5X2UUTYeGiJ73g66kbm8bsXsNcyYz5OR5Ni7lvettvtASw9pdclOxWJIZAkVUk39uNz9jEvindZAgROdfmzgM8ZBxTdZAEg3B6iJixSqfH26aM0OQf1iTTO0Hu5JO45oJFipT6zQL0sjWIn3acI8NdKHmRnE0A64SZBDdJHr1E9" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
+</Services>

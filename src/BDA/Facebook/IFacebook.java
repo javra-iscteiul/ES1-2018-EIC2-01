@@ -1,12 +1,6 @@
 package BDA.Facebook;
 
 public interface IFacebook {
-
-	public void createAccount();
-	
-	public void logIn();
-	
-	public void logOut();
 	
 	public void changeConfig();
 	

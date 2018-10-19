@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #546986;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #546986;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Facebook.Controller">
    <children>
       <ImageView fitHeight="150.0" fitWidth="159.0" layoutX="39.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +28,6 @@
          </font>
       </TextField>
       <Button layoutX="632.0" layoutY="227.0" mnemonicParsing="false" text="Post" />
-      <ScrollPane layoutX="39.0" layoutY="311.0" prefHeight="204.0" prefWidth="639.0" />
       <MenuButton layoutX="547.0" layoutY="93.0" mnemonicParsing="false" text="Contacts ">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -37,5 +36,6 @@
       </MenuButton>
       <TextField layoutX="229.0" layoutY="93.0" prefHeight="31.0" prefWidth="156.0" text="Twitter: @username" />
       <TextField layoutX="229.0" layoutY="137.0" prefHeight="31.0" prefWidth="171.0" text="Email: 123@email.com" />
+      <ListView fx:id="facebookList" layoutX="57.0" layoutY="321.0" onMouseClicked="#timeline_clicked" prefHeight="200.0" prefWidth="592.0" />
    </children>
 </AnchorPane>
