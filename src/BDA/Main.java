@@ -1,5 +1,6 @@
 package BDA;
 
+import BDA.Twitter.App_twitter;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,7 @@ public class Main extends Application {
 		}
 		
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/twitter.fxml"));
+		App_twitter.init();
     }
 	
 	@FXML
