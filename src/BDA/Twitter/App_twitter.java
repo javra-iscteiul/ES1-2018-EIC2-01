@@ -93,8 +93,9 @@ public final class App_twitter {
 	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView 
 	 * @throws TwitterException
 	 */
-	public void getTimeline() throws TwitterException{
-		 List<Status> statuses = twitter.getHomeTimeline();   
+	public void getTimeline() throws TwitterException{ 
+	Paging paging = new Paging(1, 40);
+	 List<Status> statuses = twitter.getHomeTimeline(paging);
 		int counter=0;
 		int counterTotal = 0;
         for (Status status : statuses) {
@@ -115,10 +116,13 @@ public final class App_twitter {
 	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
 	 */
 	public void filter(String quote) throws TwitterException {
-		 List<Status> statuses = twitter.getHomeTimeline();
+		 Paging paging = new Paging(1, 40);
+		 List<Status> statuses = twitter.getHomeTimeline(paging);
         System.out.println("------------------------\n Showing home timeline \n------------------------");
 		int counter=0;
 		int counterTotal = 0;
+		tweets.clear();
+		 tweetsList.getItems().clear();
 		 for (Status status : statuses) {
 				if (status.getUser().getName() != null && status.getText().contains(quote)) {
 					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
@@ -128,7 +132,7 @@ public final class App_twitter {
 				}
 				counterTotal++;
         }
-		 tweetsList.getItems().clear();
+		
 	     tweetsList.setItems(tweets);
 		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
 		
