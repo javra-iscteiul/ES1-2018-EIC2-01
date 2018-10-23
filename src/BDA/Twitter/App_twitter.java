@@ -12,19 +12,48 @@ import twitter4j.conf.ConfigurationBuilder;
 import org.w3c.dom.Node;
 
 
+
+/**
+ * Date: Oct 22 2018
+ * @author ES1-2018-EIC2-01
+ * @version 1.0
+ * Aplicação agregadora de aplicações: canal do Twitter
+ */
 public final class App_twitter {
+	
+	/**
+	 * ObservableList com os tweets 
+	 */
 	private ObservableList<String> tweets = FXCollections.observableArrayList();
+	
+	/**
+	 * Atributo do tipo Twitter utilizados nos procedimentos seguintes 
+	 */
 	private static Twitter twitter;
 	
+	
+	/**
+	 * ListView onde os tweets são disponibilizados na interface (biblioteca Javafx)
+	 */
 	@FXML
 	private ListView<String> tweetsList;
 	
+	
+	/**
+	 * Obtém a timeline atualizada após o botão "refresh" ser clicado
+	 * @param event 
+	 * @throws TwitterException
+	 */
 	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
     {
 		getTimeline();
     }
-	 public static void init() {
+	
+	 /**
+	 * Inicialização dos atributos relacionados com o AccessToken  
+	 */
+	public static void init() {
 		 ConfigurationBuilder cb = new ConfigurationBuilder();
 		Node twitterConfig = XMLclass.getElement("twitter");
 		cb.setDebugEnabled(true)
@@ -36,6 +65,11 @@ public final class App_twitter {
 		twitter = tf.getInstance();
 				
 	 }
+	
+	/**
+	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView 
+	 * @throws TwitterException
+	 */
 	public void getTimeline() throws TwitterException{
 		 List<Status> statuses = twitter.getHomeTimeline();   
 		int counter=0;
@@ -52,6 +86,11 @@ public final class App_twitter {
 		}
 	
 	
+	/**
+	 * @param s String 
+	 * @throws TwitterException
+	 * Procedimento que filtra determinados tweets segundo determinadas condições
+	 */
 	public void filter(String s) throws TwitterException {
 		 List<Status> statuses = twitter.getHomeTimeline();
          System.out.println("------------------------\n Showing home timeline \n------------------------");

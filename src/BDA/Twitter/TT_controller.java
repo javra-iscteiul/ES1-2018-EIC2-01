@@ -13,6 +13,15 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
+
+
+/**
+ * Date: Oct 22 2018
+ * @author ES1-2018-EIC2-01
+ * @version 1.0
+ * Aplicação agregadora de aplicações: controlador do Twitter
+ *
+ */
 public class TT_controller {
 	
 	
@@ -21,6 +30,11 @@ public class TT_controller {
 	}
 	
 	
+	/**
+	 * @param args Array de argumentos String
+	 * @throws Exception
+	 * Método main do controlador
+	 */
 	public static void main(String args[]) throws Exception{
 	  /*  // The factory instance is re-useable and thread safe.
 	    Twitter twitter = TwitterFactory.getSingleton();
@@ -53,7 +67,13 @@ public class TT_controller {
 	    System.out.println("Successfully updated the status to [" + status.getText() + "].");
 	    System.exit(0);*/
 	  }
-	  private static void storeAccessToken(int useId, AccessToken accessToken){
+	
+	  /**
+	   * 
+	 * @param useId
+	 * @param accessToken 
+	 */
+	private static void storeAccessToken(int useId, AccessToken accessToken){
 	    //store accessToken.getToken()
 	    //store accessToken.getTokenSecret()
 	  }
