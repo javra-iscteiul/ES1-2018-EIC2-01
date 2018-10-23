@@ -11,12 +11,12 @@
    <children>
       <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
          <children>
-            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" text="Procurar" textFill="#514c4c">
+            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" text="Procurar" onAction="#filter" textFill="#514c4c">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
+            <TextField id="pesquisa" fx:id="pesquisa" prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
          </children>
       </Pane>
       <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0">

@@ -4,8 +4,10 @@ import java.util.List;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
@@ -38,6 +40,12 @@ public final class App_twitter {
 	@FXML
 	private ListView<String> tweetsList;
 	
+	/**
+	 * TextField correspondente à palavra ou frase a pesquisar
+	 */
+	@FXML
+	private TextField pesquisa;
+
 	
 	/**
 	 * Obtém a timeline atualizada após o botão "refresh" ser clicado
@@ -49,6 +57,20 @@ public final class App_twitter {
     {
 		getTimeline();
     }
+	
+	/**
+	 * Obtém a timeline atualizada após a procura correspondente ao textField pesquisa
+	 * @param event 
+	 * @throws TwitterException
+	 */
+	@FXML
+    private void filter(ActionEvent event) throws TwitterException 
+    {
+		System.out.println(pesquisa.getText());
+		filter(pesquisa.getText());
+    }
+	
+	
 	
 	 /**
 	 * Inicialização dos atributos relacionados com o AccessToken  
@@ -65,6 +87,7 @@ public final class App_twitter {
 		twitter = tf.getInstance();
 				
 	 }
+	
 	
 	/**
 	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView 
@@ -87,24 +110,27 @@ public final class App_twitter {
 	
 	
 	/**
-	 * @param s String 
+	 * @param quote String 
 	 * @throws TwitterException
-	 * Procedimento que filtra determinados tweets segundo determinadas condições
+	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
 	 */
-	public void filter(String s) throws TwitterException {
+	public void filter(String quote) throws TwitterException {
 		 List<Status> statuses = twitter.getHomeTimeline();
-         System.out.println("------------------------\n Showing home timeline \n------------------------");
- 		int counter=0;
+        System.out.println("------------------------\n Showing home timeline \n------------------------");
+		int counter=0;
 		int counterTotal = 0;
 		 for (Status status : statuses) {
-				// Filters only tweets from user "catarina"
-				if (status.getUser().getName() != null && status.getUser().getName().contains("catarina")) {
-					System.out.println(status.getUser().getName() + ":" + status.getText());
+				if (status.getUser().getName() != null && status.getText().contains(quote)) {
+					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
+					System.out.println(status.getUser().getName() + ":" + status.getText() );
+					tweets.add(counter, s);
 					counter++;
 				}
 				counterTotal++;
-         }
- 		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+        }
+		 tweetsList.getItems().clear();
+	     tweetsList.setItems(tweets);
+		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
 		
 	}
 
