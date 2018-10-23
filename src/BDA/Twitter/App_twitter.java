@@ -48,8 +48,8 @@ public final class App_twitter {
 
 	
 	/**
-	 * Obtém a timeline atualizada após o botão "refresh" ser clicado
-	 * @param event 
+	 * Obtém a timeline atualizada após o clique do botão "refresh" 
+	 * @param event MouseEvent
 	 * @throws TwitterException
 	 */
 	@FXML
@@ -111,9 +111,9 @@ public final class App_twitter {
 	
 	
 	/**
+	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
 	 * @param quote String 
 	 * @throws TwitterException
-	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
 	 */
 	public void filter(String quote) throws TwitterException {
 		 Paging paging = new Paging(1, 40);

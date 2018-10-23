@@ -8,9 +8,22 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import twitter4j.TwitterException;
+
+/**
+ * Date: Oct 22 2018
+ * @author ES1-2018-EIC2-01
+ * @version 1.0
+ * Aplicação principal
+ */
 
 public class Main extends Application {
 	
+	
+	/**
+	 * Procedimento responsavel por lançar a janela principal da aplicação
+	 * @param janelaInicial Stage 
+	 */
 	@Override
 	public void start(Stage janelaInicial){ 
 		try{			
@@ -24,6 +37,11 @@ public class Main extends Application {
 		}
 	}
 	
+	
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação twitter
+	 * @param event MouseEvent 
+	 */
 	@FXML
     private void twitterLogo_clicked(MouseEvent event)
     {
@@ -37,6 +55,11 @@ public class Main extends Application {
 		App_twitter.init();
     }
 	
+	
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação facebook
+	 * @param event MouseEvent 
+	 */
 	@FXML
     private void facebookLogo_clicked(MouseEvent event)
     {
@@ -49,11 +72,18 @@ public class Main extends Application {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Facebook/facebookProfile.fxml"));		
     }
 	
+	
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação email
+	 * @param event MouseEvent 
+	 */
 	@FXML
     private void emailLogo_clicked(MouseEvent event)
     {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("login.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
     }
+	
+	
 	
 	public static void main(String[] args)
 	{

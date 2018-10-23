@@ -18,13 +18,37 @@ import javax.xml.parsers.DocumentBuilder;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+
+import twitter4j.TwitterException;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+
+/**
+ * Date: Oct 22 2018
+ * @author ES1-2018-EIC2-01
+ * @version 1.0
+ * Classe responsavel por guardas ass credenciais no ficheiro config.xml
+ */
 public class XMLclass {
+	
+	/**
+	 * Atributo do tipo File responsavel por definir o destino das credenciais 
+	 */
 	private static File inputFile = new File("config.xml");
+	
+	/**
+	 * Atributo do tipo DocumentBuilderFactory responsavel por construir um documento a partir do ficheiro dado 
+	 */
 	private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
+	
+	/**
+ 	 * Dado um determinado serviço verifica se o mesmo já existe no documento com as credenciais 
+	 * @param service String
+	 * @return boolean
+	 */
 	public static boolean existsElement(String service) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -38,7 +62,13 @@ public class XMLclass {
 			return false;
 		}
 	}
-
+	
+	
+	/**
+ 	 * Dado um determinado serviço retorna o node correspondente
+	 * @param service String
+	 * @return Node
+	 */
 	public static Node getElement(String service) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -53,6 +83,19 @@ public class XMLclass {
 		}
 	}
 
+	
+	/**
+ 	 * Adiciona o novo serviço e respetivos atributos ao ficheiro config.xml
+	 * @param service String
+	 * @param protocol String 	 
+	 * @param username String 
+	 * @param password String
+	 * @param consumerKey String 
+	 * @param consumerSecret String
+	 * @param token String 
+	 * @param tokensecret String
+
+	 */
 	public static void addElement(String service, String protocol, String username, String password, String consumerKey,
 			String consumerSecret, String token, String tokensecret) {
 		try {
