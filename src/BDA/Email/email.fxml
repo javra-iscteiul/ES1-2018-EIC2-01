@@ -20,10 +20,10 @@
          </children>
       </Pane>
       <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0" />
-      <Pane layoutX="14.0" layoutY="72.0" prefHeight="313.0" prefWidth="415.0">
+      <Pane layoutX="14.0" layoutY="72.0" prefHeight="525.0" prefWidth="465.0">
          <children>
-            <ListView fx:id="tweetsList" layoutY="27.0" prefHeight="287.0" prefWidth="415.0" />
-            <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="415.0" text="Pastas">
+            <ListView fx:id="tweetsList" layoutY="27.0" prefHeight="485.0" prefWidth="465.0" />
+            <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="465.0" text="Pastas">
               <items>
                 <MenuItem mnemonicParsing="false" text="Caixa de entrada" />
                 <MenuItem mnemonicParsing="false" text="Itens Enviados" />
@@ -31,7 +31,7 @@
             </MenuButton>
             <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="192.0" layoutY="275.0">
                <image>
-                  <Image url="@../../../../../OneDrive/Imagens/refresh3.png" />
+                  <Image url="@../../../Graphics/refresh.png" />
                </image>
             </ImageView>
          </children>
@@ -51,13 +51,13 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane layoutX="430.0" layoutY="72.0" prefHeight="313.0" prefWidth="168.0">
+      <Pane layoutX="482.0" layoutY="72.0" prefHeight="512.0" prefWidth="205.0">
          <children>
-            <Button layoutX="8.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
-            <TextArea layoutX="78.0" layoutY="33.0" prefHeight="247.0" prefWidth="160.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
-            <Button layoutX="119.0" layoutY="284.0" mnemonicParsing="false" text="Sair" />
+            <Button layoutX="28.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
+            <Button layoutX="173.0" layoutY="486.0" mnemonicParsing="false" text="Sair" />
+            <TextArea layoutX="4.0" layoutY="33.0" prefHeight="422.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
          </children>
       </Pane>
-      <TextField layoutX="439.0" layoutY="37.0" prefHeight="25.0" prefWidth="150.0" text="username" />
+      <TextField layoutX="554.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />
    </children>
 </AnchorPane>
