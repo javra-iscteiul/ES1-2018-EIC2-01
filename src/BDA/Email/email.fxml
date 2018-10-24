@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Twitter.App_twitter">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.Email">
    <children>
       <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
          <children>
@@ -22,14 +22,14 @@
       <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0" />
       <Pane layoutX="14.0" layoutY="72.0" prefHeight="525.0" prefWidth="465.0">
          <children>
-            <ListView fx:id="tweetsList" layoutY="27.0" prefHeight="485.0" prefWidth="465.0" />
+            <ListView fx:id="emailsList" layoutY="27.0" prefHeight="456.0" prefWidth="465.0" />
             <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="465.0" text="Pastas">
               <items>
                 <MenuItem mnemonicParsing="false" text="Caixa de entrada" />
                 <MenuItem mnemonicParsing="false" text="Itens Enviados" />
               </items>
             </MenuButton>
-            <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="192.0" layoutY="275.0">
+            <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="217.0" layoutY="483.0">
                <image>
                   <Image url="@../../../Graphics/refresh.png" />
                </image>

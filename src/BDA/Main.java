@@ -80,7 +80,7 @@ public class Main extends Application {
 	@FXML
     private void emailLogo_clicked(MouseEvent event)
     {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
     }
 	
 	
