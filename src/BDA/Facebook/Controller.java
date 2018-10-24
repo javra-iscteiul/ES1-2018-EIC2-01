@@ -34,7 +34,7 @@ public class Controller {
 	 */
 	@FXML
     private void timeline_clicked(MouseEvent event){
-		for(String post : Facebook.getTimeLine()){
+		for(String post : Facebook.getTimeline()){
 			posts.add(post);
 		}
 		facebookList.setItems(posts);

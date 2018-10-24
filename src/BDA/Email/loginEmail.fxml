@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('file:///../Graphics/intersection.png'); -fx-background-color: #537FAD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.Email">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('file:///../Graphics/intersection.png'); -fx-background-color: #537FAD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.Controller">
    <children>
       <AnchorPane layoutX="179.0" layoutY="59.0" prefHeight="282.0" prefWidth="230.0" style="-fx-background-color: #d8d8d8;">
          <children>

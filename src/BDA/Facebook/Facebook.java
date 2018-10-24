@@ -20,8 +20,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import org.w3c.dom.Node;
 
-
-
 /**
  * Date: Oct 22 2018
  * @author ES1-2018-EIC2-01
@@ -29,7 +27,6 @@ import org.w3c.dom.Node;
  * Aplicação agregadora de conteúdos académicos: canal do Facebook
  *
  */
-
 
 /**
  * @author jalex
@@ -53,7 +50,7 @@ public class Facebook{
 	 * Este método permite que seja obtida uma lista dos posts de um utilizador na timeline do facebook (interface)
 	 * @return	retorna uma lista dos posts do utilizador no facebook
 	 */
-	public static List<String> getTimeLine() {
+	public static List<String> getTimeline() {
 		Node facebookConfig = XMLclass.getElement("facebook");
 		
 		FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
