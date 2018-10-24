@@ -43,7 +43,7 @@
                <children>
                   <ImageView fitHeight="199.0" fitWidth="198.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Graphics/emaillogo.jpg" />
+                        <Image url="@../../Graphics/emaillogo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="206.0" fitWidth="200.0" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
