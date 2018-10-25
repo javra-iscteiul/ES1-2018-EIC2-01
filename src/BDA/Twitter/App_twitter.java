@@ -135,7 +135,6 @@ public final class App_twitter {
 		
 	     tweetsList.setItems(tweets);
 		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-		
 	}
 
 }
