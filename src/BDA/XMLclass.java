@@ -45,7 +45,6 @@ public class XMLclass {
 	 * Atributo do tipo DocumentBuilderFactory responsavel por construir um documento a partir do ficheiro dado 
 	 */
 	private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-
 	
 	/**
  	 * Dado um determinado serviço verifica se o mesmo já existe no documento com as credenciais 
@@ -88,6 +87,8 @@ public class XMLclass {
 					return false;
 				if(!nodeAttributes.getNamedItem(Attribute.getKey()).getNodeValue().equals(Attribute.getValue()))
 					return false;
+				
+				System.out.println(nodeAttributes.getNamedItem(Attribute.getKey()).getNodeValue() + "  " + Attribute.getValue());
 			}
 			return true;
 		} catch (Exception e) {
@@ -102,7 +103,7 @@ public class XMLclass {
 	 * @param service String
 	 * @return boolean
 	 */
-	public static void deleteElement(String service) {
+	public static boolean deleteElement(String service) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -110,7 +111,7 @@ public class XMLclass {
 			
 			NodeList nodeList = doc.getElementsByTagName(service);
 			if(nodeList.getLength() == 0)
-				return;			
+				return false;			
 			
 			Element element = (Element)nodeList.item(0);			
 			element.getParentNode().removeChild(element);
@@ -121,9 +122,12 @@ public class XMLclass {
 			StreamResult result = new StreamResult(new FileOutputStream(inputFile));
 			DOMSource source = new DOMSource(doc);
 			transformer.transform(source, result);
+			
+			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -159,7 +163,7 @@ public class XMLclass {
 	 * @param token String 
 	 * @param tokensecret String
 	 */
-	public static void addElement(String service, String protocol, String username, String password, String consumerKey,
+	public static boolean addElement(String service, String protocol, String username, String password, String consumerKey,
 			String consumerSecret, String token, String tokensecret) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -205,8 +209,11 @@ public class XMLclass {
 			StreamResult result = new StreamResult(new FileOutputStream("config.xml"));
 			DOMSource source = new DOMSource(doc);
 			transformer.transform(source, result);
+			
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 

@@ -5,4 +5,23 @@
 
 
 <email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<serviceTest AccessToken="tokenTest" AccessTokenSecret="tokensecretTest" ConsumerKey="consumerKeyTest" ConsumerSecret="consumerSecretTest" Password="passwordTest" Protocol="protocolTest" UserName="usernameTest"/>
 </Services>
