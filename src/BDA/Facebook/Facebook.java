@@ -50,6 +50,8 @@ public class Facebook{
 	 * Este método permite que seja obtida uma lista dos posts de um utilizador na timeline do facebook (interface)
 	 * @return	retorna uma lista dos posts do utilizador no facebook
 	 */
+	
+	
 	public static List<String> getTimeline() {
 		Node facebookConfig = XMLclass.getElement("facebook");
 		

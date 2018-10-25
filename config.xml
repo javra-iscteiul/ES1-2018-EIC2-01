@@ -24,4 +24,5 @@
 
 
 <serviceTest AccessToken="tokenTest" AccessTokenSecret="tokensecretTest" ConsumerKey="consumerKeyTest" ConsumerSecret="consumerSecretTest" Password="passwordTest" Protocol="protocolTest" UserName="usernameTest"/>
+<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
 </Services>
