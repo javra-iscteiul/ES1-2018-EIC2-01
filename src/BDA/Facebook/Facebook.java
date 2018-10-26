@@ -28,10 +28,6 @@ import org.w3c.dom.Node;
  *
  */
 
-/**
- * @author jalex
- *
- */
 public class Facebook {
 
 	public void changeConfig() {
