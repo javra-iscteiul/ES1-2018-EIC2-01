@@ -1,14 +1,13 @@
 package jUnitTests;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
 import BDA.XMLclass;
 import BDA.Facebook.Facebook;
 
-public class facebookTest {
+public class FacebookTest {
 	@Test
     public void getTimeline() {
 		if(!XMLclass.existsElement("facebookProfile")){
@@ -20,5 +19,4 @@ public class facebookTest {
 		}
 		assertNotNull(Facebook.getTimeline());
     }
-
 }
