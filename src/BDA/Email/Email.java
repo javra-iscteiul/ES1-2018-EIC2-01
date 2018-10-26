@@ -74,7 +74,7 @@ public class Email {
 				System.out.println("Subject: " + message.getSubject());
 				System.out.println("From: " + message.getFrom()[0]);
 				String s = "Email Number " + (i + 1) + "Subject: "
-						+ message.getSubject() + "From: " + message.getFrom()[0] + "From: " + message.getFrom()[0];
+						+ message.getSubject() + "From: " + message.getFrom()[0];
 
 				emails.add(s);
 			}

@@ -50,6 +50,8 @@ public class Facebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
+	
+	
 	public static List<String> getTimeline() {
 		try {
 			Node facebookConfig = XMLclass.getElement("facebook");
