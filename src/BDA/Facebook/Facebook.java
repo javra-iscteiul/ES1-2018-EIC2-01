@@ -28,61 +28,62 @@ import org.w3c.dom.Node;
  *
  */
 
-/**
- * @author jalex
- *
- */
-public class Facebook{
-	
-	
+public class Facebook {
+
 	public void changeConfig() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void createPost() {
 		// TODO Auto-generated method stub
-		
+
 	}
-		
 
 	/**
-	 * Este método permite que seja obtida uma lista dos posts de um utilizador na timeline do facebook (interface)
-	 * @return	retorna uma lista dos posts do utilizador no facebook
+	 * Este método permite que seja obtida uma lista dos posts de um utilizador na
+	 * timeline do facebook (interface)
+	 * 
+	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
 	
 	
 	public static List<String> getTimeline() {
-		Node facebookConfig = XMLclass.getElement("facebook");
-		
-		FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
-		
-		Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
-		
-		int counter = 0;
-		List<String> posts = new ArrayList<String>();
-		for(List<Post> page : results){
-			for(Post aPost : page){
-				String s = aPost.getName() + ":" + aPost.getMessage() + ":" + "fb.com/" + aPost.getId();
-				
-				posts.add(counter, s);
+		try {
+			Node facebookConfig = XMLclass.getElement("facebook");
+
+			FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
+
+			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
+
+			int counter = 0;
+			List<String> posts = new ArrayList<String>();
+			for (List<Post> page : results) {
+				for (Post aPost : page) {
+					String s = aPost.getName() + ":" + aPost.getMessage() + ":" + "fb.com/" + aPost.getId();
+
+					posts.add(counter, s);
+				}
 			}
+			return posts;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return posts;
 	}
 
 	public void setFilter() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void getMessages() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void sendMessage() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
