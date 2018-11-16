@@ -7,7 +7,7 @@ import org.junit.Test;
 import BDA.XMLclass;
 import BDA.Facebook.Facebook;
 
-public class FacebookTest {
+public class facebookTest {
 	@Test
     public void getTimeline() {
 		if(!XMLclass.existsElement("facebookProfile")){
