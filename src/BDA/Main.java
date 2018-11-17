@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import twitter4j.TwitterException;
 
 /**
  * Date: Oct 22 2018

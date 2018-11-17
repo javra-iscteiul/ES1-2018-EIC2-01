@@ -17,6 +17,6 @@ public class facebookTest {
 		    				"","");
 			
 		}
-		assertNotNull(Facebook.getTimeline());
+		assertNotNull(new Facebook().getTimeLine());
     }
 }

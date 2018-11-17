@@ -34,7 +34,7 @@ public class xmlClass {
 
 	@Test
 	public void verifyElementAttributesUnchangedTest(){
-		Map<String, String> Attributes = new HashMap();
+		Map<String, String> Attributes = new HashMap<String, String>();
 		Attributes.put("Protocol", "protocolTest");
 		Attributes.put("UserName", "usernameTest");
 		Attributes.put("Password", "passwordTest");
@@ -47,7 +47,7 @@ public class xmlClass {
 		//funções que esperam excepção ficam para ultimo
 		assertFalse(XMLclass.verifyElementAttributesUnchanged("", null));
 		
-		Map<String, String> AttributesFail = new HashMap();
+		Map<String, String> AttributesFail = new HashMap<String, String>();
 		AttributesFail.put("Protocol", "protocolTest");
 		AttributesFail.put("UserName", "usernameTest");
 		AttributesFail.put("Password", "passwordTest");

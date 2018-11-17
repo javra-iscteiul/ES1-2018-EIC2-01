@@ -28,13 +28,15 @@ public class Controller {
 	@FXML
 	private ListView<String> facebookList;
 	
+	private IFacebook facebook = new Facebook();
+	
 	/**
 	 * Procedimento que adiciona posts à timeline cada vez que esta é clicada com o rato (biblioteca Javafx)
 	 * @param event 
 	 */
 	@FXML
     private void timeline_clicked(MouseEvent event){
-		for(String post : Facebook.getTimeline()){
+		for(String post : facebook.getTimeLine()){
 			posts.add(post);
 		}
 		facebookList.setItems(posts);

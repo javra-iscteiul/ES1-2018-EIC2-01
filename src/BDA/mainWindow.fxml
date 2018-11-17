@@ -43,17 +43,17 @@
                <children>
                   <ImageView fitHeight="199.0" fitWidth="198.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Graphics/emaillogo.png" />
+                        <Image url="file:///../Graphics/emaillogo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="206.0" fitWidth="200.0" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
-                        <Image url="@../../Graphics/facebookLogo.png" />
+                        <Image url="file:///../Graphics/facebookLogo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="198.0" fitWidth="300.0" onMouseClicked="#twitterLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
-                        <Image url="@../../Graphics/twitter%20logo.png" />
+                        <Image url="file:///../Graphics/twitter_logo.png" />
                      </image>
                   </ImageView>
                </children>

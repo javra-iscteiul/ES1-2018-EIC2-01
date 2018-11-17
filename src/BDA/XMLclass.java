@@ -2,8 +2,6 @@ package BDA;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,8 +18,6 @@ import javax.xml.parsers.DocumentBuilder;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-
-import twitter4j.TwitterException;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;

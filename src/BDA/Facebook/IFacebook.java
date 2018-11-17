@@ -1,5 +1,7 @@
 package BDA.Facebook;
 
+import java.util.List;
+
 /**
  * Date: Oct 22 2018
  * @author ES1-2018-EIC2-01
@@ -14,7 +16,7 @@ public interface IFacebook {
 
 	public void createPost();
 
-	public void getTimeLine();
+	public List<String> getTimeLine();
 
 	public void setFilter();
 

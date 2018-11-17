@@ -61,7 +61,7 @@ public class Controller {
 		
 		if(XMLclass.existsElement("email")){
 			
-			Map<String, String> Attributes = new HashMap();
+			Map<String, String> Attributes = new HashMap<String, String>();
 			Attributes.put("UserName", mail);
 			Attributes.put("Password", pass);
 			

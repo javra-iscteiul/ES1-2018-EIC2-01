@@ -1,10 +1,7 @@
 package BDA.Facebook;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -12,12 +9,6 @@ import com.restfb.FacebookClient;
 import com.restfb.types.Post;
 
 import BDA.XMLclass;
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import org.w3c.dom.Node;
 
 /**
@@ -28,7 +19,7 @@ import org.w3c.dom.Node;
  *
  */
 
-public class Facebook {
+public class Facebook implements IFacebook {
 
 	public void changeConfig() {
 		// TODO Auto-generated method stub
@@ -46,9 +37,7 @@ public class Facebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	
-	
-	public static List<String> getTimeline() {
+	public List<String> getTimeLine() {
 		try {
 			Node facebookConfig = XMLclass.getElement("facebook");
 
