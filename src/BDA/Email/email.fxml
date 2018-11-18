@@ -31,13 +31,13 @@
             </MenuButton>
             <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="217.0" layoutY="483.0" onMouseClicked="#getEmailsList_Clicked">
                <image>
-                  <Image url="@../../../Graphics/refresh.png" />
+                  <Image url="file:///../Graphics/refresh.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <menus>
+        <menus> 
           <Menu mnemonicParsing="false" text="Opções">
             <items>
                   <MenuItem mnemonicParsing="false" text="Voltar ao menu anterior" />
@@ -55,9 +55,15 @@
          <children>
             <Button layoutX="28.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
             <Button layoutX="173.0" layoutY="486.0" mnemonicParsing="false" text="Sair" />
-            <TextArea layoutX="4.0" layoutY="33.0" prefHeight="422.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
+            <TextArea layoutX="4.0" layoutY="33.0" prefHeight="450.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
          </children>
       </Pane>
-      <TextField layoutX="554.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />
+      <TextField layoutX="446.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />
+      <Label layoutX="615.0" layoutY="41.0" text="Logout" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="661.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Graphics/logout.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

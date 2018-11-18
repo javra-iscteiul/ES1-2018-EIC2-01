@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * Date: Oct 22 2018
  * @author ES1-2018-EIC2-01
  * @version 1.0
- * Aplicação principal
+ * Aplicação principal 
  */
 
 public class Main extends Application {
@@ -82,8 +82,9 @@ public class Main extends Application {
 	@FXML
     private void emailLogo_clicked(MouseEvent event){
 		if(XMLclass.existsElement("email")){
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
 			Email.init();
+			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
+			
 		}else {
 			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
 		}

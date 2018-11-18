@@ -1,9 +1,13 @@
 package BDA.Facebook;
 
+import java.util.Observable;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -19,16 +23,25 @@ public class Controller {
 	/**
 	 * ObservableList com os posts do facebook
 	 */
-	private ObservableList<String> posts = FXCollections.observableArrayList();
+	private ObservableList<Message> posts = FXCollections.observableArrayList();
 	
+	/**
+	 * TextField correspondente à palavra ou frase a pesquisar
+	 */
+	@FXML
+	private TextField pesquisa;
+	
+	/**
+	 * TextField correspondente à palavra ou frase a pesquisar
+	 */
+	@FXML
+	private TextArea mensagem;
 	
 	/**
 	 * ListView (biblioteca Javafx)
 	 */
 	@FXML
-	private ListView<String> facebookList;
-	
-	private IFacebook facebook = new Facebook();
+	private ListView<Message> facebookList;
 	
 	/**
 	 * Procedimento que adiciona posts à timeline cada vez que esta é clicada com o rato (biblioteca Javafx)
@@ -36,9 +49,14 @@ public class Controller {
 	 */
 	@FXML
     private void timeline_clicked(MouseEvent event){
-		for(String post : facebook.getTimeLine()){
+		for(Message post : new Facebook().getTimeLine()){
 			posts.add(post);
 		}
 		facebookList.setItems(posts);
+	}
+	
+	@FXML
+	private void sendMessage_clicked(MouseEvent event){
+		new Facebook().sendMessage(mensagem.getText());
 	}
 }

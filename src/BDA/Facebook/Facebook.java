@@ -6,7 +6,10 @@ import java.util.List;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.GraphResponse;
 import com.restfb.types.Post;
+import com.restfb.types.send.IdMessageRecipient;
 
 import BDA.XMLclass;
 import org.w3c.dom.Node;
@@ -21,6 +24,10 @@ import org.w3c.dom.Node;
 
 public class Facebook implements IFacebook {
 
+	private final Node facebookConfig = XMLclass.getElement("facebook");
+	
+	private final FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
+	
 	public void changeConfig() {
 		// TODO Auto-generated method stub
 
@@ -37,21 +44,16 @@ public class Facebook implements IFacebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	public List<String> getTimeLine() {
+	public List<Message> getTimeLine() {
 		try {
-			Node facebookConfig = XMLclass.getElement("facebook");
-
-			FacebookClient fbClient = new DefaultFacebookClient(facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
-
 			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
 
 			int counter = 0;
-			List<String> posts = new ArrayList<String>();
+			List<Message> posts = new ArrayList<Message>();
 			for (List<Post> page : results) {
 				for (Post aPost : page) {
-					String s = aPost.getName() + ":" + aPost.getMessage() + ":" + "fb.com/" + aPost.getId();
-
-					posts.add(counter, s);
+					posts.add(counter, new Message(aPost.getName(), aPost.getCreatedTime(), aPost.getMessage()));
+					counter++;
 				}
 			}
 			return posts;
@@ -71,8 +73,7 @@ public class Facebook implements IFacebook {
 
 	}
 
-	public void sendMessage() {
-		// TODO Auto-generated method stub
-
+	public void sendMessage(String messageToSend) {
+		fbClient.publish("me/feed", GraphResponse.class, Parameter.with("message", messageToSend));
 	}
 }
