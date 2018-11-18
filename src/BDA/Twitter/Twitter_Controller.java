@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import twitter4j.TwitterException;
@@ -21,6 +22,8 @@ public class Twitter_Controller {
 	@FXML
 	private TextField pesquisa;
 	
+	@FXML
+	private TextArea publicacao;
 	
 	@FXML
     public void initialize() {
@@ -46,5 +49,10 @@ public class Twitter_Controller {
 		tt.filter(pesquisa.getText(), tweetsList);
     }
 	
+	@FXML 
+	private void post(ActionEvent event) {
+		System.out.println(publicacao.getText());
+		tt.post(publicacao.getText());
+	}
 	
 }

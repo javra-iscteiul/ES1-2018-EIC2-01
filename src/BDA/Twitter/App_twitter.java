@@ -149,5 +149,17 @@ public final class App_twitter {
 			return false;
 		}
 	}
+	
+	public String post(String quote){
+		try {
+			twitter.updateStatus(quote);
+			System.out.println("Successfully updated the status to [" + quote + "].");
+			
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  return quote;
+	}
 
 }
