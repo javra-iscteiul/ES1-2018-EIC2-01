@@ -28,7 +28,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Ambiente%20de%20Trabalho/estaLupa.png" />
+                        <Image url="file:///../Graphics/estaLupa.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -39,7 +39,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../../../../Downloads/rsz_fb.png" />
+                              <Image url="file:///../Graphics/rsz_fb.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
@@ -47,7 +47,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../../../../Downloads/rsz_tw.png" />
+                              <Image url="file:///../Graphics/rsz_tw.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
@@ -55,7 +55,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../../../../Downloads/rsz_emaill.png" />
+                              <Image url="file:///../Graphics/rsz_emaill.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
@@ -63,7 +63,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/rsz_1rsz_1rsz_apps_menu.png" />
+                        <Image url="file:///../Graphics/rsz_1rsz_1rsz_apps_menu.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -84,7 +84,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../../../../Downloads/rsz_icon-transparent-question-4.png" />
+                              <Image url="file:///../Graphics/rsz_icon-transparent-question-4.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -93,7 +93,7 @@
                <graphic>
                   <ImageView>
                      <image>
-                        <Image url="@../../../../../../Downloads/rsz_wheel-single-512.png" />
+                        <Image url="file:///../Graphics/rsz_wheel-single-512.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -102,19 +102,19 @@
                <graphic>
                   <ImageView>
                      <image>
-                        <Image url="@../../../../../../Downloads/rsz_img_266983.png" />
+                        <Image url="file:///../Graphics/rsz_img_266983.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
             <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="301.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="576.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
                </image>
             </ImageView>
          </children>
