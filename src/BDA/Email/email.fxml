@@ -11,18 +11,18 @@
    <children>
       <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="415.0">
          <children>
-            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" text="Procurar" textFill="#514c4c">
+            <Button layoutX="359.0" layoutY="3.0" mnemonicParsing="false" onAction="#filter" text="Procurar" textFill="#514c4c">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
+            <TextField id="pesquisa" fx:id="pesquisa" prefHeight="28.0" prefWidth="359.0" promptText="Pesquisar" />
          </children>
       </Pane>
       <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0" />
       <Pane layoutX="14.0" layoutY="72.0" prefHeight="525.0" prefWidth="465.0">
          <children>
-            <ListView fx:id="emailsList" layoutY="27.0" prefHeight="456.0" prefWidth="465.0" />
+            <ListView fx:id="emailsList" layoutY="27.0"  onMouseClicked="#selection" prefHeight="456.0" prefWidth="465.0" />
             <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="465.0" text="Pastas">
               <items>
                 <MenuItem mnemonicParsing="false" text="Caixa de entrada" />
@@ -53,16 +53,16 @@
       </MenuBar>
       <Pane layoutX="482.0" layoutY="72.0" prefHeight="512.0" prefWidth="205.0">
          <children>
-            <Button layoutX="28.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
+            <Button layoutX="28.0" mnemonicParsing="false" prefHeight="28.0" onMouseClicked="#novaMensagem" prefWidth="150.0" text="Nova mensagem" />
             <Button layoutX="173.0" layoutY="486.0" mnemonicParsing="false" text="Sair" />
-            <TextArea layoutX="4.0" layoutY="33.0" prefHeight="450.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
+            <TextArea id="conteudo" fx:id="conteudo" layoutX="4.0" layoutY="33.0" prefHeight="450.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
          </children>
       </Pane>
-      <TextField layoutX="446.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />
-      <Label layoutX="615.0" layoutY="41.0" text="Logout" />
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="661.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <TextField id="user" fx:id="user" layoutX="446.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />
+      <Label layoutX="615.0" layoutY="41.0" text="Logout" onMouseClicked="#logout" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#logout" layoutX="661.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Graphics/logout.png" />
+            <Image url="file:///../Graphics/logout.png" />
          </image>
       </ImageView>
    </children>

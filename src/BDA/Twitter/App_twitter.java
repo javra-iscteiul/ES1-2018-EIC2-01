@@ -77,7 +77,7 @@ public final class App_twitter {
 	 */
 	public static void init() {
 		 ConfigurationBuilder cb = new ConfigurationBuilder();
-		Node twitterConfig = XMLclass.getElement("twitter");
+		Node twitterConfig = XMLclass.getElement(XMLclass.configFile, "twitter");
 		cb.setDebugEnabled(true)
 		  .setOAuthConsumerKey(twitterConfig.getAttributes().getNamedItem("ConsumerKey").getNodeValue())
 		  .setOAuthConsumerSecret(twitterConfig.getAttributes().getNamedItem("ConsumerSecret").getNodeValue())

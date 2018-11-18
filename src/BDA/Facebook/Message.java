@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Message {
 	private String userName;
-	private Date dateCreated;
+	private String dateCreated;
 	private String title;
 	
 	/**
@@ -12,9 +12,9 @@ public class Message {
 	 * @param datePosted
 	 * @param title
 	 */
-	public Message(String userName, Date datePosted, String title) {
+	public Message(String userName, String dateCreated, String title) {
 		this.userName = userName;
-		this.dateCreated = datePosted;
+		this.dateCreated = dateCreated;
 		this.title = title;
 	}
 
@@ -22,7 +22,7 @@ public class Message {
 		return this.userName;
 	}
 
-	public Date getDatePosted() {
+	public String getDateCreated() {
 		return this.dateCreated;
 	}
 
@@ -32,6 +32,8 @@ public class Message {
 	
 	@Override
 	public String toString(){
-		return "User Name: " + this.userName + "; Date: " + this.dateCreated + "; Title: " + this.title + ".";
+		return "User Name: " + (this.userName != null ? this.userName : "") + "\r\n" +
+				"Date: " + this.dateCreated + "\r\n" + 
+				"Title: " + (this.title != null ? this.title : "");
 	}
 }

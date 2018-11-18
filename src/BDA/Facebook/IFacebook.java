@@ -18,7 +18,7 @@ public interface IFacebook {
 
 	public List<Message> getTimeLine();
 
-	public void setFilter();
+	public void setFilter(String filter);
 
 	public void getMessages();
 

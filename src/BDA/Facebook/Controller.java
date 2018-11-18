@@ -2,6 +2,7 @@ package BDA.Facebook;
 
 import java.util.Observable;
 
+import BDA.FuncoesGerais;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import twitter4j.TwitterException;
 
 /**
  * Date: Oct 22 2018
@@ -35,7 +37,7 @@ public class Controller {
 	 * TextField correspondente à palavra ou frase a pesquisar
 	 */
 	@FXML
-	private TextArea mensagem;
+	private TextField filter;
 	
 	/**
 	 * ListView (biblioteca Javafx)
@@ -44,19 +46,23 @@ public class Controller {
 	private ListView<Message> facebookList;
 	
 	/**
-	 * Procedimento que adiciona posts à timeline cada vez que esta é clicada com o rato (biblioteca Javafx)
-	 * @param event 
+	 * Procedimento que adiciona posts à timeline (biblioteca Javafx)
 	 */
 	@FXML
-    private void timeline_clicked(MouseEvent event){
+    public void initialize() {
 		for(Message post : new Facebook().getTimeLine()){
 			posts.add(post);
 		}
 		facebookList.setItems(posts);
+    }
+	
+	@FXML
+	private void filter_clicked(MouseEvent event){
+		new Facebook().setFilter(filter.getText());
 	}
 	
 	@FXML
-	private void sendMessage_clicked(MouseEvent event){
-		new Facebook().sendMessage(mensagem.getText());
+	private void voltar_clicked(MouseEvent event){
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
 }

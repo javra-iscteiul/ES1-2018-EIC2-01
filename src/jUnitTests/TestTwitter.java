@@ -2,21 +2,44 @@ package jUnitTests;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 
 import BDA.XMLclass;
 import BDA.Twitter.App_twitter;
+import twitter4j.TwitterException;
+import javafx.scene.control.ListView;
 
 public class TestTwitter {
 
 	@Test
 	public void getTimeline() {
-		if(!XMLclass.existsElement("twitter")){
-			XMLclass.addElement("twitter", "smtp","EsJarh","grupo1grupo"
-					,"yPv2NQ8ozCWIQ1jZeXjWLGUce", "w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8",
-					"1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q","F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
+		if(!XMLclass.existsElement(XMLclass.configFile, "twitter")){
+			Map<String, String> attributes = new HashMap<String, String>();
+			attributes.put("UserName", "EsJarh");
+			attributes.put("Password", "grupo1grupo");
+			attributes.put("AccessToken", "EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD");
+			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
+			
+			XMLclass.addElement(XMLclass.configFile, "twitter", attributes);
 		}
-		assertNotNull(App_witter.getTimeline());
+		try {
+			assertNotNull(new App_twitter().getTimeline(null));
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ListView<String> tweetsList = new ListView<String>();
+		//App_twitter.init();
+	//	App_twitter tt = ;
+		try {
+			assertNotNull(new App_twitter().getTimeline(tweetsList));
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

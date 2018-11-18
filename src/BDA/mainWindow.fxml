@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="359.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="34.0" fitWidth="104.0" layoutX="501.0" pickOnBounds="true" preserveRatio="true">
