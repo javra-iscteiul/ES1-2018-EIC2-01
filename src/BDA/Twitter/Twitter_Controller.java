@@ -45,4 +45,6 @@ public class Twitter_Controller {
 		System.out.println(pesquisa.getText());
 		tt.filter(pesquisa.getText(), tweetsList);
     }
+	
+	
 }
