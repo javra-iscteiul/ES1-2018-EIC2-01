@@ -16,11 +16,11 @@ public interface IFacebook {
 
 	public void createPost();
 
-	public List<String> getTimeLine();
+	public List<Message> getTimeLine();
 
 	public void setFilter();
 
 	public void getMessages();
 
-	public void sendMessage();
+	public void sendMessage(String messageToSend);
 }

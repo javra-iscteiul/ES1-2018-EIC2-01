@@ -21,13 +21,13 @@
             <Image url="@../../../Graphics/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
          </image>
       </ImageView>
-      <TextArea layoutX="229.0" layoutY="220.0" prefHeight="44.0" prefWidth="391.0" />
+      <TextArea fx:id="mensagem" layoutX="229.0" layoutY="220.0" prefHeight="44.0" prefWidth="391.0" />
       <TextField layoutX="57.0" layoutY="233.0" prefHeight="31.0" prefWidth="114.0" text="\@Username">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <Button layoutX="632.0" layoutY="227.0" mnemonicParsing="false" text="Post" />
+      <Button layoutX="632.0" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#sendMessage_clicked" text="Post" />
       <MenuButton layoutX="547.0" layoutY="93.0" mnemonicParsing="false" text="Contacts ">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
