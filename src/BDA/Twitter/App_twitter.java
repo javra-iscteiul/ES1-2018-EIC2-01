@@ -37,40 +37,40 @@ public final class App_twitter {
 	/**
 	 * ListView onde os tweets são disponibilizados na interface (biblioteca Javafx)
 	 */
-	@FXML
+/*	@FXML
 	private ListView<String> tweetsList;
-	
+*/	
 	/**
 	 * TextField correspondente à palavra ou frase a pesquisar
 	 */
-	@FXML
+/*	@FXML
 	private TextField pesquisa;
 
-	
+*/	
 	/**
 	 * Obtém a timeline atualizada após o clique do botão "refresh" 
 	 * @param event MouseEvent
 	 * @throws TwitterException
 	 */
-	@FXML
+/*	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
     {
 		getTimeline();
     }
-	
+*/	
 	/**
 	 * Obtém a timeline atualizada após a procura correspondente ao textField pesquisa
 	 * @param event 
 	 * @throws TwitterException
 	 */
-	@FXML
+/*	@FXML
     private void filter(ActionEvent event) throws TwitterException 
     {
 		System.out.println(pesquisa.getText());
 		filter(pesquisa.getText());
     }
 	
-	
+*/	
 	
 	 /**
 	 * Inicialização dos atributos relacionados com o AccessToken  
@@ -93,21 +93,28 @@ public final class App_twitter {
 	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView 
 	 * @throws TwitterException
 	 */
-	public void getTimeline() throws TwitterException{ 
-	Paging paging = new Paging(1, 40);
-	 List<Status> statuses = twitter.getHomeTimeline(paging);
-		int counter=0;
-		int counterTotal = 0;
-        for (Status status : statuses) {
-        	String s = status.getUser().getName() + ":" + status.getText();
-		
-			tweets.add(counter, s);
-			counter++;
-			counterTotal++;
-        }
-        tweetsList.setItems(tweets);
-		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+	public boolean getTimeline( ListView<String> tweetsList) throws TwitterException{ 
+		try{
+			Paging paging = new Paging(1, 40);
+			List<Status> statuses = twitter.getHomeTimeline(paging);
+			int counter=0;
+			int counterTotal = 0;
+	        for (Status status : statuses) {
+	        	String s = status.getUser().getName() + ":" + status.getText();
+			
+				tweets.add(counter, s);
+				counter++;
+				counterTotal++;
+	        }
+	        tweetsList.setItems(tweets);
+			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+			return true;
+		} catch (Exception e) {
+			System.out.println("oiii");
+			e.printStackTrace();
+			return false;
 		}
+	}
 	
 	
 	/**
@@ -115,15 +122,16 @@ public final class App_twitter {
 	 * @param quote String 
 	 * @throws TwitterException
 	 */
-	public void filter(String quote) throws TwitterException {
-		 Paging paging = new Paging(1, 40);
-		 List<Status> statuses = twitter.getHomeTimeline(paging);
-        System.out.println("------------------------\n Showing home timeline \n------------------------");
-		int counter=0;
-		int counterTotal = 0;
-		tweets.clear();
-		 tweetsList.getItems().clear();
-		 for (Status status : statuses) {
+	public boolean filter(String quote, ListView<String> tweetsList) throws TwitterException {
+		 try{
+			Paging paging = new Paging(1, 40);
+			List<Status> statuses = twitter.getHomeTimeline(paging);
+	        System.out.println("------------------------\n Showing home timeline \n------------------------");
+			int counter=0;
+			int counterTotal = 0;
+			tweets.clear();
+			tweetsList.getItems().clear();
+			for (Status status : statuses) {
 				if (status.getUser().getName() != null && status.getText().contains(quote)) {
 					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
 					System.out.println(status.getUser().getName() + ":" + status.getText() );
@@ -131,10 +139,15 @@ public final class App_twitter {
 					counter++;
 				}
 				counterTotal++;
-        }
-		
-	     tweetsList.setItems(tweets);
-		System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+	        }
+			
+		    tweetsList.setItems(tweets);
+			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
