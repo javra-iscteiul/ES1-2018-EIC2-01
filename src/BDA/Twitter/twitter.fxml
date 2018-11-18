@@ -28,7 +28,7 @@
          <children>
             <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="240.0" layoutY="423.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Graphics/refresh.png" />
+                  <Image url="file:///../Graphics/refresh.png" />
                </image>
             </ImageView>
             <ListView fx:id="tweetsList" layoutX="2.0" layoutY="6.0" prefHeight="419.0" prefWidth="499.0" />
