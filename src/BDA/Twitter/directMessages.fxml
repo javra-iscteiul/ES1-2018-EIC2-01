@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="412.0" prefWidth="518.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="383.0" prefWidth="489.0">
+         <children>
+            <Button layoutX="413.0" layoutY="263.0" mnemonicParsing="false" text="Button" />
+            <Accordion layoutX="14.0" layoutY="14.0" prefHeight="337.0" prefWidth="187.0">
+              <panes>
+                <TitledPane animated="false" text="Enviadas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Recebidas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+            <TextArea layoutX="227.0" layoutY="14.0" prefHeight="233.0" prefWidth="248.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

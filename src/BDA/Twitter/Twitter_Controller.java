@@ -1,5 +1,7 @@
 package BDA.Twitter;
 
+import BDA.FuncoesGerais;
+import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,4 +57,10 @@ public class Twitter_Controller {
 		tt.post(publicacao.getText());
 	}
 	
+	@FXML
+    private void dms_clicked(MouseEvent event)
+    {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./directMessages.fxml"));
+		
+    }
 }
