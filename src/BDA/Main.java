@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * Date: Oct 22 2018
  * @author ES1-2018-EIC2-01
  * @version 1.0
- * Aplicação principal
+ * Aplicação principal 
  */
 
 public class Main extends Application {

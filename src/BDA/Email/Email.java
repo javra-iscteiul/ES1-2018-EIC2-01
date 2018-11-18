@@ -152,7 +152,7 @@ public class Email {
 	            com.sun.mail.util.BASE64DecoderStream test = 
 	                 (com.sun.mail.util.BASE64DecoderStream) p
 	                  .getContent();
-	         byte[] buffer = new byte[1024];
+	         byte[] buffer = new byte[1024]; 
 	         int bytesRead;
 	         while ((bytesRead = test.read(buffer)) != -1) {
 	            output.write(buffer, 0, bytesRead);

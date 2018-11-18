@@ -34,7 +34,7 @@ public class Controller {
 	private  ObservableList<String> emails = FXCollections.observableArrayList();
 
 	/**
-	 * ListView (biblioteca Javafx)
+	 * ListView (biblioteca Javafx) 
 	 */
 	@FXML
 	private ListView<String> emailsList;
