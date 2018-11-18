@@ -1,5 +1,7 @@
 package BDA;
 
+import BDA.Email.Controller;
+import BDA.Email.Email;
 import BDA.Twitter.App_twitter;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -77,9 +79,13 @@ public class Main extends Application {
 	 * @param event MouseEvent 
 	 */
 	@FXML
-    private void emailLogo_clicked(MouseEvent event)
-    {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
+    private void emailLogo_clicked(MouseEvent event){
+		if(XMLclass.existsElement("email")){
+			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
+			Email.init();
+		}else {
+			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
+		}
     }
 	
 	

@@ -19,7 +19,7 @@
             </ImageView>
             <ImageView fitHeight="34.0" fitWidth="104.0" layoutX="501.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Graphics/iscteLogo.png" /> 
+                  <Image url="file:///../Graphics/iscteLogo.png" /> 
                </image> 
             </ImageView>  
             <Label layoutX="181.0" layoutY="5.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
