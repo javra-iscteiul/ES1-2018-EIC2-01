@@ -82,8 +82,9 @@ public class Main extends Application {
 	@FXML
     private void emailLogo_clicked(MouseEvent event){
 		if(XMLclass.existsElement("email")){
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
 			Email.init();
+			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
+			
 		}else {
 			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
 		}

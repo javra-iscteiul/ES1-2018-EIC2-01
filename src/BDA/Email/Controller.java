@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import twitter4j.TwitterException;
 
 /**
  * Date: Oct 24 2018
@@ -30,7 +31,7 @@ public class Controller {
 	/**
 	 * ObservableList com os emails
 	 */
-	private ObservableList<String> emails = FXCollections.observableArrayList();
+	private  ObservableList<String> emails = FXCollections.observableArrayList();
 
 	/**
 	 * ListView (biblioteca Javafx)
@@ -83,10 +84,20 @@ public class Controller {
 	 * @param event 
 	 */
 	@FXML
-	private void getEmailsList_Clicked(MouseEvent event){
+	public void getEmailsList_Clicked(MouseEvent event){
 		for(String email : Email.getTimeline()){
 			emails.add(email);
 		}
 		emailsList.setItems(emails);
 	}
+
+	@FXML
+    public void initialize() {
+		for(String email : Email.getTimeline()){
+			emails.add(email);
+		}
+		emailsList.setItems(emails);	
+    }
+
+
 }
