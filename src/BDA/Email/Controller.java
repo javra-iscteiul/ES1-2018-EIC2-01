@@ -53,51 +53,22 @@ public class Controller {
 	@FXML
 	private TextArea conteudo;
 
-	@FXML
-	private void login(ActionEvent event) {
-		String mail = email.getText();
-		String pass = password.getText();
-
-		Map<String, String> attributes = new HashMap<String, String>();
-		attributes.put("UserName", mail);
-		attributes.put("Password", pass);
-
-		if (XMLclass.existsElement(XMLclass.configFile, "email")) {
-
-			// valida se o email e a password sao iguais aos que estao no config
-			if (!XMLclass.verifyElementAttributesUnchanged(XMLclass.configFile, "email", attributes)) {
-				XMLclass.deleteElement(XMLclass.configFile, "email");
-
-				XMLclass.addElement(XMLclass.configFile, "email", attributes);
-			}
-
-		} else {
-
-			XMLclass.addElement(XMLclass.configFile, "email", attributes);
-		}
-
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
-	}
-
 	/**
-	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com
-	 * o rato (biblioteca Javafx)
-	 * 
-	 * @param event
+	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com o rato (biblioteca Javafx)
+	 * @param event 
 	 */
 	@FXML
-	public void getEmailsList_Clicked(MouseEvent event) {
+	public void getEmailsList_Clicked(MouseEvent event){
 		emails.clear();
 		emailsList.getItems().clear();
-		for (String email : Email.getTimeline()) {
+		for(String email : Email.getTimeline()){
 			emails.add(email);
 		}
 		emailsList.setItems(emails);
 	}
-
+	
 	@FXML
 	public void initialize() {
-
 		for (String email : Email.getTimeline()) {
 			emails.add(email);
 		}
@@ -106,7 +77,7 @@ public class Controller {
 		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
 
 	}
-
+	
 	@FXML
 	private void filter(ActionEvent event) {
 		emails.clear();
@@ -131,5 +102,4 @@ public class Controller {
 	protected void novaMensagem(MouseEvent event) {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
 	}
-
 }

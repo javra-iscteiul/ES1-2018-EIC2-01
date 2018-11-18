@@ -16,8 +16,6 @@ public class novaMensagemController {
 	@FXML
 	private TextArea msg;
 	
-	
-	
 	/**
 	 * 
 	 * @param event 

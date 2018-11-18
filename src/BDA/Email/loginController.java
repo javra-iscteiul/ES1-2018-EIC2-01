@@ -34,20 +34,20 @@ public class loginController {
 		String mail = email.getText();
 		String pass = password.getText();
 		
-		if(XMLclass.existsElement("email")){
-			
-			Map<String, String> Attributes = new HashMap<String, String>();
-			Attributes.put("UserName", mail);
-			Attributes.put("Password", pass);
+		Map<String, String> attributes = new HashMap<String, String>();
+		attributes.put("UserName", mail);
+		attributes.put("Password", pass);
+		
+		if(XMLclass.existsElement(XMLclass.configFile, "email")){			
 			
 			//valida se o email e a password sao iguais aos que estao no config
-			if(!XMLclass.verifyElementAttributesUnchanged("email", Attributes)){
-				XMLclass.deleteElement("email");
-				XMLclass.addElement("email", "", mail, pass, "", "", "", "");
+			if(!XMLclass.verifyElementAttributesUnchanged(XMLclass.configFile, "email", attributes)){
+				XMLclass.deleteElement(XMLclass.configFile, "email");
+				XMLclass.addElement(XMLclass.configFile, "email", attributes);
 			}
 			
 		}else{
-			XMLclass.addElement("email", "", mail, pass, "", "", "", "");
+			XMLclass.addElement(XMLclass.configFile, "email", attributes);
 		}
 		
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
