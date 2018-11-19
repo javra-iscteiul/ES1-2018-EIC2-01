@@ -1,5 +1,6 @@
 package BDA.Facebook;
 
+import java.util.List;
 import java.util.Observable;
 
 import BDA.FuncoesGerais;
@@ -23,11 +24,6 @@ import twitter4j.TwitterException;
 public class Controller {
 	
 	/**
-	 * ObservableList com os posts do facebook
-	 */
-	private ObservableList<Message> posts = FXCollections.observableArrayList();
-	
-	/**
 	 * TextField correspondente à palavra ou frase a pesquisar
 	 */
 	@FXML
@@ -45,20 +41,19 @@ public class Controller {
 	@FXML
 	private ListView<Message> facebookList;
 	
+	IFacebook facebook = new Facebook();
+	
 	/**
 	 * Procedimento que adiciona posts à timeline (biblioteca Javafx)
 	 */
 	@FXML
     public void initialize() {
-		for(Message post : new Facebook().getTimeLine()){
-			posts.add(post);
-		}
-		facebookList.setItems(posts);
+		facebook.getTimeLine(facebookList);
     }
 	
 	@FXML
 	private void filter_clicked(MouseEvent event){
-		new Facebook().setFilter(filter.getText());
+		facebook.setFilter(facebookList, filter.getText());
 	}
 	
 	@FXML

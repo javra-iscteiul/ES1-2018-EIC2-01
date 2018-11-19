@@ -2,6 +2,8 @@ package BDA.Facebook;
 
 import java.util.List;
 
+import javafx.scene.control.ListView;
+
 /**
  * Date: Oct 22 2018
  * @author ES1-2018-EIC2-01
@@ -16,9 +18,9 @@ public interface IFacebook {
 
 	public void createPost();
 
-	public List<Message> getTimeLine();
+	public boolean getTimeLine(ListView<Message> postsList);
 
-	public void setFilter(String filter);
+	public boolean setFilter(ListView<Message> postsList, String filter);
 
 	public void getMessages();
 
