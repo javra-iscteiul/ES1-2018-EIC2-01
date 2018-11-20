@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
@@ -46,6 +47,9 @@ public class Controller {
 
 	@FXML
 	private TextField pesquisa;
+	
+	@FXML
+	private Button responder;
 
 	@FXML
 	private TextField user;
@@ -87,7 +91,34 @@ public class Controller {
 		}
 		emailsList.setItems(emails);
 	}
+	
+	@FXML
+	private void sent(ActionEvent event) {
+		emails.clear();
+		emailsList.getItems().clear();
+		Email.setFolder("Sent");
+		for (String email : Email.getTimeline()) {
+			emails.add(email);
+		}
+		emailsList.setItems(emails);
+	}
+	
+	@FXML
+	private void inbox(ActionEvent event) {
+		emails.clear();
+		emailsList.getItems().clear();
+		Email.setFolder("INBOX");
+		for (String email : Email.getTimeline()) {
+			emails.add(email);
+		}
+		emailsList.setItems(emails);
+	}
 
+	@FXML
+	private void sair(ActionEvent event) {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+	}
+	
 	@FXML
 	private void logout(MouseEvent event) {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("loginEmail.fxml"));
@@ -96,6 +127,7 @@ public class Controller {
 	@FXML
 	protected void selection(MouseEvent event) {
 		conteudo.setText(emailsList.getSelectionModel().getSelectedItem().toString());
+		responder.setVisible(true);
 	}
 
 	@FXML

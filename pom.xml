@@ -22,6 +22,13 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-maven-plugin</artifactId>
+      <version>9.3.8.v20160314</version>
+    </plugin>
+      
     </plugins>
   </build>
+  
 </project>
