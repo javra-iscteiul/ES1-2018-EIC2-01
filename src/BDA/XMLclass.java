@@ -44,6 +44,12 @@ public class XMLclass {
 	 * modo offline
 	 */
 	public static File storedDataFile = new File("storedData.xml");
+	
+	/**
+	 * Atributo do tipo File responsavel pelos testes
+	 */
+	public static File testFile = new File("test.xml");
+
 
 	/**
 	 * Atributo do tipo DocumentBuilderFactory responsavel por construir um

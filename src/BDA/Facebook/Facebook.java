@@ -1,12 +1,8 @@
 package BDA.Facebook;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import com.restfb.Connection;
@@ -17,7 +13,6 @@ import com.restfb.types.Post;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -32,8 +27,14 @@ import org.w3c.dom.Node;
 
 public class Facebook implements IFacebook {
 
+	/**
+	 * Node correspondente às configurações do facebook no ficheiro config
+	 */
 	private final Node facebookConfig = XMLclass.getElement(XMLclass.configFile, "facebook");
 
+	/**
+	 * FacebookClient correspondente á conecção do cliente ao facebook
+	 */
 	private final FacebookClient fbClient = new DefaultFacebookClient(
 			facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
 
@@ -58,18 +59,21 @@ public class Facebook implements IFacebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	public boolean getTimeLine(ListView<Message> postsList) {
+	public ObservableList<Message> getTimeLine() {
+		//variavel que vai ser utilizada para armazenar os dados recebidos no ficheiro xml, para ler que do tiver offline
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		posts.clear();
-		postsList.getItems().clear();
 		
 		try {
+			//cria a conecção com o facebook e recebe os posts
 			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
 
+			//no caso de existirem posts guardados elimina-os
 			if (XMLclass.existsElement(XMLclass.storedDataFile, "facebook")) {
 				XMLclass.deleteElement(XMLclass.storedDataFile, "facebook");
 			}
 
+			//cria as mensagens para mostrar no ecrã e adiciona as mesmas a lista de dados a guardar
 			int counter = 0;
 			for (List<Post> page : results) {
 				for (Post aPost : page) {
@@ -92,14 +96,20 @@ public class Facebook implements IFacebook {
 
 			XMLclass.addElementAndChild(XMLclass.storedDataFile, "facebook", dataToStore);
 
-			postsList.setItems(posts);
-			return true;
+			return posts;
 		} catch (Exception e) {
-			return getStoredTimeLine(postsList);
+			//no caso de dar erro vai buscar os dados guardados na sessão anterior
+			return getStoredTimeLine();
 		}
 	}
 
-	private boolean getStoredTimeLine(ListView<Message> postsList) {
+	/**
+	 * Este método permite que seja obtida uma lista dos posts de um utilizador
+	 * na timeline do facebook da sessão anterior, ou seja está offline (interface)
+	 * 
+	 * @return retorna uma lista dos posts do utilizador no facebook da sessão anterior
+	 */
+	private ObservableList<Message> getStoredTimeLine() {
 		try {
 			if (XMLclass.existsElement(XMLclass.storedDataFile, "facebook")) {
 				Node facebookNode = XMLclass.getElement(XMLclass.storedDataFile, "facebook");
@@ -119,33 +129,31 @@ public class Facebook implements IFacebook {
 				}
 			}
 			
-			postsList.setItems(posts);
-			return true;
+			return posts;
 		} catch (Exception ex) {
-			return false;
+			return null;
 		}
 	}
 
-	public boolean setFilter(ListView<Message> postsList, String filter) {
+	/**
+	 * Este método permite que seja obtida uma lista dos posts de um utilizador
+	 * na timeline filtradas com o filtro passado como parametro (interface)
+	 * 
+	 * @return retorna uma lista dos posts do utilizador no facebook
+	 */
+	public ObservableList<Message> setFilter(String filter) {
 		try {
-			this.getTimeLine(postsList);
-			
-			List<Message> newMessage = new ArrayList<Message>();
-			for(Message post : posts)
+			posts.clear();
+			for(Message post : getTimeLine())
 			{
 				if((post.getTitle() != null && post.getTitle().contains(filter)) ||
 						(post.getDateCreated() != null && post.getDateCreated().contains(filter)))
-					newMessage.add(post);
+					posts.add(post);
 			}
 			
-			posts.clear();
-			for (Message post : newMessage)
-				posts.add(post);
-			
-			postsList.setItems(posts);
-			return true;
+			return posts;
 		} catch (Exception ex) {
-			return false;
+			return null;
 		}
 	}
 

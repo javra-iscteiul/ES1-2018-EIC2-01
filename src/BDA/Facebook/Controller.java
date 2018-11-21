@@ -1,17 +1,10 @@
 package BDA.Facebook;
 
-import java.util.List;
-import java.util.Observable;
-
 import BDA.FuncoesGerais;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import twitter4j.TwitterException;
 
 /**
  * Date: Oct 22 2018
@@ -44,18 +37,24 @@ public class Controller {
 	IFacebook facebook = new Facebook();
 	
 	/**
-	 * Procedimento que adiciona posts à timeline (biblioteca Javafx)
+	 * Procedimento que adiciona posts à timeline quando a vista e selecionada (biblioteca Javafx)
 	 */
 	@FXML
     public void initialize() {
-		facebook.getTimeLine(facebookList);
+		facebookList.setItems(facebook.getTimeLine());
     }
 	
+	/**
+	 * Procedimento que filtra os posts da timeline (biblioteca Javafx)
+	 */
 	@FXML
 	private void filter_clicked(MouseEvent event){
-		facebook.setFilter(facebookList, filter.getText());
+		facebookList.setItems(facebook.setFilter(filter.getText()));
 	}
 	
+	/**
+	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 */
 	@FXML
 	private void voltar_clicked(MouseEvent event){
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));

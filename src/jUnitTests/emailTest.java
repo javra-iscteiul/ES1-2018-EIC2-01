@@ -14,7 +14,7 @@ public class emailTest {
 	@Test
     public void getTimeline() {
 		if(!XMLclass.existsElement(XMLclass.configFile, "email")){
-			assertNull(Email.getTimeline());
+			assertFalse(Email.getTimeline());
 			
 			Map<String, String> attributes = new HashMap<String, String>();
 			attributes.put("UserName", "es1g1@outlook.com");
@@ -23,6 +23,6 @@ public class emailTest {
 			XMLclass.addElement(XMLclass.configFile, "email", attributes);
 			
 		}
-		assertNotNull(Email.getTimeline());
+		assertTrue(Email.getTimeline());
     }
 }
