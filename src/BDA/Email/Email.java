@@ -7,9 +7,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -27,9 +30,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import BDA.XMLclass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Date: Oct 24 2018
@@ -45,12 +51,16 @@ import BDA.XMLclass;
  */
 public class Email {
 	
+	/**
+	 * ObservableList com os emails
+	 */
+	private ObservableList<String> emails = FXCollections.observableArrayList();
+
+	
 	private static Session session;
 	private static String folder = "INBOX";
-	/**
-	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
-	 * @return	retorna uma lista dos emails do utilizador
-	 */
+	private static String to="";
+	
 	
 	
 	public static void init() {
@@ -88,8 +98,12 @@ public class Email {
 
 	}
 	
-	
+	/**
+	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
+	 * @return	retorna uma lista dos emails do utilizador
+	 */
 	public static List<String> getTimeline() {
+		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		try {
 			/* Connect to the message Store */
 			//Store store = session.getStore("pop3s");
@@ -97,6 +111,14 @@ public class Email {
 			Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
 			store.connect(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
 			//store.connect("pop-mail.outlook.com",emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
+			
+			if (folder=="Sent" && XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
+				XMLclass.deleteElement(XMLclass.storedDataFile, "emailSent");
+			}
+			
+			if (folder=="INBOX" && XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
+				XMLclass.deleteElement(XMLclass.storedDataFile, "emailInbox");
+			}
 			
 			/* open Inbox folder */
 			Folder emailFolder = store.getFolder(folder);
@@ -115,19 +137,38 @@ public class Email {
 		            Message message = messages[i];
 		            System.out.println("---------------------------------");
 		            String content = writePart(message);
+		            Map<String, String> childAttributesToStore = new HashMap<>();
 		            if(folder == "INBOX"){
 			            String s = "From: " + message.getFrom()[0] + "\r\n"+"Subject: "
 								+ message.getSubject()  + "\r\n"+ "Date:" + message.getReceivedDate() + "\r\n"+ "Message: " + content;
 			            emails.add(s);
+			           
+						childAttributesToStore.put("From",message.getFrom()[0].toString() );
+						childAttributesToStore.put("Subject",message.getSubject().toString() );
+						childAttributesToStore.put("Date", message.getReceivedDate().toString());
+						childAttributesToStore.put("Message", content);
+						dataToStore.put("post" + i, childAttributesToStore);
 		            }else if (folder == "Sent"){
 		            	 String s = "To: " +  InternetAddress.toString(message
 		                         .getRecipients(Message.RecipientType.TO))+ "\r\n"+"Subject: "
 									+ message.getSubject()+ "\r\n"+ "Date:" + message.getReceivedDate()+ "\r\n" + "Message: " + content;
 				          emails.add(s);
+				    
+							childAttributesToStore.put("To",InternetAddress.toString(message
+			                         .getRecipients(Message.RecipientType.TO)) );
+							childAttributesToStore.put("Subject",message.getSubject().toString() );
+							childAttributesToStore.put("Date", message.getReceivedDate().toString());
+							childAttributesToStore.put("Message", content);
+							dataToStore.put("post" + i, childAttributesToStore);
 		            }
 		           
 		         }
-
+			 if(folder=="INBOX") {
+				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailInbox", dataToStore);
+			 }
+			 if(folder=="Sent") {
+				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailSent", dataToStore);
+			 }
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
@@ -135,16 +176,62 @@ public class Email {
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
 			ex.printStackTrace();
+		}catch (UnknownHostException ex){
+			System.out.println("entrar em modo offline");
+			return getStoredTimeLine();
 		} catch (MessagingException ex) {
 			System.out.println("Could not connect to the message store.");
-			ex.printStackTrace();
+			return getStoredTimeLine();
+			//ex.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	
+	private static List<String> getStoredTimeLine() {
+		List<String> emails = new ArrayList<String>();
+		try {
+			if(folder=="INBOX"){
+				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
+					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailInbox");
+					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
+						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
+						if (childAttributes != null) {
+							String from = childAttributes.getNamedItem("From").getNodeValue();
+							String sub = childAttributes.getNamedItem("Subject").getNodeValue();
+							String date = childAttributes.getNamedItem("Date").getNodeValue();
+							String content = childAttributes.getNamedItem("Message").getNodeValue();
+							String s = "From: " + from + "\r\n"+"Subject: "
+									+ sub  + "\r\n"+ "Date:" + date + "\r\n"+ "Message: " + content;
+				            emails.add(s);
+						}
+					}
+				}
+			}else if(folder=="Sent"){
+				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
+					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailSent");
+					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
+						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
+							if (childAttributes != null) {
+								String to = childAttributes.getNamedItem("To").getNodeValue();
+								String sub = childAttributes.getNamedItem("Subject").getNodeValue();
+								String date = childAttributes.getNamedItem("Date").getNodeValue();
+								String content = childAttributes.getNamedItem("Message").getNodeValue();
+								String s = "To: " + to + "\r\n"+"Subject: "
+										+ sub  + "\r\n"+ "Date:" + date + "\r\n"+ "Message: " + content;
+					            emails.add(s);
+							}
+					}
+				            
+				}
+			}
+			
+			return emails;
+		} catch (Exception ex) {
+			return null;
+		}
+	}
 	
 	public static String writePart(Part p) throws Exception {
 		String content="";
@@ -381,6 +468,17 @@ public class Email {
 	public static void setFolder(String folder) {
 		Email.folder = folder;
 	}
+
+
+	public static String getTo() {
+		return to;
+	}
+
+
+	public static void setTo(String to) {
+		Email.to = to;
+	}
+	
 	
 	
 }

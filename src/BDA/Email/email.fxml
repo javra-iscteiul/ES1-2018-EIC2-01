@@ -56,7 +56,7 @@
             <Button layoutX="28.0" mnemonicParsing="false" onMouseClicked="#novaMensagem" prefHeight="28.0" prefWidth="150.0" text="Nova mensagem" />
             <Button layoutX="173.0" layoutY="486.0" mnemonicParsing="false" onAction="#sair" text="Sair" />
             <TextArea id="conteudo" fx:id="conteudo" layoutX="4.0" layoutY="33.0" prefHeight="450.0" prefWidth="205.0" text="Selecione uma mensagem para lê-la." wrapText="true" />
-            <Button id="responder" fx:id="responder" layoutX="70.0" layoutY="486.0" mnemonicParsing="false" text="Responder" visible="false" />
+            <Button id="responder" fx:id="responder" onMouseClicked="#responder" layoutX="70.0" layoutY="486.0" mnemonicParsing="false" text="Responder" visible="false" />
          </children>
       </Pane>
       <TextField id="user" fx:id="user" layoutX="446.0" layoutY="37.0" prefHeight="25.0" prefWidth="132.0" text="username" />

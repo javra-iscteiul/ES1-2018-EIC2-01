@@ -28,4 +28,18 @@ public class novaMensagemController {
 		}
 	}
 
+	public TextField getTo() {
+		return to;
+	}
+
+	public void setTo(String o) {
+		to.setText(o);
+	}
+	
+	@FXML
+	public void initialize() {
+		to.setText(Email.getTo());
+	}
+	
+
 }

@@ -3,6 +3,8 @@ package BDA.Email;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
 import javax.swing.event.ChangeListener;
 
 import org.w3c.dom.Node;
@@ -97,6 +99,7 @@ public class Controller {
 		emails.clear();
 		emailsList.getItems().clear();
 		Email.setFolder("Sent");
+		responder.setVisible(false);
 		for (String email : Email.getTimeline()) {
 			emails.add(email);
 		}
@@ -122,6 +125,18 @@ public class Controller {
 	@FXML
 	private void logout(MouseEvent event) {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("loginEmail.fxml"));
+	}
+	
+	@FXML
+	private void responder(MouseEvent event) {
+		String s=emailsList.getSelectionModel().getSelectedItem();
+		String[] parts = s.split(":");
+		String to =parts[1].trim();
+		System.out.println();
+		Email.setTo(to.substring(0, to.length() - 9));
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
+		
+		
 	}
 
 	@FXML
