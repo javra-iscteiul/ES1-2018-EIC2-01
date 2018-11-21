@@ -36,6 +36,7 @@ import org.w3c.dom.Node;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 /**
  * Date: Oct 24 2018
@@ -102,8 +103,10 @@ public class Email {
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
 	 * @return	retorna uma lista dos emails do utilizador
 	 */
-	public static List<String> getTimeline() {
+	public boolean getTimeline(ListView <String> emailsList) {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
+		emails.clear();
+		emailsList.getItems().clear();
 		try {
 			/* Connect to the message Store */
 			//Store store = session.getStore("pop3s");
@@ -132,7 +135,7 @@ public class Email {
 			// retrieve the messages from the folder in an array and print it
 			System.out.println("messages.length---" + messages.length);
 
-			List<String> emails = new ArrayList<String>();
+			
 			 for (int i = 0; i < messages.length; i++) {
 		            Message message = messages[i];
 		            System.out.println("---------------------------------");
@@ -172,25 +175,25 @@ public class Email {
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
-			return emails;
+			emailsList.setItems(emails);
+			return true;
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
 			ex.printStackTrace();
 		}catch (UnknownHostException ex){
 			System.out.println("entrar em modo offline");
-			return getStoredTimeLine();
+			return getStoredTimeLine(emailsList);
 		} catch (MessagingException ex) {
 			System.out.println("Could not connect to the message store.");
-			return getStoredTimeLine();
+			return getStoredTimeLine(emailsList);
 			//ex.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
 	
-	private static List<String> getStoredTimeLine() {
-		List<String> emails = new ArrayList<String>();
+	private boolean getStoredTimeLine(ListView<String> emailsList) {
 		try {
 			if(folder=="INBOX"){
 				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
@@ -226,10 +229,10 @@ public class Email {
 				            
 				}
 			}
-			
-			return emails;
+			emailsList.setItems(emails);
+			return true;
 		} catch (Exception ex) {
-			return null;
+			return false;
 		}
 	}
 	
@@ -359,7 +362,9 @@ public class Email {
 	   }
 
 
-	public static List<String> filter(String text) {
+	public boolean filter(ListView<String> emailsList, String text) {
+		emails.clear();
+		emailsList.getItems().clear();
 		try {
 			/* Connect to the message Store */
 			//Store store = session.getStore("pop3s");
@@ -379,7 +384,6 @@ public class Email {
 			// retrieve the messages from the folder in an array and print it
 			System.out.println("messages.length---" + messages.length);
 
-			List<String> emails = new ArrayList<String>();
 			
 			 for (int i = 0; i < messages.length; i++) {
 		            Message message = messages[i];
@@ -400,9 +404,10 @@ public class Email {
 		         }
 
 			// Disconnect
+			 emailsList.setItems(emails);
 			emailFolder.close(false);
 			store.close();
-			return emails;
+			return true;
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
 			ex.printStackTrace();
@@ -412,7 +417,7 @@ public class Email {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 		
 	}
 	

@@ -36,10 +36,6 @@ import twitter4j.TwitterException;
  *
  */
 public class Controller {
-	/**
-	 * ObservableList com os emails
-	 */
-	private ObservableList<String> emails = FXCollections.observableArrayList();
 
 	/**
 	 * ListView (biblioteca Javafx)
@@ -58,6 +54,9 @@ public class Controller {
 
 	@FXML
 	private TextArea conteudo;
+	
+	
+	Email email = new Email();
 
 	/**
 	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com o rato (biblioteca Javafx)
@@ -65,20 +64,12 @@ public class Controller {
 	 */
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event){
-		emails.clear();
-		emailsList.getItems().clear();
-		for(String email : Email.getTimeline()){
-			emails.add(email);
-		}
-		emailsList.setItems(emails);
+		email.getTimeline(emailsList);
 	}
 	
 	@FXML
 	public void initialize() {
-		for (String email : Email.getTimeline()) {
-			emails.add(email);
-		}
-		emailsList.setItems(emails);
+		email.getTimeline(emailsList);
 		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
 		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
 
@@ -86,35 +77,21 @@ public class Controller {
 	
 	@FXML
 	private void filter(ActionEvent event) {
-		emails.clear();
-		emailsList.getItems().clear();
-		for (String email : Email.filter(pesquisa.getText())) {
-			emails.add(email);
-		}
-		emailsList.setItems(emails);
+		email.filter(emailsList,pesquisa.getText());
+	
 	}
 	
 	@FXML
 	private void sent(ActionEvent event) {
-		emails.clear();
-		emailsList.getItems().clear();
 		Email.setFolder("Sent");
 		responder.setVisible(false);
-		for (String email : Email.getTimeline()) {
-			emails.add(email);
-		}
-		emailsList.setItems(emails);
+		email.getTimeline(emailsList);
 	}
 	
 	@FXML
 	private void inbox(ActionEvent event) {
-		emails.clear();
-		emailsList.getItems().clear();
 		Email.setFolder("INBOX");
-		for (String email : Email.getTimeline()) {
-			emails.add(email);
-		}
-		emailsList.setItems(emails);
+		email.getTimeline(emailsList);
 	}
 
 	@FXML
