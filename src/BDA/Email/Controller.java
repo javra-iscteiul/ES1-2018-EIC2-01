@@ -41,7 +41,7 @@ public class Controller {
 	 * ListView (biblioteca Javafx)
 	 */
 	@FXML
-	private ListView<String> emailsList;
+	private ListView<Mensagem> emailsList;
 
 	@FXML
 	private TextField pesquisa;
@@ -106,11 +106,8 @@ public class Controller {
 	
 	@FXML
 	private void responder(MouseEvent event) {
-		String s=emailsList.getSelectionModel().getSelectedItem();
-		String[] parts = s.split(":");
-		String to =parts[1].trim();
-		System.out.println();
-		Email.setTo(to.substring(0, to.length() - 9));
+		Mensagem m=emailsList.getSelectionModel().getSelectedItem();
+		Email.setTo(m.getFrom_to());
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
 		
 		
