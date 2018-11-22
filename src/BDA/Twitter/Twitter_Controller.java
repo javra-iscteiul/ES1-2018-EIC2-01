@@ -14,19 +14,32 @@ import twitter4j.TwitterException;
 
 public class Twitter_Controller {
 	
-	
-	//private ObservableList<String> tweets = FXCollections.observableArrayList();
+	/**
+	 * Twitter, instancia da aplicacao em uso
+	 */
 	App_twitter tt = new App_twitter();
 	
+	/**
+	 * ListView com a lista de tweets
+	 */
 	@FXML
 	private ListView<String> tweetsList;
 	
+	/**
+	 * Caixa de texto onde utilizador ira escrever os tweets que quer procurar
+	 */
 	@FXML
 	private TextField pesquisa;
 	
+	/**
+	 * Caixa de texto onde o utilizador escreve novas publicacoes
+	 */
 	@FXML
 	private TextArea publicacao;
 	
+	/**
+	 * Funcao responsavel por inicializar o controlador
+	 */
 	@FXML
     public void initialize() {
 		try {
@@ -37,6 +50,11 @@ public class Twitter_Controller {
 		}
     }
 	
+	/**
+	 * ocorre quando o utilizador clica no botao para atualizar a timeline
+	 * @param event
+	 * @throws TwitterException
+	 */
 	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
     {
@@ -44,6 +62,11 @@ public class Twitter_Controller {
     }
 	
 	
+	/**
+	 * utilizada no evento em que o utilizador pesquisa por tweets com um certo texto
+	 * @param event
+	 * @throws TwitterException
+	 */
 	@FXML
     private void filter(ActionEvent event) throws TwitterException 
     {
@@ -51,12 +74,20 @@ public class Twitter_Controller {
 		tt.filter(pesquisa.getText(), tweetsList);
     }
 	
+	/**
+	 * utilizado no evento em que o utilizado clica no botao de postar um novo tweet
+	 * @param event
+	 */
 	@FXML 
 	private void post(ActionEvent event) {
 		System.out.println(publicacao.getText());
 		tt.post(publicacao.getText());
 	}
 	
+	/**
+	 * Altera para a interface de mensagens diretas no evento em que o utilizador clica em "mensagens"
+	 * @param event
+	 */
 	@FXML
     private void dms_clicked(MouseEvent event)
     {

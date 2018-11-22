@@ -40,44 +40,8 @@ public final class App_twitter {
 	 */
 	private static Twitter twitter;
 	
-	
-	/**
-	 * ListView onde os tweets são disponibilizados na interface (biblioteca Javafx)
-	 */
-/*	@FXML
-	private ListView<String> tweetsList;
-*/	
-	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
-	 */
-/*	@FXML
-	private TextField pesquisa;
 
-*/	
-	/**
-	 * Obtém a timeline atualizada após o clique do botão "refresh" 
-	 * @param event MouseEvent
-	 * @throws TwitterException
-	 */
-/*	@FXML
-    private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
-    {
-		getTimeline();
-    }
-*/	
-	/**
-	 * Obtém a timeline atualizada após a procura correspondente ao textField pesquisa
-	 * @param event 
-	 * @throws TwitterException
-	 */
-/*	@FXML
-    private void filter(ActionEvent event) throws TwitterException 
-    {
-		System.out.println(pesquisa.getText());
-		filter(pesquisa.getText());
-    }
-	
-*/	
+
 	
 	 /**
 	 * Inicialização dos atributos relacionados com o AccessToken  
@@ -97,7 +61,10 @@ public final class App_twitter {
 	
 	
 	/**
-	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView 
+	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView. 
+	 * Guarda a nova lista de tweets num ficheiro xml e invoca uma excecao nos casos em que se encontra offline
+	 * @param tweetsList
+	 * @return
 	 * @throws TwitterException
 	 */
 	public boolean getTimeline( ListView<String> tweetsList) throws TwitterException{ 
@@ -105,9 +72,6 @@ public final class App_twitter {
 		tweets.clear();
 		tweetsList.getItems().clear();
 		try{
-			
-
-			
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
 			
@@ -116,7 +80,6 @@ public final class App_twitter {
 			}
 			
 			int counter=0;
-			int counterTotal = 0;
 	        for (Status status : statuses) {
 	        	String userName = status.getUser().getName();
 	        	String text =status.getText();
@@ -132,7 +95,6 @@ public final class App_twitter {
 			
 				tweets.add(counter, s);
 				counter++;
-				counterTotal++;
 	        }
 	        
 	        XMLclass.addElementAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
@@ -140,7 +102,6 @@ public final class App_twitter {
 	        tweetsList.setItems(tweets);
 			return true;
 		} catch (Exception e) {
-			System.out.println("oiii");
 			if(e.getCause() instanceof UnknownHostException){
 				System.out.println("problema de conexao");
 				solveConectionProblems(tweetsList);
@@ -152,21 +113,20 @@ public final class App_twitter {
 		}
 	}
 	
-	
+	/**
+	 * Funcao responsavel por resolver os problemas de conexao, colocando a ultima lista de tweets guardada
+	 * @param tweetsList
+	 */
 	private void solveConectionProblems(ListView<String> tweetsList) {
 		if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
 			Node twitterNode = XMLclass.getElement(XMLclass.storedDataFile, "twitter");
 			int counter = 0;
 			for (int i = 0; i < twitterNode.getChildNodes().getLength(); i++) {
-				System.out.println("estou no for");
 				NamedNodeMap childAttributes = twitterNode.getChildNodes().item(i).getAttributes();
-				System.out.println(childAttributes.toString());
 				if (childAttributes != null) {
 					String userName = childAttributes.getNamedItem("userName").getNodeValue();
-					String title = childAttributes.getNamedItem("title").getNodeValue();
-
-					tweets.add(counter, (userName + ":" + title));
-					System.out.println(title);
+					String title = childAttributes.getNamedItem("statusText").getNodeValue();
+					tweets.add(counter + (userName + ":" + title));
 					counter++;
 				}
 			}
@@ -177,7 +137,9 @@ public final class App_twitter {
 
 	/**
 	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
-	 * @param quote String 
+	 * @param quote
+	 * @param tweetsList
+	 * @return
 	 * @throws TwitterException
 	 */
 	public boolean filter(String quote, ListView<String> tweetsList) throws TwitterException {
@@ -208,6 +170,11 @@ public final class App_twitter {
 		}
 	}
 	
+	/**
+	 * Funcao responsavel por publicar novos tweets
+	 * @param quote
+	 * @return
+	 */
 	public String post(String quote){
 		try {
 			twitter.updateStatus(quote);
@@ -221,9 +188,14 @@ public final class App_twitter {
 	}
 	
 	
+	/**
+	 * Funcao utilizada para obter lista de mensagens enviadas e recebidas, devido a updates recentes na api do twitter, 
+	 * este código encontra-se desatualizado e não é utilizado de momento
+	 * @return
+	 */
 	public DirectMessageList getMessageList(){
 	
-		try {
+	/*	try {
 			DirectMessageList messages;
 		    int count = 20;
 			String cursor = null;
@@ -240,9 +212,9 @@ public final class App_twitter {
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return null;
-		
+	
 	}
 	
 

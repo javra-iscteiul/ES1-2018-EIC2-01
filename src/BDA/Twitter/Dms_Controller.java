@@ -11,21 +11,37 @@ import twitter4j.DirectMessageList;
 
 public class Dms_Controller {
 	
+	/**
+	 * Twitter, intancia da aplicacao a ser utilizada
+	 */
 	App_twitter tt = new App_twitter();
 	
+	/**
+	 * ListView que contem as mensagens recebidas
+	 */
 	@FXML
 	private ListView<String> received;
 	
+	/**
+	 * ListView que contem as mensagens enviadas
+	 */
 	@FXML
 	private ListView<String> sent;
 	
+	/**
+	 * Area de texto onde ira surgir a mensagem que o utlizador selecionar para ler
+	 */
 	@FXML
 	private TextArea mensagem;
 	
 	
+	/**
+	 * responsavel por inicializar o controlador, devido a updates recentes no API do twitter o codigo utilizado esta 
+	 * desatualizado. Codigo comentado para referencia futura. 
+	 */
 	@FXML
     public void initialize() {
-		System.out.println("ola");
+		
 		DirectMessageList messages =tt.getMessageList();
 		/*for (DirectMessage message : messages) {
 			Date dateCreated = message.getCreatedAt();
