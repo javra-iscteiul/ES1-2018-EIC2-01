@@ -60,7 +60,7 @@ public class Twitter_Controller {
 	@FXML
     private void dms_clicked(MouseEvent event)
     {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./directMessages.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./dms.fxml"));
 		
     }
 }

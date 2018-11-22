@@ -1,7 +1,12 @@
 package BDA.Twitter;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import BDA.XMLclass;
+import BDA.Facebook.Message;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
+
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 
@@ -94,29 +101,80 @@ public final class App_twitter {
 	 * @throws TwitterException
 	 */
 	public boolean getTimeline( ListView<String> tweetsList) throws TwitterException{ 
+		Map<String, Map<String, String>> dataToStore = new HashMap<>();
+		tweets.clear();
+		tweetsList.getItems().clear();
 		try{
+			
+
+			
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
+			
+			if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
+				XMLclass.deleteElement(XMLclass.storedDataFile, "twitter");
+			}
+			
 			int counter=0;
 			int counterTotal = 0;
 	        for (Status status : statuses) {
-	        	String s = status.getUser().getName() + ":" + status.getText();
+	        	String userName = status.getUser().getName();
+	        	String text =status.getText();
+	        	Date dateCreated = status.getCreatedAt();
+	        	String date = dateCreated.toString();
+	        	String s = status.getUser().getName() + "\n" + status.getText();
+	        	
+	        	Map<String, String> childAttributesToStore = new HashMap<>();
+				childAttributesToStore.put("userName", userName);
+				childAttributesToStore.put("dateCreated", date);
+				childAttributesToStore.put("statusText", text);
+				dataToStore.put("post" + counter, childAttributesToStore);
 			
 				tweets.add(counter, s);
 				counter++;
 				counterTotal++;
 	        }
+	        
+	        XMLclass.addElementAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
+	        
 	        tweetsList.setItems(tweets);
-			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
 			return true;
 		} catch (Exception e) {
 			System.out.println("oiii");
-			e.printStackTrace();
+			if(e.getCause() instanceof UnknownHostException){
+				System.out.println("problema de conexao");
+				solveConectionProblems(tweetsList);
+			}
+			else{
+				e.printStackTrace();
+			}
 			return false;
 		}
 	}
 	
 	
+	private void solveConectionProblems(ListView<String> tweetsList) {
+		if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
+			Node twitterNode = XMLclass.getElement(XMLclass.storedDataFile, "twitter");
+			int counter = 0;
+			for (int i = 0; i < twitterNode.getChildNodes().getLength(); i++) {
+				System.out.println("estou no for");
+				NamedNodeMap childAttributes = twitterNode.getChildNodes().item(i).getAttributes();
+				System.out.println(childAttributes.toString());
+				if (childAttributes != null) {
+					String userName = childAttributes.getNamedItem("userName").getNodeValue();
+					String title = childAttributes.getNamedItem("title").getNodeValue();
+
+					tweets.add(counter, (userName + ":" + title));
+					System.out.println(title);
+					counter++;
+				}
+			}
+		}
+		tweetsList.setItems(tweets);
+	}
+
+
 	/**
 	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
 	 * @param quote String 
@@ -161,5 +219,33 @@ public final class App_twitter {
 		}
 		  return quote;
 	}
+	
+	
+	public DirectMessageList getMessageList(){
+	
+		try {
+			DirectMessageList messages;
+		    int count = 20;
+			String cursor = null;
+			 do {
+				messages = cursor == null ? twitter.getDirectMessages(count) : twitter.getDirectMessages(count, cursor);
+				for (DirectMessage message : messages) {
+	                 System.out.println("From: " + message.getSenderId() + " id:" + message.getId()
+	                         + " [" + message.getCreatedAt() + "]"
+	                         + " - " + message.getText());
+				 }
+				cursor = messages.getNextCursor();
+			 } while (messages.size() > 0 && cursor != null);
+			return messages;
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+
+	
 
 }
