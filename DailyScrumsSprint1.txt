@@ -1,0 +1,41 @@
+Setembro:
+Dia 28:
+Criação do repositório
+
+Outubro:
+Dia 10:
+Criação da estrutura do projeto
+
+Dia 12:
+Criação da interface principal da aplicação e login.
+
+Dia 13 e 14:
+Desenvolvimento da janela principal.
+
+Dia 15:
+Inicio do desenvolvimento do facebook e do twitter (interfaces, API's, login).
+
+Dia 16:
+Inicio da configuração do XML.
+Transição entre janelas de serviços.
+
+Dia 19:
+Criação do branch desenvolvimento.
+
+Dia 22:
+Continuação do desenvolvimento do facebook e twitter.
+
+Dia 23:
+Resolução de bugs.
+Finalização do facebook e do twitter para o primeiro sprint.
+Iniciaçao de JavaDoc.
+
+Dia 24:
+Inicio do desenvolvimento do email.
+
+Dia 25:
+Finalização do email para o primeiro sprint.
+Criação de JUnit.
+Conclusão do JavaDoc.
+
+

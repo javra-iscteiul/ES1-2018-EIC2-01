@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #FAFAFA;">
+         <children>
+            <ListView layoutX="213.0" layoutY="232.0" prefHeight="400.0" prefWidth="600.0" />
+            <TextField layoutX="211.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" />
+            <Slider layoutX="173.0" layoutY="232.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="655.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Graphics/profile.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="761.0" layoutY="179.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="50.0" textFill="#514c4c">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:///../Graphics/estaLupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <MenuButton layoutX="33.0" layoutY="175.0" mnemonicParsing="false" text="Filtrar...">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Facebook">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="file:///../Graphics/rsz_fb.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                <MenuItem mnemonicParsing="false" text="Twitter">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="file:///../Graphics/rsz_tw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Email">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="file:///../Graphics/rsz_emaill.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+              </items>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:///../Graphics/rsz_1rsz_1rsz_apps_menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="758.0" layoutY="20.0" text="Username">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="325.0" layoutY="1.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#1472a1">
+               <font>
+                  <Font name="Maiandra GD" size="30.0" />
+               </font>
+            </Label>
+            <MenuButton layoutY="2.0" mnemonicParsing="false" text="Definições">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Ajuda">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="file:///../Graphics/rsz_icon-transparent-question-4.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+              </items>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="file:///../Graphics/rsz_wheel-single-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Button layoutX="786.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="file:///../Graphics/rsz_img_266983.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="301.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="576.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
