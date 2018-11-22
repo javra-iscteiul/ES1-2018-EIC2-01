@@ -67,10 +67,10 @@ public final class App_twitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public boolean getTimeline( ListView<String> tweetsList) throws TwitterException{ 
+	public ObservableList<String>  getTimeline( ) throws TwitterException{ 
+	//	ListView<String> tweetsList = new ListView<>();
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		tweets.clear();
-		tweetsList.getItems().clear();
 		try{
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
@@ -99,17 +99,18 @@ public final class App_twitter {
 	        
 	        XMLclass.addElementAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
 	        
-	        tweetsList.setItems(tweets);
-			return true;
+	      //  tweetsList.setItems(tweets);
+			return tweets;
 		} catch (Exception e) {
 			if(e.getCause() instanceof UnknownHostException){
 				System.out.println("problema de conexao");
-				solveConectionProblems(tweetsList);
+				solveConectionProblems();
+				return tweets;
 			}
 			else{
 				e.printStackTrace();
 			}
-			return false;
+			return null;
 		}
 	}
 	
@@ -117,7 +118,7 @@ public final class App_twitter {
 	 * Funcao responsavel por resolver os problemas de conexao, colocando a ultima lista de tweets guardada
 	 * @param tweetsList
 	 */
-	private void solveConectionProblems(ListView<String> tweetsList) {
+	private void solveConectionProblems() {
 		if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
 			Node twitterNode = XMLclass.getElement(XMLclass.storedDataFile, "twitter");
 			int counter = 0;
@@ -131,7 +132,6 @@ public final class App_twitter {
 				}
 			}
 		}
-		tweetsList.setItems(tweets);
 	}
 
 

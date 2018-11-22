@@ -43,7 +43,7 @@ public class Twitter_Controller {
 	@FXML
     public void initialize() {
 		try {
-			tt.getTimeline(tweetsList);
+			tweetsList.setItems(tt.getTimeline());
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			System.out.println("deu porcaria");
@@ -58,7 +58,7 @@ public class Twitter_Controller {
 	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
     {
-		tt.getTimeline(tweetsList);
+		tweetsList.setItems(tt.getTimeline());
     }
 	
 	
@@ -94,4 +94,13 @@ public class Twitter_Controller {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./dms.fxml"));
 		
     }
+	
+	
+	/**
+	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 */
+	@FXML
+	private void voltar_clicked(MouseEvent event){
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+	}
 }
