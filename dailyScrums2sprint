@@ -1,2 +1,28 @@
 9/11
 Desenvolvimento do backlog para o sprint
+
+16/11
+Tornar o projeto um projeto maven
+
+18/11
+logout do email e main modificado
+Dividir o twitter em aplicação e controlador
+Atualização dos posts do facebook e criação de interfaces
+Postar mensagens no twitter
+Twitter: interface para dms
+email:logout, filtrar, enviar mensagens
+facebook: modo offline e apresentaçao dos posts
+interface: timeline geral das 3 apps iniciada
+
+19/11
+facebook:Implementar os filtros no facebook
+
+20/11
+email:caixa de saida
+
+21/11
+facebook:UnitTest e JavaDoc 
+email:classe mensagem, metodos a devolver boolean, responder a emails e stored data para modo offline
+
+22/11
+email:JavaDOc e Junit
