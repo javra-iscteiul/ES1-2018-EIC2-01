@@ -10,17 +10,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Date: Oct 24 2018
+ * @author ES1-2018-EIC2-01
+ * @version 1.0
+ * Aplicação agregadora de conteúdos académicos: controlador do Login do Email
+ *
+ */
 public class loginController {
 	/**
 	 * 
 	 * TextField do UserName(email) (biblioteca Javafx)
 	 */
+
 	@FXML
 	private TextField email;
 
 	/**
 	 * PasswordField da Password do utilizador (biblioteca Javafx)
 	 */
+
 	@FXML
 	private PasswordField password;
 	

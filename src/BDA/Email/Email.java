@@ -2,14 +2,11 @@ package BDA.Email;
 
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Address;
-import javax.mail.Authenticator;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -29,7 +26,6 @@ import org.w3c.dom.Node;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 /**
  * Date: Oct 24 2018
@@ -39,10 +35,6 @@ import javafx.scene.control.ListView;
  *
  */
 
-/**
- * @author hugo
- *
- */
 public class Email {
 	
 	/**
@@ -51,12 +43,24 @@ public class Email {
 	private ObservableList<Mensagem> emails = FXCollections.observableArrayList();
 
 	
+	/**
+	 * Sessao do email com as propriedades já definidas
+	 */
 	private static Session session;
+	/**
+	 * String indicadora da pasta seleciona iniciada com a pasta default
+	 */
 	private static String folder = "INBOX";
+	/**
+	 * String indicadora do destinatorio de uma possivel mensagem para intercomunicação entre interfaces
+	 */
 	private static String to="";
 	
 	
 	
+	/**
+	 * Procedimento responsavel por iniciar a aplicação
+	 */
 	public static void init() {
 		
 		Properties properties = new Properties();
@@ -79,34 +83,20 @@ public class Email {
             	}
              });
 
-
-		/*
-		 Properties properties = new Properties();
-		 properties.put("mail.store.protocol", "pop3");
-	      properties.put("mail.pop3.host", "pop-mail.outlook.com");
-	      properties.put("mail.pop3.port", 995);
-	      properties.put("mail.pop3.starttls.enable", "true");
-	      session = Session.getDefaultInstance(properties);
-	      */
-	    
-
 	}
 	
 	/**
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
 	 * @return	retorna uma lista dos emails do utilizador
 	 */
-	public boolean getTimeline(ListView <Mensagem> emailsList) {
+	public ObservableList<Mensagem> getTimeline() {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		emails.clear();
-		emailsList.getItems().clear();
 		try {
 			/* Connect to the message Store */
-			//Store store = session.getStore("pop3s");
 			Store store = session.getStore("imap");
 			Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
 			store.connect(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
-			//store.connect("pop-mail.outlook.com",emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
 			
 			if (folder=="Sent" && XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
 				XMLclass.deleteElement(XMLclass.storedDataFile, "emailSent");
@@ -135,8 +125,6 @@ public class Email {
 		            String content = writePart(message);
 		            Map<String, String> childAttributesToStore = new HashMap<>();
 		            if(folder == "INBOX"){
-			            //String s = "From: " + message.getFrom()[0] + "\r\n"+"Subject: "
-						//		+ message.getSubject()  + "\r\n"+ "Date:" + message.getReceivedDate() + "\r\n"+ "Message: " + content;
 			            emails.add(new Mensagem(message.getFrom()[0].toString(),message.getSubject(),
 			            		message.getReceivedDate().toString(),content));
 			           
@@ -146,14 +134,10 @@ public class Email {
 						childAttributesToStore.put("Message", content);
 						dataToStore.put("post" + i, childAttributesToStore);
 		            }else if (folder == "Sent"){
-		            	 String s = "To: " +  InternetAddress.toString(message
-		                         .getRecipients(Message.RecipientType.TO))+ "\r\n"+"Subject: "
-									+ message.getSubject()+ "\r\n"+ "Date:" + message.getReceivedDate()+ "\r\n" + "Message: " + content;
 		            	 emails.add(i,new Mensagem(InternetAddress.toString(message
 		                         .getRecipients(Message.RecipientType.TO)),message.getSubject(),
 				            		message.getReceivedDate().toString(),content));
 				           
-				    
 							childAttributesToStore.put("To",InternetAddress.toString(message
 			                         .getRecipients(Message.RecipientType.TO)) );
 							childAttributesToStore.put("Subject",message.getSubject().toString() );
@@ -172,25 +156,28 @@ public class Email {
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
-			emailsList.setItems(emails);
-			return true;
+			return emails;
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
 			ex.printStackTrace();
 		}catch (UnknownHostException ex){
 			System.out.println("entrar em modo offline");
-			return getStoredTimeLine(emailsList);
+			return getStoredTimeLine();
 		} catch (MessagingException ex) {
 			System.out.println("Could not connect to the message store.");
-			return getStoredTimeLine(emailsList);
+			return getStoredTimeLine();
 			//ex.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
-	private boolean getStoredTimeLine(ListView<Mensagem> emailsList) {
+	/**
+	 * Este método permite que seja obtida uma lista dos emails de um utilizador no caso de este se encontrar sem acesso à Internet (interface)
+	 * @return	retorna uma lista dos emails do utilizador
+	 */
+	private ObservableList<Mensagem> getStoredTimeLine() {
 		try {
 			if(folder=="INBOX"){
 				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
@@ -221,21 +208,25 @@ public class Email {
 								String sub = childAttributes.getNamedItem("Subject").getNodeValue();
 								String date = childAttributes.getNamedItem("Date").getNodeValue();
 								String content = childAttributes.getNamedItem("Message").getNodeValue();
-								String s = "To: " + to + "\r\n"+"Subject: "
-										+ sub  + "\r\n"+ "Date:" + date + "\r\n"+ "Message: " + content;
 								emails.add(new Mensagem(to,sub,date,content));
 							}
 					}
 				            
 				}
 			}
-			emailsList.setItems(emails);
-			return true;
+			
+			return emails;
 		} catch (Exception ex) {
-			return false;
+			return null;
 		}
 	}
 	
+	/**
+	 * Procedimento responsavel por ler a informação do email e passá-la para string
+	 * @param p Part
+	 * @return String conteudo do email
+	 * @throws Exception
+	 */
 	public static String writePart(Part p) throws Exception {
 		String content="";
 	      if (p instanceof Message)
@@ -270,74 +261,17 @@ public class Email {
 	    	      }
 	        	 return content;
 	         }
-	            //writePart(mp.getBodyPart(i));
+	            
 	      } 
-//	      //check if the content is a nested message
-//	      else if (p.isMimeType("message/rfc822")) {
-//	         System.out.println("This is a Nested Message");
-//	         System.out.println("---------------------------");
-//	         writePart((Part) p.getContent());
-//	      } 
-//	      //check if the content is an inline image
-//	      else if (p.isMimeType("image/jpeg")) {
-//	         System.out.println("--------> image/jpeg");
-//	         Object o = p.getContent();
-//
-//	         InputStream x = (InputStream) o;
-//	         // Construct the required byte array
-//	       
-//	         System.out.println("x.length = " + x.available());
-//	         int i;
-//	         byte[] bArray =new byte[x.available()];
-//	         while ((i = (int) ((InputStream) x).available()) > 0) {
-//	            int result = (int) (((InputStream) x).read(bArray));
-//	            if (result == -1)
-//	            i = 0;
-//		          bArray= new byte[x.available()];
-//	            break;
-//	         }
-//	         FileOutputStream f2 = new FileOutputStream("/tmp/image.jpg");
-//	         f2.write(bArray);
-//	      } 
-//	      else if (p.getContentType().contains("image/")) {
-//	         System.out.println("content type" + p.getContentType());
-//	         File f = new File("image" + new Date().getTime() + ".jpg");
-//	         DataOutputStream output = new DataOutputStream(
-//	            new BufferedOutputStream(new FileOutputStream(f)));
-//	            com.sun.mail.util.BASE64DecoderStream test = 
-//	                 (com.sun.mail.util.BASE64DecoderStream) p
-//	                  .getContent();
-//	         byte[] buffer = new byte[1024]; 
-//	         int bytesRead;
-//	         while ((bytesRead = test.read(buffer)) != -1) {
-//	            output.write(buffer, 0, bytesRead);
-//	         }
-//	      } 
-//	      else {
-//	         Object o = p.getContent();
-//	         if (o instanceof String) {
-//	            System.out.println("This is a string");
-//	            System.out.println("---------------------------");
-//	            System.out.println((String) o);
-//	         } 
-//	         else if (o instanceof InputStream) {
-//	            System.out.println("This is just an input stream");
-//	            System.out.println("---------------------------");
-//	            InputStream is = (InputStream) o;
-//	            is = (InputStream) o;
-//	            int c;
-//	            while ((c = is.read()) != -1)
-//	               System.out.write(c);
-//	         } 
-//	         else {
-//	            System.out.println("This is an unknown type");
-//	            System.out.println("---------------------------");
-//	            System.out.println(o.toString());
-//	         }
-//	      }
+
 	      return null;
 	   }
 	   
+	/**
+	 * Procedimento que imprime na consola os dados principais da mensagem
+	 * @param m Message
+	 * @throws Exception
+	 */
 	public static void writeEnvelope(Message m) throws Exception {
 	      System.out.println("This is the message envelope");
 	      System.out.println("---------------------------");
@@ -362,40 +296,42 @@ public class Email {
 	   }
 
 
-	public boolean filter(ListView<Mensagem> emailsList, String text) {
+	/**
+	 * Procedimento que filtra os emails de um utilizador consoante uma palavra ou frase
+	 * @param text String
+	 * @return lista dos emails do utilizador filtrada
+	 */
+	public ObservableList<Mensagem> filter(String text) {
 		try {
-			this.getTimeline(emailsList);
-			List <Mensagem> nova = new ArrayList<Mensagem>();
+			
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
 			 for (int i = 0; i < emails.size(); i++) {
 		            if(emails.get(i).getSubject().contains(text) ||emails.get(i).getContent().contains(text) ) {
-		            	nova.add(i,new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
+		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
 								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
-
-				         }
+				     }
 			 }
-			emails.clear();
-			for (Mensagem m : nova)
-				emails.add(m);
-			
-			emailsList.setItems(emails);
-			return true;
+			 
+			return nova;
 
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 		
 	}
 	
 	
-	
-	
+	/**
+	 * Procedimento responsavel pelo envio de uma mensagem com os dados recebidos como parametros
+	 * @param to String
+	 * @param sub String
+	 * @param text String
+	 */
 	public static void sendEmails(String to, String sub, String text) {
 		System.out.println(to + sub + text);
 		Node emailConfig = XMLclass.getElement(XMLclass.configFile,"email");
-		
-
 	      // Sender's email ID needs to be mentioned
 	      String from = emailConfig.getAttributes().getNamedItem("UserName").getNodeValue();
 	      String password = emailConfig.getAttributes().getNamedItem("Password").getNodeValue();
@@ -432,21 +368,37 @@ public class Email {
 	}
 
 
+	/**
+	 * Devolve o folder atual
+	 * @return String folder
+	 */
 	public static String getFolder() {
 		return folder;
 	}
 
 
+	/**
+	 * Muda o folder para o folder dado como parametro
+	 * @param folder String
+	 */
 	public static void setFolder(String folder) {
 		Email.folder = folder;
 	}
 
 
+	/**
+	 * Retorna o destinatario de uma possivel mensagem
+	 * @return String to
+	 */
 	public static String getTo() {
 		return to;
 	}
 
 
+	/**
+	 * Altera o destinatario de uma possivel mensagem
+	 * @param to String
+	 */
 	public static void setTo(String to) {
 		Email.to = to;
 	}
