@@ -33,7 +33,7 @@ public final class App_twitter {
 	/**
 	 * ObservableList com os tweets 
 	 */
-	private ObservableList<String> tweets = FXCollections.observableArrayList();
+	private ObservableList<Mensagem> tweets = FXCollections.observableArrayList();
 	
 	/**
 	 * Atributo do tipo Twitter utilizados nos procedimentos seguintes 
@@ -67,7 +67,7 @@ public final class App_twitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public ObservableList<String>  getTimeline( ) throws TwitterException{ 
+	public ObservableList<Mensagem>  getTimeline( ) throws TwitterException{ 
 	//	ListView<String> tweetsList = new ListView<>();
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		tweets.clear();
@@ -86,6 +86,7 @@ public final class App_twitter {
 	        	Date dateCreated = status.getCreatedAt();
 	        	String date = dateCreated.toString();
 	        	String s = status.getUser().getName() + "\n" + status.getText();
+	        	Mensagem m = new Mensagem(userName, date, text);
 	        	
 	        	Map<String, String> childAttributesToStore = new HashMap<>();
 				childAttributesToStore.put("userName", userName);
@@ -93,7 +94,7 @@ public final class App_twitter {
 				childAttributesToStore.put("statusText", text);
 				dataToStore.put("post" + counter, childAttributesToStore);
 			
-				tweets.add(counter, s);
+				tweets.add(counter, m);
 				counter++;
 	        }
 	        
@@ -127,7 +128,9 @@ public final class App_twitter {
 				if (childAttributes != null) {
 					String userName = childAttributes.getNamedItem("userName").getNodeValue();
 					String title = childAttributes.getNamedItem("statusText").getNodeValue();
-					tweets.add(counter + (userName + ":" + title));
+					String date = childAttributes.getNamedItem("dateCreated").getNodeValue();
+					Mensagem m= new Mensagem(userName, date, title);
+					tweets.add(counter, m);
 					counter++;
 				}
 			}
@@ -142,7 +145,7 @@ public final class App_twitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public boolean filter(String quote, ListView<String> tweetsList) throws TwitterException {
+	public boolean filter(String quote, ListView<Mensagem> tweetsList) throws TwitterException {
 		 try{
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
@@ -154,8 +157,9 @@ public final class App_twitter {
 			for (Status status : statuses) {
 				if (status.getUser().getName() != null && status.getText().contains(quote)) {
 					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
+					Mensagem m = new Mensagem(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
 					System.out.println(status.getUser().getName() + ":" + status.getText() );
-					tweets.add(counter, s);
+					tweets.add(counter, m);
 					counter++;
 				}
 				counterTotal++;

@@ -23,7 +23,8 @@ public class Twitter_Controller {
 	 * ListView com a lista de tweets
 	 */
 	@FXML
-	private ListView<String> tweetsList;
+	//private ListView<String> tweetsList;
+	private ListView<Mensagem> tweetsList;
 	
 	/**
 	 * Caixa de texto onde utilizador ira escrever os tweets que quer procurar
