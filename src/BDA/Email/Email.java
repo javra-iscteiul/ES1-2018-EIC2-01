@@ -73,7 +73,7 @@ public class Email {
 		properties.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.setProperty("mail.imap.socketFactory.fallback", "false");
 		properties.setProperty("mail.imap.socketFactory.port", String.valueOf(993));
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
+		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 		
 
 		session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
@@ -95,15 +95,15 @@ public class Email {
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");
-			Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
+			Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 			store.connect(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
 			
-			if (folder=="Sent" && XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "emailSent");
+			if (folder=="Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent")) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailSent");
 			}
 			
-			if (folder=="INBOX" && XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "emailInbox");
+			if (folder=="INBOX" && XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox")) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailInbox");
 			}
 			
 			/* open Inbox folder */
@@ -180,8 +180,8 @@ public class Email {
 	private ObservableList<Mensagem> getStoredTimeLine() {
 		try {
 			if(folder=="INBOX"){
-				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
-					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailInbox");
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox")) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailInbox");
 					System.out.println("ola");
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
@@ -199,8 +199,8 @@ public class Email {
 				}
 			}else if(folder=="Sent"){
 				System.out.println("ola2");
-				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
-					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailSent");
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent")) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent");
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 							if (childAttributes != null) {
@@ -331,7 +331,7 @@ public class Email {
 	 */
 	public static void sendEmails(String to, String sub, String text) {
 		System.out.println(to + sub + text);
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile,"email");
+		Node emailConfig = XMLclass.getNode(XMLclass.configFile,"email");
 	      // Sender's email ID needs to be mentioned
 	      String from = emailConfig.getAttributes().getNamedItem("UserName").getNodeValue();
 	      String password = emailConfig.getAttributes().getNamedItem("Password").getNodeValue();

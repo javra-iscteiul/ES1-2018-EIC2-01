@@ -30,7 +30,7 @@ public class Facebook implements IFacebook {
 	/**
 	 * Node correspondente às configurações do facebook no ficheiro config
 	 */
-	private final Node facebookConfig = XMLclass.getElement(XMLclass.configFile, "facebook");
+	private final Node facebookConfig = XMLclass.getNode(XMLclass.configFile, "facebook");
 
 	/**
 	 * FacebookClient correspondente á conecção do cliente ao facebook
@@ -69,8 +69,8 @@ public class Facebook implements IFacebook {
 			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
 
 			//no caso de existirem posts guardados elimina-os
-			if (XMLclass.existsElement(XMLclass.storedDataFile, "facebook")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "facebook");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, "facebook")) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "facebook");
 			}
 
 			//cria as mensagens para mostrar no ecrã e adiciona as mesmas a lista de dados a guardar
@@ -111,8 +111,8 @@ public class Facebook implements IFacebook {
 	 */
 	private ObservableList<Message> getStoredTimeLine() {
 		try {
-			if (XMLclass.existsElement(XMLclass.storedDataFile, "facebook")) {
-				Node facebookNode = XMLclass.getElement(XMLclass.storedDataFile, "facebook");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, "facebook")) {
+				Node facebookNode = XMLclass.getNode(XMLclass.storedDataFile, "facebook");
 
 				int counter = 0;
 				for (int i = 0; i < facebookNode.getChildNodes().getLength(); i++) {
@@ -150,6 +150,11 @@ public class Facebook implements IFacebook {
 						(post.getDateCreated() != null && post.getDateCreated().contains(filter)))
 					posts.add(post);
 			}
+			
+			Map<String, String> filterAttr = new HashMap<>();
+			filterAttr.put("value", filter);
+			if(!XMLclass.existsChildNode(XMLclass.configFile, "facebook", "filter", filterAttr))
+				XMLclass.addChild(XMLclass.configFile, "facebook", "filter", filterAttr);
 			
 			return posts;
 		} catch (Exception ex) {

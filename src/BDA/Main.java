@@ -48,7 +48,7 @@ public class Main extends Application {
 	@FXML
     private void twitterLogo_clicked(MouseEvent event)
     {
-		if(!XMLclass.existsElement(XMLclass.configFile, "twitter")){
+		if(!XMLclass.existsNode(XMLclass.configFile, "twitter")){
 			Map<String, String> attributes = new HashMap<String, String>();
 			attributes.put("Protocol", "smtp");
 			attributes.put("UserName", "EsJarh");
@@ -74,7 +74,7 @@ public class Main extends Application {
 	@FXML
     private void facebookLogo_clicked(MouseEvent event)
     {
-		if(!XMLclass.existsElement(XMLclass.configFile, "facebook")){
+		if(!XMLclass.existsNode(XMLclass.configFile, "facebook")){
 			Map<String, String> attributes = new HashMap<String, String>();
 			attributes.put("UserName", "EsJarh");
 			attributes.put("Password", "grupo1grupo");
@@ -94,7 +94,7 @@ public class Main extends Application {
 	 */
 	@FXML
     private void emailLogo_clicked(MouseEvent event){
-		if(XMLclass.existsElement(XMLclass.configFile, "email")){
+		if(XMLclass.existsNode(XMLclass.configFile, "email")){
 			Email.init();
 			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
 		}else {

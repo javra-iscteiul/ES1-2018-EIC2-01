@@ -15,10 +15,10 @@ public class emailTest {
 	@Test
     public void getTimeline() {
 		//verifica se não existem credenciais do email
-		if(!XMLclass.existsElement(XMLclass.configFile, "email")){
+		if(!XMLclass.existsNode(XMLclass.configFile, "email")){
 			
 			//valida se existe data guardada de logins anteriores
-			if(XMLclass.existsElement(XMLclass.storedDataFile, "email")){
+			if(XMLclass.existsNode(XMLclass.storedDataFile, "email")){
 				//verifica se consegue carregar esses dados offline
 				assertNotNull(email.getTimeline());
 			}else{
@@ -34,9 +34,9 @@ public class emailTest {
 		}
 		
 		//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-		if(!XMLclass.existsElement(XMLclass.storedDataFile, "email")){
+		if(!XMLclass.existsNode(XMLclass.storedDataFile, "email")){
 			if(email.getTimeline() != null){
-				assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "email"));
+				assertNotNull(XMLclass.existsNode(XMLclass.storedDataFile, "email"));
 			}
 		}else{
 			//se tiver data guardada tem que dar sempre true

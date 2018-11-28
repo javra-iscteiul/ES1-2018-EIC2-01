@@ -18,10 +18,10 @@ public class TestTwitter {
 	public void getTimeline() {
 		try{
 			//verifica se não existem credenciais do twitter
-			if(!XMLclass.existsElement(XMLclass.configFile, "twitter")){
+			if(!XMLclass.existsNode(XMLclass.configFile, "twitter")){
 				
 				//valida se existe data guardada de logins anteriores
-				if(XMLclass.existsElement(XMLclass.storedDataFile, "twitter")){
+				if(XMLclass.existsNode(XMLclass.storedDataFile, "twitter")){
 					//verifica se consegue carregar esses dados offline
 					assertNotNull(twitter.getTimeline());
 				}else{
@@ -41,9 +41,9 @@ public class TestTwitter {
 				XMLclass.addElement(XMLclass.configFile, "twitter", attributes);
 			}
 			//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-			if(!XMLclass.existsElement(XMLclass.storedDataFile, "twitter")){
+			if(!XMLclass.existsNode(XMLclass.storedDataFile, "twitter")){
 						if(twitter.getTimeline() != null){
-							assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "twitter"));
+							assertNotNull(XMLclass.existsNode(XMLclass.storedDataFile, "twitter"));
 						}
 			}else{
 				//se tiver data guardada tem que dar sempre true

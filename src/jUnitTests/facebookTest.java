@@ -20,10 +20,10 @@ public class facebookTest {
 	@Test
     public void getTimeline() {
 		//verifica se não existem credenciais do facebook
-		if(!XMLclass.existsElement(XMLclass.configFile, "facebook")){
+		if(!XMLclass.existsNode(XMLclass.configFile, "facebook")){
 			
 			//valida se existe data guardada de logins anteriores
-			if(XMLclass.existsElement(XMLclass.storedDataFile, "facebook")){
+			if(XMLclass.existsNode(XMLclass.storedDataFile, "facebook")){
 				//verifica se consegue carregar esses dados offline
 				assertNotNull(facebook.getTimeLine());
 			}else{
@@ -41,9 +41,9 @@ public class facebookTest {
 		}
 		
 		//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-		if(!XMLclass.existsElement(XMLclass.storedDataFile, "facebook")){
+		if(!XMLclass.existsNode(XMLclass.storedDataFile, "facebook")){
 			if(facebook.getTimeLine() != null){
-				assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "facebook"));
+				assertNotNull(XMLclass.existsNode(XMLclass.storedDataFile, "facebook"));
 			}
 		}else{
 			//se tiver data guardada tem que dar sempre true

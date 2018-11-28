@@ -75,7 +75,7 @@ public class Controller {
 	@FXML
 	public void initialize() {
 		emailsList.setItems(email.getTimeline());
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
+		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
 
 	}
