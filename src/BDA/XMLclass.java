@@ -282,7 +282,7 @@ public class XMLclass {
 	 * @param tokensecret
 	 *            String
 	 */
-	public static boolean addElement(File inputFile, String service, Map<String, String> Attributes) {
+	public static boolean addNode(File inputFile, String service, Map<String, String> Attributes) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -304,7 +304,7 @@ public class XMLclass {
 		}
 	}
 	
-	public static boolean addElementAndChild(File inputFile, String service, Map<String, Map<String, String>> Attributes) {
+	public static boolean addNodeAndChild(File inputFile, String service, Map<String, Map<String, String>> Attributes) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);

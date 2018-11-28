@@ -52,11 +52,11 @@ public class loginController {
 			//valida se o email e a password sao iguais aos que estao no config
 			if(!XMLclass.verifyNodeAttributesUnchanged(XMLclass.configFile, "email", attributes)){
 				XMLclass.deleteNode(XMLclass.configFile, "email");
-				XMLclass.addElement(XMLclass.configFile, "email", attributes);
+				XMLclass.addNode(XMLclass.configFile, "email", attributes);
 			}
 			
 		}else{
-			XMLclass.addElement(XMLclass.configFile, "email", attributes);
+			XMLclass.addNode(XMLclass.configFile, "email", attributes);
 		}
 		
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));

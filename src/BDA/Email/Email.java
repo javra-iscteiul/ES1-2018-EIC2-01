@@ -148,10 +148,10 @@ public class Email {
 		           
 		         }
 			 if(folder=="INBOX") {
-				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailInbox", dataToStore);
+				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailInbox", dataToStore);
 			 }
 			 if(folder=="Sent") {
-				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailSent", dataToStore);
+				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailSent", dataToStore);
 			 }
 			// Disconnect
 			emailFolder.close(false);
