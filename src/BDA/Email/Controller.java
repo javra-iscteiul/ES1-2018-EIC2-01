@@ -95,7 +95,7 @@ public class Controller {
 	/**
 	 * Procedimento que filtra a lista de emails dado um user
 	 * @param event
-	 */
+	 */ 
 	@FXML
 	private void filterUser(ActionEvent event) {
 		emailsList.setItems(email.filterUser(pesquisa.getText()));

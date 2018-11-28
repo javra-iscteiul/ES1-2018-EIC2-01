@@ -362,7 +362,7 @@ public class Email {
 		return null;
 		
 	}
-	
+	 
 	/**
 	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
 	 * @return lista dos emails do utilizador filtrada
