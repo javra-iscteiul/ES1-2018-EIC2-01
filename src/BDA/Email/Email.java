@@ -2,7 +2,12 @@ package BDA.Email;
 
 
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -156,6 +161,8 @@ public class Email {
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
+			//Collections.sort(emails, new DataComparator());
+			Collections.reverse(emails);
 			return emails;
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
@@ -182,7 +189,6 @@ public class Email {
 			if(folder=="INBOX"){
 				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox")) {
 					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailInbox");
-					System.out.println("ola");
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 						if (childAttributes != null) {
@@ -198,7 +204,6 @@ public class Email {
 					}
 				}
 			}else if(folder=="Sent"){
-				System.out.println("ola2");
 				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent")) {
 					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent");
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
@@ -312,6 +317,11 @@ public class Email {
 				     }
 			 }
 			 
+			 Map<String, String> filterAttr = new HashMap<>();
+				filterAttr.put("value", text);
+				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filter", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, "email", "filter", filterAttr);
+				 
 			return nova;
 
 		
@@ -322,6 +332,69 @@ public class Email {
 		
 	}
 	
+	
+	/**
+	 * Procedimento que filtra os emails de um utilizador consoante os emails que pertencem ao utilizador pedido
+	 * @param text String
+	 * @return lista dos emails do utilizador filtrada
+	 */
+	public ObservableList<Mensagem> filterUser(String text) {
+		try {
+			
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+			 for (int i = 0; i < emails.size(); i++) {
+		            if(emails.get(i).getFrom_to().contains(text) ) {
+		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
+								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+				     }
+			 }
+			 
+			 Map<String, String> filterAttr = new HashMap<>();
+				filterAttr.put("value", text);
+				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filterUser", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, "email", "filterUser", filterAttr);
+			return nova;
+
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
+	 * @return lista dos emails do utilizador filtrada
+	 */
+	public ObservableList<Mensagem> getLast24h() {
+		try {
+			
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+			 for (int i = 0; i < emails.size(); i++) {
+				 DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+				 Date date = format.parse(emails.get(i).getDate());
+				 Date today = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
+				    if(date.after(twentyfourhoursbefore) && date.before(today)){
+		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
+								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+				     }
+			 }
+			 Map<String, String> filterAttr = new HashMap<>();
+				filterAttr.put("value", "true");
+				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filter24h", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, "email", "filter24h", filterAttr); 
+			return nova;
+
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	
 	/**
 	 * Procedimento responsavel pelo envio de uma mensagem com os dados recebidos como parametros
