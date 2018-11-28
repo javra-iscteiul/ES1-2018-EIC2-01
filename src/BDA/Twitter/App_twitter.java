@@ -98,20 +98,14 @@ public final class App_twitter {
 				counter++;
 	        }
 	        
-	        XMLclass.addElementAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
+	        XMLclass.addNodeAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
 	        
 	      //  tweetsList.setItems(tweets);
 			return tweets;
 		} catch (Exception e) {
-			if(e.getCause() instanceof UnknownHostException){
-				System.out.println("problema de conexao");
-				solveConectionProblems();
-				return tweets;
-			}
-			else{
-				e.printStackTrace();
-			}
-			return null;
+			e.printStackTrace();
+			solveConectionProblems();
+			return tweets;
 		}
 	}
 	

@@ -2,20 +2,41 @@
 <Services>
 
 
-<serviceTest AccessToken="tokenTest" AccessTokenSecret="tokensecretTest" ConsumerKey="consumerKeyTest" ConsumerSecret="consumerSecretTest" Password="passwordTest" Protocol="protocolTest" UserName="usernameTest"/>
-<serviceTestWithChild>
-<child4 Attr1="teste" Attr2="123"/>
-<child2 Attr1="teste" Attr2="123"/>
-<child3 Attr1="teste" Attr2="123"/>
-<child0 Attr1="teste" Attr2="123"/>
-<child1 Attr1="teste" Attr2="123"/>
-</serviceTestWithChild>
-<serviceTest AccessToken="tokenTest" AccessTokenSecret="tokensecretTest" ConsumerKey="consumerKeyTest" ConsumerSecret="consumerSecretTest" Password="passwordTest" Protocol="protocolTest" UserName="usernameTest"/>
-<serviceTestWithChild>
-<child4 Attr1="teste" Attr2="123"/>
-<child2 Attr1="teste" Attr2="123"/>
-<child3 Attr1="teste" Attr2="123"/>
-<child0 Attr1="teste" Attr2="123"/>
-<child1 Attr1="teste" Attr2="123"/>
-</serviceTestWithChild>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<email Password="grupo1grupo" UserName="es1g1@outlook.com"/>
+
+
+
+
+
+
 </Services>

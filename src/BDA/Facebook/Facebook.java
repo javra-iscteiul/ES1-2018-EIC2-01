@@ -94,7 +94,7 @@ public class Facebook implements IFacebook {
 				}
 			}
 
-			XMLclass.addElementAndChild(XMLclass.storedDataFile, "facebook", dataToStore);
+			XMLclass.addNodeAndChild(XMLclass.storedDataFile, "facebook", dataToStore);
 
 			return posts;
 		} catch (Exception e) {

@@ -58,7 +58,7 @@ public class Main extends Application {
 			attributes.put("AccessToken", "1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q");
 			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
 			
-			XMLclass.addElement(XMLclass.configFile, "twitter", attributes);
+			XMLclass.addNode(XMLclass.configFile, "twitter", attributes);
 		}
 		
 		App_twitter.init();
@@ -81,7 +81,7 @@ public class Main extends Application {
 			attributes.put("AccessToken", "EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD");
 			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
 			
-			XMLclass.addElement(XMLclass.configFile, "facebook", attributes);
+			XMLclass.addNode(XMLclass.configFile, "facebook", attributes);
 		}
 		
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Facebook/facebookProfile.fxml"));		
@@ -104,7 +104,7 @@ public class Main extends Application {
 	
 	
 	
-	public static void main(String[] args)
+	private static void main(String[] args)
 	{
 		launch(args);
 	}
