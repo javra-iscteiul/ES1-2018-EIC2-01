@@ -48,7 +48,7 @@ public final class App_twitter {
 	 */
 	public static void init() {
 		 ConfigurationBuilder cb = new ConfigurationBuilder();
-		Node twitterConfig = XMLclass.getElement(XMLclass.configFile, "twitter");
+		Node twitterConfig = XMLclass.getNode(XMLclass.configFile, "twitter");
 		cb.setDebugEnabled(true)
 		  .setOAuthConsumerKey(twitterConfig.getAttributes().getNamedItem("ConsumerKey").getNodeValue())
 		  .setOAuthConsumerSecret(twitterConfig.getAttributes().getNamedItem("ConsumerSecret").getNodeValue())
@@ -75,8 +75,8 @@ public final class App_twitter {
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
 			
-			if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "twitter");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, "twitter")) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "twitter");
 			}
 			
 			int counter=0;
@@ -98,20 +98,14 @@ public final class App_twitter {
 				counter++;
 	        }
 	        
-	        XMLclass.addElementAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
+	        XMLclass.addNodeAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
 	        
 	      //  tweetsList.setItems(tweets);
 			return tweets;
 		} catch (Exception e) {
-			if(e.getCause() instanceof UnknownHostException){
-				System.out.println("problema de conexao");
-				solveConectionProblems();
-				return tweets;
-			}
-			else{
-				e.printStackTrace();
-			}
-			return null;
+			e.printStackTrace();
+			solveConectionProblems();
+			return tweets;
 		}
 	}
 	
@@ -120,8 +114,8 @@ public final class App_twitter {
 	 * @param tweetsList
 	 */
 	private void solveConectionProblems() {
-		if (XMLclass.existsElement(XMLclass.storedDataFile, "twitter")) {
-			Node twitterNode = XMLclass.getElement(XMLclass.storedDataFile, "twitter");
+		if (XMLclass.existsNode(XMLclass.storedDataFile, "twitter")) {
+			Node twitterNode = XMLclass.getNode(XMLclass.storedDataFile, "twitter");
 			int counter = 0;
 			for (int i = 0; i < twitterNode.getChildNodes().getLength(); i++) {
 				NamedNodeMap childAttributes = twitterNode.getChildNodes().item(i).getAttributes();

@@ -12,35 +12,13 @@ import BDA.Email.Email;
 
 public class emailTest {
 	private static Email email = new Email();
+	
 	@Test
     public void getTimeline() {
-		//verifica se não existem credenciais do email
-		if(!XMLclass.existsElement(XMLclass.configFile, "email")){
-			
-			//valida se existe data guardada de logins anteriores
-			if(XMLclass.existsElement(XMLclass.storedDataFile, "email")){
-				//verifica se consegue carregar esses dados offline
-				assertNotNull(email.getTimeline());
-			}else{
-				//verifica se da false quando não se consegue obter dados
-				assertNull(email.getTimeline());
-			}
-			
-			//insere as credenciais do face no config
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("UserName", "es1g1@outlook.com");
-			attributes.put("Password", "grupo1grupo");
-			XMLclass.addElement(XMLclass.configFile, "email", attributes);
-		}
-		
-		//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-		if(!XMLclass.existsElement(XMLclass.storedDataFile, "email")){
-			if(email.getTimeline() != null){
-				assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "email"));
-			}
-		}else{
-			//se tiver data guardada tem que dar sempre true
-			assertNotNull(email.getTimeline());
-		}
+		assertTrue(XMLclass.existsNode(XMLclass.configFile, "email"));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailSent"));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox"));
+		email.init();
+		assertNotNull(email.getTimeline());
     }
 }

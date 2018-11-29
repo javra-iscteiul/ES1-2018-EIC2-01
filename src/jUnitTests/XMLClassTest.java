@@ -17,10 +17,9 @@ import BDA.XMLclass;
 public class XMLClassTest {
 	
 	@BeforeClass
-	public static void addElementTest(){
+	public static void addNodeTest(){
 		//apaga se por erro tivesse sido deixado no config uma tag com o mesmo nome
-		if(XMLclass.existsElement(XMLclass.testFile, "serviceTest"))
-			XMLclass.deleteElement(XMLclass.testFile, "serviceTest");
+		assertFalse(XMLclass.deleteNode(XMLclass.testFile, "serviceTest"));
 			
 		//cria um serviço teste no xml teste
 		Map<String, String> attributes = new HashMap<String, String>();
@@ -32,20 +31,35 @@ public class XMLClassTest {
 		attributes.put("AccessToken", "tokenTest");
 		attributes.put("AccessTokenSecret", "tokensecretTest");
 		
-		assertTrue(XMLclass.addElement(XMLclass.testFile, "serviceTest", attributes));
-		assertFalse(XMLclass.addElement(XMLclass.testFile, null, null));
+		assertTrue(XMLclass.addNode(XMLclass.testFile, "serviceTest", attributes));
+		Map<String, String> filterTestAttributes = new HashMap<>();
+		filterTestAttributes.put("valueTest", "Test");
+		assertTrue(XMLclass.addChild(XMLclass.testFile, "serviceTest", "childTest", filterTestAttributes));
+		
+		assertFalse(XMLclass.addNode(XMLclass.testFile, null, null));
+		assertFalse(XMLclass.addChild(XMLclass.testFile, null, null, null));
 	}
-
+	
 	@Before
-	public void existsElementTest() {
+	public void existsNodeTest() {
 		//verifica se o servico criado existe
-		assertTrue(XMLclass.existsElement(XMLclass.testFile, "serviceTest"));
-		assertFalse(XMLclass.existsElement(XMLclass.testFile, ""));
-		assertFalse(XMLclass.existsElement(XMLclass.testFile, null));
+		assertTrue(XMLclass.existsNode(XMLclass.testFile, "serviceTest"));
+		assertFalse(XMLclass.existsNode(XMLclass.testFile, ""));
+		assertFalse(XMLclass.existsNode(XMLclass.testFile, null));
+	}
+	
+	@Before
+	public void existsChildNodeTest() {
+		//verifica se o servico criado existe
+		Map<String, String> filterTestAttributes = new HashMap<>();
+		filterTestAttributes.put("valueTest", "Test");
+		assertTrue(XMLclass.existsChildNode(XMLclass.testFile, "serviceTest", "childTest", filterTestAttributes));
+		assertFalse(XMLclass.existsChildNode(XMLclass.testFile, "", "", null));
+		assertFalse(XMLclass.existsChildNode(XMLclass.testFile, null, null, null));
 	}
 
 	@Test
-	public void verifyElementAttributesUnchangedTest(){
+	public void verifyNodeAttributesUnchangedTest(){
 		//verifica se deteta que os atributos são iguais aos que estão no ficheiro xml
 		Map<String, String> Attributes = new HashMap<String, String>();
 		Attributes.put("Protocol", "protocolTest");
@@ -55,10 +69,10 @@ public class XMLClassTest {
 		Attributes.put("ConsumerSecret", "consumerSecretTest");
 		Attributes.put("AccessToken", "tokenTest");
 		Attributes.put("AccessTokenSecret", "tokensecretTest");
-		assertTrue(XMLclass.verifyElementAttributesUnchanged(XMLclass.testFile, "serviceTest", Attributes));
+		assertTrue(XMLclass.verifyNodeAttributesUnchanged(XMLclass.testFile, "serviceTest", Attributes));
 						
 		//funções que esperam excepção ficam para ultimo
-		assertFalse(XMLclass.verifyElementAttributesUnchanged(XMLclass.testFile, "", null));
+		assertFalse(XMLclass.verifyNodeAttributesUnchanged(XMLclass.testFile, "", null));
 		
 		//verifica que atributos são diferentes, aos que estão no ficheiro xml
 		Map<String, String> AttributesFail = new HashMap<String, String>();
@@ -69,22 +83,31 @@ public class XMLClassTest {
 		AttributesFail.put("ConsumerSecret", "consumerSecretTest");
 		AttributesFail.put("AccessToken", "tokenTest");
 		AttributesFail.put("AccessTokenSecret", "tokensecretTest");
-		assertFalse(XMLclass.verifyElementAttributesUnchanged(XMLclass.testFile, "serviceTest", AttributesFail));
+		assertFalse(XMLclass.verifyNodeAttributesUnchanged(XMLclass.testFile, "serviceTest", AttributesFail));
 	}
 	
 	@Test
-	public void getElementTest(){
+	public void getNodeTest(){
 		//verifica se consegue receber o serviço teste
-		assertNotNull(XMLclass.getElement(XMLclass.testFile, "serviceTest"));
-		assertNull(XMLclass.getElement(XMLclass.testFile, ""));
-		assertNull(XMLclass.getElement(XMLclass.testFile, null));
+		assertNotNull(XMLclass.getNode(XMLclass.testFile, "serviceTest"));
+		assertNull(XMLclass.getNode(XMLclass.testFile, ""));
+		assertNull(XMLclass.getNode(XMLclass.testFile, null));
 	}
 	
 	@Test
-	public void addElementAndChildTest(){
+	public void getChildNodeTest(){
+		Map<String, String> filterTestAttributes = new HashMap<>();
+		filterTestAttributes.put("valueTest", "Test");
+		//verifica se consegue receber o serviço teste
+		assertNotNull(XMLclass.getChildNode(XMLclass.testFile, "serviceTest", "childTest", filterTestAttributes));
+		assertNull(XMLclass.getChildNode(XMLclass.testFile, "", "", null));
+		assertNull(XMLclass.getChildNode(XMLclass.testFile, null, null, null));
+	}
+	
+	@Test
+	public void addNodeAndChildTest(){
 		//apaga se por erro tivesse sido deixado no config uma tag com o mesmo nome
-		if(XMLclass.existsElement(XMLclass.testFile, "serviceTestWithChild"))
-			XMLclass.deleteElement(XMLclass.testFile, "serviceTestWithChild");
+		assertFalse(XMLclass.deleteNode(XMLclass.testFile, "serviceTestWithChild"));
 			
 		//cria 5 filhos do serviço de teste
 		Map<String, Map<String, String>> serviceChilds = new HashMap<String, Map<String, String>>();
@@ -96,17 +119,26 @@ public class XMLClassTest {
 		}
 		
 		//adiciona o serviço e os 5 filhos e verifica que consegue inserir
-		assertTrue(XMLclass.addElementAndChild(XMLclass.testFile, "serviceTestWithChild", serviceChilds));
-		assertFalse(XMLclass.addElementAndChild(XMLclass.testFile, null, null));
+		assertTrue(XMLclass.addNodeAndChild(XMLclass.testFile, "serviceTestWithChild", serviceChilds));
+		assertFalse(XMLclass.addNodeAndChild(XMLclass.testFile, null, null));
+	}
+	
+	@Test
+	public void deleteChildTest(){
+		//verifica se consegue apagar os serviços criados
+		assertFalse(XMLclass.deleteChild(XMLclass.testFile, "", "", null));
+		assertFalse(XMLclass.deleteChild(XMLclass.testFile, null, null, null));
+		Map<String, String> filterTestAttributes = new HashMap<>();
+		filterTestAttributes.put("valueTest", "Test");
+		assertTrue(XMLclass.deleteChild(XMLclass.testFile, "serviceTest", "childTest", filterTestAttributes));
 	}
 	
 	@AfterClass
-	public static void deleteElementTest(){
+	public static void deleteNodeTest(){
 		//verifica se consegue apagar os serviços criados
-		assertFalse(XMLclass.deleteElement(XMLclass.testFile, ""));
-		assertFalse(XMLclass.deleteElement(XMLclass.testFile, null));
-		assertTrue(XMLclass.deleteElement(XMLclass.testFile, "serviceTest"));
-		assertTrue(XMLclass.deleteElement(XMLclass.testFile, "serviceTestWithChild"));
+		assertFalse(XMLclass.deleteNode(XMLclass.testFile, ""));
+		assertFalse(XMLclass.deleteNode(XMLclass.testFile, null));
+		assertTrue(XMLclass.deleteNode(XMLclass.testFile, "serviceTest"));
+		assertTrue(XMLclass.deleteNode(XMLclass.testFile, "serviceTestWithChild"));
 	}
-	
 }

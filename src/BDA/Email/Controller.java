@@ -1,10 +1,13 @@
 package BDA.Email;
 
 
+import java.util.Collections;
+
 import org.w3c.dom.Node;
 
 import BDA.FuncoesGerais;
 import BDA.XMLclass;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -75,7 +78,7 @@ public class Controller {
 	@FXML
 	public void initialize() {
 		emailsList.setItems(email.getTimeline());
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
+		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
 
 	}
@@ -87,6 +90,15 @@ public class Controller {
 	@FXML
 	private void filter(ActionEvent event) {
 		emailsList.setItems(email.filter(pesquisa.getText()));
+	}
+	
+	/**
+	 * Procedimento que filtra a lista de emails dado um user
+	 * @param event
+	 */ 
+	@FXML
+	private void filterUser(ActionEvent event) {
+		emailsList.setItems(email.filterUser(pesquisa.getText()));
 	}
 	
 	/**
@@ -110,6 +122,32 @@ public class Controller {
 		conteudo.setText("");
 		Email.setFolder("INBOX");
 		emailsList.setItems(email.getTimeline());
+	}
+	/**
+	 * Procedimento que ordena emails por data mais recente
+	 * @param event
+	 */
+	@FXML
+	private void recent(ActionEvent event) {
+		emailsList.setItems(email.getTimeline());
+	}
+	/**
+	 * Procedimento que ordena emails por data mais antiga
+	 * @param event
+	 */
+	@FXML
+	private void older(ActionEvent event) {
+		ObservableList<Mensagem> nova =email.getTimeline();
+		Collections.reverse(nova);
+		emailsList.setItems(nova);
+	}
+	/**
+	 * Procedimento que devolve apenas os emails das ultimas 24 horas
+	 * @param event
+	 */
+	@FXML
+	private void last24h(ActionEvent event) {
+		emailsList.setItems(email.getLast24h());
 	}
 
 	/**

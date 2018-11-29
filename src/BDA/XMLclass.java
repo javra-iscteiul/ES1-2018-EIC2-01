@@ -65,13 +65,27 @@ public class XMLclass {
 	 *            String
 	 * @return boolean
 	 */
-	public static boolean existsElement(File inputFile, String service) {
+	public static boolean existsNode(File inputFile, String service) {
 		try {
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(inputFile);
-			doc.getDocumentElement().normalize();
-
-			return doc.getElementsByTagName(service).getLength() > 0;
+			return XMLclass.getNode(inputFile, service) != null;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Dado um determinado serviço verifica se o mesmo já existe no documento
+	 * com as credenciais
+	 * 
+	 * @param service
+	 *            String
+	 * @return boolean
+	 */
+	public static boolean existsChildNode(File inputFile, String service, String child, Map<String, String> childAttributes) {
+		try {
+			return XMLclass.getChildNode(inputFile, service, child, childAttributes) != null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,17 +103,13 @@ public class XMLclass {
 	 *            Map<String, String> (Nome do atributo, Valor do atributo)
 	 * @return boolean
 	 */
-	public static boolean verifyElementAttributesUnchanged(File inputFile, String service, Map<String, String> Attributes) {
+	public static boolean verifyNodeAttributesUnchanged(File inputFile, String service, Map<String, String> Attributes) {
 		try {
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(inputFile);
-			doc.getDocumentElement().normalize();
-
-			NodeList nodeList = doc.getElementsByTagName(service);
-			if (nodeList.getLength() == 0)
+			Node serviceNode = XMLclass.getNode(inputFile, service);
+			if (serviceNode == null)
 				return false;
 
-			NamedNodeMap nodeAttributes = nodeList.item(0).getAttributes();
+			NamedNodeMap nodeAttributes = serviceNode.getAttributes();
 			for (Map.Entry<String, String> Attribute : Attributes.entrySet()) {
 				if (nodeAttributes.getNamedItem(Attribute.getKey()) == null)
 					return false;
@@ -122,18 +132,48 @@ public class XMLclass {
 	 *            String
 	 * @return boolean
 	 */
-	public static boolean deleteElement(File inputFile, String service) {
+	public static boolean deleteNode(File inputFile, String service) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
 			doc.getDocumentElement().normalize();
 
-			NodeList nodeList = doc.getElementsByTagName(service);
-			if (nodeList.getLength() == 0)
+			Node serviceNode = XMLclass.getNode(inputFile, service, doc);
+			if (serviceNode == null)
 				return false;
 
-			Element element = (Element) nodeList.item(0);
-			element.getParentNode().removeChild(element);
+			serviceNode.getParentNode().removeChild(serviceNode);
+
+			saveXMLfile(inputFile, doc);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Dado um determinado serviço elimina o mesmo no documento com as
+	 * credenciais
+	 * 
+	 * @param service
+	 *            String
+	 * @param child
+	 *            String
+	 * @return boolean
+	 */
+	public static boolean deleteChild(File inputFile, String service, String child, Map<String, String> childAttributes) {
+		try {
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
+
+			Node childNode = XMLclass.getChildNode(inputFile, service, child, childAttributes);
+			if (childNode == null)
+				return false;
+
+			childNode.getParentNode().removeChild(childNode);
 
 			saveXMLfile(inputFile, doc);
 			return true;
@@ -151,13 +191,70 @@ public class XMLclass {
 	 *            String
 	 * @return Node
 	 */
-	public static Node getElement(File inputFile, String service) {
+	public static Node getNode(File inputFile, String service) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
 			doc.getDocumentElement().normalize();
 
+			return getNode(inputFile, service, doc);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Dado um determinado serviço retorna o node correspondente
+	 * 
+	 * @param service
+	 *            String
+	 * @return Node
+	 */
+	private static Node getNode(File inputFile, String service, Document doc) {
+		try {
 			return doc.getElementsByTagName(service).item(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Dado um determinado serviço, o nome do filho e os seus attributos retorna o mesmo
+	 * 
+	 * @param service
+	 *            String
+	 * @return Node
+	 */
+	public static Node getChildNode(File inputFile, String service, String child, Map<String, String> childAttributes) {
+		try {
+			
+			Node serviceNode = XMLclass.getNode(inputFile, service);
+			if(serviceNode == null)
+				return null;
+			NodeList childList = serviceNode.getChildNodes();
+			
+			for (int i = 0; i < childList.getLength(); i++) {
+				if(childList.item(i).getNodeName().equals(child))
+				{
+					NamedNodeMap attributes = childList.item(i).getAttributes();
+					boolean isChildNode = false;
+					for(Map.Entry<String, String> attribute : childAttributes.entrySet()){
+						if(attributes.getNamedItem(attribute.getKey()) != null
+							&& attributes.getNamedItem(attribute.getKey()).getNodeValue().equals(attribute.getValue()))
+							isChildNode = true;
+						else
+							isChildNode = false;
+					}
+					if(isChildNode)
+						return childList.item(i);
+				}
+			}
+			
+			return null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,7 +282,7 @@ public class XMLclass {
 	 * @param tokensecret
 	 *            String
 	 */
-	public static boolean addElement(File inputFile, String service, Map<String, String> Attributes) {
+	public static boolean addNode(File inputFile, String service, Map<String, String> Attributes) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -207,7 +304,7 @@ public class XMLclass {
 		}
 	}
 	
-	public static boolean addElementAndChild(File inputFile, String service, Map<String, Map<String, String>> Attributes) {
+	public static boolean addNodeAndChild(File inputFile, String service, Map<String, Map<String, String>> Attributes) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -226,6 +323,29 @@ public class XMLclass {
 
 			Node n = doc.getDocumentElement();
 			n.appendChild(serviceElement);
+			
+			saveXMLfile(inputFile, doc);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
+	public static boolean addChild(File inputFile, String service, String child, Map<String, String> childAttributes) {
+		try {
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
+			
+			Node serviceNode = XMLclass.getNode(inputFile, service, doc);
+			Element childElement = doc.createElement(child);
+			
+			for (Map.Entry<String, String> attribute : childAttributes.entrySet()) {
+				childElement.setAttribute(attribute.getKey(), attribute.getValue());
+			}
+			serviceNode.appendChild(childElement);
 			
 			saveXMLfile(inputFile, doc);
 			return true;

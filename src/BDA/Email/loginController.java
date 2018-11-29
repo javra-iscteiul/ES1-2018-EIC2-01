@@ -47,16 +47,16 @@ public class loginController {
 		attributes.put("UserName", mail);
 		attributes.put("Password", pass);
 		
-		if(XMLclass.existsElement(XMLclass.configFile, "email")){			
+		if(XMLclass.existsNode(XMLclass.configFile, "email")){			
 			
 			//valida se o email e a password sao iguais aos que estao no config
-			if(!XMLclass.verifyElementAttributesUnchanged(XMLclass.configFile, "email", attributes)){
-				XMLclass.deleteElement(XMLclass.configFile, "email");
-				XMLclass.addElement(XMLclass.configFile, "email", attributes);
+			if(!XMLclass.verifyNodeAttributesUnchanged(XMLclass.configFile, "email", attributes)){
+				XMLclass.deleteNode(XMLclass.configFile, "email");
+				XMLclass.addNode(XMLclass.configFile, "email", attributes);
 			}
 			
 		}else{
-			XMLclass.addElement(XMLclass.configFile, "email", attributes);
+			XMLclass.addNode(XMLclass.configFile, "email", attributes);
 		}
 		
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
