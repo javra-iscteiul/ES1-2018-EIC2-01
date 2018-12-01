@@ -19,6 +19,6 @@ public class emailTest {
 		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailSent"));
 		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox"));
 		email.init();
-		assertNotNull(email.getTimeline());
+		assertNotNull(email.getTimeLine());
     }
 }

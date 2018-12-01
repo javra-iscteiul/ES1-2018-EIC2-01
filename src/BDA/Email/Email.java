@@ -28,6 +28,8 @@ import javax.mail.internet.MimeMessage;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import BDA.IService;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +42,7 @@ import javafx.collections.ObservableList;
  *
  */
 
-public class Email {
+public class Email implements IService {
 	
 	/**
 	 * ObservableList com os emails
@@ -94,7 +96,7 @@ public class Email {
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
 	 * @return	retorna uma lista dos emails do utilizador
 	 */
-	public ObservableList<Mensagem> getTimeline() {
+	public ObservableList<Mensagem> getTimeLine() {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		emails.clear();
 		try {
@@ -130,7 +132,7 @@ public class Email {
 		            String content = writePart(message);
 		            Map<String, String> childAttributesToStore = new HashMap<>();
 		            if(folder == "INBOX"){
-			            emails.add(new Mensagem(message.getFrom()[0].toString(),message.getSubject(),
+			            emails.add(new MensagemEmail(message.getFrom()[0].toString(),message.getSubject(),
 			            		message.getReceivedDate().toString(),content));
 			           
 						childAttributesToStore.put("From",message.getFrom()[0].toString() );
@@ -139,7 +141,7 @@ public class Email {
 						childAttributesToStore.put("Message", content);
 						dataToStore.put("post" + i, childAttributesToStore);
 		            }else if (folder == "Sent"){
-		            	 emails.add(i,new Mensagem(InternetAddress.toString(message
+		            	 emails.add(i,new MensagemEmail(InternetAddress.toString(message
 		                         .getRecipients(Message.RecipientType.TO)),message.getSubject(),
 				            		message.getReceivedDate().toString(),content));
 				           
@@ -161,7 +163,6 @@ public class Email {
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
-			//Collections.sort(emails, new DataComparator());
 			Collections.reverse(emails);
 			return emails;
 		} catch (NoSuchProviderException ex) {
@@ -198,7 +199,7 @@ public class Email {
 							String content = childAttributes.getNamedItem("Message").getNodeValue();
 							System.out.println( "From: " + from + "\r\n"+"Subject: "
 									+ sub  + "\r\n"+ "Date:" + date + "\r\n"+ "Message: " + content);
-							  emails.add(new Mensagem(from,sub,date,content));
+							  emails.add(new MensagemEmail(from,sub,date,content));
 					                
 						}
 					}
@@ -213,13 +214,12 @@ public class Email {
 								String sub = childAttributes.getNamedItem("Subject").getNodeValue();
 								String date = childAttributes.getNamedItem("Date").getNodeValue();
 								String content = childAttributes.getNamedItem("Message").getNodeValue();
-								emails.add(new Mensagem(to,sub,date,content));
+								emails.add(new MensagemEmail(to,sub,date,content));
 							}
 					}
 				            
 				}
 			}
-			
 			return emails;
 		} catch (Exception ex) {
 			return null;
@@ -306,14 +306,13 @@ public class Email {
 	 * @param text String
 	 * @return lista dos emails do utilizador filtrada
 	 */
-	public ObservableList<Mensagem> filter(String text) {
+	public ObservableList<Mensagem> setFilter(String text) {
 		try {
 			
 			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
 			 for (int i = 0; i < emails.size(); i++) {
-		            if(emails.get(i).getSubject().contains(text) ||emails.get(i).getContent().contains(text) ) {
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+		            if(emails.get(i).containsFilter(text) ) {
+		            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
 				     }
 			 }
 			 
@@ -343,9 +342,8 @@ public class Email {
 			
 			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
 			 for (int i = 0; i < emails.size(); i++) {
-		            if(emails.get(i).getFrom_to().contains(text) ) {
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+		            if(emails.get(i).userContainsFilter(text) ) {
+		            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
 				     }
 			 }
 			 
@@ -378,8 +376,7 @@ public class Email {
 				 Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
 				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
 				    if(date.after(twentyfourhoursbefore) && date.before(today)){
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+		            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
 				     }
 			 }
 			 Map<String, String> filterAttr = new HashMap<>();

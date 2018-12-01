@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.w3c.dom.Node;
 
 import BDA.FuncoesGerais;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,7 +70,7 @@ public class Controller {
 	 */
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event){
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
 	}
 	
 	/**
@@ -77,7 +78,7 @@ public class Controller {
 	 */
 	@FXML
 	public void initialize() {
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
 		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
 
@@ -89,7 +90,7 @@ public class Controller {
 	 */
 	@FXML
 	private void filter(ActionEvent event) {
-		emailsList.setItems(email.filter(pesquisa.getText()));
+		emailsList.setItems(email.setFilter(pesquisa.getText()));
 	}
 	
 	/**
@@ -110,7 +111,7 @@ public class Controller {
 		conteudo.setText("");
 		Email.setFolder("Sent");
 		responder.setVisible(false);
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
 	}
 	
 	/**
@@ -121,7 +122,7 @@ public class Controller {
 	private void inbox(ActionEvent event) {
 		conteudo.setText("");
 		Email.setFolder("INBOX");
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
 	}
 	/**
 	 * Procedimento que ordena emails por data mais recente
@@ -129,7 +130,7 @@ public class Controller {
 	 */
 	@FXML
 	private void recent(ActionEvent event) {
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
 	}
 	/**
 	 * Procedimento que ordena emails por data mais antiga
@@ -137,7 +138,7 @@ public class Controller {
 	 */
 	@FXML
 	private void older(ActionEvent event) {
-		ObservableList<Mensagem> nova =email.getTimeline();
+		ObservableList<Mensagem> nova =email.getTimeLine();
 		Collections.reverse(nova);
 		emailsList.setItems(nova);
 	}
@@ -174,8 +175,8 @@ public class Controller {
 	 */
 	@FXML
 	private void responder(MouseEvent event) {
-		Mensagem m=emailsList.getSelectionModel().getSelectedItem();
-		Email.setTo(m.getFrom_to());
+		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
+		Email.setTo(m.getUser());
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
 		
 		

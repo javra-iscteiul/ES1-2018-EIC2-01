@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import BDA.IService;
+import BDA.Mensagem;
 import BDA.XMLclass;
-import BDA.Facebook.Message;
+import BDA.Facebook.MensagemFacebook;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +30,7 @@ import org.w3c.dom.Node;
  * @version 1.0
  * Aplicação agregadora de aplicações: canal do Twitter
  */
-public final class App_twitter {
+public final class App_twitter implements IService {
 	
 	/**
 	 * ObservableList com os tweets 
@@ -67,7 +69,7 @@ public final class App_twitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public ObservableList<Mensagem>  getTimeline( ) throws TwitterException{ 
+	public ObservableList<Mensagem>  getTimeLine( ) { 
 	//	ListView<String> tweetsList = new ListView<>();
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		tweets.clear();
@@ -86,7 +88,7 @@ public final class App_twitter {
 	        	Date dateCreated = status.getCreatedAt();
 	        	String date = dateCreated.toString();
 	        	String s = status.getUser().getName() + "\n" + status.getText();
-	        	Mensagem m = new Mensagem(userName, date, text);
+	        	MensagemTwitter m = new MensagemTwitter(userName, date, text);
 	        	
 	        	Map<String, String> childAttributesToStore = new HashMap<>();
 				childAttributesToStore.put("userName", userName);
@@ -123,7 +125,7 @@ public final class App_twitter {
 					String userName = childAttributes.getNamedItem("userName").getNodeValue();
 					String title = childAttributes.getNamedItem("statusText").getNodeValue();
 					String date = childAttributes.getNamedItem("dateCreated").getNodeValue();
-					Mensagem m= new Mensagem(userName, date, title);
+					MensagemTwitter m= new MensagemTwitter(userName, date, title);
 					tweets.add(counter, m);
 					counter++;
 				}
@@ -139,19 +141,21 @@ public final class App_twitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public boolean filter(String quote, ListView<Mensagem> tweetsList) throws TwitterException {
+	public ObservableList<Mensagem> setFilter(String quote) {
 		 try{
+			 tweets.clear();
+			 
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
 	        System.out.println("------------------------\n Showing home timeline \n------------------------");
 			int counter=0;
 			int counterTotal = 0;
 			tweets.clear();
-			tweetsList.getItems().clear();
+		
 			for (Status status : statuses) {
 				if (status.getUser().getName() != null && status.getText().contains(quote)) {
 					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
-					Mensagem m = new Mensagem(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
+					MensagemTwitter m = new MensagemTwitter(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
 					System.out.println(status.getUser().getName() + ":" + status.getText() );
 					tweets.add(counter, m);
 					counter++;
@@ -159,12 +163,12 @@ public final class App_twitter {
 				counterTotal++;
 	        }
 			
-		    tweetsList.setItems(tweets);
+		   // tweetsList.setItems(tweets);
 			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-			return true;
+			return tweets;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	

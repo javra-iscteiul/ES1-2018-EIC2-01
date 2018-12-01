@@ -16,9 +16,9 @@ public interface IFacebook {
 
 	public void createPost();
 
-	public ObservableList<Message> getTimeLine();
+	//public ObservableList<MensagemFacebook> getTimeLine();
 
-	public ObservableList<Message> setFilter(String filter);
+	//public ObservableList<MensagemFacebook> setFilter(String filter);
 
 	public void getMessages();
 

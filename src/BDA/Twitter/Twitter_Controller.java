@@ -1,6 +1,7 @@
 package BDA.Twitter;
 
 import BDA.FuncoesGerais;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,12 +44,7 @@ public class Twitter_Controller {
 	 */
 	@FXML
     public void initialize() {
-		try {
-			tweetsList.setItems(tt.getTimeline());
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			System.out.println("deu porcaria");
-		}
+		tweetsList.setItems(tt.getTimeLine());
     }
 	
 	/**
@@ -59,7 +55,7 @@ public class Twitter_Controller {
 	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
     {
-		tweetsList.setItems(tt.getTimeline());
+		tweetsList.setItems(tt.getTimeLine());
     }
 	
 	
@@ -72,7 +68,7 @@ public class Twitter_Controller {
     private void filter(ActionEvent event) throws TwitterException 
     {
 		System.out.println(pesquisa.getText());
-		tt.filter(pesquisa.getText(), tweetsList);
+		tweetsList.setItems(tt.setFilter(pesquisa.getText()));
     }
 	
 	/**

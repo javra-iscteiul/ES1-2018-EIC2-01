@@ -10,6 +10,8 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.Post;
 
+import BDA.IService;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +27,7 @@ import org.w3c.dom.Node;
  *
  */
 
-public class Facebook implements IFacebook {
+public class Facebook implements IFacebook,IService {
 
 	/**
 	 * Node correspondente às configurações do facebook no ficheiro config
@@ -41,7 +43,7 @@ public class Facebook implements IFacebook {
 	/**
 	 * ObservableList com os posts do facebook
 	 */
-	private ObservableList<Message> posts = FXCollections.observableArrayList();
+	private ObservableList<Mensagem> posts = FXCollections.observableArrayList();
 	
 	public void changeConfig() {
 		// TODO Auto-generated method stub
@@ -59,7 +61,7 @@ public class Facebook implements IFacebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	public ObservableList<Message> getTimeLine() {
+	public ObservableList<Mensagem> getTimeLine() {
 		//variavel que vai ser utilizada para armazenar os dados recebidos no ficheiro xml, para ler que do tiver offline
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		posts.clear();
@@ -89,7 +91,7 @@ public class Facebook implements IFacebook {
 					childAttributesToStore.put("title", title);
 					dataToStore.put("post" + counter, childAttributesToStore);
 
-					posts.add(counter, new Message(userName, dateCreatedString, title));
+					posts.add(counter, new MensagemFacebook(userName, dateCreatedString, title));
 					counter++;
 				}
 			}
@@ -109,7 +111,7 @@ public class Facebook implements IFacebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook da sessão anterior
 	 */
-	private ObservableList<Message> getStoredTimeLine() {
+	private ObservableList<Mensagem> getStoredTimeLine() {
 		try {
 			if (XMLclass.existsNode(XMLclass.storedDataFile, "facebook")) {
 				Node facebookNode = XMLclass.getNode(XMLclass.storedDataFile, "facebook");
@@ -123,7 +125,7 @@ public class Facebook implements IFacebook {
 						String dateCreated = childAttributes.getNamedItem("dateCreated").getNodeValue();
 						String title = childAttributes.getNamedItem("title").getNodeValue();
 
-						posts.add(counter, new Message(userName, dateCreated, title));
+						posts.add(counter, new MensagemFacebook(userName, dateCreated, title));
 						counter++;
 					}
 				}
@@ -141,13 +143,12 @@ public class Facebook implements IFacebook {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	public ObservableList<Message> setFilter(String filter) {
+	public ObservableList<Mensagem> setFilter(String filter) {
 		try {
 			posts.clear();
-			for(Message post : getTimeLine())
+			for(Mensagem post : getTimeLine())
 			{
-				if((post.getTitle() != null && post.getTitle().contains(filter)) ||
-						(post.getDateCreated() != null && post.getDateCreated().contains(filter)))
+				if(post.containsFilter(filter))
 					posts.add(post);
 			}
 			

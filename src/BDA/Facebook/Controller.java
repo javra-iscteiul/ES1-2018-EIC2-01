@@ -1,6 +1,7 @@
 package BDA.Facebook;
 
 import BDA.FuncoesGerais;
+import BDA.Mensagem;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -32,9 +33,10 @@ public class Controller {
 	 * ListView (biblioteca Javafx)
 	 */
 	@FXML
-	private ListView<Message> facebookList;
+	private ListView<Mensagem> facebookList;
 	
-	IFacebook facebook = new Facebook();
+	
+	Facebook facebook = new Facebook();
 	
 	/**
 	 * Procedimento que adiciona posts à timeline quando a vista e selecionada (biblioteca Javafx)

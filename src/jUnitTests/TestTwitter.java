@@ -21,7 +21,7 @@ public class TestTwitter {
 			assertTrue(XMLclass.existsNode(XMLclass.configFile, "twitter"));
 			assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "twitter"));
 			//se tiver data guardada tem que dar sempre true
-			assertNotNull(twitter.getTimeline());
+			assertNotNull(twitter.getTimeLine());
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -10,7 +10,7 @@ import org.junit.Test;
 import BDA.XMLclass;
 import BDA.Facebook.Facebook;
 import BDA.Facebook.IFacebook;
-import BDA.Facebook.Message;
+import BDA.Facebook.MensagemFacebook;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
