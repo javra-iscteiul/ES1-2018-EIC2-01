@@ -160,6 +160,35 @@ public final class App_twitter implements IService {
 					tweets.add(counter, m);
 					counter++;
 				}
+					counterTotal++;
+				
+	        }
+			
+		    tweetsList.setItems(tweets);
+			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean filter_users(String quote, ListView<Mensagem> tweetsList) throws TwitterException {
+		 try{
+			Paging paging = new Paging(1, 40);
+			List<Status> statuses = twitter.getHomeTimeline(paging);
+	        System.out.println("------------------------\n Showing home timeline \n------------------------");
+			int counter=0;
+			int counterTotal = 0;
+			tweets.clear();
+			tweetsList.getItems().clear();
+			for (Status status : statuses) {
+				 if (status.getUser().getName() != null && status.getUser().getName().contains(quote)){
+					Mensagem m = new Mensagem(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
+					System.out.println("encontrado utilizador" );
+					tweets.add(counter, m);
+					counter++;
+				}
 				counterTotal++;
 	        }
 			

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -69,6 +70,13 @@ public class Twitter_Controller {
     {
 		System.out.println(pesquisa.getText());
 		tweetsList.setItems(tt.setFilter(pesquisa.getText()));
+    }
+	
+	@FXML
+    private void filter_users(ActionEvent event) throws TwitterException 
+    {
+		System.out.println(pesquisa.getText());
+		tt.filter_users(pesquisa.getText(), tweetsList);
     }
 	
 	/**
