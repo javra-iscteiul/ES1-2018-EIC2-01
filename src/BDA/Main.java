@@ -101,6 +101,16 @@ public class Main extends Application {
 			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
 		}
     }
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação email
+	 * @param event MouseEvent 
+	 */
+	@FXML
+    private void apps_clicked(MouseEvent event){
+			Email.init();
+			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
+
+    }
 	
 	
 	

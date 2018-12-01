@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.ControllerBDA">
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #FAFAFA;">
          <children>
-            <ListView layoutX="213.0" layoutY="232.0" prefHeight="400.0" prefWidth="600.0" />
-            <TextField layoutX="211.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" />
+            <ListView fx:id="list" layoutX="213.0" layoutY="232.0" prefHeight="400.0" prefWidth="600.0" />
+            <TextField id="pesquisa" fx:id="pesquisa" layoutX="211.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" />
             <Slider layoutX="173.0" layoutY="232.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="655.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +33,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="33.0" layoutY="175.0" mnemonicParsing="false" text="Filtrar...">
+            <MenuButton layoutX="8.0" layoutY="162.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="151.0" text="Filtrar...">
               <items>
                 <MenuItem mnemonicParsing="false" text="Facebook">
                      <graphic>

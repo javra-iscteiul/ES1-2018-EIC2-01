@@ -36,24 +36,30 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="199.0" fitWidth="198.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="168.0" fitWidth="132.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:///../Graphics/emaillogo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="206.0" fitWidth="200.0" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                  <ImageView fitHeight="200.0" fitWidth="151.0" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
                         <Image url="file:///../Graphics/facebookLogo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="198.0" fitWidth="300.0" onMouseClicked="#twitterLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fitHeight="182.0" fitWidth="150.0" onMouseClicked="#twitterLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="file:///../Graphics/twitter_logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="185.0" fitWidth="181.0" onMouseClicked="#apps_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="file:///../Graphics/apps_menu.png" />
                      </image>
                   </ImageView>
                </children>
