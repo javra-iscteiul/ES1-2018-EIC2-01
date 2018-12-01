@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public interface IFacebook {
 
-	public void changeConfig();
+	public void changeConfig(); 
 
 	public void createPost();
 

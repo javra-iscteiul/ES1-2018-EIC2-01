@@ -236,7 +236,7 @@ public class Email implements IService {
 		String content="";
 	      if (p instanceof Message)
 	         //Call methos writeEnvelope
-	         writeEnvelope((Message) p);
+	         writeEnvelope((Message) p); 
 
 	      System.out.println("----------------------------");
 	      System.out.println("CONTENT-TYPE: " + p.getContentType());

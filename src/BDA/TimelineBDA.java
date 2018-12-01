@@ -3,6 +3,7 @@ package BDA;
 import BDA.Email.Email;
 import BDA.Email.MensagemEmail;
 import BDA.Facebook.Facebook;
+import BDA.Twitter.App_twitter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,7 +16,7 @@ public class TimelineBDA {
 	public ObservableList<Mensagem> getTimeline(){
 		IService email= new Email();
 		IService facebook= new Facebook();
-		IService twitter= new Twitter();
+		IService twitter= new App_twitter(); 
 		
 		
 		

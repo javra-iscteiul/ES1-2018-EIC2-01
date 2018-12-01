@@ -164,16 +164,15 @@ public final class App_twitter implements IService {
 				
 	        }
 			
-		    tweetsList.setItems(tweets);
 			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-			return true;
+			return tweets;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	
-	public boolean filter_users(String quote, ListView<Mensagem> tweetsList) throws TwitterException {
+	public ObservableList<Mensagem> filter_users(String quote) throws TwitterException {
 		 try{
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
@@ -181,10 +180,10 @@ public final class App_twitter implements IService {
 			int counter=0;
 			int counterTotal = 0;
 			tweets.clear();
-			tweetsList.getItems().clear();
+			tweets.clear();
 			for (Status status : statuses) {
 				 if (status.getUser().getName() != null && status.getUser().getName().contains(quote)){
-					Mensagem m = new Mensagem(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
+					MensagemTwitter m = new MensagemTwitter(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
 					System.out.println("encontrado utilizador" );
 					tweets.add(counter, m);
 					counter++;

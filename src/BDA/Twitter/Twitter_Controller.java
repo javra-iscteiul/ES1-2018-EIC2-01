@@ -76,7 +76,7 @@ public class Twitter_Controller {
     private void filter_users(ActionEvent event) throws TwitterException 
     {
 		System.out.println(pesquisa.getText());
-		tt.filter_users(pesquisa.getText(), tweetsList);
+		tt.filter_users(pesquisa.getText());
     }
 	
 	/**

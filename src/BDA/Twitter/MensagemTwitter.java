@@ -15,7 +15,7 @@ public class MensagemTwitter extends Mensagem{
 		public MensagemTwitter( String user,String date,  String content) {
 			super(user,date,content);
 		}
-
+ 
 
 
 		

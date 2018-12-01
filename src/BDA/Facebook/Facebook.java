@@ -148,7 +148,7 @@ public class Facebook implements IFacebook,IService {
 			posts.clear();
 			for(Mensagem post : getTimeLine())
 			{
-				if(post.containsFilter(filter))
+				if(post.containsFilter(filter)) 
 					posts.add(post);
 			}
 			

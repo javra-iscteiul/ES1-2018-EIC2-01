@@ -30,7 +30,7 @@ public class Controller {
 	private TextField filter;
 	
 	/**
-	 * ListView (biblioteca Javafx)
+	 * ListView (biblioteca Javafx) 
 	 */
 	@FXML
 	private ListView<Mensagem> facebookList;

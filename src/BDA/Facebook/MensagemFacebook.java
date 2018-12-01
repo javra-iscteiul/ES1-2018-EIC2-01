@@ -12,7 +12,7 @@ public class MensagemFacebook extends Mensagem{
 	 */
 	public MensagemFacebook(String userName, String dateCreated, String title) {
 		super(userName,dateCreated,title);
-	}
+	} 
 	
 	@Override
 	public String toString(){

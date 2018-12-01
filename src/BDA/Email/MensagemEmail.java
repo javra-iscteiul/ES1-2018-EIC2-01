@@ -70,7 +70,7 @@ public class MensagemEmail extends Mensagem{
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
+	@Override 
 	public String toString(){
 		if(Email.getFolder()=="INBOX"){
 			return "From: " + this.getUser() + "\r\n" +
