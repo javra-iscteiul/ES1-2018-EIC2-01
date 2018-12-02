@@ -147,21 +147,18 @@ public final class App_twitter implements IService {
 	 */
 	public ObservableList<Mensagem> setFilter(String quote) {
 		 try{
-			 tweets.clear();
-			 
-			Paging paging = new Paging(1, 40);
-			List<Status> statuses = twitter.getHomeTimeline(paging);
+			
+			 ObservableList<Mensagem> nova = FXCollections.observableArrayList();
 	        System.out.println("------------------------\n Showing home timeline \n------------------------");
 			int counter=0;
 			int counterTotal = 0;
-			tweets.clear();
-		
-			for (Status status : statuses) {
-				if (status.getUser().getName() != null && status.getText().contains(quote)) {
-					String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
-					MensagemTwitter m = new MensagemTwitter(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
-					System.out.println(status.getUser().getName() + ":" + status.getText() );
-					tweets.add(counter, m);
+			
+			for (Mensagem status : tweets) {
+				if (status.getUser() != null && status.getContent().contains(quote)) {
+					//String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
+					MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(), status.getContent());
+					//System.out.println(status.getUser().getName() + ":" + status.getText() );
+					nova.add(counter, m);
 					counter++;
 				}
 					counterTotal++;
@@ -169,7 +166,7 @@ public final class App_twitter implements IService {
 	        }
 			
 			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-			return tweets;
+			return nova;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

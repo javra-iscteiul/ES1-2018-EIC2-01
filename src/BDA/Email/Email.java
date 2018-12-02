@@ -88,6 +88,7 @@ public class Email implements IService {
                 		emailCredential.username, emailCredential.password);
             	}
              });
+		System.out.println(emailCredential.username  + emailCredential.password);
 	}
 	
 	/**
@@ -100,7 +101,7 @@ public class Email implements IService {
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");
-			
+			System.out.println(emailCredential.username + emailCredential.password);
 			store.connect(emailCredential.username, emailCredential.password);
 			
 			if (folder=="Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
@@ -416,8 +417,7 @@ public class Email implements IService {
 
 	            Message message = new MimeMessage(session);
 	            message.setFrom(new InternetAddress(emailCredential.username));
-	            message.setRecipients(Message.RecipientType.TO,
-	                InternetAddress.parse(to));
+	            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
 	            message.setSubject(sub);
 	            message.setText(text);
 

@@ -22,28 +22,27 @@ public class TimelineBDA {
 		for (Mensagem m: email.getTimeLine()){
 			mensagens.add(m);
 		}
-		for (Mensagem m: facebook.getTimeLine()){
-			mensagens.add(m);
-		}
-		for (Mensagem m: twitter.getTimeLine()){
-			mensagens.add(m);
-		}
+//		for (Mensagem m: facebook.getTimeLine()){
+//			mensagens.add(m);
+//		}
+//		for (Mensagem m: twitter.getTimeLine()){
+//			mensagens.add(m);
+//		}
 		return mensagens;
 		
 	}
 	
 	public ObservableList<Mensagem> setFilter(String s){
 		ObservableList<Mensagem> nova= FXCollections.observableArrayList();
-		
 		for (Mensagem m: email.setFilter(s)){
 			nova.add(m);
 		}
 		for (Mensagem m: facebook.setFilter(s)){
 			nova.add(m);
 		}
-//		for (Mensagem m: twitter.setFilter(s)){
-//			nova.add(m);
-//		}
+		for (Mensagem m: twitter.setFilter(s)){
+			nova.add(m);
+		}
 		return nova;
 	}
 }

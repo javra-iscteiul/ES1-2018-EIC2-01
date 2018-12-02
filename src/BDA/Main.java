@@ -69,7 +69,12 @@ public class Main extends Application {
 	 */
 	@FXML
     private void emailLogo_clicked(MouseEvent event){
-		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
+		//if(XMLclass.existsNode(XMLclass.configFile, "email")){
+		//	Email.init();
+		//	FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
+		//}else {
+			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
+		//}	
     }
 	
 	/**
