@@ -31,6 +31,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutY="374.0" mnemonicParsing="false" text="Voltar" />
+      <Button layoutY="374.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
    </children>
 </AnchorPane>

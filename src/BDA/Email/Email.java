@@ -397,7 +397,6 @@ public class Email implements IService {
 	 */
 	public static void sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
-		Node emailConfig = XMLclass.getNode(XMLclass.configFile, XMLclass.emailService, emailCredential);
 	      // Sender's email ID needs to be mentioned
 
 	      Properties props = new Properties();

@@ -162,7 +162,8 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void logout(MouseEvent event) {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("loginEmail.fxml"));
+		XMLclass.setLogin(XMLclass.configFile, XMLclass.emailService, email.getCredential(), XMLclass.Logout);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.emailService);
 	}
 	
 	/**
@@ -174,8 +175,6 @@ public class Controller implements IServiceController {
 		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
 		Email.setTo(m.getUser());
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
-		
-		
 	}
 
 	/**

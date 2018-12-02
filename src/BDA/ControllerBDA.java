@@ -28,7 +28,7 @@ public class ControllerBDA {
 	TimelineBDA bda = new TimelineBDA();
 	@FXML
 	public void initialize() {
-		list.setItems(bda.getTimeline());
+		list.setItems(bda.getTimeLine());
 		
 	}
 	
