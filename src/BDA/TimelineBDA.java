@@ -17,7 +17,16 @@ public class TimelineBDA {
 	IService facebook= new Facebook();
 	IService twitter= new App_twitter(); 
 	
-	public ObservableList<Mensagem> getTimeline(){
+	TimelineBDA() {
+		Credential emailCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+		email.init(emailCred);
+		Credential facebookCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.facebookService).getAttributes());
+		facebook.init(facebookCred);
+		Credential twitterCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.twitterService).getAttributes());
+		twitter.init(twitterCred);
+	}
+	
+	public ObservableList<Mensagem> getTimeLine(){
 		
 		for (Mensagem m: email.getTimeLine()){
 			mensagens.add(m);

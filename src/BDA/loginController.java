@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Date: Oct 24 2018
@@ -46,6 +47,8 @@ public class loginController {
 		
 		Credential cred = new Credential(user, pass);
 		if(XMLclass.existsNode(XMLclass.configFile, selectedService, cred)){
+			XMLclass.setLogin(XMLclass.configFile, selectedService, cred, XMLclass.Login);
+			
 			cred = new Credential(XMLclass.getNode(XMLclass.configFile, selectedService, cred).getAttributes());
 			
 			String fileName = "./" + selectedService + "/" + selectedService + ".fxml";
@@ -58,6 +61,11 @@ public class loginController {
 
 	public void login_init(String service){
 		this.selectedService = service;
+	}
+	
+	@FXML
+	private void voltar_clicked(MouseEvent event){
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
 
 }

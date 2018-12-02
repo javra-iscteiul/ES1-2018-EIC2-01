@@ -15,82 +15,98 @@ import javafx.stage.Stage;
 
 /**
  * Date: Oct 22 2018
+ * 
  * @author ES1-2018-EIC2-01
- * @version 1.0
- * Aplicação principal 
+ * @version 1.0 Aplicação principal
  */
 
 public class Main extends Application {
-	
-	
+
 	/**
 	 * Procedimento responsavel por lançar a janela principal da aplicação
-	 * @param janelaInicial Stage 
+	 * 
+	 * @param janelaInicial
+	 *            Stage
 	 */
 	@Override
-	public void start(Stage janelaInicial){ 
-		try{			
+	public void start(Stage janelaInicial) {
+		try {
 			janelaInicial.setTitle("Bom Dia Academia");
-			janelaInicial.setScene(new Scene((Pane)FXMLLoader.load(getClass().getResource("mainWindow.fxml"))));
+			janelaInicial.setScene(new Scene((Pane) FXMLLoader.load(getClass().getResource("mainWindow.fxml"))));
 			janelaInicial.show();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	/**
 	 * Procedimento responsavel por lançar a janela da aplicação twitter
-	 * @param event MouseEvent 
+	 * 
+	 * @param event
+	 *            MouseEvent
 	 */
 	@FXML
-    private void twitterLogo_clicked(MouseEvent event)
-    {
-		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.twitterService);	
-    }
-	
-	
+	private void twitterLogo_clicked(MouseEvent event) {
+		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.twitterService)) {
+			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
+					XMLclass.twitterService);
+		} else {
+			Credential cred = new Credential(
+					XMLclass.getLogin(XMLclass.configFile, XMLclass.twitterService).getAttributes());
+
+			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Twitter/twitter.fxml"), cred);
+		}
+	}
+
 	/**
 	 * Procedimento responsavel por lançar a janela da aplicação facebook
-	 * @param event MouseEvent 
+	 * 
+	 * @param event
+	 *            MouseEvent
 	 */
 	@FXML
-    private void facebookLogo_clicked(MouseEvent event)
-    {
-		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.facebookService);		
-    }
-	
-	
-	/**
-	 * Procedimento responsavel por lançar a janela da aplicação email
-	 * @param event MouseEvent 
-	 */
-	@FXML
-    private void emailLogo_clicked(MouseEvent event){
-		//if(XMLclass.existsNode(XMLclass.configFile, "email")){
-		//	Email.init();
-		//	FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
-		//}else {
-			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
-		//}	
-    }
-	
-	/**
-	 * Procedimento responsavel por lançar a janela da aplicação email
-	 * @param event MouseEvent 
-	 */
-	@FXML
-    private void apps_clicked(MouseEvent event){	
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
+	private void facebookLogo_clicked(MouseEvent event) {
+		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.facebookService)) {
+			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
+					XMLclass.facebookService);
+		} else {
+			Credential cred = new Credential(
+					XMLclass.getLogin(XMLclass.configFile, XMLclass.facebookService).getAttributes());
 
-    }
-	
-	
-	
-	private static void main(String[] args)
-	{
+			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Facebook/facebook.fxml"), cred);
+		}
+	}
+
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação email
+	 * 
+	 * @param event
+	 *            MouseEvent
+	 */
+	@FXML
+	private void emailLogo_clicked(MouseEvent event) {
+		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService)) {
+			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
+		} else {
+			Credential cred = new Credential(
+					XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+
+			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Email/email.fxml"), cred);
+		}
+	}
+
+	/**
+	 * Procedimento responsavel por lançar a janela da aplicação email
+	 * 
+	 * @param event
+	 *            MouseEvent
+	 */
+	@FXML
+	private void apps_clicked(MouseEvent event) {
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
+	}
+
+	private static void main(String[] args) {
 		launch(args);
 	}
 

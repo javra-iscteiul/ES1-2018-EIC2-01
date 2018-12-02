@@ -10,7 +10,28 @@
 
 
 
-<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh">
+
+
+
+
+
+<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
+<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+</emailSent>
+
+
+
+
+
+
+
+
+
+
+<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Login="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh">
 <post8 dateCreated="Sun Nov 18 12:55:21 GMT 2018" statusText="hello world!" userName="Jarh ES"/>
 <post9 dateCreated="Sun Nov 18 12:54:19 GMT 2018" statusText="oi" userName="Jarh ES"/>
 <post6 dateCreated="Tue Nov 20 12:19:34 GMT 2018" statusText="I liked a @YouTube video https://t.co/U0EtGPK2WC An Examination of Labor Trafficking from a Human Rights and Consumption Perspective" userName="ISCTE - IUL"/>
@@ -54,15 +75,7 @@
 </twitter>
 
 
-
-
-<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
-<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
-<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-</emailSent>
-<emailInbox AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<emailInbox AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
 <post4 Date="Wed Nov 21 10:26:18 GMT 2018" From="Ana Nunes &lt;ana.rsn@hotmail.com&gt;" Message="Olá&#13;&#10;________________________________&#13;&#10;From: ES1 Grupo1 &lt;es1g1@outlook.com&gt;&#13;&#10;Sent: Sunday, November 18, 2018 7:05:39 PM&#13;&#10;To: ana.rsn@hotmail.com&#13;&#10;Subject: o&#13;&#10;&#13;&#10;o&#13;&#10;" Subject="Re: o"/>
 <post2 Date="Sun Nov 18 13:36:19 GMT 2018" From="Microsoft account team &lt;account-security-noreply@accountprotection.microsoft.com&gt;" Message="The following security info was recently added to the Microsoft account es*****@outlook.com:&#13;&#10;&#13;&#10;351960408271&#13;&#10;&#13;&#10;If this was you, then you can safely ignore this email.&#13;&#10;&#13;&#10;If this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.&#13;&#10;&#13;&#10;Review recent activity https://account.microsoft.com/activity.&#13;&#10;&#13;&#10;To opt out or change where you receive security notifications, click here https://account.live.com/SecurityNotifications/Update.&#13;&#10;&#13;&#10;Thanks,&#13;&#10;The Microsoft account team " Subject="Microsoft account security info was added"/>
 <post3 Date="Sun Nov 18 13:36:20 GMT 2018" From="Microsoft account team &lt;account-security-noreply@accountprotection.microsoft.com&gt;" Message="Recently, you verified the security info on the Microsoft account es*****@outlook.com. This was a periodic security check which only happens if you haven't used a security code recently. You won't need to provide a code every time you sign in.&#13;&#10;&#13;&#10;It's important to keep the security info associated with your account correct and up-to-date. We'll never use this info to spam you or for any marketing purposes — it's only to verify your identity if there's ever a problem with your account.&#13;&#10;&#13;&#10;To learn more or contact support, click here http://go.microsoft.com/fwlink/?LinkID=281822.&#13;&#10;&#13;&#10;To opt out or change where you receive security notifications, click here https://account.live.com/SecurityNotifications/Update.&#13;&#10;&#13;&#10;Thanks,&#13;&#10;The Microsoft account team " Subject="Microsoft account security info verification"/>

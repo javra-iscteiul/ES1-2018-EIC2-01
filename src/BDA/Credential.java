@@ -13,6 +13,7 @@ public class Credential {
 	public String consumerSecret;
 	public String accessToken;
 	public String accessTokenSecret;
+	public String login;
 
 	/**
 	 * @param protocolo
@@ -24,7 +25,7 @@ public class Credential {
 	 * @param accessTokenSecret
 	 */
 	public Credential(String protocolo, String username, String password, String consumerKey, String consumerSecret,
-			String accessToken, String accessTokenSecret) {
+			String accessToken, String accessTokenSecret, String login) {
 		this.protocolo = protocolo;
 		this.username = username;
 		this.password = password;
@@ -32,6 +33,7 @@ public class Credential {
 		this.consumerSecret = consumerSecret;
 		this.accessToken = accessToken;
 		this.accessTokenSecret = accessTokenSecret;
+		this.login = login;
 	}
 	
 	public Credential(String username, String password) {
@@ -54,6 +56,8 @@ public class Credential {
 			this.accessToken = credentials.getNamedItem("AccessToken").getNodeValue();
 		if(credentials.getNamedItem("AccessTokenSecret") != null)
 			this.accessTokenSecret = credentials.getNamedItem("AccessTokenSecret").getNodeValue();
+		if(credentials.getNamedItem("Login") != null)
+			this.login = credentials.getNamedItem("Login").getNodeValue();
 	}
 
 	public String getProtocolo() {
@@ -112,6 +116,14 @@ public class Credential {
 		this.accessTokenSecret = accessTokenSecret;
 	}
 	
+	public String getLogin() {
+		return accessTokenSecret;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
 	public Map<String, String> getCredentiaAsMap(){
 		Map<String, String> cred = new HashMap<String, String>();
 		cred.put("Protocol", this.protocolo);
@@ -121,6 +133,7 @@ public class Credential {
 		cred.put("ConsumerSecret", this.consumerSecret);
 		cred.put("AccessToken", this.accessToken);
 		cred.put("AccessTokenSecret", this.accessTokenSecret);
+		cred.put("Login", this.accessTokenSecret);
 		return cred;
 	}
 	
