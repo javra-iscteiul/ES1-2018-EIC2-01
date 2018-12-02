@@ -46,6 +46,20 @@
 }
 
 
+.header-image{
+	-fx-display:block;
+	-fx-width:100%;
+	-fx-height:auto;
+}
+.image {
+	-fx-display:block;
+	-fx-width:100%;
+	-fx-height:auto;
+}
+.image:hover {
+	-fx-opacity:0.7;
+}
+
 /*Login Screen Specific*/
 
 

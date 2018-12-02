@@ -8,64 +8,69 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Main">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" styleClass="custom-pane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Main">
+<children>
+<AnchorPane prefHeight="200.0" prefWidth="200.0">
    <children>
-      <AnchorPane prefHeight="43.0" prefWidth="600.0">
+      <AnchorPane prefHeight="267.0" prefWidth="1000.0">
          <children>
-            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="359.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="448.0" fitWidth="365.0" layoutX="304.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="header-image">
                <image>
-                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+                  <Image url="file:///../Graphics/logo1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="104.0" layoutX="501.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="52.0" layoutX="934.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:///../Graphics/iscteLogo.png" /> 
                </image> 
             </ImageView>  
-            <Label layoutX="181.0" layoutY="5.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
+           <!--   <Label layoutX="387.0" layoutY="18.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#2494d0">
                <font>
-                  <Font name="Times New Roman" size="21.0" />
+                  <Font name="Verdana" size="25.0" />
                </font>
             </Label>
+            -->
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="35.0" prefHeight="406.0" prefWidth="602.0" style="-fx-background-image: url('file:///../Graphics/intersection.png'); -fx-background-color: #537FAD;">
+      <AnchorPane layoutX="22.0" layoutY="244.0" prefHeight="333.0" prefWidth="1000.0">
          <children>
-            <GridPane prefHeight="378.0" prefWidth="602.0">
+            <GridPane layoutX="71.0" layoutY="55.0" prefHeight="195.0" prefWidth="762.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          	     	<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            	   	<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               		 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="175.0" fitWidth="166.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="175.0" fitWidth="166.0" styleClass="image" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:///../Graphics/emaillogo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="151.0" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                  <ImageView fitHeight="200.0" fitWidth="151.0" styleClass="image" onMouseClicked="#facebookLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
                         <Image url="file:///../Graphics/facebookLogo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="182.0" fitWidth="150.0" onMouseClicked="#twitterLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fitHeight="182.0" fitWidth="150.0" styleClass="image" onMouseClicked="#twitterLogo_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="file:///../Graphics/twitter_logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="185.0" fitWidth="181.0" onMouseClicked="#apps_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                  <ImageView fitHeight="185.0" fitWidth="181.0" styleClass="image" onMouseClicked="#apps_clicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                      <image>
                         <Image url="file:///../Graphics/apps_menu.png" />
                      </image>
                   </ImageView>
                </children>
             </GridPane>
-            <Button layoutX="454.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#editar" prefHeight="25.0" prefWidth="148.0" text="Editar credenciais" />
+            <Button layoutX="821.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#editar" prefHeight="25.0" prefWidth="148.0"  styleClass="button" text="Editar credenciais" />
          </children>
-      </AnchorPane>
-   </children>
-</AnchorPane>
+      	</AnchorPane>
+   		</children>
+		</AnchorPane>
+	</children>
+</StackPane>
