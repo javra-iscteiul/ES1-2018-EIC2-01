@@ -11,17 +11,21 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.ControllerBDA">
    <children>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #FAFAFA;">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #FAFAFA;">
          <children>
-            <ListView fx:id="list" layoutX="213.0" layoutY="232.0" prefHeight="400.0" prefWidth="600.0" />
-            <TextField id="pesquisa" fx:id="pesquisa" layoutX="211.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" />
-            <Slider layoutX="173.0" layoutY="232.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
-            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="655.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ListView fx:id="list" layoutX="187.0" layoutY="232.0" prefHeight="333.0" prefWidth="494.0" />
+             <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="418.0" layoutY="565.0" onMouseClicked="#getMensagens">
+               <image>
+                  <Image url="file:///../Graphics/refresh.png" />
+               </image>
+            </ImageView>
+            <TextField id="pesquisa" fx:id="pesquisa" layoutX="188.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="455.0" />
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="351.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Graphics/profile.png" />
                </image>
             </ImageView>
-            <Button layoutX="761.0" layoutY="179.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="50.0" textFill="#514c4c">
+            <Button layoutX="644.0" layoutY="178.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="50.0" textFill="#514c4c">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,47 +37,12 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="8.0" layoutY="162.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="151.0" text="Filtrar...">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Facebook">
-                     <graphic>
-                        <ImageView>
-                           <image>
-                              <Image url="file:///../Graphics/rsz_fb.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-                <MenuItem mnemonicParsing="false" text="Twitter">
-                     <graphic>
-                        <ImageView>
-                           <image>
-                              <Image url="file:///../Graphics/rsz_tw.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Email">
-                     <graphic>
-                        <ImageView>
-                           <image>
-                              <Image url="file:///../Graphics/rsz_emaill.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-              </items>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="file:///../Graphics/rsz_1rsz_1rsz_apps_menu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MenuButton>
-            <Label layoutX="758.0" layoutY="20.0" text="Username">
+            <Label layoutX="573.0" layoutY="98.0" text="Username">
                <font>
                   <Font name="Verdana Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="325.0" layoutY="1.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#1472a1">
+            <Label layoutX="260.0" layoutY="2.0" text="Bom Dia Academia" textAlignment="RIGHT" textFill="#1472a1">
                <font>
                   <Font name="Maiandra GD" size="30.0" />
                </font>
@@ -98,25 +67,65 @@
                   </ImageView>
                </graphic>
             </MenuButton>
-            <Button layoutX="786.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
-               <graphic>
-                  <ImageView>
+            <Button layoutX="601.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="226.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="513.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="601.0" layoutY="125.0">
+               <image>
+                  <Image url="file:///../Graphics/rsz_img_266983.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="11.0" layoutY="178.0" prefHeight="390.0" prefWidth="161.0">
+               <children>
+                  <MenuButton layoutX="37.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="117.0" text="Filtrar...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onlyFacebook" text="Facebook">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="file:///../Graphics/rsz_fb.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" onAction="#onlyTwitter" text="Twitter">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="file:///../Graphics/rsz_tw.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onlyEmail" text="Email">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="file:///../Graphics/rsz_emaill.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                  </MenuButton>
+                  <CheckBox id="email" fx:id="email" layoutX="20.0" layoutY="139.0" mnemonicParsing="false" onAction="#email" prefHeight="19.0" prefWidth="86.0" selected="true" text="Email" />
+                  <CheckBox id="facebook" fx:id="facebook" layoutX="20.0" layoutY="168.0" mnemonicParsing="false" onAction="#facebook" prefHeight="19.0" prefWidth="86.0" selected="true" text="Facebook" />
+                  <CheckBox id="twitter" fx:id="twitter" layoutX="20.0" layoutY="195.0" mnemonicParsing="false" onAction="#twitter" prefHeight="19.0" prefWidth="86.0" selected="true" text="Twitter" />
+                  <ImageView fitHeight="30.0" fitWidth="39.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:///../Graphics/rsz_img_266983.png" />
+                        <Image url="file:///../Graphics/apps_menu.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
-            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="301.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="576.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png" />
-               </image>
-            </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
