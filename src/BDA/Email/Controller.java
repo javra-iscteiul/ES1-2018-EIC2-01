@@ -174,7 +174,7 @@ public class Controller implements IServiceController {
 	private void responder(MouseEvent event) {
 		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
 		Email.setTo(m.getUser());
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
+		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"), email.getCredential());
 	}
 
 	/**
