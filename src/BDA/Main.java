@@ -48,22 +48,7 @@ public class Main extends Application {
 	@FXML
     private void twitterLogo_clicked(MouseEvent event)
     {
-		if(!XMLclass.existsNode(XMLclass.configFile, "twitter")){
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("Protocol", "smtp");
-			attributes.put("UserName", "EsJarh");
-			attributes.put("Password", "grupo1grupo");
-			attributes.put("ConsumerKey", "yPv2NQ8ozCWIQ1jZeXjWLGUce");
-			attributes.put("ConsumerSecret", "w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8");
-			attributes.put("AccessToken", "1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q");
-			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
-			
-			XMLclass.addNode(XMLclass.configFile, "twitter", attributes);
-		}
-		
-		App_twitter.init();
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Twitter/twitter.fxml"));
-		
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.twitterService);	
     }
 	
 	
@@ -74,17 +59,7 @@ public class Main extends Application {
 	@FXML
     private void facebookLogo_clicked(MouseEvent event)
     {
-		if(!XMLclass.existsNode(XMLclass.configFile, "facebook")){
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("UserName", "EsJarh");
-			attributes.put("Password", "grupo1grupo");
-			attributes.put("AccessToken", "EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD");
-			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
-			
-			XMLclass.addNode(XMLclass.configFile, "facebook", attributes);
-		}
-		
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Facebook/facebookProfile.fxml"));		
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.facebookService);		
     }
 	
 	
@@ -94,21 +69,16 @@ public class Main extends Application {
 	 */
 	@FXML
     private void emailLogo_clicked(MouseEvent event){
-		if(XMLclass.existsNode(XMLclass.configFile, "email")){
-			Email.init();
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/email.fxml"));
-		}else {
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./Email/loginEmail.fxml"));
-		}
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
     }
+	
 	/**
 	 * Procedimento responsavel por lançar a janela da aplicação email
 	 * @param event MouseEvent 
 	 */
 	@FXML
-    private void apps_clicked(MouseEvent event){
-			Email.init();
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
+    private void apps_clicked(MouseEvent event){	
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
 
     }
 	

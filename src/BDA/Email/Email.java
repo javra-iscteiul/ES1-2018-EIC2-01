@@ -28,6 +28,7 @@ import javax.mail.internet.MimeMessage;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import BDA.Credential;
 import BDA.IService;
 import BDA.Mensagem;
 import BDA.XMLclass;
@@ -44,12 +45,13 @@ import javafx.collections.ObservableList;
 
 public class Email implements IService {
 	
+	private Credential emailCredential;
+	
 	/**
 	 * ObservableList com os emails
 	 */
 	private ObservableList<Mensagem> emails = FXCollections.observableArrayList();
 
-	
 	/**
 	 * Sessao do email com as propriedades já definidas
 	 */
@@ -63,12 +65,11 @@ public class Email implements IService {
 	 */
 	private static String to="";
 	
-	
-	
 	/**
 	 * Procedimento responsavel por iniciar a aplicação
 	 */
-	public static void init() {
+	public void init(Credential cred) {
+		emailCredential = cred;
 		
 		Properties properties = new Properties();
 
@@ -80,16 +81,13 @@ public class Email implements IService {
 		properties.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.setProperty("mail.imap.socketFactory.fallback", "false");
 		properties.setProperty("mail.imap.socketFactory.port", String.valueOf(993));
-		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
 		
-
 		session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
-                emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
+                		emailCredential.username, emailCredential.password);
             	}
              });
-
 	}
 	
 	/**
@@ -102,15 +100,15 @@ public class Email implements IService {
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");
-			Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
-			store.connect(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
 			
-			if (folder=="Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent")) {
-				XMLclass.deleteNode(XMLclass.storedDataFile, "emailSent");
+			store.connect(emailCredential.username, emailCredential.password);
+			
+			if (folder=="Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailSent", emailCredential);
 			}
 			
-			if (folder=="INBOX" && XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox")) {
-				XMLclass.deleteNode(XMLclass.storedDataFile, "emailInbox");
+			if (folder=="INBOX" && XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailInbox", emailCredential);
 			}
 			
 			/* open Inbox folder */
@@ -155,10 +153,9 @@ public class Email implements IService {
 		           
 		         }
 			 if(folder=="INBOX") {
-				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailInbox", dataToStore);
-			 }
-			 if(folder=="Sent") {
-				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailSent", dataToStore);
+				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailInbox", emailCredential, dataToStore);
+			 }else if(folder=="Sent") {
+				 XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailSent", emailCredential, dataToStore);
 			 }
 			// Disconnect
 			emailFolder.close(false);
@@ -188,8 +185,8 @@ public class Email implements IService {
 	private ObservableList<Mensagem> getStoredTimeLine() {
 		try {
 			if(folder=="INBOX"){
-				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox")) {
-					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailInbox");
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailInbox", emailCredential);
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 						if (childAttributes != null) {
@@ -205,8 +202,8 @@ public class Email implements IService {
 					}
 				}
 			}else if(folder=="Sent"){
-				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent")) {
-					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent");
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent", emailCredential);
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 							if (childAttributes != null) {
@@ -318,12 +315,10 @@ public class Email implements IService {
 			 
 			 Map<String, String> filterAttr = new HashMap<>();
 				filterAttr.put("value", text);
-				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filter", filterAttr))
-					XMLclass.addChild(XMLclass.configFile, "email", "filter", filterAttr);
+				if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter", filterAttr);
 				 
 			return nova;
-
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -349,8 +344,8 @@ public class Email implements IService {
 			 
 			 Map<String, String> filterAttr = new HashMap<>();
 				filterAttr.put("value", text);
-				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filterUser", filterAttr))
-					XMLclass.addChild(XMLclass.configFile, "email", "filterUser", filterAttr);
+				if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filterUser", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filterUser", filterAttr);
 			return nova;
 
 		
@@ -381,8 +376,8 @@ public class Email implements IService {
 			 }
 			 Map<String, String> filterAttr = new HashMap<>();
 				filterAttr.put("value", "true");
-				if(!XMLclass.existsChildNode(XMLclass.configFile, "email", "filter24h", filterAttr))
-					XMLclass.addChild(XMLclass.configFile, "email", "filter24h", filterAttr); 
+				if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter24h", filterAttr))
+					XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter24h", filterAttr); 
 			return nova;
 
 		
@@ -399,12 +394,10 @@ public class Email implements IService {
 	 * @param sub String
 	 * @param text String
 	 */
-	public static void sendEmails(String to, String sub, String text) {
+	public static void sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
-		Node emailConfig = XMLclass.getNode(XMLclass.configFile,"email");
+		Node emailConfig = XMLclass.getNode(XMLclass.configFile, XMLclass.emailService, emailCredential);
 	      // Sender's email ID needs to be mentioned
-	      String from = emailConfig.getAttributes().getNamedItem("UserName").getNodeValue();
-	      String password = emailConfig.getAttributes().getNamedItem("Password").getNodeValue();
 
 	      Properties props = new Properties();
 	        props.put("mail.smtp.auth", "true");
@@ -415,14 +408,14 @@ public class Email implements IService {
 	        Session session = Session.getInstance(props,
 	          new javax.mail.Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(from, password);
+	                return new PasswordAuthentication(emailCredential.username, emailCredential.password);
 	            }
 	          });
 
 	        try {
 
 	            Message message = new MimeMessage(session);
-	            message.setFrom(new InternetAddress(from));
+	            message.setFrom(new InternetAddress(emailCredential.username));
 	            message.setRecipients(Message.RecipientType.TO,
 	                InternetAddress.parse(to));
 	            message.setSubject(sub);
@@ -474,5 +467,7 @@ public class Email implements IService {
 	}
 	
 	
-	
+	public Credential getCredential() {
+		return this.emailCredential;
+	}
 }

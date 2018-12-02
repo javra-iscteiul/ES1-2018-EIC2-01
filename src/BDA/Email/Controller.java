@@ -5,7 +5,9 @@ import java.util.Collections;
 
 import org.w3c.dom.Node;
 
+import BDA.Credential;
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
 import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
@@ -25,8 +27,7 @@ import javafx.scene.input.MouseEvent;
  *
  */
 
-public class Controller {
-
+public class Controller implements IServiceController {	
 	/**
 	 * ListView (biblioteca Javafx)
 	 */
@@ -64,6 +65,12 @@ public class Controller {
 	 */
 	Email email = new Email();
 
+	public void init(Credential cred) {
+		email.init(cred);
+		emailsList.setItems(email.getTimeLine());
+		user.setText(cred.getUsername());
+    }
+	
 	/**
 	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com o rato (biblioteca Javafx)
 	 * @param event MouseEvent
@@ -71,17 +78,6 @@ public class Controller {
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event){
 		emailsList.setItems(email.getTimeLine());
-	}
-	
-	/**
-	 * Procedimento responsável por iniciar a aplicação com a timeline e user definido
-	 */
-	@FXML
-	public void initialize() {
-		emailsList.setItems(email.getTimeLine());
-		Node emailConfig = XMLclass.getNode(XMLclass.configFile, "email");
-		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
-
 	}
 	
 	/**
@@ -198,6 +194,6 @@ public class Controller {
 	 */
 	@FXML
 	protected void novaMensagem(MouseEvent event) {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
+		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"), email.getCredential());
 	}
 }

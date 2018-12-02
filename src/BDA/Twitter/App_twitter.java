@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import BDA.Credential;
 import BDA.IService;
 import BDA.Mensagem;
 import BDA.XMLclass;
@@ -32,6 +33,8 @@ import org.w3c.dom.Node;
  */
 public final class App_twitter implements IService {
 	
+	private Credential twitterCredential;
+	
 	/**
 	 * ObservableList com os tweets 
 	 */
@@ -48,14 +51,15 @@ public final class App_twitter implements IService {
 	 /**
 	 * Inicialização dos atributos relacionados com o AccessToken  
 	 */
-	public static void init() {
+	public void init(Credential cred) {
+		twitterCredential = cred;
+		
 		 ConfigurationBuilder cb = new ConfigurationBuilder();
-		Node twitterConfig = XMLclass.getNode(XMLclass.configFile, "twitter");
 		cb.setDebugEnabled(true)
-		  .setOAuthConsumerKey(twitterConfig.getAttributes().getNamedItem("ConsumerKey").getNodeValue())
-		  .setOAuthConsumerSecret(twitterConfig.getAttributes().getNamedItem("ConsumerSecret").getNodeValue())
-		  .setOAuthAccessToken(twitterConfig.getAttributes().getNamedItem("AccessToken").getNodeValue())
-		  .setOAuthAccessTokenSecret(twitterConfig.getAttributes().getNamedItem("AccessTokenSecret").getNodeValue());
+		  .setOAuthConsumerKey(twitterCredential.consumerKey)
+		  .setOAuthConsumerSecret(twitterCredential.consumerSecret)
+		  .setOAuthAccessToken(twitterCredential.accessToken)
+		  .setOAuthAccessTokenSecret(twitterCredential.accessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
 				
@@ -77,8 +81,8 @@ public final class App_twitter implements IService {
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
 			
-			if (XMLclass.existsNode(XMLclass.storedDataFile, "twitter")) {
-				XMLclass.deleteNode(XMLclass.storedDataFile, "twitter");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential);
 			}
 			
 			int counter=0;
@@ -100,7 +104,7 @@ public final class App_twitter implements IService {
 				counter++;
 	        }
 	        
-	        XMLclass.addNodeAndChild(XMLclass.storedDataFile, "twitter", dataToStore);
+	        XMLclass.addNodeAndChild(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential, dataToStore);
 	        
 	      //  tweetsList.setItems(tweets);
 			return tweets;
@@ -116,8 +120,8 @@ public final class App_twitter implements IService {
 	 * @param tweetsList
 	 */
 	private void solveConectionProblems() {
-		if (XMLclass.existsNode(XMLclass.storedDataFile, "twitter")) {
-			Node twitterNode = XMLclass.getNode(XMLclass.storedDataFile, "twitter");
+		if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential)) {
+			Node twitterNode = XMLclass.getNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential);
 			int counter = 0;
 			for (int i = 0; i < twitterNode.getChildNodes().getLength(); i++) {
 				NamedNodeMap childAttributes = twitterNode.getChildNodes().item(i).getAttributes();
@@ -223,7 +227,7 @@ public final class App_twitter implements IService {
 	 * este código encontra-se desatualizado e não é utilizado de momento
 	 * @return
 	 */
-	public DirectMessageList getMessageList(){
+	public static DirectMessageList getMessageList(){
 	
 	/*	try {
 			DirectMessageList messages;
@@ -247,7 +251,7 @@ public final class App_twitter implements IService {
 	
 	}
 	
-
-	
-
+	public Credential getCredential() {
+		return this.twitterCredential;
+	}
 }

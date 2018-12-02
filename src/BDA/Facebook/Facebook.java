@@ -10,6 +10,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.Post;
 
+import BDA.Credential;
 import BDA.IService;
 import BDA.Mensagem;
 import BDA.XMLclass;
@@ -27,23 +28,17 @@ import org.w3c.dom.Node;
  *
  */
 
-public class Facebook implements IFacebook,IService {
-
-	/**
-	 * Node correspondente às configurações do facebook no ficheiro config
-	 */
-	private final Node facebookConfig = XMLclass.getNode(XMLclass.configFile, "facebook");
-
-	/**
-	 * FacebookClient correspondente á conecção do cliente ao facebook
-	 */
-	private final FacebookClient fbClient = new DefaultFacebookClient(
-			facebookConfig.getAttributes().getNamedItem("AccessToken").getNodeValue());
-
+public class Facebook implements IService {
 	/**
 	 * ObservableList com os posts do facebook
 	 */
 	private ObservableList<Mensagem> posts = FXCollections.observableArrayList();
+	
+	private Credential facebookCredential;
+	
+	public void init(Credential cred){
+		this.facebookCredential = cred;
+	}
 	
 	public void changeConfig() {
 		// TODO Auto-generated method stub
@@ -67,12 +62,13 @@ public class Facebook implements IFacebook,IService {
 		posts.clear();
 		
 		try {
+			FacebookClient fbClient = new DefaultFacebookClient(facebookCredential.getAccessToken());
 			//cria a conecção com o facebook e recebe os posts
 			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
 
 			//no caso de existirem posts guardados elimina-os
-			if (XMLclass.existsNode(XMLclass.storedDataFile, "facebook")) {
-				XMLclass.deleteNode(XMLclass.storedDataFile, "facebook");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential);
 			}
 
 			//cria as mensagens para mostrar no ecrã e adiciona as mesmas a lista de dados a guardar
@@ -96,7 +92,7 @@ public class Facebook implements IFacebook,IService {
 				}
 			}
 
-			XMLclass.addNodeAndChild(XMLclass.storedDataFile, "facebook", dataToStore);
+			XMLclass.addNodeAndChild(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential, dataToStore);
 
 			return posts;
 		} catch (Exception e) {
@@ -113,8 +109,8 @@ public class Facebook implements IFacebook,IService {
 	 */
 	private ObservableList<Mensagem> getStoredTimeLine() {
 		try {
-			if (XMLclass.existsNode(XMLclass.storedDataFile, "facebook")) {
-				Node facebookNode = XMLclass.getNode(XMLclass.storedDataFile, "facebook");
+			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
+				Node facebookNode = XMLclass.getNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential);
 
 				int counter = 0;
 				for (int i = 0; i < facebookNode.getChildNodes().getLength(); i++) {
@@ -145,17 +141,18 @@ public class Facebook implements IFacebook,IService {
 	 */
 	public ObservableList<Mensagem> setFilter(String filter) {
 		try {
-			posts.clear();
+			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
 			for(Mensagem post : getTimeLine())
 			{
 				if(post.containsFilter(filter)) 
-					posts.add(post);
+					filteredMsg.add(post);
 			}
+			posts = filteredMsg;
 			
 			Map<String, String> filterAttr = new HashMap<>();
 			filterAttr.put("value", filter);
-			if(!XMLclass.existsChildNode(XMLclass.configFile, "facebook", "filter", filterAttr))
-				XMLclass.addChild(XMLclass.configFile, "facebook", "filter", filterAttr);
+			if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr))
+				XMLclass.addChild(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr);
 			
 			return posts;
 		} catch (Exception ex) {

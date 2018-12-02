@@ -1,6 +1,8 @@
 package BDA.Facebook;
 
+import BDA.Credential;
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
 import BDA.Mensagem;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -15,7 +17,7 @@ import javafx.scene.input.MouseEvent;
  *
  */
 
-public class Controller {
+public class Controller implements IServiceController {
 	
 	/**
 	 * TextField correspondente à palavra ou frase a pesquisar
@@ -35,14 +37,13 @@ public class Controller {
 	@FXML
 	private ListView<Mensagem> facebookList;
 	
-	
 	Facebook facebook = new Facebook();
 	
 	/**
 	 * Procedimento que adiciona posts à timeline quando a vista e selecionada (biblioteca Javafx)
 	 */
-	@FXML
-    public void initialize() {
+    public void init(Credential cred) {
+    	facebook.init(cred);
 		facebookList.setItems(facebook.getTimeLine());
     }
 	

@@ -1,6 +1,8 @@
 package BDA.Email;
 
+import BDA.Credential;
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -14,7 +16,9 @@ import javafx.scene.input.MouseEvent;
  * Aplicação agregadora de conteúdos académicos: controlador do Email
  *
  */
-public class novaMensagemController {
+public class novaMensagemController implements IServiceController {
+	private Credential emailCredential;
+	
 	/**
 	 *  TextField destinatario da mensagem
 	 */
@@ -33,7 +37,11 @@ public class novaMensagemController {
 	@FXML
 	private TextArea msg;
 	
-
+	@Override
+	public void init(Credential cred) {
+		emailCredential = cred;
+	}
+	
 	/**
 	 * Ao clicar no botao enviar chama a função do email responsavel pelo envio da mensagem com os parametros indicados pelo utilizador
 	 * @param event MouseEvent
@@ -41,7 +49,7 @@ public class novaMensagemController {
 	@FXML
 	public void enviar(MouseEvent event){
 		if(to.getText()!=null && msg.getText()!=null && sub.getText()!=null ) {
-			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString());
+			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString(), emailCredential);
 			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
 		}
 	}
@@ -69,6 +77,4 @@ public class novaMensagemController {
 	public void initialize() {
 		to.setText(Email.getTo());
 	}
-	
-
 }

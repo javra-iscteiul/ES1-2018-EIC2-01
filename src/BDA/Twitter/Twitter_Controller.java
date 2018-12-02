@@ -1,6 +1,8 @@
 package BDA.Twitter;
 
+import BDA.Credential;
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
 import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
@@ -14,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import twitter4j.TwitterException;
 
-public class Twitter_Controller {
+public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * Twitter, instancia da aplicacao em uso
@@ -25,7 +27,6 @@ public class Twitter_Controller {
 	 * ListView com a lista de tweets
 	 */
 	@FXML
-	//private ListView<String> tweetsList;
 	private ListView<Mensagem> tweetsList;
 	
 	/**
@@ -40,11 +41,8 @@ public class Twitter_Controller {
 	@FXML
 	private TextArea publicacao;
 	
-	/**
-	 * Funcao responsavel por inicializar o controlador
-	 */
-	@FXML
-    public void initialize() {
+	public void init(Credential cred) {
+		tt.init(cred);
 		tweetsList.setItems(tt.getTimeLine());
     }
 	
@@ -96,8 +94,7 @@ public class Twitter_Controller {
 	@FXML
     private void dms_clicked(MouseEvent event)
     {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./dms.fxml"));
-		
+		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("dms.fxml"), tt.getCredential());
     }
 	
 	

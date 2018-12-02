@@ -17,7 +17,7 @@ public class MensagemFacebook extends Mensagem{
 	@Override
 	public String toString(){
 		return "User Name: " + (this.getUser() != null ? this.getUser() : "") + "\r\n" +
-				"Date: " + this.getDate() + "\r\n" + 
+				"Date: " + (this.getDate() != null ? this.getDate() : "") + "\r\n" + 
 				"Title: " + (this.getContent() != null ? this.getContent() : "");
 	}
 
