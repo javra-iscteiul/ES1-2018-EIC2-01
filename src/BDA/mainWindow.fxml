@@ -29,7 +29,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="35.0" prefHeight="343.0" prefWidth="602.0" style="-fx-background-image: url('file:///../Graphics/intersection.png'); -fx-background-color: #537FAD;">
+      <AnchorPane layoutY="35.0" prefHeight="406.0" prefWidth="602.0" style="-fx-background-image: url('file:///../Graphics/intersection.png'); -fx-background-color: #537FAD;">
          <children>
             <GridPane prefHeight="378.0" prefWidth="602.0">
               <columnConstraints>
@@ -42,7 +42,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="168.0" fitWidth="132.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="175.0" fitWidth="166.0" onMouseClicked="#emailLogo_clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="file:///../Graphics/emaillogo.png" />
                      </image>
@@ -64,6 +64,7 @@
                   </ImageView>
                </children>
             </GridPane>
+            <Button layoutX="454.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#editar" prefHeight="25.0" prefWidth="148.0" text="Editar credenciais" />
          </children>
       </AnchorPane>
    </children>

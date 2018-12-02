@@ -105,6 +105,17 @@ public class Main extends Application {
 	private void apps_clicked(MouseEvent event) {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
 	}
+	
+	/**
+	 * Procedimento que mostra a interface de edicao de credencias
+	 * @param event
+	 */
+	@FXML
+	private void editar(MouseEvent event) {
+		System.out.println("olaaa");
+		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("EditCredentials.fxml"));
+	}
+
 
 	private static void main(String[] args) {
 		launch(args);
