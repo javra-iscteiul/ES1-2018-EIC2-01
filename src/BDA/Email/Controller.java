@@ -64,9 +64,12 @@ public class Controller implements IServiceController {
 	 * Email, instancia da aplicação em uso
 	 */
 	Email email = new Email();
-
+	public void initialize() {
+		
+	}
 	public void init(Credential cred) {
 		email.init(cred);
+		System.out.println("init");
 		emailsList.setItems(email.getTimeLine());
 		user.setText(cred.getUsername());
     }

@@ -101,7 +101,6 @@ public class Email implements IService {
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");
-			System.out.println(emailCredential.username + emailCredential.password);
 			store.connect(emailCredential.username, emailCredential.password);
 			
 			if (folder=="Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {

@@ -3,10 +3,13 @@ package BDA.Email;
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
+import BDA.XMLclass;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 
 
 /**
@@ -50,7 +53,10 @@ public class novaMensagemController implements IServiceController {
 	public void enviar(MouseEvent event){
 		if(to.getText()!=null && msg.getText()!=null && sub.getText()!=null ) {
 			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString(), emailCredential);
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
+			Credential cred = new Credential(
+					XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("email.fxml"), cred);
+			
 		}
 	}
 

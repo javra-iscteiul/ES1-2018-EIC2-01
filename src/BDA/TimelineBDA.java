@@ -31,12 +31,12 @@ public class TimelineBDA {
 		for (Mensagem m: email.getTimeLine()){
 			mensagens.add(m);
 		}
-//		for (Mensagem m: facebook.getTimeLine()){
-//			mensagens.add(m);
-//		}
-//		for (Mensagem m: twitter.getTimeLine()){
-//			mensagens.add(m);
-//		}
+		for (Mensagem m: facebook.getTimeLine()){
+			mensagens.add(m);
+		}
+		for (Mensagem m: twitter.getTimeLine()){
+			mensagens.add(m);
+		}
 		return mensagens;
 		
 	}
@@ -55,3 +55,4 @@ public class TimelineBDA {
 		return nova;
 	}
 }
+
