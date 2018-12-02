@@ -10,7 +10,9 @@ import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.Mensagem;
 import BDA.XMLclass;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -68,10 +70,29 @@ public class Controller implements IServiceController {
 		
 	}
 	public void init(Credential cred) {
-		email.init(cred);
-		System.out.println("init");
-		emailsList.setItems(email.getTimeLine());
-		user.setText(cred.getUsername());
+		
+		
+		Task<Void> exampleTask = new Task<Void>() {
+			
+			@Override
+			protected Void call() throws Exception {
+				
+				Platform.runLater(new Runnable() {
+					public void run() {
+						email.init(cred);
+						System.out.println("init");
+						emailsList.setItems(email.getTimeLine());
+						user.setText(cred.getUsername());
+					}
+				});
+				
+				return null;
+			}
+		};
+		
+		new Thread(exampleTask).start();
+		
+		
     }
 	
 	/**

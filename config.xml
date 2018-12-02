@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Services>
 <twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Login="True" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
-<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="False" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
 <filter value="ola"/>
 <filter value="o"/>
 <filter24h value="true"/>
@@ -9,7 +9,7 @@
 <filter value="i"/>
 <filter value="oi"/>
 </email>
-<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Login="True" Password="grupo1grupo" UserName="EsJarh">
+<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Login="False" Password="grupo1grupo" UserName="EsJarh">
 <filter value="teste"/>
 <filter value="ola"/>
 <filter value="hello"/>

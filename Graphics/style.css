@@ -12,12 +12,14 @@
 .root{
     -fx-background-color: -fx-primary;
 }
-
+/*
 .glyph-icon
 {
     -fx-fill: -fx-primarytext;
+     -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-primary;
 }
-
+*/
 .button{
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
@@ -35,12 +37,28 @@
 
 .text-field
 {
+	 -fx-border-color: -fx-secondary;
+	 -fx-background-color: -fx-primary;
     -fx-text-fill: -fx-primarytext;
     -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
     -fx-text-fill: derive(-fx-secondary, 20%);
 }
 
+
+.header-image{
+	-fx-display:block;
+	-fx-width:100%;
+	-fx-height:auto;
+}
+.image {
+	-fx-display:block;
+	-fx-width:100%;
+	-fx-height:auto;
+}
+.image:hover {
+	-fx-opacity:0.7;
+}
 
 /*Login Screen Specific*/
 
