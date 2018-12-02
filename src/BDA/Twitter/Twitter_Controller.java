@@ -96,4 +96,14 @@ public class Twitter_Controller implements IServiceController {
 	private void voltar_clicked(MouseEvent event){
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
+	
+	/**
+	 * Procedimento para mudar a conta em utilização 
+	 * @param event
+	 */
+	@FXML
+	private void logout(MouseEvent event) {
+		XMLclass.setLogin(XMLclass.configFile, XMLclass.twitterService, tt.getCredential(), XMLclass.Logout);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.twitterService);
+	}
 }

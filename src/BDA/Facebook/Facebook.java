@@ -168,4 +168,8 @@ public class Facebook implements IService {
 	public void sendMessage(String messageToSend) {
 		// TODO Auto-generated method stub
 	}
+
+	public Credential getCredential() {
+		return this.facebookCredential;
+	}
 }

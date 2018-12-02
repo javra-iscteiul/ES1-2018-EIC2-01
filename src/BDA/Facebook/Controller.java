@@ -4,6 +4,7 @@ import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.Mensagem;
+import BDA.XMLclass;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -61,5 +62,15 @@ public class Controller implements IServiceController {
 	@FXML
 	private void voltar_clicked(MouseEvent event){
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+	}
+	
+	/**
+	 * Procedimento para mudar a conta em utilização 
+	 * @param event
+	 */
+	@FXML
+	private void logout(MouseEvent event) {
+		XMLclass.setLogin(XMLclass.configFile, XMLclass.facebookService, facebook.getCredential(), XMLclass.Logout);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.facebookService);
 	}
 }
