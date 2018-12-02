@@ -20,8 +20,8 @@
             <TextField id="pesquisa" fx:id="pesquisa" prefHeight="28.0" prefWidth="442.0" promptText="Pesquisar" />
             <MenuButton layoutX="345.0" layoutY="2.0" mnemonicParsing="false" text="Procurar por...">
               <items>
-                <MenuItem onAction="#filter" mnemonicParsing="false" text="Tweets" />
-                <MenuItem onAction="#filter_users" mnemonicParsing="false" text="Utilizador" />
+                <MenuItem mnemonicParsing="false" onAction="#filter" text="Tweets" />
+                <MenuItem mnemonicParsing="false" onAction="#filter_users" text="Utilizador" />
               </items>
             </MenuButton>
          </children>
@@ -68,26 +68,5 @@
          </children>
       </Pane>
       <Button layoutX="650.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Sair" />
-      <Pane layoutX="517.0" layoutY="212.0" prefHeight="341.0" prefWidth="174.0">
-         <children>
-            <TextArea layoutX="2.0" layoutY="35.0" prefHeight="296.0" prefWidth="174.0" />
-            <TextField layoutX="2.0" layoutY="7.0" prefHeight="28.0" prefWidth="112.0" promptText="Pesquisar Utilizadores" />
-            <Button layoutX="114.0" layoutY="9.0" mnemonicParsing="false" text="Procurar" textFill="#514c4c">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="517.0" layoutY="103.0" prefHeight="107.0" prefWidth="174.0">
-         <children>
-            <ImageView fitHeight="45.0" fitWidth="59.0" layoutX="22.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:///../Graphics/messageLogo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="74.0" layoutY="45.0" onMouseClicked="#dms_clicked" prefHeight="17.0" prefWidth="69.0" text="Mensagens" />
-         </children>
-      </Pane>
    </children>
 </AnchorPane>

@@ -219,34 +219,6 @@ public final class App_twitter implements IService {
 	}
 	
 	
-	/**
-	 * Funcao utilizada para obter lista de mensagens enviadas e recebidas, devido a updates recentes na api do twitter, 
-	 * este código encontra-se desatualizado e não é utilizado de momento
-	 * @return
-	 */
-	public static DirectMessageList getMessageList(){
-	
-	/*	try {
-			DirectMessageList messages;
-		    int count = 20;
-			String cursor = null;
-			 do {
-				messages = cursor == null ? twitter.getDirectMessages(count) : twitter.getDirectMessages(count, cursor);
-				for (DirectMessage message : messages) {
-	                 System.out.println("From: " + message.getSenderId() + " id:" + message.getId()
-	                         + " [" + message.getCreatedAt() + "]"
-	                         + " - " + message.getText());
-				 }
-				cursor = messages.getNextCursor();
-			 } while (messages.size() > 0 && cursor != null);
-			return messages;
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		return null;
-	
-	}
 	
 	public Credential getCredential() {
 		return this.twitterCredential;

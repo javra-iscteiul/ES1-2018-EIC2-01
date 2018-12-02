@@ -74,7 +74,7 @@ public class Twitter_Controller implements IServiceController {
     private void filter_users(ActionEvent event) throws TwitterException 
     {
 		System.out.println(pesquisa.getText());
-		tt.filter_users(pesquisa.getText());
+		tweetsList.setItems(tt.filter_users(pesquisa.getText()));
     }
 	
 	/**
@@ -87,15 +87,6 @@ public class Twitter_Controller implements IServiceController {
 		tt.post(publicacao.getText());
 	}
 	
-	/**
-	 * Altera para a interface de mensagens diretas no evento em que o utilizador clica em "mensagens"
-	 * @param event
-	 */
-	@FXML
-    private void dms_clicked(MouseEvent event)
-    {
-		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("dms.fxml"), tt.getCredential());
-    }
 	
 	
 	/**
