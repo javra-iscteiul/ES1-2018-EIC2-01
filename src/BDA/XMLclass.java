@@ -279,7 +279,7 @@ public class XMLclass {
 	 *            String
 	 * @return Node
 	 */
-	public static void setLogin(File inputFile, String service, Credential serviceCredential, String Login) {
+	public static boolean setLogin(File inputFile, String service, Credential serviceCredential, String Login) {
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -289,9 +289,11 @@ public class XMLclass {
 			((Element)serviceNode).setAttribute("Login", Login);
 			
 			saveXMLfile(inputFile, doc);
+			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 

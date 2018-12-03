@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import BDA.Credential;
 import BDA.XMLclass;
 import BDA.Email.Email;
 
@@ -15,10 +16,12 @@ public class emailTest {
 	
 	@Test
     public void getTimeline() {
-		assertTrue(XMLclass.existsNode(XMLclass.configFile, "email"));
-		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailSent"));
-		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox"));
-		email.init();
+		Credential credTest = new Credential(
+				XMLclass.getNodeList(XMLclass.configFile, XMLclass.emailService).item(0).getAttributes());
+		assertTrue(XMLclass.existsNode(XMLclass.configFile, XMLclass.emailService, credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", credTest));
+		email.init(credTest);
 		assertNotNull(email.getTimeLine());
     }
 }
