@@ -25,7 +25,7 @@ public class Credential {
 	 * @param accessTokenSecret
 	 */
 	public Credential(String protocolo, String username, String password, String consumerKey, String consumerSecret,
-			String accessToken, String accessTokenSecret, String login) {
+			String accessToken, String accessTokenSecret) {
 		this.protocolo = protocolo;
 		this.username = username;
 		this.password = password;
@@ -33,30 +33,30 @@ public class Credential {
 		this.consumerSecret = consumerSecret;
 		this.accessToken = accessToken;
 		this.accessTokenSecret = accessTokenSecret;
-		this.login = login;
+		this.login = "False";
 	}
-	
+
 	public Credential(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	public Credential(NamedNodeMap credentials) {
-		if(credentials.getNamedItem("Protocol") != null)
+		if (credentials.getNamedItem("Protocol") != null)
 			this.protocolo = credentials.getNamedItem("Protocol").getNodeValue();
-		if(credentials.getNamedItem("UserName") != null)
+		if (credentials.getNamedItem("UserName") != null)
 			this.username = credentials.getNamedItem("UserName").getNodeValue();
-		if(credentials.getNamedItem("Password") != null)
+		if (credentials.getNamedItem("Password") != null)
 			this.password = credentials.getNamedItem("Password").getNodeValue();
-		if(credentials.getNamedItem("ConsumerKey") != null)
+		if (credentials.getNamedItem("ConsumerKey") != null)
 			this.consumerKey = credentials.getNamedItem("ConsumerKey").getNodeValue();
-		if(credentials.getNamedItem("ConsumerSecret") != null)
+		if (credentials.getNamedItem("ConsumerSecret") != null)
 			this.consumerSecret = credentials.getNamedItem("ConsumerSecret").getNodeValue();
-		if(credentials.getNamedItem("AccessToken") != null)
+		if (credentials.getNamedItem("AccessToken") != null)
 			this.accessToken = credentials.getNamedItem("AccessToken").getNodeValue();
-		if(credentials.getNamedItem("AccessTokenSecret") != null)
+		if (credentials.getNamedItem("AccessTokenSecret") != null)
 			this.accessTokenSecret = credentials.getNamedItem("AccessTokenSecret").getNodeValue();
-		if(credentials.getNamedItem("Login") != null)
+		if (credentials.getNamedItem("Login") != null)
 			this.login = credentials.getNamedItem("Login").getNodeValue();
 	}
 
@@ -115,7 +115,7 @@ public class Credential {
 	public void setAccessTokenSecret(String accessTokenSecret) {
 		this.accessTokenSecret = accessTokenSecret;
 	}
-	
+
 	public String getLogin() {
 		return accessTokenSecret;
 	}
@@ -123,8 +123,8 @@ public class Credential {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
-	public Map<String, String> getCredentiaAsMap(){
+
+	public Map<String, String> getCredentiaAsMap() {
 		Map<String, String> cred = new HashMap<String, String>();
 		cred.put("Protocol", this.protocolo);
 		cred.put("UserName", this.username);
@@ -133,11 +133,22 @@ public class Credential {
 		cred.put("ConsumerSecret", this.consumerSecret);
 		cred.put("AccessToken", this.accessToken);
 		cred.put("AccessTokenSecret", this.accessTokenSecret);
-		cred.put("Login", this.accessTokenSecret);
+		cred.put("Login", this.login);
 		return cred;
 	}
-	
-	public boolean equals(Credential cred){
+
+	public boolean equals(Credential cred) {
 		return this.username.equals(cred.username) && this.password.equals(cred.password);
+	}
+
+	@Override
+	public String toString() {
+		return (this.protocolo != null ? "Protocol:" + this.protocolo + "\r\n" : "")
+				+ (this.username != null ? "UserName:" + this.username + "\r\n" : "")
+				+ (this.password != null ? "Password:" + this.password + "\r\n" : "")
+				+ (this.consumerKey != null ? "Consumer Key:" + this.consumerKey + "\r\n" : "")
+				+ (this.consumerSecret != null ? "Consumer Secret:" + this.consumerSecret + "\r\n" : "")
+				+ (this.accessToken != null ? "Access Token:" + this.accessToken + "\r\n" : "")
+				+ (this.accessTokenSecret != null ? "Access Token Secret:" + this.accessTokenSecret : "");
 	}
 }

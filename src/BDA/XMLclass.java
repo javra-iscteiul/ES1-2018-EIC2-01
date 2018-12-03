@@ -383,7 +383,7 @@ public class XMLclass {
 			Document doc = dBuilder.parse(inputFile);
 			doc.getDocumentElement().normalize();
 
-			return addNode(inputFile, service, serviceCredencial);
+			return addNode(inputFile, service, serviceCredencial, doc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

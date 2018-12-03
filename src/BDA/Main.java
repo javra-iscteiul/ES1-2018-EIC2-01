@@ -112,7 +112,6 @@ public class Main extends Application {
 	 */
 	@FXML
 	private void editar(MouseEvent event) {
-		System.out.println("olaaa");
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("EditCredentials.fxml"));
 	}
 
