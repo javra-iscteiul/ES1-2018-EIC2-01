@@ -8,40 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@/style.css" style="-fx-background-color: #d8d8d8;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Twitter.Twitter_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0"  stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Twitter.Twitter_Controller">
    <children>
-      <Pane layoutX="14.0" layoutY="35.0" prefHeight="28.0" prefWidth="511.0">
-         <children>
-            <Button layoutX="444.0" layoutY="2.0" mnemonicParsing="false" onAction="#filter" text="Procurar" textFill="#514c4c">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <TextField id="pesquisa" fx:id="pesquisa" prefHeight="28.0" prefWidth="442.0" promptText="Pesquisar" />
-            <MenuButton layoutX="345.0" layoutY="2.0" mnemonicParsing="false" text="Procurar por...">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#filter" text="Tweets" />
-                <MenuItem mnemonicParsing="false" onAction="#filter_users" text="Utilizador" />
-              </items>
-            </MenuButton>
-         </children>
-      </Pane>
-      <Pane layoutX="14.0" layoutY="510.0" prefHeight="85.0" prefWidth="503.0">
-         <children>
-            <TextArea fx:id="publicacao" layoutY="3.0" opacity="0.48" prefHeight="80.0" prefWidth="499.0" promptText="Publique algo...." />
-            <Button layoutX="437.0" layoutY="59.0" mnemonicParsing="false" onAction="#post" text="Publicar" />
-         </children>
-      </Pane>
-      <Pane layoutX="14.0" layoutY="65.0" prefHeight="448.0" prefWidth="503.0">
-         <children>
-            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="240.0" layoutY="423.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:///../Graphics/refresh.png" />
-               </image>
-            </ImageView>
-            <ListView fx:id="tweetsList" layoutX="2.0" layoutY="6.0" prefHeight="419.0" prefWidth="499.0" />
-         </children>
-      </Pane>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Opções">
@@ -57,24 +25,34 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane layoutX="540.0" layoutY="35.0" prefHeight="68.0" prefWidth="146.0">
-         <children>
-            <ImageView fitHeight="59.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:///../Graphics/twitter%20logo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="65.0" layoutY="21.0" text="\@utilizador" />
-         </children>
-      </Pane>
-      <Button layoutX="650.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Sair" />
-   </children>
-   <children>
-        <Label layoutX="648.0" layoutY="30.0" onMouseClicked="#logout" text="Logout" />
-         <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="622.0" layoutY="26.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+      <MenuButton layoutX="646.0" layoutY="39.0" mnemonicParsing="false" text="Procurar por..." styleClass="list-menu">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#filter" text="Tweets" />
+          <MenuItem mnemonicParsing="false" onAction="#filter_users" text="Utilizador" />
+        </items>
+      </MenuButton>
+      <TextField id="pesquisa" fx:id="pesquisa" layoutX="14.0" layoutY="51.0" prefHeight="36.0" prefWidth="612.0" promptText="Pesquisar" />
+      <ListView fx:id="tweetsList" layoutX="27.0" layoutY="134.0" prefHeight="345.0" prefWidth="839.0" />
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="417.0" layoutY="479.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:///../Graphics/refresh.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="926.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
+       <Label layoutX="925.0" layoutY="30.0" onMouseClicked="#logout" text="Logout" />
+         <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="887.0" layoutY="26.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../Graphics/logout.png" />
             </image>
          </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="61.0" layoutX="785.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:///../Graphics/twitter%20logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="796.0" layoutY="98.0" text="\@utilizador" />
+     
+      <TextArea fx:id="publicacao" layoutX="27.0" layoutY="513.0" opacity="0.48" prefHeight="68.0" prefWidth="817.0" promptText="Publique algo...." />
+      <Button layoutX="408.0" layoutY="596.0" mnemonicParsing="false" onAction="#post" text="Publicar" />
    </children>
-      </AnchorPane>
+</AnchorPane>
