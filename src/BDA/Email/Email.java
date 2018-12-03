@@ -4,6 +4,9 @@ package BDA.Email;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,7 +73,7 @@ public class Email implements IService {
 	 */
 	public void init(Credential cred) {
 		emailCredential = cred;
-		
+		folder = "INBOX";
 		Properties properties = new Properties();
 
 		// server setting
@@ -360,24 +363,39 @@ public class Email implements IService {
 	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
 	 * @return lista dos emails do utilizador filtrada
 	 */
-	public ObservableList<Mensagem> getLast24h() {
+	public ObservableList<Mensagem> getLast(String s) {
 		try {
-			
 			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
 			 for (int i = 0; i < emails.size(); i++) {
 				 DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
 				 Date date = format.parse(emails.get(i).getDate());
-				 Date today = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
-				    if(date.after(twentyfourhoursbefore) && date.before(today)){
-		            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
-				     }
+				 Instant now = Instant.now();
+				 if(s=="24h"){
+					    if(  ( ! date.toInstant().isBefore( now.minus( 24 , ChronoUnit.HOURS) ) ) 
+					    	    && 
+					    	    ( date.toInstant().isBefore( now ) )) {
+			            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+					    }
+				}	 
+				 if(s=="week"){
+					 if(  ( ! date.toInstant().isBefore( now.minus( 7 , ChronoUnit.DAYS) ) ) 
+					    	    && 
+					    	    ( date.toInstant().isBefore( now ) )) {
+			            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+					     }
+				 }
+				 if(s=="month"){
+					 if(  ( ! date.toInstant().isBefore( now.minus( 30 , ChronoUnit.DAYS) ) ) 
+					    	    && 
+					    	    ( date.toInstant().isBefore( now ) )) {
+			            	nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+					     }
+				 }
 			 }
 			 Map<String, String> filterAttr = new HashMap<>();
 				filterAttr.put("value", "true");
-				if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter24h", filterAttr))
-					XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter24h", filterAttr); 
+				if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter" + s, filterAttr))
+					XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter" +s, filterAttr); 
 			return nova;
 
 		
