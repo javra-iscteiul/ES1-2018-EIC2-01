@@ -2,7 +2,7 @@ package BDA;
 
 import org.w3c.dom.Node;
 import javafx.scene.input.MouseEvent;
-
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -39,7 +39,18 @@ public class ControllerBDA {
 	TimelineBDA bda = new TimelineBDA();
 	@FXML
 	public void initialize() {
-		list.setItems(bda.getTimeLine());
+		Task<Void> exampleTask = new Task<Void>() {
+			
+			@Override
+			protected Void call() throws Exception {
+				
+
+				list.setItems(bda.getTimeLine());
+				return null;
+			}
+		};
+		
+		new Thread(exampleTask).start();
 		
 	}
 	
@@ -49,7 +60,18 @@ public class ControllerBDA {
 	 */
 	@FXML
 	private void getMensagens(MouseEvent event) {
-		list.setItems(bda.getTimeLine());
+			Task<Void> exampleTask = new Task<Void>() {
+			
+			@Override
+			protected Void call() throws Exception {
+				
+				list.setItems(bda.getTimeLine());
+				return null;
+			}
+		};
+		
+		new Thread(exampleTask).start();
+		
 	}
 	
 	/**
