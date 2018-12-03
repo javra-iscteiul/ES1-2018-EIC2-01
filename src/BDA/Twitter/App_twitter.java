@@ -1,5 +1,6 @@
 package BDA.Twitter;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -152,7 +153,6 @@ public final class App_twitter implements IService {
 	        System.out.println("------------------------\n Showing home timeline \n------------------------");
 			int counter=0;
 			int counterTotal = 0;
-			
 			for (Mensagem status : tweets) {
 				if (status.getUser() != null && status.getContent().contains(quote)) {
 					//String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
@@ -199,6 +199,51 @@ public final class App_twitter implements IService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public ObservableList<Mensagem> timeFilter(String type) {
+		try {
+			Query q = new Query(type);
+			if(q.getQuery().equals("lastDay")){
+				Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
+				 String date = (Integer.toString(twentyfourhoursbefore.getYear())  +
+						 '-' + Integer.toString(twentyfourhoursbefore.getMonth())+
+						 '-'+Integer.toString(twentyfourhoursbefore.getDay()));
+				q.setSince(date);
+			}else if(q.getQuery().equals("lastMonth")){
+				Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (30*24*60*60*1000));
+				 String date = (Integer.toString(twentyfourhoursbefore.getYear())  +
+						 '-' + Integer.toString(twentyfourhoursbefore.getMonth())+
+						 '-'+Integer.toString(twentyfourhoursbefore.getDay()));
+				q.setSince(date);
+			}
+			
+			
+			QueryResult result = twitter.search(q);
+			List<Status> statuses = result.getTweets();
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+			int counter=0;
+			for (Mensagem status : tweets) {
+				
+					//String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
+					MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(), status.getContent());
+					//System.out.println(status.getUser().getName() + ":" + status.getText() );
+					nova.add(counter, m);
+					counter++;
+					
+			}	
+			
+			return nova;
+		} catch (TwitterException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+
+		
 	}
 	
 	/**

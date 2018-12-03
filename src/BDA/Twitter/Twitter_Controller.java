@@ -76,6 +76,16 @@ public class Twitter_Controller implements IServiceController {
 		System.out.println(pesquisa.getText());
 		tweetsList.setItems(tt.filter_users(pesquisa.getText()));
     }
+	@FXML
+	private void lastDay(ActionEvent event){
+		String type = "lastDay";
+		tweetsList.setItems(tt.timeFilter(type));
+	}
+	@FXML
+	private void lastMonth(ActionEvent event){
+		String type = "lastDay";
+		tweetsList.setItems(tt.timeFilter(type));
+	}
 	
 	/**
 	 * utilizado no evento em que o utilizado clica no botao de postar um novo tweet

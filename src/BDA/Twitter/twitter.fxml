@@ -29,6 +29,8 @@
         <items>
           <MenuItem mnemonicParsing="false" onAction="#filter" text="Tweets" />
           <MenuItem mnemonicParsing="false" onAction="#filter_users" text="Utilizador" />
+          <MenuItem mnemonicParsing="false" onAction="#lastDay" text="Ultimas 24 horas" />
+          <MenuItem mnemonicParsing="false" onAction="#lastMonth" text="Ultimo mês" />
         </items>
       </MenuButton>
       <TextField id="pesquisa" fx:id="pesquisa" layoutX="14.0" layoutY="51.0" prefHeight="36.0" prefWidth="612.0" promptText="Pesquisar" />

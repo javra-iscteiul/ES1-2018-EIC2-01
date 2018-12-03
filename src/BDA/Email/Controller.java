@@ -2,6 +2,7 @@ package BDA.Email;
 
 
 import java.util.Collections;
+import java.util.List;
 
 import org.w3c.dom.Node;
 
@@ -13,7 +14,9 @@ import BDA.XMLclass;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -77,22 +80,17 @@ public class Controller implements IServiceController {
 			@Override
 			protected Void call() throws Exception {
 				
-				Platform.runLater(new Runnable() {
-					public void run() {
 						email.init(cred);
 						System.out.println("init");
 						emailsList.setItems(email.getTimeLine());
 						user.setText(cred.getUsername());
-					}
-				});
-				
+					
 				return null;
 			}
 		};
 		
 		new Thread(exampleTask).start();
-		
-		
+
     }
 	
 	/**
@@ -101,7 +99,19 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event){
-		emailsList.setItems(email.getTimeLine());
+
+		Task<Void> exampleTask = new Task<Void>() {
+			
+			@Override
+			protected Void call() throws Exception {
+				emailsList.setItems(email.getTimeLine());
+				
+				return null;
+			}
+		};
+		
+		new Thread(exampleTask).start();
+		
 	}
 	
 	/**
@@ -110,7 +120,18 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void filter(ActionEvent event) {
-		emailsList.setItems(email.setFilter(pesquisa.getText()));
+		Task<Void> exampleTask = new Task<Void>() {
+			
+			@Override
+			protected Void call() throws Exception {
+				emailsList.setItems(email.setFilter(pesquisa.getText()));
+				return null;
+			}
+		};
+		
+		new Thread(exampleTask).start();
+		
+		
 	}
 	
 	/**
@@ -128,10 +149,16 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void sent(ActionEvent event) {
-		conteudo.setText("");
-		Email.setFolder("Sent");
-		responder.setVisible(false);
-		emailsList.setItems(email.getTimeLine());
+		
+				conteudo.setText("");
+				Email.setFolder("Sent");
+				responder.setVisible(false);
+				ObservableList<Mensagem> l = email.getTimeLine();
+				emailsList.setItems((ObservableList<Mensagem>) l);
+
+		
+		
+		
 	}
 	
 	/**
