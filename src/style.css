@@ -68,8 +68,49 @@
     -jfx-unfocus-color: -fx-red;
     -jfx-focus-color: -fx-red;
 }
+.list-menu{
+	 -fx-text-fill: -fx-primarytext;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-font-size: 12pt;
+}
 
+.list-menu:hover, .list-menu:focused{
+    -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
 
+.list-view .list-cell:even{
+	 -fx-text-fill: -fx-primarytext;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-font-size: 12pt;
+}
+.list-view .list-cell:odd{
+	 -fx-text-fill: -fx-primarytext;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-font-size: 12pt;
+}
+.list-view .list-cell:focused {
+	 -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+    -fx-font-size: 12pt;
+}
+.text-area
+{
+	 -fx-border-color: -fx-secondary;
+	 -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size : 12pt;
+    -jfx-focus-color: -fx-secondary;
+    -fx-text-fill: derive(-fx-secondary, 20%);
+}
+.text-area .content {
+    -fx-background-color: -fx-primary;
+}
 /*.anchor {   ------------old
 	
  -fx-background-image: url("intersection.png");
