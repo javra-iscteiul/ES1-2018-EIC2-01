@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javafx.scene.image.*;
+
 /**
  * Date: Oct 22 2018
  * 
@@ -33,6 +35,7 @@ public class Main extends Application {
 		try {
 			janelaInicial.setTitle("Bom Dia Academia");
 			janelaInicial.setScene(new Scene((Pane) FXMLLoader.load(getClass().getResource("mainWindow.fxml"))));
+			janelaInicial.getIcons().add(new Image("file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png"));
 			janelaInicial.show();
 		} catch (Exception e) {
 			e.printStackTrace();
