@@ -60,6 +60,17 @@ public class novaMensagemController implements IServiceController {
 		}
 	}
 
+	
+	/**
+	 * Ao clicar no botao voltar regressa ao seriviço email
+	 * @param event MouseEvent
+	 */
+	@FXML
+	public void voltar(MouseEvent event){
+		Credential cred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("email.fxml"), cred);
+	}
+	
 	/**
 	 * Devolve o destinatario da mensagem
 	 * @return TextField

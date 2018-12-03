@@ -40,6 +40,8 @@
                 <MenuItem mnemonicParsing="false" onAction="#recent" text="Mais Recente" />
                 <MenuItem mnemonicParsing="false" onAction="#older" text="Mais antigo" />
                   <MenuItem mnemonicParsing="false" onAction="#last24h" text="Ultimas 24h" />
+                  <MenuItem mnemonicParsing="false" onAction="#lastWeek" text="Ultima Semana" />
+                  <MenuItem mnemonicParsing="false" onAction="#lastMonth" text="Ultimo mês" />
               </items>
             </MenuButton>
          </children>
@@ -59,7 +61,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button id="responder" fx:id="responder" layoutX="631.0" layoutY="560.0" mnemonicParsing="false" onMouseClicked="#responder" text="Responder" />
+      <Button id="responder" fx:id="responder" layoutX="631.0" layoutY="560.0" mnemonicParsing="false" onMouseClicked="#responder" text="Responder" visible="false" />
       <TextField id="user" fx:id="user" editable="false" layoutX="694.0" layoutY="30.0" prefHeight="39.0" prefWidth="173.0" text="username" />
       <Label layoutX="883.0" layoutY="41.0" onMouseClicked="#logout" text="Logout" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="948.0" layoutY="37.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">

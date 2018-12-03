@@ -31,6 +31,6 @@
       <Label layoutX="17.0" layoutY="201.0" prefHeight="25.0" prefWidth="101.0" styleClass="text-field" text="Message:" />
       <TextArea id="msg" fx:id="msg" layoutX="6.0" layoutY="238.0" prefHeight="324.0" prefWidth="681.0" />
       <Button layoutX="324.0" layoutY="562.0" mnemonicParsing="false" onMouseClicked="#enviar" text="Enviar" />
-      <Button layoutX="636.0" layoutY="562.0" mnemonicParsing="false" text="Voltar" />
+      <Button layoutX="636.0" layoutY="562.0" mnemonicParsing="false" onMouseClicked="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

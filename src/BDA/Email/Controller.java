@@ -195,7 +195,25 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void last24h(ActionEvent event) {
-		emailsList.setItems(email.getLast24h());
+		emailsList.setItems(email.getLast("24h"));
+	}
+	
+	/**
+	 * Procedimento que devolve apenas os emails da ultima semana
+	 * @param event
+	 */
+	@FXML
+	private void lastWeek(ActionEvent event) {
+		emailsList.setItems(email.getLast("week"));
+	}
+	
+	/**
+	 * Procedimento que devolve apenas os emails do ultimo mes
+	 * @param event
+	 */
+	@FXML
+	private void lastMonth(ActionEvent event) {
+		emailsList.setItems(email.getLast("month"));
 	}
 
 	/**
