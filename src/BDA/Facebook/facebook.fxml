@@ -20,11 +20,6 @@
             <Image url="@../../../Graphics/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
          </image>
       </ImageView>
-      <TextField layoutX="63.0" layoutY="242.0" prefHeight="44.0" prefWidth="125.0" text="\@Username">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </TextField>
       <Button layoutX="650.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter" />
       <MenuButton layoutX="367.0" layoutY="109.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Contacts ">
         <items>
@@ -40,5 +35,10 @@
             <Image url="@../../../Graphics/logout.png" />
          </image>
       </ImageView>
+      <Label layoutX="85.0" layoutY="239.0" prefHeight="50.0" prefWidth="106.0" text="\@Username">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
