@@ -11,17 +11,36 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.ControllerBDA">
    <children>
-      <Button layoutX="856.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="49.0" prefWidth="43.0" />
-      <Label layoutX="830.0" layoutY="19.0" prefHeight="49.0" prefWidth="137.0" styleClass="text-field" text="Username">
+   	 <Label layoutX="700.0" layoutY="58.0" prefHeight="49.0" prefWidth="70.0" styleClass="text-field" text="Email:">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="863.0" layoutY="75.0" styleClass="image">
-         <image>
-            <Image url="file:///../Graphics/rsz_img_266983.png" />
-         </image>
-      </ImageView>
+      <Label layoutX="693.0" layoutY="111.0" prefHeight="49.0" prefWidth="90.0" styleClass="text-field" text="Facebook:">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="700.0" layoutY="162.0" prefHeight="49.0" prefWidth="70.0" styleClass="text-field" text="Twitter:">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label id="userEmail" fx:id="userEmail" layoutX="783.0" layoutY="58.0" prefHeight="49.0" prefWidth="170.0" styleClass="text-field" text="Não efetuou login">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label id="userFacebook" fx:id="userFacebook" layoutX="794.0" layoutY="111.0" prefHeight="49.0" prefWidth="170.0" styleClass="text-field" text="Não efetuou login">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label id="userTwitter" fx:id="userTwitter" layoutX="797.0" layoutY="165.0" prefHeight="49.0" prefWidth="163.0" styleClass="text-field" text="Não efetuou login">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Label>
       <Button layoutX="893.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="50.0" textFill="#514c4c">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -115,5 +134,6 @@
             <Image url="file:///../Graphics/apps_menu.png" />
          </image>
       </ImageView>
+      <Button layoutX="925.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

@@ -27,22 +27,34 @@ public class ControllerCredentials {
 	 */
 	@FXML
 	private ListView<Credential> emailCredentials;
-
+	/**
+	 * Button editar facebook
+	 */
 	@FXML
 	private Button editFacebookbtn;
-	
+	/**
+	 * Button apagar facebook
+	 */
 	@FXML
 	private Button deleteFacebookbtn;
-	
+	/**
+	 * Button editar twitter
+	 */
 	@FXML
 	private Button editTwitterbtn;
-	
+	/**
+	 * Button apagar twitter
+	 */
 	@FXML
 	private Button deleteTwitterbtn;
-	
+	/**
+	 * Button editar email
+	 */
 	@FXML
 	private Button editEmailbtn;
-	
+	/**
+	 * Button apagar email
+	 */
 	@FXML
 	private Button deleteEmailbtn;
 	
@@ -123,13 +135,16 @@ public class ControllerCredentials {
 	 */
 	@FXML
 	private TextField passwordEmail;
-
+	
+	/**
+	 * Credenciais dos serviços
+	 */
 	Credentials cred = new Credentials();
 
 	/**
 	 * Procedimento que adiciona posts à timeline quando a vista e selecionada
 	 * (biblioteca Javafx)
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void initialize() throws Exception {
@@ -138,6 +153,10 @@ public class ControllerCredentials {
 		email_load();
 	}
 
+	/**
+	 * @throws Exception e
+	 * 
+	 */
 	private void facebook_load() throws Exception {
 		facebookCredentials.setItems(cred.getCredentials(XMLclass.facebookService));
 		facebookCredentials.getSelectionModel().clearSelection();
@@ -145,6 +164,10 @@ public class ControllerCredentials {
 		deleteFacebookbtn.setDisable(true);
 	}
 
+	/**
+	 * @throws Exception e
+	 * 
+	 */
 	private void twitter_load() throws Exception {
 		twitterCredentials.setItems(cred.getCredentials(XMLclass.twitterService));
 		twitterCredentials.getSelectionModel().clearSelection();
@@ -152,6 +175,10 @@ public class ControllerCredentials {
 		deleteTwitterbtn.setDisable(true);
 	}
 
+	/**
+	 * @throws Exception e
+	 * 
+	 */
 	private void email_load() throws Exception {
 		emailCredentials.setItems(cred.getCredentials(XMLclass.emailService));
 		emailCredentials.getSelectionModel().clearSelection();
@@ -161,7 +188,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws IOException 
+	 * @param event MouseEvent
+	 * @throws IOException
 	 */
 	@FXML
 	private void voltar_clicked(MouseEvent event) throws IOException {
@@ -170,8 +198,7 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que expande a mensagem selecionada para uma TextArea
-	 * 
-	 * @param event
+	 * @param event MouseEvent
 	 */
 	@FXML
 	protected void facebookSelection(MouseEvent event) {
@@ -186,7 +213,11 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
+	 * @throws Exception e
+	 */
+	/**
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void addFacebookCredencial_clicked(ActionEvent event) throws Exception {
@@ -200,7 +231,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void editFacebookCredencial_clicked(ActionEvent event) throws Exception {
@@ -218,7 +250,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void removeFacebookCredencial_clicked(ActionEvent event) throws Exception {
@@ -235,6 +268,9 @@ public class ControllerCredentials {
 	/**
 	 * Procedimento que expande a mensagem selecionada para uma TextArea
 	 * 
+	 * @param event
+	 */
+	/**
 	 * @param event
 	 */
 	@FXML
@@ -254,6 +290,10 @@ public class ControllerCredentials {
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
 	 * @throws Exception 
 	 */
+	/**
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void addTwitterCredencial_clicked(ActionEvent event) throws Exception {
 		Credential addCredencial = getCredencial(XMLclass.twitterService);
@@ -267,6 +307,10 @@ public class ControllerCredentials {
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
 	 * @throws Exception 
+	 */
+	/**
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML
 	private void editTwitterCredencial_clicked(ActionEvent event) throws Exception {
@@ -286,6 +330,10 @@ public class ControllerCredentials {
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
 	 * @throws Exception 
 	 */
+	/**
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void removeTwitterCredencial_clicked(ActionEvent event) throws Exception {
 		Credential deleteCredencial = twitterCredentials.getSelectionModel().getSelectedItem();
@@ -303,6 +351,9 @@ public class ControllerCredentials {
 	 * 
 	 * @param event
 	 */
+	/**
+	 * @param event
+	 */
 	@FXML
 	protected void emailSelection(MouseEvent event) {
 		Credential selectedCredencial = emailCredentials.getSelectionModel().getSelectedItem();
@@ -314,7 +365,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML
 	private void addEmailCredencial_clicked(ActionEvent event) throws Exception {
@@ -330,6 +382,10 @@ public class ControllerCredentials {
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
 	 * @throws Exception 
+	 */
+	/**
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML
 	private void editEmailCredencial_clicked(ActionEvent event) throws Exception {
@@ -349,6 +405,10 @@ public class ControllerCredentials {
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
 	 * @throws Exception 
 	 */
+	/**
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void removeEmailCredencial_clicked(ActionEvent event) throws Exception {
 		Credential deleteCredencial = emailCredentials.getSelectionModel().getSelectedItem();
@@ -361,6 +421,10 @@ public class ControllerCredentials {
 		}
 	}
 
+	/**
+	 * @param service
+	 * @return
+	 */
 	private Credential getCredencial(String service) {
 		if (service.equals(XMLclass.facebookService))
 			return new Credential(null, this.userNameFacebook.getText(), this.passwordFacebook.getText(), null, null,
