@@ -1,6 +1,5 @@
 package BDA.Facebook;
 
-
 import BDA.Mensagem;
 
 public class MensagemFacebook extends Mensagem{
@@ -27,7 +26,6 @@ public class MensagemFacebook extends Mensagem{
 				(this.getContent() != null && this.getContent().contains(filter)) ||
 				(this.getDate() != null && this.getDate().contains(filter));
 	}
-
 	@Override
 	public boolean userContainsFilter(String filter) {
 		return (this.getUser() != null && this.getUser().contains(filter));

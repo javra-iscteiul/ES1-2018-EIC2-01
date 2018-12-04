@@ -71,10 +71,6 @@ public class Controller implements IServiceController {
 	 */
 	Email email = new Email();
 
-	public void initialize() {
-
-	}
-
 	public void init(Credential cred) {
 
 		Task<Void> exampleTask = new Task<Void>() {

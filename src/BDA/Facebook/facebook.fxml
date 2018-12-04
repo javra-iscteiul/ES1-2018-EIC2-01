@@ -6,39 +6,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Facebook.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="839.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Facebook.Controller">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="159.0" layoutX="57.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
-         <image>
-            <Image url="@../../../Graphics/profile.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="889.0" layoutY="565.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
-      <TextField layoutX="57.0" layoutY="27.0" prefHeight="31.0" prefWidth="632.0" />
-      <ImageView fitHeight="31.0" fitWidth="49.0" layoutX="697.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
-         <image>
-            <Image url="@../../../Graphics/loupe-png-image-5a3a60fa23bd63.95781634151377535414643234.jpg" />
-         </image>
-      </ImageView>
-      <Button layoutX="650.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter" />
-      <MenuButton layoutX="367.0" layoutY="109.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Contacts ">
+      <Button layoutX="770.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
+      <Button layoutX="474.0" layoutY="65.0" mnemonicParsing="false" onAction="#filter_clicked" onMouseClicked="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter" />
+      <MenuButton layoutX="678.0" layoutY="65.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Order by">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+            <MenuItem mnemonicParsing="false" onAction="#recent" text="Recent" />
+            <MenuItem mnemonicParsing="false" onAction="#older" text="Older" />
+          <MenuItem mnemonicParsing="false" onAction="#last24h" text="Last 24h" />
+          <MenuItem mnemonicParsing="false" onAction="#lastWeek" text="Last Week" />
+            <MenuItem mnemonicParsing="false" onAction="#lastMonth" text="Last Month" />
         </items>
       </MenuButton>
-      <ListView fx:id="facebookList" layoutX="57.0" layoutY="321.0" prefHeight="221.0" prefWidth="807.0" />
-      <TextField fx:id="filter" layoutX="229.0" layoutY="239.0" prefHeight="50.0" prefWidth="392.0" />
-      <Label layoutX="932.0" layoutY="21.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
-      <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="888.0" layoutY="17.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="image">
+      <ListView fx:id="facebookList" layoutX="11.0" layoutY="119.0" prefHeight="221.0" prefWidth="807.0" />
+      <TextField fx:id="filter" layoutX="186.0" layoutY="62.0" prefHeight="50.0" prefWidth="282.0" />
+      <Label layoutX="747.0" layoutY="18.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
+      <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="716.0" layoutY="14.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="image">
          <image>
             <Image url="@../../../Graphics/logout.png" />
          </image>
       </ImageView>
-      <Label layoutX="85.0" layoutY="239.0" prefHeight="50.0" prefWidth="106.0" styleClass="text-field" text="\@Username">
+      <Label fx:id="user" layoutX="42.0" layoutY="62.0" prefHeight="50.0" prefWidth="106.0" styleClass="text-field" text="\@Username">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="575.0" layoutY="65.0" mnemonicParsing="false" onAction="#filterUser_clicked" onMouseClicked="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter User" />
    </children>
 </AnchorPane>

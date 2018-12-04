@@ -1,8 +1,13 @@
 package BDA.Facebook;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.restfb.Connection;
@@ -17,7 +22,6 @@ import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -35,6 +39,9 @@ public class Facebook implements IService {
 	 */
 	private ObservableList<Mensagem> posts = FXCollections.observableArrayList();
 	
+	/**
+	 * Credencial da conta que fez login no facebook
+	 */
 	private Credential facebookCredential;
 	
 	public void init(Credential cred){
@@ -42,12 +49,11 @@ public class Facebook implements IService {
 	}
 
 	/**
-	 * Este método permite que seja obtida uma lista dos posts de um utilizador
+	 * Este método permite que seja obtida uma lista dos posts do utilizador logado
 	 * na timeline do facebook (interface)
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 * @throws Exception 
-	 * @throws  
 	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		//variavel que vai ser utilizada para armazenar os dados recebidos no ficheiro xml, para ler que do tiver offline
@@ -100,7 +106,6 @@ public class Facebook implements IService {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook da sessão anterior
 	 * @throws Exception 
-	 * @throws DOMException 
 	 */
 	public ObservableList<Mensagem> getStoredTimeLine() throws Exception {
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
@@ -120,15 +125,14 @@ public class Facebook implements IService {
 					}
 				}
 			}
-			
 			return posts;
 	}
 
 	/**
 	 * Este método permite que seja obtida uma lista dos posts de um utilizador
 	 * na timeline filtradas com o filtro passado como parametro (interface)
-	 * 
-	 * @return retorna uma lista dos posts do utilizador no facebook
+	 * @param filter String
+	 * @return retorna uma lista dos posts filtrados do utilizador no facebook
 	 */
 	public ObservableList<Mensagem> setFilter(String filter) throws Exception {
 			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
@@ -146,7 +150,72 @@ public class Facebook implements IService {
 			
 			return posts;
 	}
-
+	
+	/**
+	 * Este método permite que seja obtida uma lista dos posts de um utilizador
+	 * na timeline filtradas pelo utilizador que fez o post com o filtro passado como parametro (interface)
+	 * @param filter String
+	 * @return retorna uma lista dos posts do utilizador no facebook
+	 */
+	public ObservableList<Mensagem> setUserFilter(String filter) throws Exception {
+//			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
+//			for(Mensagem post : getTimeLine())
+//			{
+//				if(post.userContainsFilter(filter)) 
+//					filteredMsg.add(post);
+//			}
+//			posts = filteredMsg;
+//			
+//			Map<String, String> filterAttr = new HashMap<>();
+//			filterAttr.put("value", filter);
+//			if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr))
+//				XMLclass.addChild(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr);
+//			
+//			return posts;
+		return null;
+	}
+	
+	
+	/**
+	 * Este método permite que seja obtida uma lista dos posts de um utilizador
+	 * na timeline filtradas pelo tempo o filtro é passado como parametro (interface)
+	 * @param filter String
+	 * @return retorna uma lista dos posts do utilizador no facebook
+	 */
+	public ObservableList<Mensagem> getLast(String filter) throws Exception {
+			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
+			for(Mensagem post : getTimeLine())
+			{				
+				DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+				Date date = format.parse(post.getDate());
+				Instant now = Instant.now();
+				if (filter == "24h") {
+					if ((!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now))) {
+						filteredMsg.add(post);
+					}
+				}else if (filter == "week") {
+					if ((!date.toInstant().isBefore(now.minus(7, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
+						filteredMsg.add(post);
+					}
+				}else if (filter == "month") {
+					if ((!date.toInstant().isBefore(now.minus(30, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
+						filteredMsg.add(post);
+					}
+				}
+			}
+			posts = filteredMsg;
+			
+			Map<String, String> filterAttr = new HashMap<>();
+			filterAttr.put("value", filter);
+			if(!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr))
+				XMLclass.addChild(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr);
+			
+			return posts;
+	}
+	
+	/**
+	 * @return retorna as credenciais da conta que fez login
+	 */
 	public Credential getCredential() {
 		return this.facebookCredential;
 	}
