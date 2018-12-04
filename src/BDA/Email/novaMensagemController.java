@@ -68,6 +68,8 @@ public class novaMensagemController implements IServiceController {
 	@FXML
 	public void voltar(MouseEvent event){
 		Credential cred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+		to.setText("");
+		Email.setTo("");
 		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("email.fxml"), cred);
 	}
 	
