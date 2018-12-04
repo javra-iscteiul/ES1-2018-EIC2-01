@@ -7,6 +7,7 @@
 <filter value="ola"/>
 <filter value="hello"/>
 <filter value="oi"/>
+<filter value=""/>
 </facebook>
 
 
@@ -21,6 +22,14 @@
 
 
 
-<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="False" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com"/>
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<filter value=""/>
+<filterUser value="a"/>
+<filter value="a"/>
+<filtera value="true"/>
+<filter24h value="true"/>
+<filterweek value="true"/>
+<filtermonth value="true"/>
+</email>
 
 </Services>

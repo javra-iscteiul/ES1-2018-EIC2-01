@@ -117,7 +117,7 @@ public class Credential {
 	}
 
 	public String getLogin() {
-		return accessTokenSecret;
+		return this.login;
 	}
 
 	public void setLogin(String login) {
