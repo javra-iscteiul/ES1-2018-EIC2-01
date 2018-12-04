@@ -16,8 +16,6 @@ public class MensagemEmail extends Mensagem{
 	 */
 
 	private String subject;
-
-	
 	
 	/**
 	 * @param from_to String
@@ -56,16 +54,6 @@ public class MensagemEmail extends Mensagem{
 		this.subject = subject;
 	}
 
-	/**
-	 * Devolve o conteudo da mensagem
-	 * @return String
-	 */
-
-
-	/**
-	 * Altera  o conteudo da mensagem
-	 * @param content String
-	 */
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

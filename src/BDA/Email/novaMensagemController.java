@@ -40,6 +40,9 @@ public class novaMensagemController implements IServiceController {
 	@FXML
 	private TextArea msg;
 	
+	/* (non-Javadoc)
+	 * @see BDA.IServiceController#init(BDA.Credential)
+	 */
 	@Override
 	public void init(Credential cred) {
 		emailCredential = cred;
@@ -48,7 +51,7 @@ public class novaMensagemController implements IServiceController {
 	/**
 	 * Ao clicar no botao enviar chama a função do email responsavel pelo envio da mensagem com os parametros indicados pelo utilizador
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	public void enviar(MouseEvent event) throws Exception{
@@ -65,7 +68,7 @@ public class novaMensagemController implements IServiceController {
 	/**
 	 * Ao clicar no botao voltar regressa ao seriviço email
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	public void voltar(MouseEvent event) throws Exception{

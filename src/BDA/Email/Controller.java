@@ -71,6 +71,9 @@ public class Controller implements IServiceController {
 	 */
 	Email email = new Email();
 
+	/* (non-Javadoc)
+	 * @see BDA.IServiceController#init(BDA.Credential)
+	 */
 	public void init(Credential cred) {
 
 		Task<Void> exampleTask = new Task<Void>() {
@@ -95,8 +98,8 @@ public class Controller implements IServiceController {
 	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com
 	 * o rato (biblioteca Javafx)
 	 * 
-	 * @param event
-	 *            MouseEvent
+	 * @param event MouseEvent
+	 *            
 	 */
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event) {
@@ -118,7 +121,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que filtra a lista de emails dada uma palavra ou frase
 	 * 
-	 * @param event
+	 * @param event ActionEvent
 	 */
 	@FXML
 	private void filter(ActionEvent event) {
@@ -138,8 +141,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que filtra a lista de emails dado um user
 	 * 
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void filterUser(ActionEvent event) throws Exception {
@@ -150,8 +153,8 @@ public class Controller implements IServiceController {
 	 * Procedimento que altera a pasta selecionada para a caixa de itens
 	 * enviados com os respetivos emails
 	 * 
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void sent(ActionEvent event) throws Exception {
@@ -166,8 +169,8 @@ public class Controller implements IServiceController {
 	 * Procedimento que altera a pasta selecionada para a caixa de itens
 	 * recebidos com os respetivos emails
 	 * 
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void inbox(ActionEvent event) throws Exception {
@@ -179,8 +182,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que ordena emails por data mais recente
 	 * 
-	 * @param event
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception  e
 	 */
 	@FXML
 	private void recent(ActionEvent event) throws Exception {
@@ -190,8 +193,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que ordena emails por data mais antiga
 	 * 
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void older(ActionEvent event) throws Exception {
@@ -203,8 +206,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os emails das ultimas 24 horas
 	 * 
-	 * @param event
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void last24h(ActionEvent event) throws Exception {
@@ -214,8 +217,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os emails da ultima semana
 	 * 
-	 * @param event
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void lastWeek(ActionEvent event) throws Exception {
@@ -225,8 +228,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os emails do ultimo mes
 	 * 
-	 * @param event
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void lastMonth(ActionEvent event) throws Exception {
@@ -236,7 +239,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que retorna à janela principal da aplicação
 	 * 
-	 * @param event
+	 * @param event ActionEvent
 	 * @throws IOException 
 	 */
 	@FXML
@@ -247,8 +250,8 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento para mudar a conta em utilização
 	 * 
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void logout(MouseEvent event) throws Exception {
@@ -260,7 +263,7 @@ public class Controller implements IServiceController {
 	 * Procedimento que mostra a interface de envio de mensagens para a mensagem
 	 * selecionada
 	 * 
-	 * @param event
+	 * @param event ActionEvent
 	 * @throws IOException 
 	 */
 	@FXML
@@ -274,7 +277,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que expande a mensagem selecionada para uma TextArea
 	 * 
-	 * @param event
+	 * @param event ActionEvent
 	 */
 	@FXML
 	protected void selection(MouseEvent event) {
@@ -285,7 +288,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que mostra a interface de envio de mensagens
 	 * 
-	 * @param event
+	 * @param event ActionEvent
 	 * @throws IOException 
 	 */
 	@FXML

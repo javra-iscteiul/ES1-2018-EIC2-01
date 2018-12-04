@@ -47,7 +47,9 @@ import javafx.collections.ObservableList;
  */
 
 public class Email implements IService {
-
+	/**
+	 * credenciais do email
+	 */
 	private Credential emailCredential;
 
 	/**
@@ -98,8 +100,8 @@ public class Email implements IService {
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador
 	 * (interface)
 	 * 
-	 * @return retorna uma lista dos emails do utilizador
-	 * @throws Exception 
+	 * @return ObservableList
+	 * @throws Exception e
 	 * @throws DOMException 
 	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception {
@@ -188,8 +190,8 @@ public class Email implements IService {
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador
 	 * no caso de este se encontrar sem acesso à Internet (interface)
 	 * 
-	 * @return retorna uma lista dos emails do utilizador
-	 * @throws Exception 
+	 * @return ObservableList
+	 * @throws Exception e
 	 * @throws DOMException 
 	 */
 	public ObservableList<Mensagem> getStoredTimeLine() throws DOMException, Exception {
@@ -236,10 +238,10 @@ public class Email implements IService {
 	 * Procedimento responsavel por ler a informação do email e passá-la para
 	 * string
 	 * 
-	 * @param p
-	 *            Part
+	 * @param p  Part
+	 *           
 	 * @return String conteudo do email
-	 * @throws Exception
+	 * @throws Exception e
 	 */
 	public static String writePart(Part p) throws Exception {
 		String content = "";
@@ -284,9 +286,9 @@ public class Email implements IService {
 	/**
 	 * Procedimento que imprime na consola os dados principais da mensagem
 	 * 
-	 * @param m
-	 *            Message
-	 * @throws Exception
+	 * @param m Message
+	 *          
+	 * @throws Exception e
 	 */
 	public static void writeEnvelope(Message m) throws Exception {
 		// System.out.println("This is the message envelope");
@@ -315,10 +317,10 @@ public class Email implements IService {
 	 * Procedimento que filtra os emails de um utilizador consoante uma palavra
 	 * ou frase
 	 * 
-	 * @param text
-	 *            String
-	 * @return lista dos emails do utilizador filtrada
-	 * @throws Exception
+	 * @param text String
+	 *           
+	 * @return ObservableList
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> setFilter(String text) throws Exception {
 		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
@@ -341,10 +343,9 @@ public class Email implements IService {
 	 * Procedimento que filtra os emails de um utilizador consoante os emails
 	 * que pertencem ao utilizador pedido
 	 * 
-	 * @param text
-	 *            String
-	 * @return lista dos emails do utilizador filtrada
-	 * @throws Exception
+	 * @param text  String
+	 * @return ObservableList
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> filterUser(String text) throws Exception {
 		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
@@ -365,8 +366,8 @@ public class Email implements IService {
 	/**
 	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
 	 * 
-	 * @return lista dos emails do utilizador filtrada
-	 * @throws Exception
+	 * @return ObservableList
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> getLast(String s) throws Exception {
 		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
@@ -402,12 +403,12 @@ public class Email implements IService {
 	 * Procedimento responsavel pelo envio de uma mensagem com os dados
 	 * recebidos como parametros
 	 * 
-	 * @param to
-	 *            String
-	 * @param sub
-	 *            String
-	 * @param text
-	 *            String
+	 * @param to  String
+	 *           
+	 * @param sub  String
+	 *           
+	 * @param text  String
+	 *           
 	 */
 	public static boolean sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
@@ -475,13 +476,17 @@ public class Email implements IService {
 	/**
 	 * Altera o destinatario de uma possivel mensagem
 	 * 
-	 * @param to
-	 *            String
+	 * @param to  String
+	 *           
 	 */
 	public static void setTo(String to) {
 		Email.to = to;
 	}
 
+	/**
+	 * devolve as credencias do email
+	 * @return Credential
+	 */
 	public Credential getCredential() {
 		return this.emailCredential;
 	}
