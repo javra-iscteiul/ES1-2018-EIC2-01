@@ -15,7 +15,7 @@ import BDA.Email.Email;
 public class emailTest {
 	
 	@Test
-    public void getTimeline() {
+    public void getTimeline() throws Exception {
 		Email email = new Email();
 		Credential credTest = new Credential(
 				XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
@@ -26,7 +26,7 @@ public class emailTest {
 		Email.setFolder("Sent");
 		assertNotNull(email.getTimeLine());
 		assertNotNull(email.getStoredTimeLine());
-		Email.setFolder("Inbox");
+		Email.setFolder("INBOX");
 		assertNotNull(email.getTimeLine());
 		assertNotNull(email.getStoredTimeLine());
 		

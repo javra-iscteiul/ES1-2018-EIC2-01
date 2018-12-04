@@ -7,10 +7,10 @@ import org.junit.Test;
 import BDA.TimelineBDA;
 
 public class TimelineBDATest {
-	TimelineBDA timeline = new TimelineBDA();
 
 	@Test
-	public void testTimeline(){
+	public void testTimeline() throws Exception{
+		TimelineBDA timeline = new TimelineBDA();
 		assertNotNull(timeline);
 		
 		assertNotNull(timeline.getTimeLine());

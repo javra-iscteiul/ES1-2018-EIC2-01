@@ -1,5 +1,6 @@
 package BDA;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ public class Main extends Application {
 	 * 
 	 * @param janelaInicial
 	 *            Stage
+	 * @throws IOException 
 	 */
 	@Override
 	public void start(Stage janelaInicial) {
@@ -40,6 +42,7 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -47,9 +50,10 @@ public class Main extends Application {
 	 * 
 	 * @param event
 	 *            MouseEvent
+	 * @throws Exception
 	 */
 	@FXML
-	private void twitterLogo_clicked(MouseEvent event) {
+	private void twitterLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.twitterService)) {
 			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
 					XMLclass.twitterService);
@@ -66,9 +70,10 @@ public class Main extends Application {
 	 * 
 	 * @param event
 	 *            MouseEvent
+	 * @throws Exception
 	 */
 	@FXML
-	private void facebookLogo_clicked(MouseEvent event) {
+	private void facebookLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.facebookService)) {
 			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
 					XMLclass.facebookService);
@@ -85,9 +90,10 @@ public class Main extends Application {
 	 * 
 	 * @param event
 	 *            MouseEvent
+	 * @throws Exception
 	 */
 	@FXML
-	private void emailLogo_clicked(MouseEvent event) {
+	private void emailLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService)) {
 			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
 		} else {
@@ -103,21 +109,23 @@ public class Main extends Application {
 	 * 
 	 * @param event
 	 *            MouseEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	private void apps_clicked(MouseEvent event) {
+	private void apps_clicked(MouseEvent event) throws IOException {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
 	}
-	
+
 	/**
 	 * Procedimento que mostra a interface de edicao de credencias
+	 * 
 	 * @param event
+	 * @throws IOException 
 	 */
 	@FXML
-	private void editar(MouseEvent event) {
+	private void editar(MouseEvent event) throws IOException {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("EditCredentials.fxml"));
 	}
-
 
 	private static void main(String[] args) {
 		launch(args);

@@ -1,4 +1,5 @@
 package BDA.Twitter;
+
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.util.Date;
@@ -23,103 +24,102 @@ import twitter4j.conf.ConfigurationBuilder;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-
-
 /**
  * Date: Oct 22 2018
+ * 
  * @author ES1-2018-EIC2-01
- * @version 1.0
- * Aplicação agregadora de aplicações: canal do Twitter
+ * @version 1.0 Aplicação agregadora de aplicações: canal do Twitter
  */
 public final class App_twitter implements IService {
-	
+
 	private Credential twitterCredential;
-	
+
 	/**
-	 * ObservableList com os tweets 
+	 * ObservableList com os tweets
 	 */
 	private ObservableList<Mensagem> tweets = FXCollections.observableArrayList();
-	
+
 	/**
-	 * Atributo do tipo Twitter utilizados nos procedimentos seguintes 
+	 * Atributo do tipo Twitter utilizados nos procedimentos seguintes
 	 */
 	private static Twitter twitter;
-	
 
-
-	
-	 /**
-	 * Inicialização dos atributos relacionados com o AccessToken  
+	/**
+	 * Inicialização dos atributos relacionados com o AccessToken
 	 */
 	public void init(Credential cred) {
 		twitterCredential = cred;
-		
-		 ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)
-		  .setOAuthConsumerKey(twitterCredential.consumerKey)
-		  .setOAuthConsumerSecret(twitterCredential.consumerSecret)
-		  .setOAuthAccessToken(twitterCredential.accessToken)
-		  .setOAuthAccessTokenSecret(twitterCredential.accessTokenSecret);
+
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true).setOAuthConsumerKey(twitterCredential.consumerKey)
+				.setOAuthConsumerSecret(twitterCredential.consumerSecret)
+				.setOAuthAccessToken(twitterCredential.accessToken)
+				.setOAuthAccessTokenSecret(twitterCredential.accessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
-				
-	 }
-	
-	
+
+	}
+
 	/**
-	 * Este procedimento permite que sejam adicionados tweets e o respectivo user à ObservableList, de modo a colocá-los na ListView. 
-	 * Guarda a nova lista de tweets num ficheiro xml e invoca uma excecao nos casos em que se encontra offline
+	 * Este procedimento permite que sejam adicionados tweets e o respectivo
+	 * user à ObservableList, de modo a colocá-los na ListView. Guarda a nova
+	 * lista de tweets num ficheiro xml e invoca uma excecao nos casos em que se
+	 * encontra offline
+	 * 
 	 * @param tweetsList
 	 * @return
+	 * @throws Exception
 	 * @throws TwitterException
 	 */
-	public ObservableList<Mensagem>  getTimeLine( ) { 
-	//	ListView<String> tweetsList = new ListView<>();
+	public ObservableList<Mensagem> getTimeLine() throws Exception {
+		// ListView<String> tweetsList = new ListView<>();
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		tweets.clear();
-		try{
+		try {
 			Paging paging = new Paging(1, 40);
 			List<Status> statuses = twitter.getHomeTimeline(paging);
-			
+
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential)) {
 				XMLclass.deleteNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential);
 			}
-			
-			int counter=0;
-	        for (Status status : statuses) {
-	        	String userName = status.getUser().getName();
-	        	String text =status.getText();
-	        	Date dateCreated = status.getCreatedAt();
-	        	String date = dateCreated.toString();
-	        	String s = status.getUser().getName() + "\n" + status.getText();
-	        	MensagemTwitter m = new MensagemTwitter(userName, date, text);
-	        	
-	        	Map<String, String> childAttributesToStore = new HashMap<>();
+
+			int counter = 0;
+			for (Status status : statuses) {
+				String userName = status.getUser().getName();
+				String text = status.getText();
+				Date dateCreated = status.getCreatedAt();
+				String date = dateCreated.toString();
+				String s = status.getUser().getName() + "\n" + status.getText();
+				MensagemTwitter m = new MensagemTwitter(userName, date, text);
+
+				Map<String, String> childAttributesToStore = new HashMap<>();
 				childAttributesToStore.put("userName", userName);
 				childAttributesToStore.put("dateCreated", date);
 				childAttributesToStore.put("statusText", text);
 				dataToStore.put("post" + counter, childAttributesToStore);
-			
+
 				tweets.add(counter, m);
 				counter++;
-	        }
-	        
-	        XMLclass.addNodeAndChild(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential, dataToStore);
-	        
-	      //  tweetsList.setItems(tweets);
+			}
+
+			XMLclass.addNodeAndChild(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential, dataToStore);
+
+			// tweetsList.setItems(tweets);
 			return tweets;
 		} catch (Exception e) {
-			e.printStackTrace();
 			solveConectionProblems();
 			return tweets;
 		}
 	}
-	
+
 	/**
-	 * Funcao responsavel por resolver os problemas de conexao, colocando a ultima lista de tweets guardada
+	 * Funcao responsavel por resolver os problemas de conexao, colocando a
+	 * ultima lista de tweets guardada
+	 * 
 	 * @param tweetsList
+	 * @throws Exception
 	 */
-	private void solveConectionProblems() {
+	public boolean solveConectionProblems() throws Exception {
 		if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential)) {
 			Node twitterNode = XMLclass.getNode(XMLclass.storedDataFile, XMLclass.twitterService, twitterCredential);
 			int counter = 0;
@@ -129,141 +129,122 @@ public final class App_twitter implements IService {
 					String userName = childAttributes.getNamedItem("userName").getNodeValue();
 					String title = childAttributes.getNamedItem("statusText").getNodeValue();
 					String date = childAttributes.getNamedItem("dateCreated").getNodeValue();
-					MensagemTwitter m= new MensagemTwitter(userName, date, title);
+					MensagemTwitter m = new MensagemTwitter(userName, date, title);
 					tweets.add(counter, m);
 					counter++;
 				}
 			}
+			return true;
 		}
+		return false;
 	}
 
-
 	/**
-	 * Procedimento que filtra os tweets da timeline segundo determinada frase ou palavra
+	 * Procedimento que filtra os tweets da timeline segundo determinada frase
+	 * ou palavra
+	 * 
 	 * @param quote
 	 * @param tweetsList
 	 * @return
 	 * @throws TwitterException
 	 */
-	public ObservableList<Mensagem> setFilter(String quote) {
-		 try{
-			
-			 ObservableList<Mensagem> nova = FXCollections.observableArrayList();
-	        System.out.println("------------------------\n Showing home timeline \n------------------------");
-			int counter=0;
-			int counterTotal = 0;
-			for (Mensagem status : tweets) {
-				if (status.getUser() != null && status.getContent().contains(quote)) {
-					//String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
-					MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(), status.getContent());
-					//System.out.println(status.getUser().getName() + ":" + status.getText() );
-					nova.add(counter, m);
-					counter++;
-				}
-					counterTotal++;
-				
-	        }
-			
-			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-			return nova;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public ObservableList<Mensagem> filter_users(String quote) throws TwitterException {
-		 try{
-			Paging paging = new Paging(1, 40);
-			List<Status> statuses = twitter.getHomeTimeline(paging);
-	        System.out.println("------------------------\n Showing home timeline \n------------------------");
-			int counter=0;
-			int counterTotal = 0;
-			tweets.clear();
-			tweets.clear();
-			for (Status status : statuses) {
-				 if (status.getUser().getName() != null && status.getUser().getName().contains(quote)){
-					MensagemTwitter m = new MensagemTwitter(status.getUser().getName(), status.getCreatedAt().toString(), status.getText());
-					System.out.println("encontrado utilizador" );
-					tweets.add(counter, m);
-					counter++;
-				}
-				counterTotal++;
-	        }
-			
-		   // tweetsList.setItems(tweets);
-			System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
-			return tweets;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	public ObservableList<Mensagem> timeFilter(String type) {
-		try {
-			Query q = new Query(type);
-			if(q.getQuery().equals("lastDay")){
-				Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
-				 String date = (Integer.toString(twentyfourhoursbefore.getYear())  +
-						 '-' + Integer.toString(twentyfourhoursbefore.getMonth())+
-						 '-'+Integer.toString(twentyfourhoursbefore.getDay()));
-				q.setSince(date);
-			}else if(q.getQuery().equals("lastMonth")){
-				Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (30*24*60*60*1000));
-				 String date = (Integer.toString(twentyfourhoursbefore.getYear())  +
-						 '-' + Integer.toString(twentyfourhoursbefore.getMonth())+
-						 '-'+Integer.toString(twentyfourhoursbefore.getDay()));
-				q.setSince(date);
+	public ObservableList<Mensagem> setFilter(String quote) throws TwitterException {
+		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+		System.out.println("------------------------\n Showing home timeline \n------------------------");
+		int counter = 0;
+		int counterTotal = 0;
+		for (Mensagem status : tweets) {
+			if (status.getUser() != null && status.getContent().contains(quote)) {
+				// String s = status.getCreatedAt() + " " +
+				// status.getUser().getName() + ":" + status.getText();
+				MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(),
+						status.getContent());
+				// System.out.println(status.getUser().getName() + ":" +
+				// status.getText() );
+				nova.add(counter, m);
+				counter++;
 			}
-			
-			
-			QueryResult result = twitter.search(q);
-			List<Status> statuses = result.getTweets();
-			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
-			int counter=0;
-			for (Mensagem status : tweets) {
-				
-					//String s = status.getCreatedAt() + " " +  status.getUser().getName() + ":" + status.getText();
-					MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(), status.getContent());
-					//System.out.println(status.getUser().getName() + ":" + status.getText() );
-					nova.add(counter, m);
-					counter++;
-					
-			}	
-			
-			return nova;
-		} catch (TwitterException e) {
-			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
+			counterTotal++;
 
-		
+		}
+
+		System.out.println("-------------\nNº of Results: " + counter + "/" + counterTotal);
+		return nova;
 	}
-	
+
+	public ObservableList<Mensagem> filter_users(String quote) throws TwitterException {
+		Paging paging = new Paging(1, 40);
+		List<Status> statuses = twitter.getHomeTimeline(paging);
+		System.out.println("------------------------\n Showing home timeline \n------------------------");
+		int counter = 0;
+		int counterTotal = 0;
+		tweets.clear();
+		for (Status status : statuses) {
+			if (status.getUser().getName() != null && status.getUser().getName().contains(quote)) {
+				MensagemTwitter m = new MensagemTwitter(status.getUser().getName(), status.getCreatedAt().toString(),
+						status.getText());
+				System.out.println("encontrado utilizador");
+				tweets.add(counter, m);
+				counter++;
+			}
+			counterTotal++;
+		}
+
+		// tweetsList.setItems(tweets);
+		System.out.println("-------------\nNº of Results: " + counter + "/" + counterTotal);
+		return tweets;
+	}
+
+	public ObservableList<Mensagem> timeFilter(String type) throws TwitterException {
+		Query q = new Query(type);
+		if (q.getQuery().equals("lastDay")) {
+			Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+			twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24 * 60 * 60 * 1000));
+			String date = (Integer.toString(twentyfourhoursbefore.getYear()) + '-'
+					+ Integer.toString(twentyfourhoursbefore.getMonth()) + '-'
+					+ Integer.toString(twentyfourhoursbefore.getDay()));
+			q.setSince(date);
+		} else if (q.getQuery().equals("lastMonth")) {
+			Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+			twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (30 * 24 * 60 * 60 * 1000));
+			String date = (Integer.toString(twentyfourhoursbefore.getYear()) + '-'
+					+ Integer.toString(twentyfourhoursbefore.getMonth()) + '-'
+					+ Integer.toString(twentyfourhoursbefore.getDay()));
+			q.setSince(date);
+		}
+
+		QueryResult result = twitter.search(q);
+		List<Status> statuses = result.getTweets();
+		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+		int counter = 0;
+		for (Mensagem status : tweets) {
+
+			// String s = status.getCreatedAt() + " " +
+			// status.getUser().getName() + ":" + status.getText();
+			MensagemTwitter m = new MensagemTwitter(status.getUser(), status.getDate().toString(), status.getContent());
+			// System.out.println(status.getUser().getName() + ":" +
+			// status.getText() );
+			nova.add(counter, m);
+			counter++;
+
+		}
+
+		return nova;
+	}
+
 	/**
 	 * Funcao responsavel por publicar novos tweets
+	 * 
 	 * @param quote
 	 * @return
+	 * @throws TwitterException 
 	 */
-	public String post(String quote){
-		try {
-			twitter.updateStatus(quote);
-			System.out.println("Successfully updated the status to [" + quote + "].");
-			
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  return quote;
+	public String post(String quote) throws TwitterException {
+		twitter.updateStatus(quote);
+		System.out.println("Successfully updated the status to [" + quote + "].");
+		return quote;
 	}
-	
-	
-	
+
 	public Credential getCredential() {
 		return this.twitterCredential;
 	}

@@ -17,6 +17,7 @@ import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -39,24 +40,16 @@ public class Facebook implements IService {
 	public void init(Credential cred){
 		this.facebookCredential = cred;
 	}
-	
-	public void changeConfig() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void createPost() {
-		// TODO Auto-generated method stub
-
-	}
 
 	/**
 	 * Este método permite que seja obtida uma lista dos posts de um utilizador
 	 * na timeline do facebook (interface)
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
+	 * @throws Exception 
+	 * @throws  
 	 */
-	public ObservableList<Mensagem> getTimeLine() {
+	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		//variavel que vai ser utilizada para armazenar os dados recebidos no ficheiro xml, para ler que do tiver offline
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
 		posts.clear();
@@ -106,9 +99,10 @@ public class Facebook implements IService {
 	 * na timeline do facebook da sessão anterior, ou seja está offline (interface)
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook da sessão anterior
+	 * @throws Exception 
+	 * @throws DOMException 
 	 */
-	private ObservableList<Mensagem> getStoredTimeLine() {
-		try {
+	public ObservableList<Mensagem> getStoredTimeLine() throws Exception {
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
 				Node facebookNode = XMLclass.getNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential);
 
@@ -128,9 +122,6 @@ public class Facebook implements IService {
 			}
 			
 			return posts;
-		} catch (Exception ex) {
-			return null;
-		}
 	}
 
 	/**
@@ -139,8 +130,7 @@ public class Facebook implements IService {
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
 	 */
-	public ObservableList<Mensagem> setFilter(String filter) {
-		try {
+	public ObservableList<Mensagem> setFilter(String filter) throws Exception {
 			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
 			for(Mensagem post : getTimeLine())
 			{
@@ -155,18 +145,6 @@ public class Facebook implements IService {
 				XMLclass.addChild(XMLclass.configFile, XMLclass.facebookService, facebookCredential, "filter", filterAttr);
 			
 			return posts;
-		} catch (Exception ex) {
-			return null;
-		}
-	}
-
-	public void getMessages() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void sendMessage(String messageToSend) {
-		// TODO Auto-generated method stub
 	}
 
 	public Credential getCredential() {

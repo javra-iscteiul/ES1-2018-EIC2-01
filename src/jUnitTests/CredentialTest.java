@@ -14,7 +14,7 @@ import BDA.Email.Email;
 public class CredentialTest {
 	
 	@Test
-    public void testCredentials() {
+    public void testCredentials() throws Exception {
 		Credential cred1 = new Credential("protocol", "user", "pass", "consumerkey", "consumerSecret", "accesstoken", "accesstokenSecret");
 		Credential cred2 = new Credential("user", "pass");
 		Credential cred3 = new Credential(XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());

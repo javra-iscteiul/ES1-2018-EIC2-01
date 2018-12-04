@@ -77,9 +77,10 @@ public class ControllerBDA {
 	/**
 	 * Procedimento que filtra a lista de mensagens dada uma palavra ou frase
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void filter(ActionEvent event) {
+	private void filter(ActionEvent event) throws Exception {
 		System.out.println(pesquisa.getText());
 		list.setItems(bda.setFilter(pesquisa.getText()));
 	}
@@ -87,9 +88,10 @@ public class ControllerBDA {
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void email(ActionEvent event) {
+	private void email(ActionEvent event) throws Exception {
 		if(email.isSelected()){
 			bda.setShowEmail(true);
 		}
@@ -101,9 +103,10 @@ public class ControllerBDA {
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void facebook(ActionEvent event) {
+	private void facebook(ActionEvent event) throws Exception {
 		if(facebook.isSelected()){
 			bda.setShowFacebook(true);
 		}
@@ -115,9 +118,10 @@ public class ControllerBDA {
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void twitter(ActionEvent event) {
+	private void twitter(ActionEvent event) throws Exception {
 		if(twitter.isSelected()){
 			bda.setShowTwitter(true);
 		}
@@ -130,27 +134,30 @@ public class ControllerBDA {
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void onlyEmail(ActionEvent event) {
+	private void onlyEmail(ActionEvent event) throws Exception {
 		list.setItems(bda.getOnlyEmail());
 	}
 	
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void onlyFacebook(ActionEvent event) {
+	private void onlyFacebook(ActionEvent event) throws Exception {
 		list.setItems(bda.getOnlyFacebook());
 	}
 	
 	/**
 	 * Procedimento que filtra a lista de mensagens
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void onlyTwitter(ActionEvent event) {
+	private void onlyTwitter(ActionEvent event) throws Exception {
 		list.setItems(bda.getOnlyTwitter());
 	}
 }

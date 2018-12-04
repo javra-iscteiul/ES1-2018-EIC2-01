@@ -9,7 +9,7 @@ import BDA.XMLclass;
 
 public class CredentialsTest {
 	@Test
-	public void getCredentials(){
+	public void getCredentials() throws Exception{
 		Credentials cred = new Credentials();
 		assertNotNull(cred.getCredentials(XMLclass.facebookService));
 		assertNotNull(cred.getCredentials(XMLclass.twitterService));
