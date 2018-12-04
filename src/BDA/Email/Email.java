@@ -1,6 +1,5 @@
 package BDA.Email;
 
-
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -185,7 +184,7 @@ public class Email implements IService {
 	 * Este método permite que seja obtida uma lista dos emails de um utilizador no caso de este se encontrar sem acesso à Internet (interface)
 	 * @return	retorna uma lista dos emails do utilizador
 	 */
-	private ObservableList<Mensagem> getStoredTimeLine() {
+	public ObservableList<Mensagem> getStoredTimeLine() {
 		try {
 			if(folder=="INBOX"){
 				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
@@ -412,7 +411,7 @@ public class Email implements IService {
 	 * @param sub String
 	 * @param text String
 	 */
-	public static void sendEmails(String to, String sub, String text, Credential emailCredential) {
+	public static boolean sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
 	      // Sender's email ID needs to be mentioned
 
@@ -441,8 +440,10 @@ public class Email implements IService {
 
 	            System.out.println("Done");
 	         System.out.println("Sent message successfully....");
+	         return true;
 	      } catch (MessagingException mex) {
 	         mex.printStackTrace();
+	         return false;
 	      }
 	}
 

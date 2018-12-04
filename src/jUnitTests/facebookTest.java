@@ -7,21 +7,24 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import BDA.Credential;
 import BDA.XMLclass;
 import BDA.Facebook.Facebook;
-import BDA.Facebook.IFacebook;
 import BDA.Facebook.MensagemFacebook;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 public class facebookTest {
-	private static IFacebook facebook = new Facebook();
+	private static Facebook facebook = new Facebook();
 	
 	@Test
     public void getTimeline() {
-		assertTrue(XMLclass.existsNode(XMLclass.configFile, "facebook"));
-		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "facebook"));
+		Credential credTest = new Credential(
+				XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());
+		assertTrue(XMLclass.existsNode(XMLclass.configFile, XMLclass.facebookService, credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, credTest));
 		//se tiver data guardada tem que dar sempre true
+		facebook.init(credTest);
 		assertNotNull(facebook.getTimeLine());
     }
 }

@@ -25,14 +25,17 @@ public class FuncoesGerais {
 	 * @param event Event 
 	 * @param ficheiroURL URL
 	 */
-	public static void mudarVistaFXML(Event event, URL ficheiroURL){
+	public static boolean mudarVistaFXML(Event event, URL ficheiroURL){
 		try {
 			Node node = (Node)event.getSource();
 			Stage stage = (Stage)node.getScene().getWindow();
 			stage.setScene(new Scene(FXMLLoader.load(ficheiroURL)));
+			
+			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -41,7 +44,7 @@ public class FuncoesGerais {
 	 * @param event Event 
 	 * @param ficheiroURL URL
 	 */
-	public static void mudarVistaFromLoginFXML(Event event, URL ficheiroURL, Credential cred){
+	public static boolean mudarVistaFromLoginFXML(Event event, URL ficheiroURL, Credential cred){
 		try {
 			Node node = (Node)event.getSource();
 			Stage stage = (Stage)node.getScene().getWindow();
@@ -52,13 +55,16 @@ public class FuncoesGerais {
 			servico.init(cred);
 			
 			stage.setScene(new Scene(region));
+			
+			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public static void mudarVistaParaLoginFXML(Event event, URL ficheiroURL, String service){
+	public static boolean mudarVistaParaLoginFXML(Event event, URL ficheiroURL, String service){
 		try {
 			Node node = (Node)event.getSource();
 			Stage stage = (Stage)node.getScene().getWindow();
@@ -69,9 +75,12 @@ public class FuncoesGerais {
 			servico.login_init(service);
 			
 			stage.setScene(new Scene(region));
+			
+			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

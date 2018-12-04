@@ -11,12 +11,6 @@
 
 
 
-<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
-<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
-<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-</emailSent>
 
 
 
@@ -30,7 +24,372 @@
 
 
 
-<emailInbox AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<emailInbox AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
 <post4 Date="Wed Nov 21 10:26:18 GMT 2018" From="Ana Nunes &lt;ana.rsn@hotmail.com&gt;" Message="Olá&#13;&#10;________________________________&#13;&#10;From: ES1 Grupo1 &lt;es1g1@outlook.com&gt;&#13;&#10;Sent: Sunday, November 18, 2018 7:05:39 PM&#13;&#10;To: ana.rsn@hotmail.com&#13;&#10;Subject: o&#13;&#10;&#13;&#10;o&#13;&#10;" Subject="Re: o"/>
 <post2 Date="Sun Nov 18 13:36:19 GMT 2018" From="Microsoft account team &lt;account-security-noreply@accountprotection.microsoft.com&gt;" Message="The following security info was recently added to the Microsoft account es*****@outlook.com:&#13;&#10;&#13;&#10;351960408271&#13;&#10;&#13;&#10;If this was you, then you can safely ignore this email.&#13;&#10;&#13;&#10;If this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.&#13;&#10;&#13;&#10;Review recent activity https://account.microsoft.com/activity.&#13;&#10;&#13;&#10;To opt out or change where you receive security notifications, click here https://account.live.com/SecurityNotifications/Update.&#13;&#10;&#13;&#10;Thanks,&#13;&#10;The Microsoft account team " Subject="Microsoft account security info was added"/>
 <post3 Date="Sun Nov 18 13:36:20 GMT 2018" From="Microsoft account team &lt;account-security-noreply@accountprotection.microsoft.com&gt;" Message="Recently, you verified the security info on the Microsoft account es*****@outlook.com. This was a periodic security check which only happens if you haven't used a security code recently. You won't need to provide a code every time you sign in.&#13;&#10;&#13;&#10;It's important to keep the security info associated with your account correct and up-to-date. We'll never use this info to spam you or for any marketing purposes — it's only to verify your identity if there's ever a problem with your account.&#13;&#10;&#13;&#10;To learn more or contact support, click here http://go.microsoft.com/fwlink/?LinkID=281822.&#13;&#10;&#13;&#10;To opt out or change where you receive security notifications, click here https://account.live.com/SecurityNotifications/Update.&#13;&#10;&#13;&#10;Thanks,&#13;&#10;The Microsoft account team " Subject="Microsoft account security info verification"/>
@@ -38,109 +397,7 @@
 <post1 Date="Fri Nov 16 09:02:58 GMT 2018" From="Microsoft &lt;msa@communication.microsoft.com&gt;" Message="*Your Services Agreement made clearer*&#13;&#10;&#13;&#10;You’re receiving this email because we are updating the Microsoft Services Agreement, which applies to one or more Microsoft consumer products or services you use. We are changing the contracting entity for our free consumer services in European markets (European Economic Area and Switzerland) from Microsoft Corporation (US) to Microsoft Ireland Operations Limited, One Mic‍rosoft Place, So‍uth Co‍unty Bus‍iness Pa‍rk, Leo‍pardst‍own, Dub‍lin 18, I‍rel‍and.  We are also changing the governing law to Ireland for claims relating to free and paid consumer services in European markets. There are no other changes to the Microsoft Services Agreement.&#13;&#10;&#13;&#10;You can read the entire Microsoft Services Agreement [here]. You can also learn more about this update on our FAQ page [here]. This update to the Microsoft Services Agreement will take effect on 28 De‍cember 20‍18. If you continue to use our consumer products and services on or after 28 De‍cember 20‍18, this means you are agreeing to the updated Microsoft Services Agreement.&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=2030385&amp;clcid=0x809&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=2030461&amp;clcid=0x809&#13;&#10;&#13;&#10;If you do not agree, you can choose to discontinue using the products and services, and close your Microsoft account before these terms become effective. If you are a parent or guardian, you are responsible for your child’s or teenager’s use of Microsoft consumer products and services, including purchases.&#13;&#10;&#13;&#10;Thank you for using Microsoft products and services.&#13;&#10;&#13;&#10;******************************&#13;&#10;&#13;&#10;[Microsoft Services Agreement]&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=2030385&amp;clcid=0x809&#13;&#10;&#13;&#10;[Frequently Asked Questions]&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=2030461&amp;clcid=0x809&#13;&#10;&#13;&#10;[Microsoft Privacy Statement]&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=521839&amp;clcid=0x809&#13;&#10;&#13;&#10;******************************&#13;&#10;&#13;&#10;This email was sent from an unmonitored mailbox.&#13;&#10;&#13;&#10;[Privacy Statement]&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=521839&amp;clcid=0x809&#13;&#10;&#13;&#10;Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 USA&#13;&#10;&#13;&#10;[Microsoft]&#13;&#10;https://go.microsoft.com/fwlink/?LinkID=271181&amp;clcid=0x809" Subject="Updates to our terms of use"/>
 </emailInbox>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Login="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Password="grupo1grupo" Protocol="" UserName="EsJarh">
-<post2 dateCreated="15/9/2018" title="" userName=""/>
-<post0 dateCreated="22/9/2018" title="" userName=""/>
-<post1 dateCreated="19/9/2018" title="Hello world!" userName=""/>
-</facebook>
-<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Login="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh">
+<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Login="True" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh">
 <post8 dateCreated="Sun Nov 18 12:55:21 GMT 2018" statusText="hello world!" userName="Jarh ES"/>
 <post9 dateCreated="Sun Nov 18 12:54:19 GMT 2018" statusText="oi" userName="Jarh ES"/>
 <post6 dateCreated="Tue Nov 20 12:19:34 GMT 2018" statusText="I liked a @YouTube video https://t.co/U0EtGPK2WC An Examination of Labor Trafficking from a Human Rights and Consumption Perspective" userName="ISCTE - IUL"/>
@@ -182,4 +439,22 @@
 <post18 dateCreated="Tue Oct 16 15:34:06 BST 2018" statusText="I added a video to a @YouTube playlist https://t.co/5NVZI6cX6x Igualdade entre H e M onde estamos?" userName="ISCTE - IUL"/>
 <post19 dateCreated="Tue Oct 16 11:12:21 BST 2018" statusText="RT @inesrebelop: Estava no bus a ir para a Uni e senti esta necessidade de sair a meio e caminhar de volta para casa (?) e quando saí encon…" userName="Trash Mammal®"/>
 </twitter>
+<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="EsJarh">
+<post2 dateCreated="15/9/2018" title="" userName=""/>
+<post0 dateCreated="22/9/2018" title="" userName=""/>
+<post1 dateCreated="19/9/2018" title="Hello world!" userName=""/>
+</facebook>
+<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<post8 Date="Sun Dec 02 15:46:36 GMT 2018" Message="k&#13;&#10;" Subject="k" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post9 Date="Sun Dec 02 15:56:16 GMT 2018" Message="o&#13;&#10;" Subject="o" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post6 Date="Sun Dec 02 15:39:05 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post7 Date="Sun Dec 02 15:41:50 GMT 2018" Message="ola&#13;&#10;" Subject="ola2" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post4 Date="Sun Dec 02 13:24:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="havms@iscte-iul.pt"/>
+<post5 Date="Sun Dec 02 14:10:50 GMT 2018" Message="1234&#13;&#10;" Subject="teste123" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
+<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post10 Date="Mon Dec 03 22:54:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="hugo.martins.tgei13@gmail.com"/>
+</emailSent>
 </Services>

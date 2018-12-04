@@ -23,13 +23,13 @@ public class MensagemFacebook extends Mensagem{
 
 	@Override
 	public boolean containsFilter(String filter) {
-		return (this.getContent() != null && this.getContent().contains(filter)) ||
+		return (this.getUser() != null && this.getUser().contains(filter)) ||
+				(this.getContent() != null && this.getContent().contains(filter)) ||
 				(this.getDate() != null && this.getDate().contains(filter));
 	}
 
 	@Override
 	public boolean userContainsFilter(String filter) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.getUser() != null && this.getUser().contains(filter));
 	}
 }

@@ -23,7 +23,7 @@ public class TimelineBDA {
 	IService facebook= new Facebook();
 	IService twitter= new App_twitter(); 
 	
-	TimelineBDA() {
+	public TimelineBDA() {
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
 			Credential emailCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
 			email.init(emailCred);

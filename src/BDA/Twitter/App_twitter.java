@@ -10,7 +10,6 @@ import BDA.Credential;
 import BDA.IService;
 import BDA.Mensagem;
 import BDA.XMLclass;
-import BDA.Facebook.MensagemFacebook;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

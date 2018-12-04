@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="BDA" x="113" y="102">
+        <DependencyLink destination="BDA.Email"/>
+        <DependencyLink destination="BDA.Facebook"/>
+        <DependencyLink destination="BDA.Twitter"/>
+    </Package>
+    <Package name="BDA.Email" x="301" y="52">
+        <DependencyLink destination="BDA"/>
+    </Package>
+    <Package name="BDA.Facebook" x="243" y="215">
+        <DependencyLink destination="BDA"/>
+    </Package>
+    <Package name="BDA.Twitter" x="355" y="147">
+        <DependencyLink destination="BDA"/>
+    </Package>
+</PackageAnalysis>
