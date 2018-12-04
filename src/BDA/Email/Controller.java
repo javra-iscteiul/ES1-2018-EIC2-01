@@ -268,7 +268,7 @@ public class Controller implements IServiceController {
 	 * @throws IOException 
 	 */
 	@FXML
-	private void responder(MouseEvent event) throws IOException {
+	private void responder(MouseEvent event) throws Exception {
 		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
 		Email.setTo(m.getUser());
 		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"),
@@ -293,7 +293,7 @@ public class Controller implements IServiceController {
 	 * @throws IOException 
 	 */
 	@FXML
-	protected void novaMensagem(MouseEvent event) throws IOException {
+	protected void novaMensagem(MouseEvent event) throws Exception {
 		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"),
 				email.getCredential());
 	}

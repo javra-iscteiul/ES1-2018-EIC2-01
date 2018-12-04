@@ -45,7 +45,7 @@ public class FuncoesGerais {
 	 *            URL
 	 * @throws IOException
 	 */
-	public static boolean mudarVistaFromLoginFXML(Event event, URL ficheiroURL, Credential cred) throws IOException {
+	public static boolean mudarVistaFromLoginFXML(Event event, URL ficheiroURL, Credential cred) throws Exception {
 		Node node = (Node) event.getSource();
 		Stage stage = (Stage) node.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader(ficheiroURL);
