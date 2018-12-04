@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ClassDiagram>
-    <Class name="BDA.ControllerBDA" x="150" y="38">
+    <Class name="BDA.ControllerBDA" x="151" y="22">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
