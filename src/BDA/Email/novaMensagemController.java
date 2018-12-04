@@ -48,9 +48,10 @@ public class novaMensagemController implements IServiceController {
 	/**
 	 * Ao clicar no botao enviar chama a função do email responsavel pelo envio da mensagem com os parametros indicados pelo utilizador
 	 * @param event MouseEvent
+	 * @throws Exception 
 	 */
 	@FXML
-	public void enviar(MouseEvent event){
+	public void enviar(MouseEvent event) throws Exception{
 		if(to.getText()!=null && msg.getText()!=null && sub.getText()!=null ) {
 			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString(), emailCredential);
 			Credential cred = new Credential(
@@ -64,9 +65,10 @@ public class novaMensagemController implements IServiceController {
 	/**
 	 * Ao clicar no botao voltar regressa ao seriviço email
 	 * @param event MouseEvent
+	 * @throws Exception 
 	 */
 	@FXML
-	public void voltar(MouseEvent event){
+	public void voltar(MouseEvent event) throws Exception{
 		Credential cred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
 		to.setText("");
 		Email.setTo("");

@@ -1,5 +1,7 @@
 package BDA;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,9 +40,10 @@ public class loginController {
 	/**
 	 * Procedimento que guarda no config.xml as credenciais do email de Login (biblioteca Javafx)
 	 * @param event 
+	 * @throws Exception 
 	 */
 	@FXML
-	private void login(ActionEvent event) {
+	private void login(ActionEvent event) throws Exception {
 		error.setVisible(false);
 		String user = username.getText();
 		String pass = password.getText();
@@ -64,7 +67,7 @@ public class loginController {
 	}
 	
 	@FXML
-	private void voltar_clicked(MouseEvent event){
+	private void voltar_clicked(MouseEvent event) throws IOException{
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
 

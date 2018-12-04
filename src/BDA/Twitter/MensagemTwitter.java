@@ -33,7 +33,7 @@ public class MensagemTwitter extends Mensagem{
 		@Override
 		public boolean containsFilter(String filter) {
 			// TODO Auto-generated method stub
-			return false;
+			return this.getUser().contains(filter) || this.getContent().contains(filter);
 		}
 
 
@@ -42,7 +42,7 @@ public class MensagemTwitter extends Mensagem{
 		@Override
 		public boolean userContainsFilter(String filter) {
 			// TODO Auto-generated method stub
-			return false;
+			return this.getUser().contains(filter);
 		}
 
 	

@@ -24,6 +24,7 @@ public class TimelineBDA {
 	IService twitter= new App_twitter(); 
 	
 	public TimelineBDA() {
+		try{
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
 			Credential emailCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
 			email.init(emailCred);
@@ -36,9 +37,12 @@ public class TimelineBDA {
 			Credential twitterCred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.twitterService).getAttributes());
 			twitter.init(twitterCred);
 		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
-	public ObservableList<Mensagem> getTimeLine(){
+	public ObservableList<Mensagem> getTimeLine() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
 			for (Mensagem m: email.getTimeLine()){
@@ -59,7 +63,7 @@ public class TimelineBDA {
 		
 	}
 	
-	public ObservableList<Mensagem> setFilter(String s){
+	public ObservableList<Mensagem> setFilter(String s) throws Exception{
 		ObservableList<Mensagem> nova= FXCollections.observableArrayList();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
 			for (Mensagem m: email.setFilter(s)){
@@ -79,7 +83,7 @@ public class TimelineBDA {
 		return nova;
 	}
 	
-	public ObservableList<Mensagem> getOnlyTwitter(){
+	public ObservableList<Mensagem> getOnlyTwitter() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.twitterService) && showTwitter) {
 			for (Mensagem m: twitter.getTimeLine()){
@@ -90,7 +94,7 @@ public class TimelineBDA {
 		
 	}
 	
-	public ObservableList<Mensagem> getOnlyEmail(){
+	public ObservableList<Mensagem> getOnlyEmail() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
 			for (Mensagem m: email.getTimeLine()){
@@ -101,7 +105,7 @@ public class TimelineBDA {
 		
 	}
 	
-	public ObservableList<Mensagem> getOnlyFacebook(){
+	public ObservableList<Mensagem> getOnlyFacebook() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.facebookService) && showFacebook) {
 			for (Mensagem m: facebook.getTimeLine()){

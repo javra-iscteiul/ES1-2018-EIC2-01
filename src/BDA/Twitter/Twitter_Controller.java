@@ -1,5 +1,7 @@
 package BDA.Twitter;
 
+import java.io.IOException;
+
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
@@ -41,7 +43,7 @@ public class Twitter_Controller implements IServiceController {
 	@FXML
 	private TextArea publicacao;
 	
-	public void init(Credential cred) {
+	public void init(Credential cred) throws Exception {
 		tt.init(cred);
 		tweetsList.setItems(tt.getTimeLine());
     }
@@ -49,10 +51,10 @@ public class Twitter_Controller implements IServiceController {
 	/**
 	 * ocorre quando o utilizador clica no botao para atualizar a timeline
 	 * @param event
-	 * @throws TwitterException
+	 * @throws Exception 
 	 */
 	@FXML
-    private void refresh_timeline_Clicked(MouseEvent event) throws TwitterException
+    private void refresh_timeline_Clicked(MouseEvent event) throws Exception
     {
 		tweetsList.setItems(tt.getTimeLine());
     }
@@ -77,12 +79,12 @@ public class Twitter_Controller implements IServiceController {
 		tweetsList.setItems(tt.filter_users(pesquisa.getText()));
     }
 	@FXML
-	private void lastDay(ActionEvent event){
+	private void lastDay(ActionEvent event) throws TwitterException{
 		String type = "lastDay";
 		tweetsList.setItems(tt.timeFilter(type));
 	}
 	@FXML
-	private void lastMonth(ActionEvent event){
+	private void lastMonth(ActionEvent event) throws TwitterException{
 		String type = "lastDay";
 		tweetsList.setItems(tt.timeFilter(type));
 	}
@@ -90,9 +92,10 @@ public class Twitter_Controller implements IServiceController {
 	/**
 	 * utilizado no evento em que o utilizado clica no botao de postar um novo tweet
 	 * @param event
+	 * @throws TwitterException 
 	 */
 	@FXML 
-	private void post(ActionEvent event) {
+	private void post(ActionEvent event) throws TwitterException {
 		System.out.println(publicacao.getText());
 		tt.post(publicacao.getText());
 	}
@@ -101,18 +104,20 @@ public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws IOException 
 	 */
 	@FXML
-	private void voltar_clicked(MouseEvent event){
+	private void voltar_clicked(MouseEvent event) throws IOException{
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
 	
 	/**
 	 * Procedimento para mudar a conta em utilização 
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void logout(MouseEvent event) {
+	private void logout(MouseEvent event) throws Exception {
 		XMLclass.setLogin(XMLclass.configFile, XMLclass.twitterService, tt.getCredential(), XMLclass.Logout);
 		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.twitterService);
 	}

@@ -18,7 +18,7 @@ public class facebookTest {
 	private static Facebook facebook = new Facebook();
 	
 	@Test
-    public void getTimeline() {
+    public void getTimeline() throws Exception {
 		Credential credTest = new Credential(
 				XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());
 		assertTrue(XMLclass.existsNode(XMLclass.configFile, XMLclass.facebookService, credTest));
@@ -26,5 +26,7 @@ public class facebookTest {
 		//se tiver data guardada tem que dar sempre true
 		facebook.init(credTest);
 		assertNotNull(facebook.getTimeLine());
+		assertNotNull(facebook.getStoredTimeLine());
+		assertNotNull(facebook.getCredential());
     }
 }

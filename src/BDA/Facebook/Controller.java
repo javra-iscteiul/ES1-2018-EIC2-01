@@ -1,5 +1,7 @@
 package BDA.Facebook;
 
+import java.io.IOException;
+
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
@@ -42,34 +44,38 @@ public class Controller implements IServiceController {
 	
 	/**
 	 * Procedimento que adiciona posts à timeline quando a vista e selecionada (biblioteca Javafx)
+	 * @throws Exception 
 	 */
-    public void init(Credential cred) {
+    public void init(Credential cred) throws Exception {
     	facebook.init(cred);
 		facebookList.setItems(facebook.getTimeLine());
     }
 	
 	/**
 	 * Procedimento que filtra os posts da timeline (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void filter_clicked(MouseEvent event){
+	private void filter_clicked(MouseEvent event) throws Exception{
 		facebookList.setItems(facebook.setFilter(filter.getText()));
 	}
 	
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws IOException 
 	 */
 	@FXML
-	private void voltar_clicked(MouseEvent event){
+	private void voltar_clicked(MouseEvent event) throws IOException{
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
 	
 	/**
 	 * Procedimento para mudar a conta em utilização 
 	 * @param event
+	 * @throws Exception 
 	 */
 	@FXML
-	private void logout(MouseEvent event) {
+	private void logout(MouseEvent event) throws Exception {
 		XMLclass.setLogin(XMLclass.configFile, XMLclass.facebookService, facebook.getCredential(), XMLclass.Logout);
 		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.facebookService);
 	}

@@ -1,5 +1,7 @@
 package BDA;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -127,29 +129,30 @@ public class ControllerCredentials {
 	/**
 	 * Procedimento que adiciona posts à timeline quando a vista e selecionada
 	 * (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	public void initialize() {
+	private void initialize() throws Exception {
 		facebook_load();
 		twitter_load();
 		email_load();
 	}
 
-	public void facebook_load() {
+	private void facebook_load() throws Exception {
 		facebookCredentials.setItems(cred.getCredentials(XMLclass.facebookService));
 		facebookCredentials.getSelectionModel().clearSelection();
 		editFacebookbtn.setDisable(true);
 		deleteFacebookbtn.setDisable(true);
 	}
 
-	public void twitter_load() {
+	private void twitter_load() throws Exception {
 		twitterCredentials.setItems(cred.getCredentials(XMLclass.twitterService));
 		twitterCredentials.getSelectionModel().clearSelection();
 		editTwitterbtn.setDisable(true);
 		deleteTwitterbtn.setDisable(true);
 	}
 
-	public void email_load() {
+	private void email_load() throws Exception {
 		emailCredentials.setItems(cred.getCredentials(XMLclass.emailService));
 		emailCredentials.getSelectionModel().clearSelection();
 		editEmailbtn.setDisable(true);
@@ -158,9 +161,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws IOException 
 	 */
 	@FXML
-	private void voltar_clicked(MouseEvent event) {
+	private void voltar_clicked(MouseEvent event) throws IOException {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
 
@@ -182,9 +186,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void addFacebookCredencial_clicked(ActionEvent event) {
+	private void addFacebookCredencial_clicked(ActionEvent event) throws Exception {
 		Credential addCredencial = getCredencial(XMLclass.facebookService);
 
 		if (!XMLclass.existsNode(XMLclass.configFile, XMLclass.facebookService, addCredencial)) {
@@ -195,9 +200,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void editFacebookCredencial_clicked(ActionEvent event) {
+	private void editFacebookCredencial_clicked(ActionEvent event) throws Exception {
 		Credential newCredencial = getCredencial(XMLclass.facebookService);
 		Credential oldCredencial = facebookCredentials.getSelectionModel().getSelectedItem();
 
@@ -212,9 +218,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void removeFacebookCredencial_clicked(ActionEvent event) {
+	private void removeFacebookCredencial_clicked(ActionEvent event) throws Exception {
 		Credential deleteCredencial = facebookCredentials.getSelectionModel().getSelectedItem();
 
 		if (deleteCredencial != null) {
@@ -245,9 +252,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void addTwitterCredencial_clicked(ActionEvent event) {
+	private void addTwitterCredencial_clicked(ActionEvent event) throws Exception {
 		Credential addCredencial = getCredencial(XMLclass.twitterService);
 
 		if (!XMLclass.existsNode(XMLclass.configFile, XMLclass.twitterService, addCredencial)) {
@@ -258,9 +266,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void editTwitterCredencial_clicked(ActionEvent event) {
+	private void editTwitterCredencial_clicked(ActionEvent event) throws Exception {
 		Credential newCredencial = getCredencial(XMLclass.twitterService);
 		Credential oldCredencial = twitterCredentials.getSelectionModel().getSelectedItem();
 
@@ -275,9 +284,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void removeTwitterCredencial_clicked(ActionEvent event) {
+	private void removeTwitterCredencial_clicked(ActionEvent event) throws Exception {
 		Credential deleteCredencial = twitterCredentials.getSelectionModel().getSelectedItem();
 
 		if (deleteCredencial != null) {
@@ -304,9 +314,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void addEmailCredencial_clicked(ActionEvent event) {
+	private void addEmailCredencial_clicked(ActionEvent event) throws Exception {
 		Credential addCredencial = getCredencial(XMLclass.emailService);
 
 		if (!XMLclass.existsNode(XMLclass.configFile, XMLclass.emailService, addCredencial)) {
@@ -318,9 +329,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void editEmailCredencial_clicked(ActionEvent event) {
+	private void editEmailCredencial_clicked(ActionEvent event) throws Exception {
 		Credential newCredencial = getCredencial(XMLclass.emailService);
 		Credential oldCredencial = emailCredentials.getSelectionModel().getSelectedItem();
 
@@ -335,9 +347,10 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @throws Exception 
 	 */
 	@FXML
-	private void removeEmailCredencial_clicked(ActionEvent event) {
+	private void removeEmailCredencial_clicked(ActionEvent event) throws Exception {
 		Credential deleteCredencial = emailCredentials.getSelectionModel().getSelectedItem();
 
 		if (deleteCredencial != null) {

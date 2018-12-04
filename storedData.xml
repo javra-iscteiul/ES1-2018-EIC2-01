@@ -424,24 +424,134 @@
 
 
 
-<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
-<post8 Date="Sun Dec 02 15:46:36 GMT 2018" Message="k&#13;&#10;" Subject="k" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post9 Date="Sun Dec 02 15:56:16 GMT 2018" Message="o&#13;&#10;" Subject="o" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post6 Date="Sun Dec 02 15:39:05 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post7 Date="Sun Dec 02 15:41:50 GMT 2018" Message="ola&#13;&#10;" Subject="ola2" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post4 Date="Sun Dec 02 13:24:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="havms@iscte-iul.pt"/>
-<post5 Date="Sun Dec 02 14:10:50 GMT 2018" Message="1234&#13;&#10;" Subject="teste123" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
-<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
-<post10 Date="Mon Dec 03 22:54:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="hugo.martins.tgei13@gmail.com"/>
-</emailSent>
-<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="EsJarh">
-<post2 dateCreated="15/9/2018" title="" userName=""/>
-<post0 dateCreated="22/9/2018" title="" userName=""/>
-<post1 dateCreated="19/9/2018" title="Hello world!" userName=""/>
-</facebook>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -489,11 +599,25 @@
 <post18 dateCreated="Tue Oct 16 15:34:06 BST 2018" statusText="I added a video to a @YouTube playlist https://t.co/5NVZI6cX6x Igualdade entre H e M onde estamos?" userName="ISCTE - IUL"/>
 <post19 dateCreated="Tue Oct 16 11:12:21 BST 2018" statusText="RT @inesrebelop: Estava no bus a ir para a Uni e senti esta necessidade de sair a meio e caminhar de volta para casa (?) e quando saí encon…" userName="Trash Mammal®"/>
 </twitter>
-
-
-
-
-
+<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="EsJarh">
+<post2 dateCreated="15/9/2018" title="" userName=""/>
+<post0 dateCreated="22/9/2018" title="" userName=""/>
+<post1 dateCreated="19/9/2018" title="Hello world!" userName=""/>
+</facebook>
+<emailSent AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<post11 Date="Tue Dec 04 16:50:27 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post8 Date="Sun Dec 02 15:46:36 GMT 2018" Message="k&#13;&#10;" Subject="k" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post9 Date="Sun Dec 02 15:56:16 GMT 2018" Message="o&#13;&#10;" Subject="o" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post6 Date="Sun Dec 02 15:39:05 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post7 Date="Sun Dec 02 15:41:50 GMT 2018" Message="ola&#13;&#10;" Subject="ola2" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post4 Date="Sun Dec 02 13:24:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="havms@iscte-iul.pt"/>
+<post5 Date="Sun Dec 02 14:10:50 GMT 2018" Message="1234&#13;&#10;" Subject="teste123" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post2 Date="Thu Nov 22 10:19:47 GMT 2018" Message="oi&#13;&#10;" Subject="oi" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post3 Date="Fri Nov 23 17:09:31 GMT 2018" Message="ffsdg&#13;&#10;" Subject="rffd" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post0 Date="Sun Nov 18 19:05:40 GMT 2018" Message="o&#13;&#10;" Subject="o" To="ana.rsn@hotmail.com"/>
+<post1 Date="Wed Nov 21 10:50:31 GMT 2018" Message="ola&#13;&#10;" Subject="ola" To="Ana Nunes &lt;ana.rsn@hotmail.com&gt;"/>
+<post10 Date="Mon Dec 03 22:54:16 GMT 2018" Message="teste1234&#13;&#10;" Subject="Teste" To="hugo.martins.tgei13@gmail.com"/>
+</emailSent>
 <emailInbox AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
 <post4 Date="Wed Nov 21 10:26:18 GMT 2018" From="Ana Nunes &lt;ana.rsn@hotmail.com&gt;" Message="Olá&#13;&#10;________________________________&#13;&#10;From: ES1 Grupo1 &lt;es1g1@outlook.com&gt;&#13;&#10;Sent: Sunday, November 18, 2018 7:05:39 PM&#13;&#10;To: ana.rsn@hotmail.com&#13;&#10;Subject: o&#13;&#10;&#13;&#10;o&#13;&#10;" Subject="Re: o"/>
 <post2 Date="Sun Nov 18 13:36:19 GMT 2018" From="Microsoft account team &lt;account-security-noreply@accountprotection.microsoft.com&gt;" Message="The following security info was recently added to the Microsoft account es*****@outlook.com:&#13;&#10;&#13;&#10;351960408271&#13;&#10;&#13;&#10;If this was you, then you can safely ignore this email.&#13;&#10;&#13;&#10;If this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.&#13;&#10;&#13;&#10;Review recent activity https://account.microsoft.com/activity.&#13;&#10;&#13;&#10;To opt out or change where you receive security notifications, click here https://account.live.com/SecurityNotifications/Update.&#13;&#10;&#13;&#10;Thanks,&#13;&#10;The Microsoft account team " Subject="Microsoft account security info was added"/>

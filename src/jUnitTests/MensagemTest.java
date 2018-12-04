@@ -40,6 +40,7 @@ public class MensagemTest {
 		assertTrue(msg1.userContainsFilter("user"));
 		assertFalse(msg1.userContainsFilter("pass"));
 		
+		Email.setFolder("INBOX");
 		assertNotNull(msg1.toString());
 		Email.setFolder("Sent");
 		assertNotNull(msg1.toString());
