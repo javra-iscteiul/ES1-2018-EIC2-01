@@ -26,14 +26,12 @@
          </font>
       </TextField>
       <Button layoutX="650.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter" />
-      <MenuButton layoutX="500.0" layoutY="78.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Contacts ">
-        <items >
+      <MenuButton layoutX="367.0" layoutY="109.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Contacts ">
+        <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextField layoutX="229.0" layoutY="78.0" prefHeight="44.0" prefWidth="215.0" text="Twitter: @username" />
-      <TextField layoutX="229.0" layoutY="143.0" prefHeight="50.0" prefWidth="215.0" text="Email: 123@email.com" />
       <ListView fx:id="facebookList" layoutX="57.0" layoutY="321.0" prefHeight="221.0" prefWidth="807.0" />
       <TextField fx:id="filter" layoutX="229.0" layoutY="239.0" prefHeight="50.0" prefWidth="392.0" />
       <Label layoutX="932.0" layoutY="21.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
