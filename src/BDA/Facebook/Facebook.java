@@ -3,6 +3,7 @@ package BDA.Facebook;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
@@ -76,7 +77,8 @@ public class Facebook implements IService {
 				for (Post aPost : page) {
 					String userName = aPost.getName();
 					Date dateCreated = aPost.getCreatedTime();
-					String dateCreatedString = dateCreated.getDate() + "/" + dateCreated.getMonth() + "/"
+					String dateCreatedString = dateCreated.getDate() + "/" 
+							+ (dateCreated.getMonth() < 10 ? "0" : "") + dateCreated.getMonth() + "/"
 							+ (dateCreated.getYear() + 1900);
 					String title = aPost.getMessage();
 
@@ -186,9 +188,10 @@ public class Facebook implements IService {
 			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
 			for(Mensagem post : getTimeLine())
 			{				
-				DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+				DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 				Date date = format.parse(post.getDate());
 				Instant now = Instant.now();
+				Date data = Date.from(now);
 				if (filter == "24h") {
 					if ((!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now))) {
 						filteredMsg.add(post);
@@ -197,7 +200,7 @@ public class Facebook implements IService {
 					if ((!date.toInstant().isBefore(now.minus(7, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
 						filteredMsg.add(post);
 					}
-				}else if (filter == "month") {
+				}else if (filter == "month") {					
 					if ((!date.toInstant().isBefore(now.minus(30, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
 						filteredMsg.add(post);
 					}

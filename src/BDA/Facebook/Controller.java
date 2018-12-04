@@ -64,7 +64,7 @@ public class Controller implements IServiceController {
 	 * @throws Exception 
 	 */
 	@FXML
-	private void filter_clicked(MouseEvent event) throws Exception{
+	private void filter_clicked(ActionEvent event) throws Exception{
 		facebookList.setItems(facebook.setFilter(filter.getText()));
 	}
 	
@@ -74,7 +74,7 @@ public class Controller implements IServiceController {
 	 * @throws Exception 
 	 */
 	@FXML
-	private void filterUser_clicked(MouseEvent event) throws Exception{
+	private void filterUser_clicked(ActionEvent event) throws Exception{
 		facebookList.setItems(facebook.setUserFilter(filter.getText()));
 	}
 	

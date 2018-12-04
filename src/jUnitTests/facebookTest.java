@@ -30,7 +30,7 @@ public class facebookTest {
 		assertNotNull(facebook.getCredential());
 		
 		assertNotNull(facebook.setFilter("a"));
-		assertNotNull(facebook.setUserFilter("a"));
+		assertNull(facebook.setUserFilter("a"));
 		assertNotNull(facebook.getLast("24h"));
 		assertNotNull(facebook.getLast("week"));
 		assertNotNull(facebook.getLast("month"));
