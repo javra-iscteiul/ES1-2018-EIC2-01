@@ -156,6 +156,7 @@ public class Controller implements IServiceController {
 		if(facebook.publish(publicacao.getText()))
 		{
 			publicacao.clear();
+			facebook.setGroup(true);
 			facebookList.setItems(facebook.getTimeLine());
 		}
 	}

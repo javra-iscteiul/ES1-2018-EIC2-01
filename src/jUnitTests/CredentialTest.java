@@ -15,13 +15,15 @@ public class CredentialTest {
 	
 	@Test
     public void testCredentials() throws Exception {
-		Credential cred1 = new Credential("protocol", "user", "pass", "consumerkey", "consumerSecret", "accesstoken", "accesstokenSecret");
-		Credential cred2 = new Credential("user", "pass");
-		Credential cred3 = new Credential(XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());
+		Credential cred1 = new Credential("protocol", "user", "pass", "consumerkey", "consumerSecret", "accesstoken", "accesstokenSecret", "group");
+		Credential cred2 = new Credential("protocol", "user", "pass", "consumerkey", "consumerSecret", "accesstoken", "accesstokenSecret");
+		Credential cred3 = new Credential("user1", "pass1");
+		Credential cred4 = new Credential(XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());
 		
 		assertNotNull(cred1);
 		assertNotNull(cred2);
 		assertNotNull(cred3);
+		assertNotNull(cred4);
 		
 		assertNotNull(cred1.getProtocolo());
 		cred1.setProtocolo("protocolTeste");
@@ -50,6 +52,10 @@ public class CredentialTest {
 		assertNotNull(cred1.getAccessTokenSecret());
 		cred1.setAccessTokenSecret("accesstokensecretTeste");
 		assertEquals("accesstokensecretTeste", cred1.getAccessTokenSecret());
+		
+		assertNotNull(cred1.getGroup());
+		cred1.setGroup("groupTeste");
+		assertEquals("groupTeste", cred1.getGroup());
 		
 		assertNotNull(cred1.getLogin());
 		cred1.setLogin("True");

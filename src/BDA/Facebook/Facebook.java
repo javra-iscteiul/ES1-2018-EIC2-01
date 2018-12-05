@@ -76,10 +76,10 @@ public class Facebook implements IService {
 			//cria a conecção com o facebook e recebe os posts
 			Connection<Post> results;
 			if(group)
-				results = fbClient.fetchConnection(facebookCredential.getGroup() + "/feed", Post.class);
+				results = fbClient.fetchConnection("/" + facebookCredential.getGroup() + "/feed", Post.class);
 			else
 				results = fbClient.fetchConnection("me/feed", Post.class);
-
+			
 			//no caso de existirem posts guardados elimina-os
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
 				XMLclass.deleteNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential);
@@ -90,7 +90,7 @@ public class Facebook implements IService {
 			for (List<Post> page : results) {
 				for (Post aPost : page) {
 					String userName = aPost.getName();
-					Date dateCreated = aPost.getCreatedTime();
+					Date dateCreated = (group ? aPost.getUpdatedTime() : aPost.getCreatedTime());
 					String dateCreatedString = dateCreated.getDate() + "/" 
 							+ (dateCreated.getMonth() < 10 ? "0" : "") + dateCreated.getMonth() + "/"
 							+ (dateCreated.getYear() + 1900);
@@ -245,5 +245,9 @@ public class Facebook implements IService {
 	
 	public void setGroup(boolean group){
 		this.group = group;
+	}
+	
+	public boolean getGroup(){
+		return group;
 	}
 }

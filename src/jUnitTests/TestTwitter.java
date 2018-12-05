@@ -27,7 +27,7 @@ public class TestTwitter {
 		twitter.init(credTest);
 		assertNotNull(twitter.getTimeLine());
 		
-		assertNotNull(twitter.filter_users("a"));
+		assertNotNull(twitter.filter_users(" "));
 		assertNotNull(twitter.timeFilter("lastDay"));
 		assertNotNull(twitter.timeFilter("lastMonth"));
 		assertNotNull(twitter.getCredential());

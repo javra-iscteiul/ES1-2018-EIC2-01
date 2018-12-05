@@ -7,6 +7,11 @@ import javafx.collections.ObservableList;
 
 public class Credentials {
 	
+	/**
+	 * @param service
+	 * @return Lista das credenciais do serviço pedido
+	 * @throws Exception
+	 */
 	public ObservableList<Credential> getCredentials(String service) throws Exception{
 		ObservableList<Credential> credList = FXCollections.observableArrayList();
 		NodeList nodeList = XMLclass.getNodeList(XMLclass.configFile, service);

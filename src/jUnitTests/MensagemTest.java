@@ -9,6 +9,7 @@ import BDA.Email.Email;
 import BDA.Email.MensagemEmail;
 import BDA.Facebook.MensagemFacebook;
 import BDA.Twitter.MensagemTwitter;
+import twitter4j.MediaEntity;
 
 public class MensagemTest {
 	
@@ -90,6 +91,9 @@ public class MensagemTest {
 		assertNotNull(msg1.getContent());
 		msg1.setContent("content teste");
 		assertEquals("content teste", msg1.getContent());
+		
+		((MensagemTwitter)msg1).setMedia(new MediaEntity[1]);
+		assertNotNull(((MensagemTwitter)msg1).getMedia());
 		
 		assertTrue(msg1.containsFilter("teste"));
 		assertFalse(msg1.containsFilter("pass"));

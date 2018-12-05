@@ -11,73 +11,79 @@ import javafx.scene.input.MouseEvent;
 
 public class ControllerCredentials {
 	/**
-	 * ListView (biblioteca Javafx)
+	 * ListView das credenciais do facebook (biblioteca Javafx)
 	 */
 	@FXML
 	private ListView<Credential> facebookCredentials;
 
 	/**
-	 * ListView (biblioteca Javafx)
+	 * ListView das credenciais do twitter (biblioteca Javafx)
 	 */
 	@FXML
 	private ListView<Credential> twitterCredentials;
 
 	/**
-	 * ListView (biblioteca Javafx)
+	 * ListView das credenciais do email (biblioteca Javafx)
 	 */
 	@FXML
 	private ListView<Credential> emailCredentials;
+	
 	/**
-	 * Button editar facebook
+	 * Button editar credencial facebook
 	 */
 	@FXML
 	private Button editFacebookbtn;
+	
 	/**
-	 * Button apagar facebook
+	 * Button apagar credencial facebook
 	 */
 	@FXML
 	private Button deleteFacebookbtn;
+	
 	/**
-	 * Button editar twitter
+	 * Button editar credencial twitter
 	 */
 	@FXML
 	private Button editTwitterbtn;
+	
 	/**
-	 * Button apagar twitter
+	 * Button apagar credencial twitter
 	 */
 	@FXML
 	private Button deleteTwitterbtn;
+	
 	/**
-	 * Button editar email
+	 * Button editar credencial email
 	 */
 	@FXML
 	private Button editEmailbtn;
+	
 	/**
-	 * Button apagar email
+	 * Button apagar credencial email
 	 */
 	@FXML
 	private Button deleteEmailbtn;
 	
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao username do facebook a inserir ou editar
 	 */
 	@FXML
 	private TextField userNameFacebook;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente a password do facebook a inserir ou editar
 	 */
 	@FXML
 	private TextField passwordFacebook;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao accessToken do facebook a inserir ou editar
 	 */
 	@FXML
 	private TextField accessTokenFacebook;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao accessTokenSecret do facebook a inserir ou editar
 	 */
 	@FXML
 	private TextField accessTokenSecretFacebook;
@@ -89,55 +95,55 @@ public class ControllerCredentials {
 	private TextField groupFacebook;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao protocolo do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField protocolTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao username do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField userNameTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente a password do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField passwordTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente a consumerKey do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField consumerKeyTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente a consumerKey do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField consumerSecretTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao accessToken do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField accessTokenTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao accessTokenSecret do twitter a inserir ou editar
 	 */
 	@FXML
 	private TextField accessTokenSecretTwitter;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente ao username do email a inserir ou editar
 	 */
 	@FXML
 	private TextField userNameEmail;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente a password do email a inserir ou editar
 	 */
 	@FXML
 	private TextField passwordEmail;
@@ -148,8 +154,7 @@ public class ControllerCredentials {
 	Credentials cred = new Credentials();
 
 	/**
-	 * Procedimento que adiciona posts à timeline quando a vista e selecionada
-	 * (biblioteca Javafx)
+	 * Procedimento que adiciona as credenciais as ListViews (biblioteca Javafx)
 	 * @throws Exception e
 	 */
 	@FXML
@@ -160,8 +165,8 @@ public class ControllerCredentials {
 	}
 
 	/**
+	 * Carrega as credenciais do facebook
 	 * @throws Exception e
-	 * 
 	 */
 	private void facebook_load() throws Exception {
 		facebookCredentials.setItems(cred.getCredentials(XMLclass.facebookService));
@@ -171,8 +176,8 @@ public class ControllerCredentials {
 	}
 
 	/**
+	 * Carrega as credenciais do twitter
 	 * @throws Exception e
-	 * 
 	 */
 	private void twitter_load() throws Exception {
 		twitterCredentials.setItems(cred.getCredentials(XMLclass.twitterService));
@@ -182,8 +187,8 @@ public class ControllerCredentials {
 	}
 
 	/**
+	 * Carrega as credenciais do email
 	 * @throws Exception e
-	 * 
 	 */
 	private void email_load() throws Exception {
 		emailCredentials.setItems(cred.getCredentials(XMLclass.emailService));
@@ -203,7 +208,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que expande a mensagem selecionada para uma TextArea
+	 * Procedimento que ao selecionar o facebook desbloqueia os botões editar e apagar e preenche as combobox's
 	 * @param event MouseEvent
 	 */
 	@FXML
@@ -218,10 +223,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception e
-	 */
-	/**
+	 * Procedimento que adiciona uma credencial do facebook (biblioteca Javafx)
 	 * @param event ActionEvent
 	 * @throws Exception e
 	 */
@@ -236,7 +238,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * Procedimento que edita uma credencial do facebook (biblioteca Javafx)
 	 * @param event ActionEvent
 	 * @throws Exception e
 	 */
@@ -255,7 +257,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * Procedimento que remove uma credencial do facebook (biblioteca Javafx)
 	 * @param event ActionEvent
 	 * @throws Exception e
 	 */
@@ -272,16 +274,13 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que expande a mensagem selecionada para uma TextArea
-	 * 
-	 * @param event
-	 */
-	/**
-	 * @param event
+	 * Procedimento que ao selecionar o twitter desbloqueia os botões editar e apagar e preenche as combobox's
+	 * @param event MouseEvent
 	 */
 	@FXML
 	protected void twitterSelection(MouseEvent event) {
 		Credential selectedCredencial = twitterCredentials.getSelectionModel().getSelectedItem();
+		protocolTwitter.setText(selectedCredencial.getProtocolo());
 		userNameTwitter.setText(selectedCredencial.getUsername());
 		passwordTwitter.setText(selectedCredencial.getPassword());
 		consumerKeyTwitter.setText(selectedCredencial.getConsumerKey());
@@ -293,10 +292,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
-	 */
-	/**
+	 * Procedimento que adiciona uma credencial do twitter
 	 * @param event
 	 * @throws Exception
 	 */
@@ -311,10 +307,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
-	 */
-	/**
+	 * Procedimento que edita uma credencial do twitter (biblioteca Javafx)
 	 * @param event
 	 * @throws Exception
 	 */
@@ -333,10 +326,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
-	 */
-	/**
+	 * Procedimento que remove uma credencial do twitter (biblioteca Javafx)
 	 * @param event
 	 * @throws Exception
 	 */
@@ -353,11 +343,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que expande a mensagem selecionada para uma TextArea
-	 * 
-	 * @param event
-	 */
-	/**
+	 * Procedimento que ao selecionar o email desbloqueia os botões editar e apagar e preenche as combobox's
 	 * @param event
 	 */
 	@FXML
@@ -370,7 +356,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * Procedimento que adiciona uma credencial do email
 	 * @param event
 	 * @throws Exception
 	 */
@@ -386,10 +372,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
-	 */
-	/**
+	 * Procedimento que edita uma credencial do email (biblioteca Javafx)
 	 * @param event
 	 * @throws Exception
 	 */
@@ -408,10 +391,7 @@ public class ControllerCredentials {
 	}
 
 	/**
-	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
-	 * @throws Exception 
-	 */
-	/**
+	 * Procedimento que remove uma credencial do email (biblioteca Javafx)
 	 * @param event
 	 * @throws Exception
 	 */
@@ -428,6 +408,7 @@ public class ControllerCredentials {
 	}
 
 	/**
+	 * Metodo que recebe uma credencial pelas textbox's do serviço selecionado
 	 * @param service
 	 * @return
 	 */

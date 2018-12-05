@@ -35,27 +35,27 @@ import org.w3c.dom.NamedNodeMap;
 public class XMLclass {
 
 	/**
-	 * Atributo do tipo File responsavel por definir o destino das credenciais
+	 * Propriedade do nome do serviço facebook
 	 */
 	public static String facebookService = "facebook";
 
 	/**
-	 * Atributo do tipo File responsavel por definir o destino das credenciais
+	 * Propriedade do nome do serviço twitter
 	 */
 	public static String twitterService = "twitter";
 
 	/**
-	 * Atributo do tipo File responsavel por definir o destino das credenciais
+	 * Propriedade do nome do serviço email
 	 */
 	public static String emailService = "email";
 
 	/**
-	 * Atributo do tipo File responsavel por definir o destino das credenciais
+	 * Propriedade que define o Login na credencial
 	 */
 	public static String Login = "True";
 
 	/**
-	 * Atributo do tipo File responsavel por definir o destino das credenciais
+	 * Propriedade que define o Logout na credencial
 	 */
 	public static String Logout = "False";
 
@@ -82,12 +82,10 @@ public class XMLclass {
 	private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
 	/**
-	 * Dado um determinado serviço verifica se o mesmo já existe no documento
-	 * com as credenciais
-	 * 
+	 * Dado um determinado serviço e as credenciais do utilizador verifica se o mesmo já existe no documento
+	 *@param inputFile file
 	 * @param service
 	 *            String
-	 *@param inputFile file
 	 *@param serviceCredencial Credential
 	 * @return boolean
 	 * @throws Exception e
@@ -97,9 +95,7 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço verifica se o mesmo já existe no documento
-	 * com as credenciais
-	 * 
+	 * Dado um determinado serviço verifica se existe algum utilizador logado
 	 * @param service
 	 *            String
 	 * @param inputFile File
@@ -111,15 +107,13 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço verifica se o mesmo já existe no documento
+	 * Dado um determinado serviço e as credenciais do utilizador verifica se existe o filho passado como paramentro
 	 * com as credenciais
-	 * 
-	 * @param service String
-	 *            
+	 * @param inputFile File
+	 * @param service String         
+	 * @param serviceCredencial Credential
 	 * @param child String
 	 * @param childAttributes Map
-	 * @param inputFile File
-	 * @param serviceCredencial Credential
 	 * @return boolean
 	 * @throws Exception e
 	 * 
@@ -130,13 +124,11 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço elimina o mesmo no documento com as
+	 * Dado um determinado serviço e as credenciais do utilizador elimina o mesmo no documento com as
 	 * credenciais
-	 * 
 	 * @param inputFile File
 	 * @param node String
 	 * @param serviceCredencial Credential
-	 * 
 	 * @return boolean
 	 * @throws Exception e
 	 */
@@ -156,14 +148,13 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço elimina o mesmo no documento com as
+	 * Dado um determinado serviço e as credenciais do utilizador elimina o filho no documento com as
 	 * credenciais
-	 * @param service String
-	 *            
+	 * @param inputFile File
+	 * @param service String        
+	 * @param serviceCredencial Credential
 	 * @param child String
 	 * @param childAttributes Map
-	 * @param inputFile File
-	 * @param serviceCredencial Credential
 	 * @return boolean
 	 * @throws Exception e
 	 */
@@ -184,11 +175,10 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço retorna o node correspondente
-	 * @param service String
+	 * Dado um determinado serviço e as credenciais do utilizador retorna o node correspondente
 	 * @param inputFile File
+	 * @param service String
 	 * @param serviceCredencial Credential
-
 	 * @return Node
 	 * @throws Exception e
 	 */
@@ -201,11 +191,10 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço retorna o node correspondente
-	 * @param service String
+	 * Dado um determinado serviço e as credenciais do utilizador retorna o node correspondente
 	 * @param inputFile File
+	 * @param service String
 	 * @param serviceCredencial Credential
-
 	 * @return Node
 	 * @throws Exception e
 	 */
@@ -223,10 +212,9 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço retorna o node correspondente
+	 * Dado um determinado serviço retorna o node que esta logado correspondente
 	 * @param service String
 	 * @param inputFile File
-
 	 * @return Node
 	 * @throws Exception e
 	 */
@@ -247,11 +235,11 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço retorna o node correspondente
-	 * @param service String
+	 * Dado um determinado serviço e as credenciais do utilizador define se este faz login ou logout
 	 * @param inputFile File
+	 * @param service String
 	 * @param serviceCredential Credential
-	* @param Login String
+     * @param Login String
 	 * @return Node
 	 * @throws Exception e
 	 */
@@ -269,9 +257,9 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço retorna o node correspondente
-	 * @param service String
+	 * Dado um determinado serviço retorna uma lista de todos os nos desse servico
 	 * @param inputFile File
+	 * @param service String
 	 * @return Node
 	 * @throws Exception e
 	 */
@@ -284,14 +272,13 @@ public class XMLclass {
 	}
 
 	/**
-	 * Dado um determinado serviço, o nome do filho e os seus attributos retorna
+	 * Dado um determinado serviço e as credenciais do utilizador, o nome do filho e os seus attributos retorna
 	 * o mesmo
+	 * @param inputFile File
 	 * @param service String
-	 *            
+	 * @param serviceCredencial Credential
 	 * @param child String
 	 * @param childAttributes Map
-	 * @param inputFile File
-	 * @param serviceCredencial Credential
 	 * @throws Exception e
 	 * @return Node
 	 */
@@ -322,9 +309,9 @@ public class XMLclass {
 	}
 
 	/**
-	 * Adiciona o novo serviço e respetivos atributos ao ficheiro config.xml
-		 * @param service String
+	 * Adiciona o novo serviço e respetivos atributos ao ficheiro
 	 * @param inputFile File
+	 * @param service String
 	 * @param serviceCredencial Credential
 	 * @return boolean
 	 * @throws Exception e
@@ -337,7 +324,16 @@ public class XMLclass {
 		return addNode(inputFile, service, serviceCredencial, doc);
 	}
 
-	public static boolean addNode(File inputFile, String service, Credential serviceCredencial, Document doc)
+	/**
+	 * Adiciona o novo serviço e respetivos atributos ao ficheiro
+	 * @param inputFile
+	 * @param service
+	 * @param serviceCredencial
+	 * @param doc
+	 * @return
+	 * @throws Exception
+	 */
+	private static boolean addNode(File inputFile, String service, Credential serviceCredencial, Document doc)
 			throws Exception {
 		Element serviceElement = doc.createElement(service);
 		for (Map.Entry<String, String> attribute : serviceCredencial.getCredentiaAsMap().entrySet()) {
@@ -351,6 +347,15 @@ public class XMLclass {
 		return true;
 	}
 
+	/**
+	 * Adiciona o novo serviço e um filho e os seus respetivos atributos ao ficheiro
+	 * @param inputFile
+	 * @param service
+	 * @param serviceCredencial
+	 * @param Attributes
+	 * @return
+	 * @throws Exception
+	 */
 	public static boolean addNodeAndChild(File inputFile, String service, Credential serviceCredencial,
 			Map<String, Map<String, String>> Attributes) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -376,6 +381,16 @@ public class XMLclass {
 		return true;
 	}
 
+	/**
+	 * Adiciona um filho ao serviço e as credenciais do utilizador
+	 * @param inputFile
+	 * @param service
+	 * @param serviceCredencial
+	 * @param child
+	 * @param childAttributes
+	 * @return
+	 * @throws Exception
+	 */
 	public static boolean addChild(File inputFile, String service, Credential serviceCredencial, String child,
 			Map<String, String> childAttributes) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -394,6 +409,12 @@ public class XMLclass {
 		return true;
 	}
 
+	/**
+	 * Guarda as alterações feitas ao ficheiro XML
+	 * @param inputFile
+	 * @param doc
+	 * @throws Exception
+	 */
 	private static void saveXMLfile(File inputFile, Document doc) throws Exception {
 		Transformer transformer;
 		transformer = TransformerFactory.newInstance().newTransformer();

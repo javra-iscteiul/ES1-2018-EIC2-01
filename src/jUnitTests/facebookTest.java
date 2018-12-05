@@ -25,6 +25,12 @@ public class facebookTest {
 		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, credTest));
 		//se tiver data guardada tem que dar sempre true
 		facebook.init(credTest);
+		
+		facebook.setGroup(false);
+		assertFalse(facebook.getGroup());
+		assertNotNull(facebook.getTimeLine());
+		facebook.setGroup(true);
+		assertTrue(facebook.getGroup());
 		assertNotNull(facebook.getTimeLine());
 		assertNotNull(facebook.getStoredTimeLine());
 		assertNotNull(facebook.getCredential());
