@@ -32,15 +32,22 @@ public class loginController {
 	@FXML
 	private PasswordField password;
 	
+	/**
+	 * Label da mensagem devolvida ao serem inseridas credenciais erradas
+	 */
 	@FXML
 	private Label error;
 	
+	
+	/**
+	 * String serviço selecionado
+	 */
 	private String selectedService;
 	
 	/**
 	 * Procedimento que guarda no config.xml as credenciais do email de Login (biblioteca Javafx)
-	 * @param event 
-	 * @throws Exception 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void login(ActionEvent event) throws Exception {
@@ -62,10 +69,19 @@ public class loginController {
 		error.setText("não exitem credenciais guardadas para este utilizador!");
 	}
 
+	/**
+	 * @param service String
+	 * altera o serviço em utilização
+	 */
 	public void login_init(String service){
 		this.selectedService = service;
 	}
 	
+	/**
+	 * @param event MouseEvent
+	 * @throws IOException
+	 * regressa à pagina iniial da aplicação
+	 */
 	@FXML
 	private void voltar_clicked(MouseEvent event) throws IOException{
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));

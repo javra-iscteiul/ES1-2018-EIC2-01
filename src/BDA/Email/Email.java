@@ -102,7 +102,6 @@ public class Email implements IService {
 	 * 
 	 * @return ObservableList
 	 * @throws Exception e
-	 * @throws DOMException 
 	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
@@ -192,7 +191,7 @@ public class Email implements IService {
 	 * 
 	 * @return ObservableList
 	 * @throws Exception e
-	 * @throws DOMException 
+	 * @throws DOMException e
 	 */
 	public ObservableList<Mensagem> getStoredTimeLine() throws DOMException, Exception {
 			if (folder == "INBOX") {
@@ -363,6 +362,7 @@ public class Email implements IService {
 	 * 
 	 * @return ObservableList
 	 * @throws Exception e
+	 * @param s String
 	 */
 	public ObservableList<Mensagem> getLast(String s) throws Exception {
 		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
@@ -404,7 +404,11 @@ public class Email implements IService {
 	 *           
 	 * @param text  String
 	 *           
+	 * @param emailCredential Credential    
+	 * 
+	 * @return boolean
 	 */
+	
 	public static boolean sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
 		// Sender's email ID needs to be mentioned

@@ -13,16 +13,35 @@ public class TimelineBDA {
 	 */
 	private ObservableList<Mensagem> mensagens = FXCollections.observableArrayList();
 	
+	/**
+	 * Boolean apresentar ou não emails
+	 */
 	private boolean showEmail =true;
+	/**
+	 * Boolean apresentar ou não posts
+	 */
 	private boolean showFacebook =true;
+	/**
+	 * Boolean apresentar ou não tweets
+	 */
 	private boolean showTwitter =true;
-
 	
-	
+	/**
+	 * Serviço do tipo email
+	 */
 	IService email= new Email();
+	/**
+	 * Serviço do tipo facebook
+	 */
 	IService facebook= new Facebook();
+	/**
+	 * Serviço do tipo twitter
+	 */
 	IService twitter= new App_twitter(); 
 	
+	/**
+	 * Inicia os serviços caso apresentem login efetuado
+	 */
 	public TimelineBDA() {
 		try{
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
@@ -42,6 +61,11 @@ public class TimelineBDA {
 		}
 	}
 	
+	/**
+	 * Devolve a timeline dos serviços caso apresentem login efetuado e o utilizador tenha escolhido visualizar esse serviço
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
@@ -63,6 +87,12 @@ public class TimelineBDA {
 		
 	}
 	
+	/**
+	 * Devolve a timeline dos serviços filtrada caso apresentem login efetuado e o utilizador tenha escolhido visualizar esse serviço
+	 * @param s String
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
 	public ObservableList<Mensagem> setFilter(String s) throws Exception{
 		ObservableList<Mensagem> nova= FXCollections.observableArrayList();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
@@ -83,6 +113,11 @@ public class TimelineBDA {
 		return nova;
 	}
 	
+	/**
+	 * Devolve apenas a lista de tweets
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
 	public ObservableList<Mensagem> getOnlyTwitter() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.twitterService) && showTwitter) {
@@ -94,6 +129,11 @@ public class TimelineBDA {
 		
 	}
 	
+	/**
+	 * Devolve apenas a lista de emails
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
 	public ObservableList<Mensagem> getOnlyEmail() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService) && showEmail) {
@@ -105,6 +145,11 @@ public class TimelineBDA {
 		
 	}
 	
+	/**
+	 * Devolve apenas a lista de posts
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
 	public ObservableList<Mensagem> getOnlyFacebook() throws Exception{
 		mensagens.clear();
 		if (XMLclass.existsLogin(XMLclass.configFile, XMLclass.facebookService) && showFacebook) {
@@ -115,26 +160,50 @@ public class TimelineBDA {
 		return mensagens;		
 	}
 
+	/**
+	 * Devolve a indicação se é para apresentar emails
+	 * @return boolean
+	 */
 	public boolean isShowEmail() {
 		return showEmail;
 	}
 
+	/**
+	 * altera a visibilidade do serviço email
+	 * @param showEmail boolean
+	 */
 	public void setShowEmail(boolean showEmail) {
 		this.showEmail = showEmail;
 	}
 
+	/**
+	 * Devolve a indicação se é para apresentar posts
+	 * @return boolean
+	 */
 	public boolean isShowFacebook() {
 		return showFacebook;
 	}
 
+	/**
+	 * altera a visibilidade do serviço facebook
+	 * @param showFacebook boolean
+	 */
 	public void setShowFacebook(boolean showFacebook) {
 		this.showFacebook = showFacebook;
 	}
 
+	/**
+	 * Devolve a indicação se é para apresentar tweets
+	 * @return boolean
+	 */
 	public boolean isShowTwitter() {
 		return showTwitter;
 	}
 
+	/**
+	 * altera a visibilidade do serviço twitter
+	 * @param showTwitter boolean
+	 */
 	public void setShowTwitter(boolean showTwitter) {
 		this.showTwitter = showTwitter;
 	}

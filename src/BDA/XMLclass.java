@@ -87,7 +87,10 @@ public class XMLclass {
 	 * 
 	 * @param service
 	 *            String
+	 *@param inputFile file
+	 *@param serviceCredencial Credential
 	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean existsNode(File inputFile, String service, Credential serviceCredencial) throws Exception {
 		return XMLclass.getNode(inputFile, service, serviceCredencial) != null;
@@ -99,7 +102,9 @@ public class XMLclass {
 	 * 
 	 * @param service
 	 *            String
+	 * @param inputFile File
 	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean existsLogin(File inputFile, String service) throws Exception {
 		return XMLclass.getLogin(inputFile, service) != null;
@@ -109,9 +114,15 @@ public class XMLclass {
 	 * Dado um determinado serviço verifica se o mesmo já existe no documento
 	 * com as credenciais
 	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 *            
+	 * @param child String
+	 * @param childAttributes Map
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
 	 * @return boolean
+	 * @throws Exception e
+	 * 
 	 */
 	public static boolean existsChildNode(File inputFile, String service, Credential serviceCredencial, String child,
 			Map<String, String> childAttributes) throws Exception {
@@ -122,9 +133,12 @@ public class XMLclass {
 	 * Dado um determinado serviço elimina o mesmo no documento com as
 	 * credenciais
 	 * 
-	 * @param service
-	 *            String
+	 * @param inputFile File
+	 * @param node String
+	 * @param serviceCredencial Credential
+	 * 
 	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean deleteNode(File inputFile, String node, Credential serviceCredencial) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -144,12 +158,14 @@ public class XMLclass {
 	/**
 	 * Dado um determinado serviço elimina o mesmo no documento com as
 	 * credenciais
-	 * 
-	 * @param service
-	 *            String
-	 * @param child
-	 *            String
+	 * @param service String
+	 *            
+	 * @param child String
+	 * @param childAttributes Map
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
 	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean deleteChild(File inputFile, String service, Credential serviceCredencial, String child,
 			Map<String, String> childAttributes) throws Exception {
@@ -169,10 +185,12 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço retorna o node correspondente
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
+
 	 * @return Node
+	 * @throws Exception e
 	 */
 	public static Node getNode(File inputFile, String service, Credential serviceCredencial) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -184,10 +202,12 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço retorna o node correspondente
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
+
 	 * @return Node
+	 * @throws Exception e
 	 */
 	private static Node getNode(File inputFile, String service, Credential serviceCredencial, Document doc)
 			throws Exception {
@@ -204,10 +224,11 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço retorna o node correspondente
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 * @param inputFile File
+
 	 * @return Node
+	 * @throws Exception e
 	 */
 	public static Node getLogin(File inputFile, String service) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -227,10 +248,12 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço retorna o node correspondente
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 * @param inputFile File
+	 * @param serviceCredential Credential
+	* @param Login String
 	 * @return Node
+	 * @throws Exception e
 	 */
 	public static boolean setLogin(File inputFile, String service, Credential serviceCredential, String Login)
 			throws Exception {
@@ -247,10 +270,10 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço retorna o node correspondente
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 * @param inputFile File
 	 * @return Node
+	 * @throws Exception e
 	 */
 	public static NodeList getNodeList(File inputFile, String service) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -263,9 +286,13 @@ public class XMLclass {
 	/**
 	 * Dado um determinado serviço, o nome do filho e os seus attributos retorna
 	 * o mesmo
-	 * 
-	 * @param service
-	 *            String
+	 * @param service String
+	 *            
+	 * @param child String
+	 * @param childAttributes Map
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
+	 * @throws Exception e
 	 * @return Node
 	 */
 	public static Node getChildNode(File inputFile, String service, Credential serviceCredencial, String child,
@@ -296,23 +323,11 @@ public class XMLclass {
 
 	/**
 	 * Adiciona o novo serviço e respetivos atributos ao ficheiro config.xml
-	 * 
-	 * @param service
-	 *            String
-	 * @param protocol
-	 *            String
-	 * @param username
-	 *            String
-	 * @param password
-	 *            String
-	 * @param consumerKey
-	 *            String
-	 * @param consumerSecret
-	 *            String
-	 * @param token
-	 *            String
-	 * @param tokensecret
-	 *            String
+		 * @param service String
+	 * @param inputFile File
+	 * @param serviceCredencial Credential
+	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean addNode(File inputFile, String service, Credential serviceCredencial) throws Exception {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

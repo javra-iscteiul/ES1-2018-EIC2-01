@@ -30,7 +30,6 @@ public class Main extends Application {
 	 * 
 	 * @param janelaInicial
 	 *            Stage
-	 * @throws IOException 
 	 */
 	@Override
 	public void start(Stage janelaInicial) {
@@ -119,7 +118,7 @@ public class Main extends Application {
 	/**
 	 * Procedimento que mostra a interface de edicao de credencias
 	 * 
-	 * @param event
+	 * @param event MouseEvent
 	 * @throws IOException 
 	 */
 	@FXML

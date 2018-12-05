@@ -60,7 +60,7 @@
       <Button layoutX="704.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#novaMensagem" prefHeight="25.0" prefWidth="205.0" text="Nova mensagem" />
       <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="255.0" layoutY="581.0" onMouseClicked="#getEmailsList_Clicked">
          <image>
-            <Image url="file:///../Graphics/refresh.png" />
+            <Image url="file:///../Graphics/refresh2.png" />
          </image>
       </ImageView>
    </children>

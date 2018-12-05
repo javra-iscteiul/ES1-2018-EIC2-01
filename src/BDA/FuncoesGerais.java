@@ -22,11 +22,11 @@ public class FuncoesGerais {
 	/**
 	 * Procedimento que permite alternar entre interfaces
 	 * 
-	 * @param event
-	 *            Event
-	 * @param ficheiroURL
-	 *            URL
-	 * @throws IOException
+	 * @param event Event
+	 *            
+	 * @param ficheiroURL  URL
+	 * @return boolean          
+	 * @throws IOException e
 	 */
 	public static boolean mudarVistaFXML(Event event, URL ficheiroURL) throws IOException {
 		Node node = (Node) event.getSource();
@@ -39,11 +39,12 @@ public class FuncoesGerais {
 	/**
 	 * Procedimento que permite alternar entre interfaces com credenciais
 	 * 
-	 * @param event
-	 *            Event
-	 * @param ficheiroURL
-	 *            URL
-	 * @throws IOException
+	 * @param event  Event
+	 *           
+	 * @param ficheiroURL  URL
+	 * @param cred Credential
+	 * @return boolean          
+	 * @throws Exception e 
 	 */
 	public static boolean mudarVistaFromLoginFXML(Event event, URL ficheiroURL, Credential cred) throws Exception {
 		Node node = (Node) event.getSource();
@@ -58,7 +59,18 @@ public class FuncoesGerais {
 
 		return true;
 	}
-
+	
+	
+	/**
+	 * Procedimento que permite alternar entre interfaces com credenciais
+	 * 
+	 * @param event  Event
+	 *           
+	 * @param ficheiroURL  URL
+	 * @param service String
+	 * @return boolean          
+	 * @throws IOException e
+	 */
 	public static boolean mudarVistaParaLoginFXML(Event event, URL ficheiroURL, String service) throws IOException {
 		Node node = (Node) event.getSource();
 		Stage stage = (Stage) node.getScene().getWindow();

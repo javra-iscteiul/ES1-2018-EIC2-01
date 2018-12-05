@@ -11,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class ControllerBDA {
 	/**
@@ -31,7 +32,11 @@ public class ControllerBDA {
 	 */
 	@FXML
 	private CheckBox facebook;
-	
+	/**
+	 * ImageView enquanto os emails sao carregados
+	 */
+	@FXML
+	private ImageView load;
 	
 	/**
 	 * Checkbox para adicionar/remover tweets
@@ -67,6 +72,7 @@ public class ControllerBDA {
 	TimelineBDA bda = new TimelineBDA();
 	/**
 	 * Procedimento responsável por iniciar a aplicação com a timeline 
+	 * @throws Exception e
 	 */
 	public void initialize() throws Exception {
 		
@@ -93,6 +99,7 @@ public class ControllerBDA {
 				
 
 				list.setItems(bda.getTimeLine());
+				load.setVisible(false);
 				return null;
 			}
 		};

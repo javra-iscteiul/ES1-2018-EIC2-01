@@ -65,9 +65,9 @@
                </image>
             </ImageView>
       <ListView fx:id="list" layoutX="313.0" layoutY="295.0" prefHeight="269.0" prefWidth="660.0" />
-       <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="575.0" layoutY="573.0" onMouseClicked="#getMensagens" styleClass="image">
+       <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="653.0" layoutY="573.0" onMouseClicked="#getMensagens" styleClass="image">
          <image>
-            <Image url="file:///../Graphics/refresh.png" />
+            <Image url="file:///../Graphics/refresh2.png" />
          </image>
       </ImageView>
 
@@ -135,5 +135,10 @@
          </image>
       </ImageView>
       <Button layoutX="925.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#voltar" text="Voltar" />
+      <ImageView id="load" fx:id="load" fitHeight="261.0" fitWidth="392.0" layoutX="447.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:///../Graphics/loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -17,13 +17,13 @@ public class Credential {
 	public String group;
 	
 	/**
-	 * @param protocolo
-	 * @param username
-	 * @param password
-	 * @param consumerKey
-	 * @param consumerSecret
-	 * @param accessToken
-	 * @param accessTokenSecret
+	 * @param protocolo String
+	 * @param username  String
+	 * @param password  String
+	 * @param consumerKey  String
+	 * @param consumerSecret  String
+	 * @param accessToken  String
+	 * @param accessTokenSecret  String
 	 */
 	public Credential(String protocolo, String username, String password, String consumerKey, String consumerSecret,
 			String accessToken, String accessTokenSecret) {
