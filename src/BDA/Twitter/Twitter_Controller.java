@@ -111,6 +111,11 @@ public class Twitter_Controller implements IServiceController {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
 	
+	@FXML
+	protected void selection(MouseEvent event) {
+		//abrir tweet
+	}
+	
 	/**
 	 * Procedimento para mudar a conta em utilização 
 	 * @param event

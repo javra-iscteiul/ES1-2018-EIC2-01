@@ -3,6 +3,7 @@ package BDA.Twitter;
 import java.util.Date;
 
 import BDA.Mensagem;
+import twitter4j.MediaEntity;
 
 public class MensagemTwitter extends Mensagem{
 
@@ -12,11 +13,25 @@ public class MensagemTwitter extends Mensagem{
 		 * @param date String
 		 * @param content String
 		 */
+	
+	
+		private MediaEntity[] media;
+	
 		public MensagemTwitter( String user,String date,  String content) {
 			super(user,date,content);
 		}
  
 
+
+		public MediaEntity[] getMedia() {
+			return media;
+		}
+
+
+
+		public void setMedia(MediaEntity[] media) {
+			this.media = media;
+		}
 
 		
 		/* (non-Javadoc)

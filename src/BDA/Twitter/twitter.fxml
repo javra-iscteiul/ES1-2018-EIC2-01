@@ -34,7 +34,7 @@
         </items>
       </MenuButton>
       <TextField id="pesquisa" fx:id="pesquisa" layoutX="14.0" layoutY="51.0" prefHeight="36.0" prefWidth="612.0" promptText="Pesquisar" />
-      <ListView fx:id="tweetsList" layoutX="27.0" layoutY="134.0" prefHeight="345.0" prefWidth="839.0" />
+      <ListView fx:id="tweetsList" layoutX="27.0" layoutY="134.0" prefHeight="345.0" prefWidth="839.0" onMouseClicked="#selection" />
       <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="417.0" layoutY="479.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:///../Graphics/refresh.png" />
