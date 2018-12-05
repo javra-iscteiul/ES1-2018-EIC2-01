@@ -205,12 +205,7 @@ public class Email implements IService {
 							String sub = childAttributes.getNamedItem("Subject").getNodeValue();
 							String date = childAttributes.getNamedItem("Date").getNodeValue();
 							String content = childAttributes.getNamedItem("Message").getNodeValue();
-							/*
-							 * System.out.println( "From: " + from +
-							 * "\r\n"+"Subject: " + sub + "\r\n"+ "Date:" + date
-							 * + "\r\n"+ "Message: " + content); emails.add(new
-							 * MensagemEmail(from,sub,date,content));
-							 */
+							emails.add(new MensagemEmail(from, sub, date, content));
 
 						}
 					}

@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -67,6 +68,11 @@ public class Controller implements IServiceController {
 	private TextArea conteudo;
 
 	/**
+	 * ImageView enquanto os emails sao carregados
+	 */
+	@FXML
+	private ImageView load;
+	/**
 	 * Email, instancia da aplicação em uso
 	 */
 	Email email = new Email();
@@ -75,7 +81,8 @@ public class Controller implements IServiceController {
 	 * @see BDA.IServiceController#init(BDA.Credential)
 	 */
 	public void init(Credential cred) {
-
+		user.setText(cred.getUsername());
+		
 		Task<Void> exampleTask = new Task<Void>() {
 
 			@Override
@@ -84,7 +91,7 @@ public class Controller implements IServiceController {
 				email.init(cred);
 				System.out.println("init");
 				emailsList.setItems(email.getTimeLine());
-				user.setText(cred.getUsername());
+				load.setVisible(false);
 
 				return null;
 			}
@@ -103,13 +110,13 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	public void getEmailsList_Clicked(MouseEvent event) {
-
+		load.setVisible(true);
 		Task<Void> exampleTask = new Task<Void>() {
 
 			@Override
 			protected Void call() throws Exception {
 				emailsList.setItems(email.getTimeLine());
-
+				load.setVisible(false);
 				return null;
 			}
 		};
@@ -125,11 +132,12 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void filter(ActionEvent event) {
+		load.setVisible(true);
 		Task<Void> exampleTask = new Task<Void>() {
-
 			@Override
 			protected Void call() throws Exception {
 				emailsList.setItems(email.setFilter(pesquisa.getText()));
+				load.setVisible(false);
 				return null;
 			}
 		};
@@ -161,8 +169,19 @@ public class Controller implements IServiceController {
 		conteudo.setText("");
 		Email.setFolder("Sent");
 		responder.setVisible(false);
-		ObservableList<Mensagem> l = email.getTimeLine();
-		emailsList.setItems((ObservableList<Mensagem>) l);
+		
+		load.setVisible(true);
+		Task<Void> exampleTask = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				ObservableList<Mensagem> l = email.getTimeLine();
+				emailsList.setItems((ObservableList<Mensagem>) l);
+				load.setVisible(false);
+				return null;
+			}
+		};
+
+		new Thread(exampleTask).start();
 	}
 
 	/**
@@ -282,7 +301,9 @@ public class Controller implements IServiceController {
 	@FXML
 	protected void selection(MouseEvent event) {
 		conteudo.setText(emailsList.getSelectionModel().getSelectedItem().toString());
-		responder.setVisible(true);
+		if(Email.getFolder()=="INBOX") {
+			responder.setVisible(true);
+		}
 	}
 
 	/**
