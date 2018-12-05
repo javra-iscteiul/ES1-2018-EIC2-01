@@ -14,6 +14,8 @@ import java.util.Map;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.GraphResponse;
 import com.restfb.types.Post;
 
 import BDA.Credential;
@@ -22,6 +24,9 @@ import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import twitter4j.TwitterException;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -41,6 +46,11 @@ public class Facebook implements IService {
 	private ObservableList<Mensagem> posts = FXCollections.observableArrayList();
 	
 	/**
+	 * variavel que indica se os posts a ver são do grupo
+	 */
+	private boolean group = false;
+	
+	/**
 	 * Credencial da conta que fez login no facebook
 	 */
 	private Credential facebookCredential;
@@ -48,7 +58,7 @@ public class Facebook implements IService {
 	public void init(Credential cred){
 		this.facebookCredential = cred;
 	}
-
+	
 	/**
 	 * Este método permite que seja obtida uma lista dos posts do utilizador logado
 	 * na timeline do facebook (interface)
@@ -64,7 +74,11 @@ public class Facebook implements IService {
 		try {
 			FacebookClient fbClient = new DefaultFacebookClient(facebookCredential.getAccessToken());
 			//cria a conecção com o facebook e recebe os posts
-			Connection<Post> results = fbClient.fetchConnection("me/feed", Post.class);
+			Connection<Post> results;
+			if(group)
+				results = fbClient.fetchConnection(facebookCredential.getGroup() + "/feed", Post.class);
+			else
+				results = fbClient.fetchConnection("me/feed", Post.class);
 
 			//no caso de existirem posts guardados elimina-os
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
@@ -216,10 +230,20 @@ public class Facebook implements IService {
 			return posts;
 	}
 	
+	public boolean publish(String publishText){
+		FacebookClient fbClient = new DefaultFacebookClient(facebookCredential.getAccessToken());
+		GraphResponse response = fbClient.publish(facebookCredential.getGroup() + "/feed", GraphResponse.class, Parameter.with("message", publishText));
+		return response.isSuccess();
+	}
+	
 	/**
 	 * @return retorna as credenciais da conta que fez login
 	 */
 	public Credential getCredential() {
 		return this.facebookCredential;
+	}
+	
+	public void setGroup(boolean group){
+		this.group = group;
 	}
 }

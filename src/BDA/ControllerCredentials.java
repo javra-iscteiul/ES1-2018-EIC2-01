@@ -81,6 +81,12 @@ public class ControllerCredentials {
 	 */
 	@FXML
 	private TextField accessTokenSecretFacebook;
+	
+	/**
+	 * TextField correspondente ao grupo do facebook
+	 */
+	@FXML
+	private TextField groupFacebook;
 
 	/**
 	 * TextField correspondente à palavra ou frase a pesquisar
@@ -428,7 +434,7 @@ public class ControllerCredentials {
 	private Credential getCredencial(String service) {
 		if (service.equals(XMLclass.facebookService))
 			return new Credential(null, this.userNameFacebook.getText(), this.passwordFacebook.getText(), null, null,
-					this.accessTokenFacebook.getText(), this.accessTokenSecretFacebook.getText());
+					this.accessTokenFacebook.getText(), this.accessTokenSecretFacebook.getText(), this.groupFacebook.getText());
 		else if (service.equals(XMLclass.twitterService))
 			return new Credential(this.protocolTwitter.getText(), this.userNameTwitter.getText(),
 					this.passwordTwitter.getText(), this.consumerKeyTwitter.getText(),
