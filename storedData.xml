@@ -663,11 +663,9 @@
 
 
 
-<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Login="True" Password="grupo1grupo" Protocol="" UserName="EsJarh">
-<post2 dateCreated="15/09/2018" title="" userName=""/>
-<post0 dateCreated="22/09/2018" title="" userName=""/>
-<post1 dateCreated="19/09/2018" title="Hello world!" userName=""/>
-</facebook>
+
+
+
 
 
 
@@ -731,4 +729,17 @@
 <post18 dateCreated="Tue Oct 16 15:34:08 BST 2018" statusText="Igualdade entre H e M onde estamos?: https://t.co/5NVZI6cX6x via @YouTube" userName="ISCTE - IUL"/>
 <post19 dateCreated="Tue Oct 16 15:34:06 BST 2018" statusText="I added a video to a @YouTube playlist https://t.co/5NVZI6cX6x Igualdade entre H e M onde estamos?" userName="ISCTE - IUL"/>
 </twitter>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </Services>

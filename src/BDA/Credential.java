@@ -14,7 +14,8 @@ public class Credential {
 	public String accessToken;
 	public String accessTokenSecret;
 	public String login;
-
+	public String group;
+	
 	/**
 	 * @param protocolo
 	 * @param username
@@ -33,6 +34,19 @@ public class Credential {
 		this.consumerSecret = consumerSecret;
 		this.accessToken = accessToken;
 		this.accessTokenSecret = accessTokenSecret;
+		this.login = "False";
+	}
+	
+	public Credential(String protocolo, String username, String password, String consumerKey, String consumerSecret,
+			String accessToken, String accessTokenSecret, String grupo) {
+		this.protocolo = protocolo;
+		this.username = username;
+		this.password = password;
+		this.consumerKey = consumerKey;
+		this.consumerSecret = consumerSecret;
+		this.accessToken = accessToken;
+		this.accessTokenSecret = accessTokenSecret;
+		this.group = grupo;
 		this.login = "False";
 	}
 
@@ -56,6 +70,8 @@ public class Credential {
 			this.accessToken = credentials.getNamedItem("AccessToken").getNodeValue();
 		if (credentials.getNamedItem("AccessTokenSecret") != null)
 			this.accessTokenSecret = credentials.getNamedItem("AccessTokenSecret").getNodeValue();
+		if (credentials.getNamedItem("Group") != null)
+			this.group = credentials.getNamedItem("Group").getNodeValue();
 		if (credentials.getNamedItem("Login") != null)
 			this.login = credentials.getNamedItem("Login").getNodeValue();
 	}
@@ -115,6 +131,14 @@ public class Credential {
 	public void setAccessTokenSecret(String accessTokenSecret) {
 		this.accessTokenSecret = accessTokenSecret;
 	}
+	
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
 
 	public String getLogin() {
 		return this.login;
@@ -133,6 +157,7 @@ public class Credential {
 		cred.put("ConsumerSecret", this.consumerSecret);
 		cred.put("AccessToken", this.accessToken);
 		cred.put("AccessTokenSecret", this.accessTokenSecret);
+		cred.put("Group", this.group);
 		cred.put("Login", this.login);
 		return cred;
 	}
@@ -143,12 +168,13 @@ public class Credential {
 
 	@Override
 	public String toString() {
-		return (this.protocolo != null ? "Protocol:" + this.protocolo + "\r\n" : "")
-				+ (this.username != null ? "UserName:" + this.username + "\r\n" : "")
-				+ (this.password != null ? "Password:" + this.password + "\r\n" : "")
-				+ (this.consumerKey != null ? "Consumer Key:" + this.consumerKey + "\r\n" : "")
-				+ (this.consumerSecret != null ? "Consumer Secret:" + this.consumerSecret + "\r\n" : "")
-				+ (this.accessToken != null ? "Access Token:" + this.accessToken + "\r\n" : "")
-				+ (this.accessTokenSecret != null ? "Access Token Secret:" + this.accessTokenSecret : "");
+		return (this.protocolo != "" ? "Protocol: " + this.protocolo + "\r\n" : "")
+				+ (this.username != "" ? "UserName: " + this.username + "\r\n" : "")
+				+ (this.password != "" ? "Password: " + this.password + "\r\n" : "")
+				+ (this.consumerKey != "" ? "Consumer Key: " + this.consumerKey + "\r\n" : "")
+				+ (this.consumerSecret != "" ? "Consumer Secret: " + this.consumerSecret + "\r\n" : "")
+				+ (this.accessToken != "" ? "Access Token: " + this.accessToken + "\r\n" : "")
+				+ (this.accessTokenSecret != "" ? "Access Token Secret: " + this.accessTokenSecret + "\r\n" : "")
+				+ (this.group != "" ? "Group: " + this.group : "");
 	}
 }

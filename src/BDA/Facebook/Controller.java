@@ -11,10 +11,13 @@ import BDA.XMLclass;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import twitter4j.TwitterException;
 
 /**
  * Date: Oct 22 2018
@@ -44,6 +47,18 @@ public class Controller implements IServiceController {
 	@FXML
 	private ListView<Mensagem> facebookList;
 	
+	/**
+	 * Text area da publicação a postar
+	 */
+	@FXML
+	private TextArea publicacao;
+	
+	/**
+	 * Checkbox para ver posts do grupo
+	 */
+	@FXML
+	private CheckBox group;
+	
 	Facebook facebook = new Facebook();
 	
 	/**
@@ -55,7 +70,7 @@ public class Controller implements IServiceController {
     public void init(Credential cred) throws Exception {
     	facebook.init(cred);
     	user.setText(cred.getUsername());
-		facebookList.setItems(facebook.getTimeLine());
+    	facebookList.setItems(facebook.getTimeLine());
     }
 	
 	/**
@@ -129,6 +144,31 @@ public class Controller implements IServiceController {
 	@FXML
 	private void lastMonth(ActionEvent event) throws Exception {
 		facebookList.setItems(facebook.getLast("month"));
+	}
+	
+	/**
+	 * utilizado no evento em que o utilizador clica no botao de publicar
+	 * @param event
+	 * @throws TwitterException 
+	 */
+	@FXML 
+	private void publish(ActionEvent event) throws Exception {
+		if(facebook.publish(publicacao.getText()))
+		{
+			publicacao.clear();
+			facebookList.setItems(facebook.getTimeLine());
+		}
+	}
+	
+	/**
+	 * Procedimento que filtra a lista de mensagens para remover/adicionar emails
+	 * @param event ActionEvent
+	 * @throws Exception e 
+	 */
+	@FXML
+	private void group(ActionEvent event) throws Exception {
+		facebook.setGroup(group.isSelected());
+		facebookList.setItems(facebook.getTimeLine());
 	}
 	
 	/**
