@@ -106,7 +106,7 @@ public class Email implements IService {
 	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
-		emails.clear();
+		emails.clear(); 
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");

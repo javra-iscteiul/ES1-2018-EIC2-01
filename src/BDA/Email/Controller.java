@@ -175,7 +175,7 @@ public class Controller implements IServiceController {
 			@Override
 			protected Void call() throws Exception {
 				ObservableList<Mensagem> l = email.getTimeLine();
-				emailsList.setItems((ObservableList<Mensagem>) l);
+				emailsList.setItems((ObservableList<Mensagem>) l); 
 				load.setVisible(false);
 				return null;
 			}

@@ -41,7 +41,7 @@
             </MenuButton>
             <ImageView id="load" fx:id="load" fitHeight="419.0" fitWidth="536.0" layoutY="79.0" pickOnBounds="true">
                <image>
-                  <Image url="file:///../Graphics/load.gif" />
+                  <Image url="file:///../Graphics/loading.gif" /> 
                </image>
             </ImageView>
          </children>
