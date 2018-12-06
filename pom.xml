@@ -30,5 +30,31 @@
       
     </plugins>
   </build>
-  
+   <dependencies>
+  		<!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
+		<dependency>
+		    <groupId>org.twitter4j</groupId>
+		    <artifactId>twitter4j-core</artifactId>
+		    <version>4.0.7</version>
+		</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/com.restfb/restfb -->
+	<dependency>
+	    <groupId>com.restfb</groupId>
+	    <artifactId>restfb</artifactId>
+	    <version>2.11.0</version>
+	</dependency>
+    
+  </dependencies>
 </project>
