@@ -134,7 +134,7 @@ public class Twitter_Controller implements IServiceController {
 		
 		Scene scene = new Scene(f.load());
         s.setScene(scene);
-        s.show();
+        s.show(); 
 	}
 	
 	/**

@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import twitter4j.MediaEntity;
-
+ 
 public class Tweet_Controller {
 	private MensagemTwitter mensagem;
 
