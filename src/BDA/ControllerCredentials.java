@@ -223,6 +223,7 @@ public class ControllerCredentials {
 		Credential selectedCredencial = facebookCredentials.getSelectionModel().getSelectedItem();
 		userNameFacebook.setText(selectedCredencial.getUsername());
 		passwordFacebook.setText(selectedCredencial.getPassword());
+		groupFacebook.setText(selectedCredencial.getGroup());
 		accessTokenFacebook.setText(selectedCredencial.getAccessToken());
 		accessTokenSecretFacebook.setText(selectedCredencial.getAccessTokenSecret());
 		editFacebookbtn.setDisable(false);

@@ -276,10 +276,10 @@ public class Credential {
 		return (this.protocolo != "" ? "Protocol: " + this.protocolo + "\r\n" : "")
 				+ (this.username != "" ? "UserName: " + this.username + "\r\n" : "")
 				+ (this.password != "" ? "Password: " + this.password + "\r\n" : "")
+				+ (this.group != "" ? "Group: " + this.group + "\r\n" : "")
 				+ (this.consumerKey != "" ? "Consumer Key: " + this.consumerKey + "\r\n" : "")
 				+ (this.consumerSecret != "" ? "Consumer Secret: " + this.consumerSecret + "\r\n" : "")
 				+ (this.accessToken != "" ? "Access Token: " + this.accessToken + "\r\n" : "")
-				+ (this.accessTokenSecret != "" ? "Access Token Secret: " + this.accessTokenSecret + "\r\n" : "")
-				+ (this.group != "" ? "Group: " + this.group : "");
+				+ (this.accessTokenSecret != "" ? "Access Token Secret: " + this.accessTokenSecret : "");
 	}
 }
