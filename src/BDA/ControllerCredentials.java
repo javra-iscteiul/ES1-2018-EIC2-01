@@ -149,6 +149,12 @@ public class ControllerCredentials {
 	private TextField passwordEmail;
 	
 	/**
+	 * Button para voltar á pagina inicial
+	 */
+	@FXML
+	private Button voltar;
+	
+	/**
 	 * Credenciais dos serviços
 	 */
 	Credentials cred = new Credentials();
@@ -203,7 +209,8 @@ public class ControllerCredentials {
 	 * @throws IOException
 	 */
 	@FXML
-	private void voltar_clicked(MouseEvent event) throws IOException {
+	private void voltar(ActionEvent event) throws IOException {
+		System.out.println("helllo");
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
 
