@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -43,8 +44,15 @@ public class Twitter_Controller implements IServiceController {
 	@FXML
 	private TextArea publicacao;
 	
+	/**
+	 * Label com o nome de utilizador
+	 */
+	@FXML
+	private Label user;
+	
 	public void init(Credential cred) throws Exception {
 		tt.init(cred);
+		user.setText("@" +cred.getUsername());
 		tweetsList.setItems(tt.getTimeLine());
     }
 	

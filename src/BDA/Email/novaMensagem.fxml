@@ -9,21 +9,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.novaMensagemController">
    <children>
-      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <menus> 
-          <Menu mnemonicParsing="false" text="Opções">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Voltar ao menu anterior" />
-              <MenuItem mnemonicParsing="false" text="Fechar" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ajuda">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Sobre nós" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <Label layoutX="19.0" layoutY="42.0" prefHeight="25.0" prefWidth="92.0" styleClass="text-field" text="To:" />
       <TextField id="to" fx:id="to" layoutX="14.0" layoutY="78.0" prefHeight="25.0" prefWidth="681.0" />
       <Label layoutX="19.0" layoutY="119.0" prefHeight="14.0" prefWidth="48.0" styleClass="text-field" text="Subject:" />
