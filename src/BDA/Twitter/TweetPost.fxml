@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="136.0" prefWidth="661.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="4.0" layoutY="2.0" prefHeight="284.0" prefWidth="661.0">
+         <top>
+            <HBox prefHeight="48.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="user" prefHeight="44.0" prefWidth="663.0" styleClass="text-field" text="Label" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <HBox prefHeight="118.0" prefWidth="444.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="image" fitHeight="146.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </center>
+         <bottom>
+            <SplitPane dividerPositions="0.611764705882353" orientation="VERTICAL" prefHeight="87.0" prefWidth="657.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="659.0" styleClass="text-field">
+                     <children>
+                        <Label fx:id="content" layoutX="-1.0" layoutY="4.0" prefHeight="42.0" prefWidth="661.0" styleClass="text-field" text="Label" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <HBox prefHeight="28.0" prefWidth="661.0">
+                           <children>
+                              <Label fx:id="date" prefHeight="28.0" prefWidth="661.0" styleClass="text-field" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

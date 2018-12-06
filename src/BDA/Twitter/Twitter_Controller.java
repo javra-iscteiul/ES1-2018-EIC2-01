@@ -11,12 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import twitter4j.TwitterException;
 
 public class Twitter_Controller implements IServiceController {
@@ -120,8 +123,18 @@ public class Twitter_Controller implements IServiceController {
 	}
 	
 	@FXML
-	protected void selection(MouseEvent event) {
-		//abrir tweet
+	protected void selection(MouseEvent event) throws IOException {
+		Stage s = new Stage();
+		s.setTitle("Tweet");
+		FXMLLoader f =  new FXMLLoader();
+		f.setLocation(getClass().getResource("TweetPost.fxml"));
+		Tweet_Controller tc =  new Tweet_Controller();
+		tc.setMensagem((MensagemTwitter) tweetsList.getSelectionModel().getSelectedItem());
+		f.setController(tc);
+		
+		Scene scene = new Scene(f.load());
+        s.setScene(scene);
+        s.show();
 	}
 	
 	/**
