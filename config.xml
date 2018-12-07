@@ -31,7 +31,7 @@
 <filter value="Bom"/>
 </facebook>
 
-<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="False" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
 <filter value=""/>
 <filter value="a"/>
 <filterUser value="a"/>
@@ -42,7 +42,8 @@
 <twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Group="" Login="True" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
 
 
-<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="True" Password="grupo1grupo" Protocol="" UserName="testeES1@outlook.pt">
-<filter24h value="true"/>
-</email>
+
+
+
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="False" Password="grupo1grupo" Protocol="" UserName="testeES1@outlook.pt"/>
 </Services>

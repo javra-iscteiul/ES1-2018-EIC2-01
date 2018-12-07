@@ -216,7 +216,6 @@ public class ControllerCredentials {
 	 */
 	@FXML
 	private void voltar(ActionEvent event) throws IOException {
-		System.out.println("helllo");
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
 
@@ -322,8 +321,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que edita uma credencial do twitter (biblioteca Javafx)
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void editTwitterCredencial_clicked(ActionEvent event) throws Exception {

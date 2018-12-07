@@ -1,6 +1,9 @@
 package BDA;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +56,7 @@ public class loginController {
 	private void login(ActionEvent event) throws Exception {
 		error.setVisible(false);
 		String user = username.getText();
-		String pass = password.getText();
+		String pass =password.getText();
 		
 		Credential cred = new Credential(user, pass);
 		if(XMLclass.existsNode(XMLclass.configFile, selectedService, cred)){
@@ -86,5 +89,6 @@ public class loginController {
 	private void voltar_clicked(MouseEvent event) throws IOException{
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
 	}
+
 
 }

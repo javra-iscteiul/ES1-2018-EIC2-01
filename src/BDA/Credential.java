@@ -1,5 +1,7 @@
 package BDA;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ import org.w3c.dom.NamedNodeMap;
  * @version 1.0 classe Credential, credenciais dos serviços
  */
 public class Credential {
+	
 	/**
 	 * Protocolo do serviço
 	 */
@@ -296,6 +299,8 @@ public class Credential {
 	public boolean equals(Credential cred) {
 		return this.username.equals(cred.username) && this.password.equals(cred.password);
 	}
+	
+	
 
 	@Override
 	public String toString() {

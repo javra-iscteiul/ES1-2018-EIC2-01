@@ -23,7 +23,7 @@ import org.w3c.dom.NamedNodeMap;
  * Date: Oct 22 2018
  * 
  * @author ES1-2018-EIC2-01
- * @version 1.0 Classe responsavel por guardas ass credenciais no ficheiro
+ * @version 1.0 Classe responsavel por guardas as credenciais no ficheiro
  *          config.xml
  */
 public class XMLclass {
