@@ -25,6 +25,10 @@
 <filter value="week"/>
 <filter value="month"/>
 <filter value=""/>
+<filter value="teste"/>
+<filter value="hello"/>
+<filter value="Hello"/>
+<filter value="Bom"/>
 </facebook>
 
 <email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="False" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">

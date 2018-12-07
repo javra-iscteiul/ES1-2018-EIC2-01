@@ -91,7 +91,7 @@ public class Facebook implements IService {
 				for (Post aPost : page) {
 					String userName = aPost.getName();
 					Date dateCreated = (group ? aPost.getUpdatedTime() : aPost.getCreatedTime());
-					String dateCreatedString = dateCreated.getDate() + "/" 
+					String dateCreatedString = (dateCreated.getDate() < 10 ? "0" : "") + dateCreated.getDate() + "/" 
 							+ (dateCreated.getMonth() < 10 ? "0" : "") + dateCreated.getMonth() + "/"
 							+ (dateCreated.getYear() + 1900);
 					String title = aPost.getMessage();
