@@ -3,8 +3,10 @@ package BDA.Email;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,7 +41,7 @@ import javafx.collections.ObservableList;
  * Date: Oct 24 2018
  * 
  * @author ES1-2018-EIC2-01
- * @version 1.0 Aplicação agregadora de conteúdos académicos: canal do Email
+ * @version 1.0 AplicaÃ§Ã£o agregadora de conteÃºdos acadÃ©micos: canal do Email
  *
  */
 
@@ -55,7 +57,7 @@ public class Email implements IService {
 	private ObservableList<Mensagem> emails = FXCollections.observableArrayList();
 
 	/**
-	 * Sessao do email com as propriedades já definidas
+	 * Sessao do email com as propriedades jÃ¡ definidas
 	 */
 	private static Session session;
 	/**
@@ -64,12 +66,12 @@ public class Email implements IService {
 	private static String folder = "INBOX";
 	/**
 	 * String indicadora do destinatorio de uma possivel mensagem para
-	 * intercomunicação entre interfaces
+	 * intercomunicaÃ§Ã£o entre interfaces
 	 */
 	private static String to = "";
 
 	/**
-	 * Procedimento responsavel por iniciar a aplicação
+	 * Procedimento responsavel por iniciar a aplicaÃ§Ã£o
 	 */
 	public void init(Credential cred) {
 		emailCredential = cred;
@@ -94,7 +96,7 @@ public class Email implements IService {
 	}
 
 	/**
-	 * Este método permite que seja obtida uma lista dos emails de um utilizador
+	 * Este mÃ©todo permite que seja obtida uma lista dos emails de um utilizador
 	 * (interface)
 	 * 
 	 * @return ObservableList
@@ -164,6 +166,7 @@ public class Email implements IService {
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
+
 			Collections.reverse(emails);
 			return emails;
 		} catch (NoSuchProviderException ex) {
@@ -183,13 +186,14 @@ public class Email implements IService {
 	}
 
 	/**
-	 * Este método permite que seja obtida uma lista dos emails de um utilizador
-	 * no caso de este se encontrar sem acesso à Internet (interface)
+	 * Este mÃ©todo permite que seja obtida uma lista dos emails de um utilizador
+	 * no caso de este se encontrar sem acesso Ã  Internet (interface)
 	 * 
 	 * @return ObservableList
 	 * @throws Exception e
 	 * @throws DOMException e
 	 */
+
 	public ObservableList<Mensagem> getStoredTimeLine() throws DOMException, Exception {
 			if (folder == "INBOX") {
 				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
@@ -206,9 +210,11 @@ public class Email implements IService {
 						}
 					}
 				}
+
 			} else if (folder == "Sent") {
 				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
 					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent", emailCredential);
+
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 						if (childAttributes != null) {
@@ -226,7 +232,7 @@ public class Email implements IService {
 	}
 
 	/**
-	 * Procedimento responsavel por ler a informação do email e passá-la para
+	 * Procedimento responsavel por ler a informaÃ§Ã£o do email e passÃ¡-la para
 	 * string
 	 * 
 	 * @param p  Part
@@ -346,18 +352,67 @@ public class Email implements IService {
 	}
 
 	/**
-	 * Procedimento responsavel pelo envio de uma mensagem com os dados
-	 * recebidos como parametros
-	 * 
-	 * @param to  String
-	 *           
-	 * @param sub  String
-	 *           
-	 * @param text  String
-	 *           
-	 * @param emailCredential Credential    
-	 * 
-	 * @return boolean
+	 * Procedimento que filtra os emails de um utilizador consoante os emails que pertencem ao utilizador pedido
+	 * @param text String
+	 * @return lista dos emails do utilizador filtrada
+	 */
+	public ObservableList<Mensagem> filterUser(String text) {
+		try {
+			
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+			 for (int i = 0; i < emails.size(); i++) {
+		            if(emails.get(i).getFrom_to().contains(text) ) {
+		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
+								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+				     }
+			 }
+			 
+			return nova;
+
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
+	 * @return lista dos emails do utilizador filtrada
+	 */
+	public ObservableList<Mensagem> getLast24h() {
+		try {
+			
+			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+			 for (int i = 0; i < emails.size(); i++) {
+				 DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+				 Date date = format.parse(emails.get(i).getDate());
+				 Date today = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
+				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
+				    if(date.after(twentyfourhoursbefore) && date.before(today)){
+		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
+								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
+				     }
+			 }
+			 
+			return nova;
+
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * Procedimento responsavel pelo envio de uma mensagem com os dados recebidos como parametros
+	 * @param to String
+	 * @param sub String
+	 * @param text String
+
 	 */
 	
 	public static boolean sendEmails(String to, String sub, String text, Credential emailCredential) {
