@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Services>
-<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh"/>
-<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com"/>
-<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" Password="grupo1grupo" UserName="EsJarh"/>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="True" Password="grupo1grupo" Protocol="" UserName="es1g1@outlook.com">
+<filter value=""/>
+<filter value="a"/>
+<filterUser value="a"/>
+<filter24h value="true"/>
+<filterweek value="true"/>
+<filtermonth value="true"/>
+</email>
+
+
+
+
+
+
+<email AccessToken="" AccessTokenSecret="" ConsumerKey="" ConsumerSecret="" Group="" Login="False" Password="grupo1grupo" Protocol="" UserName="testeES1@outlook.pt"/>
+
+
+
+
+
+
+
+
+
+
+<facebook AccessToken="EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD" AccessTokenSecret="1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="" ConsumerSecret="" Group="261188531221740" Login="True" Password="grupo1grupo" Protocol="" UserName="EsJarh">
+<post2 dateCreated="15/10/2018" title="" userName=""/>
+<post0 dateCreated="22/10/2018" title="" userName=""/>
+<post1 dateCreated="19/10/2018" title="Hello world!" userName=""/>
+</facebook>
+
+<twitter AccessToken="1051761005406154752-yRmIyBEYTX21kensmMUAvpNVRfC15Q" AccessTokenSecret="F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX" ConsumerKey="yPv2NQ8ozCWIQ1jZeXjWLGUce" ConsumerSecret="w7lfg9hNlQ8qFAfb5k7fMtzdiYhqhBFe5S6PNu0PfTy0FL6Vo8" Group="" Login="True" Password="grupo1grupo" Protocol="smtp" UserName="EsJarh">
+<post8 dateCreated="Fri Dec 07 16:18:37 GMT 2018" statusText="....and one of the most highly respected lawyers and legal minds in the Country, he will be a great addition to our team. I look forward to having him join our very successful Administration!" userName="Donald J. Trump"/>
+<post9 dateCreated="Fri Dec 07 16:18:36 GMT 2018" statusText="I am pleased to announce that I will be nominating The Honorable William P. Barr for the position of Attorney General of the United States. As the former AG for George H.W. Bush...." userName="Donald J. Trump"/>
+<post6 dateCreated="Fri Dec 07 18:16:03 GMT 2018" statusText="Revê alguns dos melhores momentos do nosso Bas Dost com a camisola leonina! ⚡ &#128154;&#10;&#10;#SportingCP https://t.co/o32oXiBJmj" userName="Sporting Clube de Portugal"/>
+<post7 dateCreated="Fri Dec 07 16:22:19 GMT 2018" statusText="HISTÓRICO!!!&#127942;&#10;&#10;A equipa de judo do Sporting conquistou a Liga dos Campeões da modalidade esta sexta-feira após bater os russos do Yawara Neva por 3-2 na final do evento realizado em Bucareste.&#128170;&#128154;&#10;&#10;#JudoSCP https://t.co/Dw6Mqoy9wq" userName="Sporting Clube de Portugal"/>
+<post4 dateCreated="Fri Dec 07 20:02:34 GMT 2018" statusText="Mike Pompeo is doing a great job, I am very proud of him. His predecessor, Rex Tillerson, didn’t have the mental capacity needed. He was dumb as a rock and I couldn’t get rid of him fast enough. He was lazy as hell. Now it is a whole new ballgame, great spirit at State!" userName="Donald J. Trump"/>
+<post5 dateCreated="Fri Dec 07 18:48:43 GMT 2018" statusText="RT @WhiteHouse: President Trump Delivers Remarks at the 2018 Project Safe Neighborhoods National Conference https://t.co/5oV86XUX1o" userName="Donald J. Trump"/>
+<post2 dateCreated="Fri Dec 07 20:56:17 GMT 2018" statusText="Hopefully Mitch McConnell will ask for a VOTE on Criminal Justice Reform. It is extremely popular and has strong bipartisan support. It will also help a lot of people, save taxpayer dollars, and keep our communities safe. Go for it Mitch!" userName="Donald J. Trump"/>
+<post3 dateCreated="Fri Dec 07 20:44:35 GMT 2018" statusText="É Natal quando a solidariedade nos une.&#127877;&#128591;&#10; &#10;No jogo @Sporting_CP x @cdaves1930, traz roupa para oferecer a pessoas em situação de sem abrigo, apoiadas pela Comunidade Vida e Paz.&#128154; https://t.co/jDkqe7KBsZ" userName="Sporting Clube de Portugal"/>
+<post30 dateCreated="Fri Dec 07 03:08:26 GMT 2018" statusText="FAKE NEWS - THE ENEMY OF THE PEOPLE!" userName="Donald J. Trump"/>
+<post0 dateCreated="Fri Dec 07 21:04:06 GMT 2018" statusText="RT @SCPeSports: Começa já amanhã!! @RastaArtur disputa o #LQEBucharest! &#127481;&#127465; VAMOOOS!&#10;&#10;&#128467; 8 e 9 de Dezembro&#10;&#127909; https://t.co/yXjDARtnrH https://…" userName="Sporting Clube de Portugal"/>
+<post31 dateCreated="Fri Dec 07 03:07:18 GMT 2018" statusText="Trish_Regan:  “Did the FBI follow protocol to obtain the FISA warrant? I don’t think so. The Dossier was opposition research funded by opponents. Don’t use Government resources to take down political foes. Weaponizing Government for gain.” Is this really America? Witch Hunt!" userName="Donald J. Trump"/>
+<post1 dateCreated="Fri Dec 07 20:57:13 GMT 2018" statusText="RT @FutFemSCP: Já temos adversário para a 3.ª eliminatória da Taça de Portugal &#127942;&#10;&#10;O que achas do nosso adversário? &#129300;&#10;&#10;#FutFemSCP https://t.…" userName="Sporting Clube de Portugal"/>
+<post10 dateCreated="Fri Dec 07 16:16:51 GMT 2018" statusText="I am pleased to announce that Heather Nauert, Spokeswoman for the United States Department of State, will be nominated to serve as United Nations Ambassador. I want to congratulate Heather, and thank Ambassador Nikki Haley for her great service to our Country!" userName="Donald J. Trump"/>
+<post32 dateCreated="Fri Dec 07 02:58:43 GMT 2018" statusText="Jerome Corsi: ”This is not justice, this is not America. This is a political prosecution. The Special Prosecutor (Counsel), to get this plea deal, demanded I lie and violate the law. They’re the criminals.” He is not alone. 17 Angry Dems. People forced to lie. Sad!  @Trish_Regan" userName="Donald J. Trump"/>
+<post22 dateCreated="Fri Dec 07 12:15:58 GMT 2018" statusText="...the lying and leaking by the people doing the Report, &amp; also Bruce Ohr (and his lovely wife Molly), Comey, Brennan, Clapper, &amp; all of the many fired people of the FBI, be listed in the Report? Will the corruption within the DNC &amp; Clinton Campaign be exposed?..And so much more!" userName="Donald J. Trump"/>
+<post23 dateCreated="Fri Dec 07 11:53:34 GMT 2018" statusText="....Foundation be listed at the top of the Report? Will the scathing document written about Lyin’ James Comey, by the man in charge of the case, Rod Rosenstein (who also signed the FISA Warrant), be a big part of the Report? Isn’t Rod therefore totally conflicted? Will all of...." userName="Donald J. Trump"/>
+<post24 dateCreated="Fri Dec 07 11:44:51 GMT 2018" statusText="Carlos Carneiro: “Não nos passa pela cabeça outro resultado a não ser a vitória”  &#10;Sporting disputa Taça de Portugal frente ao Gondomar Cultural ⚽&#10;&#10;Sabe mais&#128073;https://t.co/Iw0anfXvB1 https://t.co/iZNDlNoXF1" userName="Sporting Clube de Portugal"/>
+<post25 dateCreated="Fri Dec 07 11:40:53 GMT 2018" statusText=".....overturned, 9-0, in the United States Supreme Court. Doing same thing to people now. Will all of the substantial &amp; many contributions made by the 17 Angry Democrats to the Campaign of Crooked Hillary be listed in top of Report. Will the people that worked for the Clinton...." userName="Donald J. Trump"/>
+<post26 dateCreated="Fri Dec 07 11:28:50 GMT 2018" statusText="....Will Robert Mueller’s big time conflicts of interest be listed at the top of his Republicans only Report. Will Andrew Weissman’s horrible and vicious prosecutorial past be listed in the Report. He wrongly destroyed people’s lives, took down great companies, only to be........" userName="Donald J. Trump"/>
+<post27 dateCreated="Fri Dec 07 11:18:59 GMT 2018" statusText="Robert Mueller and Leakin’ Lyin’ James Comey are Best Friends, just one of many Mueller Conflicts of Interest. And bye the way, wasn’t the woman in charge of prosecuting Jerome Corsi (who I do not know) in charge of “legal” at the corrupt Clinton Foundation? A total Witch Hunt..." userName="Donald J. Trump"/>
+<post28 dateCreated="Fri Dec 07 11:07:33 GMT 2018" statusText="Entrega e compromisso em busca de mais três pontos no domingo!⚽ &#128170;&#128154; https://t.co/XMtp94k8SV" userName="Sporting Clube de Portugal"/>
+<post29 dateCreated="Fri Dec 07 03:15:12 GMT 2018" statusText="Arizona, together with our Military and Border Patrol, is bracing for a massive surge at a NON-WALLED area. WE WILL NOT LET THEM THROUGH. Big danger. Nancy and Chuck must approve Boarder Security and the Wall!" userName="Donald J. Trump"/>
+<post20 dateCreated="Fri Dec 07 13:11:54 GMT 2018" statusText="RT @FutFemSCP: O nosso apoio será essencial para uma caminhada vitoriosa &#128525;&#10;-&#10;Domingo todos os caminhos vão dar a Alcochete &#128588;&#127995;&#10;⚽️Sporting CP…" userName="Sporting Clube de Portugal"/>
+<post21 dateCreated="Fri Dec 07 13:02:23 GMT 2018" statusText="Na noite desta quinta-feira, o @Sporting_CP colaborou com a Comunidade Vida e Paz na ajuda voluntária a pessoas na condição de sem-abrigo na cidade de Lisboa! &#128591;&#129409;&#128154; https://t.co/WFhXMzH4QM" userName="Sporting Clube de Portugal"/>
+<post11 dateCreated="Fri Dec 07 16:10:37 GMT 2018" statusText="RT @SCPeSports: Vitória por 8-0 frente ao CDR Santanense Esports na 2ª jornada da Taça da Liga de FIFA Pro Clubs da @FPFeSports!!! Os nosso…" userName="Sporting Clube de Portugal"/>
+<post33 dateCreated="Fri Dec 07 00:56:18 GMT 2018" statusText="Statement from China: “The teams of both sides are now having smooth communications and good cooperation with each other. We are full of confidence that an agreement can be reached within the next 90 days.” I agree!" userName="Donald J. Trump"/>
+<post12 dateCreated="Fri Dec 07 15:59:21 GMT 2018" statusText="Domingo todos os caminhos vão dar a Alcochete &#128588;&#127995;&#10;&#10;&#127942;Liga BPI - 10J&#10;&#127386; @SCBragaOficial &#10;&#128205;Estádio Aurélio Pereira &#10;&#128467;️09/12&#10;⏱️15:00&#10;&#127915;Gratuito para todos os sócios com quotas em dia (+1 acompanhante) na bilheteira principal junto ao estádio&#10;&#128250; Sporting TV&#10;&#10;#FutFemSCP #DiaDeSporting https://t.co/ZDJZctbvvm" userName="Sporting Clube de Portugal"/>
+<post34 dateCreated="Fri Dec 07 00:27:11 GMT 2018" statusText="Does the Fake News Media ever mention the fact that Republicans, with the very important help of my campaign Rallies, WON THE UNITED STATES SENATE, 53 to 47? All I hear is that the Open Border Dems won the House. Senate alone approves judges &amp; others. Big Republican Win!" userName="Donald J. Trump"/>
+<post13 dateCreated="Fri Dec 07 15:29:12 GMT 2018" statusText="Nuno Dias acaba de ser nomeado para melhor treinador do Mundo pela quinta vez, terceira consecutiva!! Parabéns mister!! &#128588;&#128154;&#10;&#10;#FutsalSCP https://t.co/qKOfwfTW8G" userName="Sporting Clube de Portugal"/>
+<post35 dateCreated="Thu Dec 06 23:58:34 GMT 2018" statusText="Bom dia academia!" userName="Jarh ES"/>
+<post14 dateCreated="Fri Dec 07 14:56:46 GMT 2018" statusText="We will be doing a major Counter Report to the Mueller Report. This should never again be allowed to happen to a future President of the United States!" userName="Donald J. Trump"/>
+<post36 dateCreated="Thu Dec 06 23:35:37 GMT 2018" statusText="RT @AndebolSCP: &#127909; O resumo da vitória dos Bicampeões Nacionais na 13.ª jornada da 1.ª Fase do Campeonato Nacional:&#10;&#10;@Sporting_CP 45-15 Arse…" userName="Sporting Clube de Portugal"/>
+<post15 dateCreated="Fri Dec 07 14:46:32 GMT 2018" statusText="Today, we honor those who perished 77 years ago at Pearl Harbor, and we salute every veteran who served in World War II over the 4 years that followed that horrific attack. God Bless America! https://t.co/zbu4NLVr4G https://t.co/5hbLDrqg40" userName="Donald J. Trump"/>
+<post37 dateCreated="Thu Dec 06 22:15:04 GMT 2018" statusText="Habemus Imagens" userName="Jarh ES"/>
+<post16 dateCreated="Fri Dec 07 14:45:41 GMT 2018" statusText="&#128064;&#128165; https://t.co/fD3p3ebHeh" userName="Sporting Clube de Portugal"/>
+<post38 dateCreated="Thu Dec 06 22:10:40 GMT 2018" statusText="https://t.co/KzyOmKJwiO" userName="Jarh ES"/>
+<post17 dateCreated="Fri Dec 07 14:28:49 GMT 2018" statusText="Portugal tem duas equipas nomeadas para melhor Seleção do Mundo no Futsal Awards 2018! #TodosPortugal&#10;&#10;&#127942; Campeões Europeus de Futsal A&#10;&#129351; Campeãs Olímpicas da Juventude https://t.co/oNc0m9qEBy" userName="Portugal"/>
+<post18 dateCreated="Fri Dec 07 13:39:36 GMT 2018" statusText="It has been incorrectly reported that Rudy Giuliani and others will not be doing a counter to the Mueller Report. That is Fake News. Already 87 pages done, but obviously cannot complete until we see the final Witch Hunt Report." userName="Donald J. Trump"/>
+<post19 dateCreated="Fri Dec 07 13:13:48 GMT 2018" statusText="China talks are going very well!" userName="Donald J. Trump"/>
+</twitter>
 </Services>

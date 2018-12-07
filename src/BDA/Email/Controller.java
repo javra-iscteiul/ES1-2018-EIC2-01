@@ -1,31 +1,38 @@
 package BDA.Email;
 
 
+import java.io.IOException;
 import java.util.Collections;
-
-import org.w3c.dom.Node;
+import BDA.Credential;
 
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
+import BDA.Main;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
+
+import javafx.concurrent.Task;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
  * Date: Oct 24 2018
+ * 
  * @author ES1-2018-EIC2-01
- * @version 1.0
- * Aplicação agregadora de conteúdos académicos: controlador do Email
+ * @version 1.0 AplicaÃ§Ã£o agregadora de conteÃºdos acadÃ©micos: controlador do
+ *          Email
  *
  */
 
-public class Controller {
-
+public class Controller implements IServiceController {
 	/**
 	 * ListView (biblioteca Javafx)
 	 */
@@ -34,11 +41,11 @@ public class Controller {
 	private ListView<Mensagem> emailsList;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente Ã  palavra ou frase a pesquisar
 	 */
 	@FXML
 	private TextField pesquisa;
-	
+
 	/**
 	 * Button para responder a uma mensagem
 	 */
@@ -46,55 +53,112 @@ public class Controller {
 	private Button responder;
 
 	/**
-	 * TextField que indica a conta do utilizador que se encontra a usar a aplicação
+	 * TextField que indica a conta do utilizador que se encontra a usar a
+	 * aplicaÃ§Ã£o
 	 */
 	@FXML
 	private TextField user;
 
 	/**
-	 * TextArea que apresenta todas as informaçoes da mensagem
+	 * TextArea que apresenta todas as informaÃ§oes da mensagem
 	 */
 	@FXML
 	private TextArea conteudo;
-	
-	
+
 	/**
-	 * Email, instancia da aplicação em uso
+	 * ImageView enquanto os emails sao carregados
+	 */
+	@FXML
+	private ImageView load;
+	/**
+	 * Email, instancia da aplicaÃ§Ã£o em uso
 	 */
 	Email email = new Email();
 
-	/**
-	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com o rato (biblioteca Javafx)
-	 * @param event MouseEvent
+	/* (non-Javadoc)
+	 * @see BDA.IServiceController#init(BDA.Credential)
 	 */
-	@FXML
-	public void getEmailsList_Clicked(MouseEvent event){
-		emailsList.setItems(email.getTimeline());
-	}
-	
-	/**
-	 * Procedimento responsável por iniciar a aplicação com a timeline e user definido
-	 */
-	@FXML
-	public void initialize() {
-		emailsList.setItems(email.getTimeline());
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
-		user.setText(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue());
+	public void init(Credential cred) {
+		user.setText(cred.getUsername());
+		
+		Task<Void> exampleTask = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+
+				email.init(cred);
+				System.out.println("init");
+				emailsList.setItems(email.getTimeLine());
+				load.setVisible(false);
+
+				return null;
+			}
+		};
+
+		new Thread(exampleTask).start();
 
 	}
-	
+
+	/**
+	 * Procedimento que adiciona emails Ã  lista cada vez que esta Ã© clicada com
+	 * o rato (biblioteca Javafx)
+	 * 
+	 * @param event MouseEvent
+	 *            
+	 */
+	@FXML
+	public void getEmailsList_Clicked(MouseEvent event) {
+		load.setVisible(true);
+		Task<Void> exampleTask = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+				emailsList.setItems(email.getTimeLine());
+				load.setVisible(false);
+				return null;
+			}
+		};
+
+		new Thread(exampleTask).start();
+
+	}
+
 	/**
 	 * Procedimento que filtra a lista de emails dada uma palavra ou frase
-	 * @param event
+	 * 
+	 * @param event ActionEvent
 	 */
 	@FXML
 	private void filter(ActionEvent event) {
-		emailsList.setItems(email.filter(pesquisa.getText()));
+		load.setVisible(true);
+		Task<Void> exampleTask = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				emailsList.setItems(email.setFilter(pesquisa.getText()));
+				load.setVisible(false);
+				return null;
+			}
+		};
+
+		new Thread(exampleTask).start();
+
 	}
-	
+
 	/**
 	 * Procedimento que filtra a lista de emails dado um user
-	 * @param event
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	private void filterUser(ActionEvent event) throws Exception {
+		emailsList.setItems(email.filterUser(pesquisa.getText()));
+	}
+
+	/**
+	 * Procedimento que filtra a lista de emails dado um user
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void filterUser(ActionEvent event) {
@@ -104,24 +168,97 @@ public class Controller {
 	/**
 	 * Procedimento que altera a pasta selecionada para a caixa de itens enviados com os respetivos emails
 	 * @param event
+
 	 */
 	@FXML
-	private void sent(ActionEvent event) {
+	private void sent(ActionEvent event) throws Exception {
 		conteudo.setText("");
 		Email.setFolder("Sent");
 		responder.setVisible(false);
-		emailsList.setItems(email.getTimeline());
+		
+		load.setVisible(true);
+		Task<Void> exampleTask = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				ObservableList<Mensagem> l = email.getTimeLine();
+				emailsList.setItems((ObservableList<Mensagem>) l); 
+				load.setVisible(false);
+				return null;
+			}
+		};
+
+		new Thread(exampleTask).start();
 	}
-	
+
 	/**
-	 * Procedimento que altera a pasta selecionada para a caixa de itens recebidos com os respetivos emails
-	 * @param event
+	 * Procedimento que altera a pasta selecionada para a caixa de itens
+	 * recebidos com os respetivos emails
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
-	private void inbox(ActionEvent event) {
+	private void inbox(ActionEvent event) throws Exception {
 		conteudo.setText("");
 		Email.setFolder("INBOX");
-		emailsList.setItems(email.getTimeline());
+		emailsList.setItems(email.getTimeLine());
+	}
+
+	/**
+	 * Procedimento que ordena emails por data mais recente
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception  e
+	 */
+	@FXML
+	private void recent(ActionEvent event) throws Exception {
+		emailsList.setItems(email.getTimeLine());
+	}
+
+	/**
+	 * Procedimento que ordena emails por data mais antiga
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	private void older(ActionEvent event) throws Exception {
+		ObservableList<Mensagem> nova = email.getTimeLine();
+		Collections.reverse(nova);
+		emailsList.setItems(nova);
+	}
+
+	/**
+	 * Procedimento que devolve apenas os emails das ultimas 24 horas
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	private void last24h(ActionEvent event) throws Exception {
+		emailsList.setItems(email.getLast("24h"));
+	}
+
+	/**
+	 * Procedimento que devolve apenas os emails da ultima semana
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	private void lastWeek(ActionEvent event) throws Exception {
+		emailsList.setItems(email.getLast("week"));
+	}
+
+	/**
+	 * Procedimento que devolve apenas os emails do ultimo mes
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	private void lastMonth(ActionEvent event) throws Exception {
+		emailsList.setItems(email.getLast("month"));
 	}
 	/**
 	 * Procedimento que ordena emails por data mais recente
@@ -151,52 +288,65 @@ public class Controller {
 	}
 
 	/**
-	 * Procedimento que retorna à janela principal da aplicação
-	 * @param event
+	 * Procedimento que retorna Ã  janela principal da aplicaÃ§Ã£o
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	private void sair(ActionEvent event) {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+	private void sair(ActionEvent event) throws IOException {
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
-	
+
 	/**
-	 * Procedimento para mudar a conta em utilização
-	 * @param event
+	 * Procedimento para mudar a conta em utilizaÃ§Ã£o
+	 * 
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
-	private void logout(MouseEvent event) {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("loginEmail.fxml"));
+	private void logout(MouseEvent event) throws Exception {
+		XMLclass.setLogin(XMLclass.configFile, XMLclass.emailService, email.getCredential(), XMLclass.Logout);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"), XMLclass.emailService);
 	}
-	
+
 	/**
-	 * Procedimento que mostra a interface de envio de mensagens para a mensagem selecionada
-	 * @param event
+	 * Procedimento que mostra a interface de envio de mensagens para a mensagem
+	 * selecionada
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	private void responder(MouseEvent event) {
-		Mensagem m=emailsList.getSelectionModel().getSelectedItem();
-		Email.setTo(m.getFrom_to());
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
-		
-		
+	private void responder(MouseEvent event) throws Exception {
+		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
+		Email.setTo(m.getUser());
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/novaMensagem.fxml"),
+				email.getCredential());
 	}
 
 	/**
 	 * Procedimento que expande a mensagem selecionada para uma TextArea
-	 * @param event
+	 * 
+	 * @param event ActionEvent
 	 */
 	@FXML
 	protected void selection(MouseEvent event) {
 		conteudo.setText(emailsList.getSelectionModel().getSelectedItem().toString());
-		responder.setVisible(true);
+		if(Email.getFolder()=="INBOX") {
+			responder.setVisible(true);
+		}
 	}
 
 	/**
 	 * Procedimento que mostra a interface de envio de mensagens
-	 * @param event
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	protected void novaMensagem(MouseEvent event) {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("novaMensagem.fxml"));
+	protected void novaMensagem(MouseEvent event) throws Exception {
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/novaMensagem.fxml"),
+				email.getCredential());
 	}
 }

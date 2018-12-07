@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.Controller">
+   <children>
+      <Pane layoutX="8.0" layoutY="30.0" prefHeight="39.0" prefWidth="659.0">
+         <children>
+            <Button layoutX="330.0" layoutY="2.0" mnemonicParsing="false" onAction="#filter" text="Procurar" textFill="#514c4c">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>   
+            </Button>
+            <TextField id="pesquisa" fx:id="pesquisa" prefHeight="28.0" prefWidth="312.0" promptText="Pesquisar" />
+            <Button layoutX="420.0" layoutY="-1.0" mnemonicParsing="false" onAction="#filterUser" prefHeight="31.0" prefWidth="164.0" text="Procurar user" />
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="272.0" prefHeight="114.0" prefWidth="415.0" />
+      <Pane layoutX="14.0" layoutY="77.0" prefHeight="504.0" prefWidth="545.0">
+         <children>
+            <ListView fx:id="emailsList" layoutY="79.0" onMouseClicked="#selection" prefHeight="419.0" prefWidth="536.0" styleClass="list-menu" />
+            <MenuButton layoutY="15.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="323.0" styleClass="list-menu" text="Pastas">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#inbox" text="Caixa de entrada" />
+                <MenuItem mnemonicParsing="false" onAction="#sent" text="Itens Enviados" />
+              </items>
+            </MenuButton>
+            <MenuButton layoutX="362.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" styleClass="list-menu" text="Ordenar por">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#recent" text="Mais Recente" />
+                <MenuItem mnemonicParsing="false" onAction="#older" text="Mais antigo" />
+                  <MenuItem mnemonicParsing="false" onAction="#last24h" text="Ultimas 24h" />
+                  <MenuItem mnemonicParsing="false" onAction="#lastWeek" text="Ultima Semana" />
+                  <MenuItem mnemonicParsing="false" onAction="#lastMonth" text="Ultimo mês" />
+              </items>
+            </MenuButton>
+            <ImageView id="load" fx:id="load" fitHeight="419.0" fitWidth="536.0" layoutY="79.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Graphics/loading.gif" /> 
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button id="responder" fx:id="responder" layoutX="631.0" layoutY="560.0" mnemonicParsing="false" onMouseClicked="#responder" text="Responder" visible="false" />
+      <TextField id="user" fx:id="user" editable="false" layoutX="694.0" layoutY="30.0" prefHeight="39.0" prefWidth="173.0" text="username" />
+      <Label layoutX="883.0" layoutY="41.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="942.0" layoutY="37.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/logout.png" />
+         </image>
+      </ImageView>
+      <TextArea id="conteudo" fx:id="conteudo" layoutX="613.0" layoutY="157.0" prefHeight="396.0" prefWidth="355.0" styleClass="text-area" text="Selecione uma mensagem para lê-la." wrapText="true" />
+      <Button layoutX="916.0" layoutY="560.0" mnemonicParsing="false" onAction="#sair" text="Sair" />
+      <Button layoutX="704.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#novaMensagem" prefHeight="25.0" prefWidth="205.0" text="Nova mensagem" />
+      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="255.0" layoutY="581.0" onMouseClicked="#getEmailsList_Clicked">
+         <image>
+            <Image url="@../Graphics/refresh2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

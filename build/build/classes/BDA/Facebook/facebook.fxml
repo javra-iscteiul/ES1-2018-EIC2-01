@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="946.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Facebook.Controller">
+   <children>
+      <Button layoutX="874.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
+      <Button layoutX="474.0" layoutY="65.0" mnemonicParsing="false" onAction="#filter_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter" />
+      <MenuButton layoutX="678.0" layoutY="65.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="139.0" styleClass="list-menu" text="Order by">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#recent" text="Recent" />
+            <MenuItem mnemonicParsing="false" onAction="#older" text="Older" />
+          <MenuItem mnemonicParsing="false" onAction="#last24h" text="Last 24h" />
+          <MenuItem mnemonicParsing="false" onAction="#lastWeek" text="Last Week" />
+            <MenuItem mnemonicParsing="false" onAction="#lastMonth" text="Last Month" />
+        </items>
+      </MenuButton>
+      <ListView fx:id="facebookList" layoutX="11.0" layoutY="119.0" prefHeight="221.0" prefWidth="917.0" />
+      <TextField fx:id="filter" layoutX="186.0" layoutY="62.0" prefHeight="50.0" prefWidth="282.0" />
+      <Label layoutX="747.0" layoutY="18.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
+      <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="716.0" layoutY="14.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="image">
+         <image>
+            <Image url="@../Graphics/logout.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="user" layoutX="42.0" layoutY="62.0" prefHeight="50.0" prefWidth="106.0" styleClass="text-field" text="\@Username">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="575.0" layoutY="65.0" mnemonicParsing="false" onAction="#filterUser_clicked" prefHeight="44.0" prefWidth="94.0" text="Filter User" />
+      <TextArea fx:id="publicacao" layoutX="14.0" layoutY="353.0" opacity="0.48" prefHeight="68.0" prefWidth="917.0" promptText="Publique algo...." />
+      <Button layoutX="439.0" layoutY="429.0" mnemonicParsing="false" onAction="#publish" text="Publicar" />
+      <CheckBox id="email" fx:id="group" layoutX="821.0" layoutY="65.0" mnemonicParsing="false" onAction="#group" prefHeight="44.0" prefWidth="106.0" styleClass="button" text="Group" />
+   </children>
+</AnchorPane>

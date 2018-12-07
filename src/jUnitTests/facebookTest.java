@@ -7,47 +7,38 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import BDA.Credential;
 import BDA.XMLclass;
 import BDA.Facebook.Facebook;
-import BDA.Facebook.IFacebook;
-import BDA.Facebook.Message;
+import BDA.Facebook.MensagemFacebook;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 public class facebookTest {
-	private static IFacebook facebook = new Facebook();
+	private static Facebook facebook = new Facebook();
 	
 	@Test
-    public void getTimeline() {
-		//verifica se não existem credenciais do facebook
-		if(!XMLclass.existsElement(XMLclass.configFile, "facebook")){
-			
-			//valida se existe data guardada de logins anteriores
-			if(XMLclass.existsElement(XMLclass.storedDataFile, "facebook")){
-				//verifica se consegue carregar esses dados offline
-				assertNotNull(facebook.getTimeLine());
-			}else{
-				//verifica se da false quando não se consegue obter dados
-				assertNull(facebook.getTimeLine());
-			}
-			
-			//insere as credenciais do face no config
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("UserName", "EsJarh");
-			attributes.put("Password", "grupo1grupo");
-			attributes.put("AccessToken", "EAAEq0X5xdpMBAOzHJoC0VA7aUgvTaQUkuwpMHxVaPR3JDZBIECyEv8DTbv3k5Bbsi5JJo7ZALaJsCheHNQle5bHd328RsQSAZCMfVcL0TM9xLEK7EZA7UBlk6zqf0cUrT0CkYuOHjQK13qk3PAAdk5T0wdZAfAoEBy92hMctTpwZDZD");
-			attributes.put("AccessTokenSecret", "1051761005406154752-F7mHLVxLhBOG3OHELLvYG5etmlIFtnXnNStgnlpHCShLX");
-			XMLclass.addElement(XMLclass.configFile, "facebook", attributes);
-		}
+    public void getTimeline() throws Exception {
+		Credential credTest = new Credential(
+				XMLclass.getNodeList(XMLclass.configFile, XMLclass.facebookService).item(0).getAttributes());
+		assertTrue(XMLclass.existsNode(XMLclass.configFile, XMLclass.facebookService, credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, credTest));
+		//se tiver data guardada tem que dar sempre true
+		facebook.init(credTest);
 		
-		//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-		if(!XMLclass.existsElement(XMLclass.storedDataFile, "facebook")){
-			if(facebook.getTimeLine() != null){
-				assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "facebook"));
-			}
-		}else{
-			//se tiver data guardada tem que dar sempre true
-			assertNotNull(facebook.getTimeLine());
-		}
+		facebook.setGroup(false);
+		assertFalse(facebook.getGroup());
+		assertNotNull(facebook.getTimeLine());
+		facebook.setGroup(true);
+		assertTrue(facebook.getGroup());
+		assertNotNull(facebook.getTimeLine());
+		assertNotNull(facebook.getStoredTimeLine());
+		assertNotNull(facebook.getCredential());
+		
+		assertNotNull(facebook.setFilter("a"));
+		assertNull(facebook.setUserFilter("a"));
+		assertNotNull(facebook.getLast("24h"));
+		assertNotNull(facebook.getLast("week"));
+		assertNotNull(facebook.getLast("month"));
     }
 }

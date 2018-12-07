@@ -1,0 +1,52 @@
+28 novembro
+Twitter:criação da classe mensagem
+Email:adicionar filtros
+Guardar filtros no config.xml
+Melhoramento de JunitTests
+
+29 novembro
+Twitter: procurar tweets e procurar tweets de utilizador 'X'
+
+1 Dezembro
+Interface da timeline conjunta
+Classe de mensagem generica
+
+2 Dezembro
+Inicio de uso de threads
+Melhoramento da interface da janela principal e login
+Ficheiro css
+Timeline conjunta: remover/adicionr serviços
+Logout de serviços para possibilitar diversas contas
+Interace para edição de credenciais
+Resolução de bugs
+
+3 Dezembro
+Edição/criação/remoção de credenciais
+Threads definidas
+Uso de css nas interfaces
+
+4 Dezembro
+Diagrama de classes e pacotes
+Inspeção de codigo
+Implementaçao de Unit tests (60%)
+Facebook: terminar filtros
+Timeline conjunta: indicação do user de cada serviço nesse momento
+Email:javadoc
+
+5 Dezembro
+Relatorio do test coverage
+Timeline conjunta: Javadoc
+Facebook: publicar posts
+Twitter: imagens de tweets
+
+6 Dezembro
+Twitter: Expandir tweeets
+Melhoramento das dependencias do maven
+
+7 Dezembro
+Resolução de bugs
+
+
+
+
+

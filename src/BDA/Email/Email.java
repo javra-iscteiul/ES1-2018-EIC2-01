@@ -1,17 +1,18 @@
 package BDA.Email;
 
-
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -25,31 +26,38 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import BDA.Credential;
+import BDA.IService;
+import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
  * Date: Oct 24 2018
+ * 
  * @author ES1-2018-EIC2-01
- * @version 1.0
- * Aplicação agregadora de conteúdos académicos: canal do Email
+ * @version 1.0 AplicaÃ§Ã£o agregadora de conteÃºdos acadÃ©micos: canal do Email
  *
  */
 
-public class Email {
-	
+public class Email implements IService {
+	/**
+	 * credenciais do email
+	 */
+	private Credential emailCredential;
+
 	/**
 	 * ObservableList com os emails
 	 */
 	private ObservableList<Mensagem> emails = FXCollections.observableArrayList();
 
-	
 	/**
-	 * Sessao do email com as propriedades já definidas
+	 * Sessao do email com as propriedades jÃ¡ definidas
 	 */
 	private static Session session;
 	/**
@@ -57,17 +65,17 @@ public class Email {
 	 */
 	private static String folder = "INBOX";
 	/**
-	 * String indicadora do destinatorio de uma possivel mensagem para intercomunicação entre interfaces
+	 * String indicadora do destinatorio de uma possivel mensagem para
+	 * intercomunicaÃ§Ã£o entre interfaces
 	 */
-	private static String to="";
-	
-	
-	
+	private static String to = "";
+
 	/**
-	 * Procedimento responsavel por iniciar a aplicação
+	 * Procedimento responsavel por iniciar a aplicaÃ§Ã£o
 	 */
-	public static void init() {
-		
+	public void init(Credential cred) {
+		emailCredential = cred;
+		folder = "INBOX";
 		Properties properties = new Properties();
 
 		// server setting
@@ -78,39 +86,38 @@ public class Email {
 		properties.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.setProperty("mail.imap.socketFactory.fallback", "false");
 		properties.setProperty("mail.imap.socketFactory.port", String.valueOf(993));
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
-		
 
-		session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(
-                emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
-            	}
-             });
-
+		session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(emailCredential.username, emailCredential.password);
+			}
+		});
+		System.out.println(emailCredential.username + emailCredential.password);
 	}
-	
+
 	/**
-	 * Este método permite que seja obtida uma lista dos emails de um utilizador (interface)
-	 * @return	retorna uma lista dos emails do utilizador
+	 * Este mÃ©todo permite que seja obtida uma lista dos emails de um utilizador
+	 * (interface)
+	 * 
+	 * @return ObservableList
+	 * @throws Exception e
 	 */
-	public ObservableList<Mensagem> getTimeline() {
+	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		Map<String, Map<String, String>> dataToStore = new HashMap<>();
-		emails.clear();
+		emails.clear(); 
 		try {
 			/* Connect to the message Store */
 			Store store = session.getStore("imap");
-			Node emailConfig = XMLclass.getElement(XMLclass.configFile, "email");
-			store.connect(emailConfig.getAttributes().getNamedItem("UserName").getNodeValue(),emailConfig.getAttributes().getNamedItem("Password").getNodeValue());
-			
-			if (folder=="Sent" && XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "emailSent");
+			store.connect(emailCredential.username, emailCredential.password);
+
+			if (folder == "Sent" && XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailSent", emailCredential);
 			}
-			
-			if (folder=="INBOX" && XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
-				XMLclass.deleteElement(XMLclass.storedDataFile, "emailInbox");
+
+			if (folder == "INBOX" && XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
+				XMLclass.deleteNode(XMLclass.storedDataFile, "emailInbox", emailCredential);
 			}
-			
+
 			/* open Inbox folder */
 			Folder emailFolder = store.getFolder(folder);
 			emailFolder.open(Folder.READ_ONLY);
@@ -119,76 +126,78 @@ public class Email {
 			if (messages.length == 0) {
 				System.out.println("Your Inbox is empty!");
 			}
-			
+
 			// retrieve the messages from the folder in an array and print it
 			System.out.println("messages.length---" + messages.length);
 
-			
-			 for (int i = 0; i < messages.length; i++) {
-		            Message message = messages[i];
-		            System.out.println("---------------------------------");
-		            String content = writePart(message);
-		            Map<String, String> childAttributesToStore = new HashMap<>();
-		            if(folder == "INBOX"){
-			            emails.add(new Mensagem(message.getFrom()[0].toString(),message.getSubject(),
-			            		message.getReceivedDate().toString(),content));
-			           
-						childAttributesToStore.put("From",message.getFrom()[0].toString() );
-						childAttributesToStore.put("Subject",message.getSubject().toString() );
-						childAttributesToStore.put("Date", message.getReceivedDate().toString());
-						childAttributesToStore.put("Message", content);
-						dataToStore.put("post" + i, childAttributesToStore);
-		            }else if (folder == "Sent"){
-		            	 emails.add(i,new Mensagem(InternetAddress.toString(message
-		                         .getRecipients(Message.RecipientType.TO)),message.getSubject(),
-				            		message.getReceivedDate().toString(),content));
-				           
-							childAttributesToStore.put("To",InternetAddress.toString(message
-			                         .getRecipients(Message.RecipientType.TO)) );
-							childAttributesToStore.put("Subject",message.getSubject().toString() );
-							childAttributesToStore.put("Date", message.getReceivedDate().toString());
-							childAttributesToStore.put("Message", content);
-							dataToStore.put("post" + i, childAttributesToStore);
-		            }
-		           
-		         }
-			 if(folder=="INBOX") {
-				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailInbox", dataToStore);
-			 }
-			 if(folder=="Sent") {
-				 XMLclass.addElementAndChild(XMLclass.storedDataFile, "emailSent", dataToStore);
-			 }
+			for (int i = 0; i < messages.length; i++) {
+				Message message = messages[i];
+				// System.out.println("---------------------------------");
+				String content = writePart(message);
+				Map<String, String> childAttributesToStore = new HashMap<>();
+				if (folder == "INBOX") {
+					emails.add(new MensagemEmail(message.getFrom()[0].toString(), message.getSubject(),
+							message.getReceivedDate().toString(), content));
+
+					childAttributesToStore.put("From", message.getFrom()[0].toString());
+					childAttributesToStore.put("Subject", message.getSubject().toString());
+					childAttributesToStore.put("Date", message.getReceivedDate().toString());
+					childAttributesToStore.put("Message", content);
+					dataToStore.put("post" + i, childAttributesToStore);
+				} else if (folder == "Sent") {
+					emails.add(i,
+							new MensagemEmail(InternetAddress.toString(message.getRecipients(Message.RecipientType.TO)),
+									message.getSubject(), message.getReceivedDate().toString(), content));
+
+					childAttributesToStore.put("To",
+							InternetAddress.toString(message.getRecipients(Message.RecipientType.TO)));
+					childAttributesToStore.put("Subject", message.getSubject().toString());
+					childAttributesToStore.put("Date", message.getReceivedDate().toString());
+					childAttributesToStore.put("Message", content);
+					dataToStore.put("post" + i, childAttributesToStore);
+				}
+
+			}
+			if (folder == "INBOX") {
+				XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailInbox", emailCredential, dataToStore);
+			} else if (folder == "Sent") {
+				XMLclass.addNodeAndChild(XMLclass.storedDataFile, "emailSent", emailCredential, dataToStore);
+			}
 			// Disconnect
 			emailFolder.close(false);
 			store.close();
-			//Collections.sort(emails, new DataComparator());
+
 			Collections.reverse(emails);
 			return emails;
 		} catch (NoSuchProviderException ex) {
 			System.out.println("No provider.");
 			ex.printStackTrace();
-		}catch (UnknownHostException ex){
+		} catch (UnknownHostException ex) {
 			System.out.println("entrar em modo offline");
 			return getStoredTimeLine();
 		} catch (MessagingException ex) {
 			System.out.println("Could not connect to the message store.");
 			return getStoredTimeLine();
-			//ex.printStackTrace();
+			// ex.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Este método permite que seja obtida uma lista dos emails de um utilizador no caso de este se encontrar sem acesso à Internet (interface)
-	 * @return	retorna uma lista dos emails do utilizador
+	 * Este mÃ©todo permite que seja obtida uma lista dos emails de um utilizador
+	 * no caso de este se encontrar sem acesso Ã  Internet (interface)
+	 * 
+	 * @return ObservableList
+	 * @throws Exception e
+	 * @throws DOMException e
 	 */
-	private ObservableList<Mensagem> getStoredTimeLine() {
-		try {
-			if(folder=="INBOX"){
-				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailInbox")) {
-					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailInbox");
+
+	public ObservableList<Mensagem> getStoredTimeLine() throws DOMException, Exception {
+			if (folder == "INBOX") {
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", emailCredential)) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailInbox", emailCredential);
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
 						if (childAttributes != null) {
@@ -196,138 +205,152 @@ public class Email {
 							String sub = childAttributes.getNamedItem("Subject").getNodeValue();
 							String date = childAttributes.getNamedItem("Date").getNodeValue();
 							String content = childAttributes.getNamedItem("Message").getNodeValue();
-							System.out.println( "From: " + from + "\r\n"+"Subject: "
-									+ sub  + "\r\n"+ "Date:" + date + "\r\n"+ "Message: " + content);
-							  emails.add(new Mensagem(from,sub,date,content));
-					                
+							emails.add(new MensagemEmail(from, sub, date, content));
+
 						}
 					}
 				}
-			}else if(folder=="Sent"){
-				if (XMLclass.existsElement(XMLclass.storedDataFile, "emailSent")) {
-					Node emailNode = XMLclass.getElement(XMLclass.storedDataFile, "emailSent");
+
+			} else if (folder == "Sent") {
+				if (XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", emailCredential)) {
+					Node emailNode = XMLclass.getNode(XMLclass.storedDataFile, "emailSent", emailCredential);
+
 					for (int i = 0; i < emailNode.getChildNodes().getLength(); i++) {
 						NamedNodeMap childAttributes = emailNode.getChildNodes().item(i).getAttributes();
-							if (childAttributes != null) {
-								String to = childAttributes.getNamedItem("To").getNodeValue();
-								String sub = childAttributes.getNamedItem("Subject").getNodeValue();
-								String date = childAttributes.getNamedItem("Date").getNodeValue();
-								String content = childAttributes.getNamedItem("Message").getNodeValue();
-								emails.add(new Mensagem(to,sub,date,content));
-							}
+						if (childAttributes != null) {
+							String to = childAttributes.getNamedItem("To").getNodeValue();
+							String sub = childAttributes.getNamedItem("Subject").getNodeValue();
+							String date = childAttributes.getNamedItem("Date").getNodeValue();
+							String content = childAttributes.getNamedItem("Message").getNodeValue();
+							emails.add(new MensagemEmail(to, sub, date, content));
+						}
 					}
-				            
+
 				}
 			}
-			
 			return emails;
-		} catch (Exception ex) {
-			return null;
-		}
 	}
-	
+
 	/**
-	 * Procedimento responsavel por ler a informação do email e passá-la para string
-	 * @param p Part
+	 * Procedimento responsavel por ler a informaÃ§Ã£o do email e passÃ¡-la para
+	 * string
+	 * 
+	 * @param p  Part
+	 *           
 	 * @return String conteudo do email
-	 * @throws Exception
+	 * @throws Exception e
 	 */
 	public static String writePart(Part p) throws Exception {
-		String content="";
-	      if (p instanceof Message)
-	         //Call methos writeEnvelope
-	         writeEnvelope((Message) p);
+		String content = "";
+		if (p.isMimeType("text/plain")) {
+			content = (String) p.getContent();
+			return content;
 
-	      System.out.println("----------------------------");
-	      System.out.println("CONTENT-TYPE: " + p.getContentType());
-//
-//	      //check if the content is plain text
-	      if (p.isMimeType("text/plain")) {
-	         System.out.println("This is plain text");
-	         System.out.println("---------------------------");
-	         content=(String) p.getContent();
-	         System.out.println(content);
-	         return content;
-	        
-	      } 
-	      //check if the content has attachment
-	      else if (p.isMimeType("multipart/*")) {
-	         System.out.println("This is a Multipart");
-	         System.out.println("---------------------------");
-	         Multipart mp = (Multipart) p.getContent();
-	         int count = mp.getCount();
-	         for (int i = 0; i < count; i++){
-	        	 if (mp.getBodyPart(i).isMimeType("text/plain")) {
-	    	         System.out.println("This is plain text");
-	    	         System.out.println("---------------------------");
-	    	         content=(String) mp.getBodyPart(i).getContent();
-	    	         System.out.println(content);
-	    	        
-	    	      }
-	        	 return content;
-	         }
-	            
-	      } 
-
-	      return null;
-	   }
-	   
-	/**
-	 * Procedimento que imprime na consola os dados principais da mensagem
-	 * @param m Message
-	 * @throws Exception
-	 */
-	public static void writeEnvelope(Message m) throws Exception {
-	      System.out.println("This is the message envelope");
-	      System.out.println("---------------------------");
-	      Address[] a;
-
-	      // FROM
-	      if ((a = m.getFrom()) != null) {
-	         for (int j = 0; j < a.length; j++)
-	         System.out.println("FROM: " + a[j].toString());
-	      }
-
-	      // TO
-	      if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
-	         for (int j = 0; j < a.length; j++)
-	         System.out.println("TO: " + a[j].toString());
-	      }
-
-	      // SUBJECT
-	      if (m.getSubject() != null)
-	         System.out.println("SUBJECT: " + m.getSubject());
-
-	   }
-
-
-	/**
-	 * Procedimento que filtra os emails de um utilizador consoante uma palavra ou frase
-	 * @param text String
-	 * @return lista dos emails do utilizador filtrada
-	 */
-	public ObservableList<Mensagem> filter(String text) {
-		try {
-			
-			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
-			 for (int i = 0; i < emails.size(); i++) {
-		            if(emails.get(i).getSubject().contains(text) ||emails.get(i).getContent().contains(text) ) {
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
-				     }
-			 }
-			 
-			return nova;
-
-		
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+		// check if the content has attachment
+		else if (p.isMimeType("multipart/*")) {
+			Multipart mp = (Multipart) p.getContent();
+			int count = mp.getCount();
+			for (int i = 0; i < count; i++) {
+				if (mp.getBodyPart(i).isMimeType("text/plain")) {
+					content = (String) mp.getBodyPart(i).getContent();
+
+				}
+				return content;
+			}
+
+		}
+
 		return null;
-		
 	}
-	
-	
+
+	/**
+	 * Procedimento que filtra os emails de um utilizador consoante uma palavra
+	 * ou frase
+	 * 
+	 * @param text String
+	 *           
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
+	public ObservableList<Mensagem> setFilter(String text) throws Exception {
+		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+		for (int i = 0; i < emails.size(); i++) {
+			if (emails.get(i).containsFilter(text)) {
+				nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+			}
+		}
+
+		Map<String, String> filterAttr = new HashMap<>();
+		filterAttr.put("value", text);
+		if (!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter",
+				filterAttr))
+			XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter", filterAttr);
+
+		return nova;
+	}
+
+	/**
+	 * Procedimento que filtra os emails de um utilizador consoante os emails
+	 * que pertencem ao utilizador pedido
+	 * 
+	 * @param text  String
+	 * @return ObservableList
+	 * @throws Exception e
+	 */
+	public ObservableList<Mensagem> filterUser(String text) throws Exception {
+		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+		for (int i = 0; i < emails.size(); i++) {
+			if (emails.get(i).userContainsFilter(text)) {
+				nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+			}
+		}
+
+		Map<String, String> filterAttr = new HashMap<>();
+		filterAttr.put("value", text);
+		if (!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filterUser",
+				filterAttr))
+			XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filterUser", filterAttr);
+		return nova;
+	}
+
+	/**
+	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
+	 * 
+	 * @return ObservableList
+	 * @throws Exception e
+	 * @param s String
+	 */
+	public ObservableList<Mensagem> getLast(String s) throws Exception {
+		ObservableList<Mensagem> nova = FXCollections.observableArrayList();
+		for (int i = 0; i < emails.size(); i++) {
+			DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+			Date date = format.parse(emails.get(i).getDate());
+			Instant now = Instant.now();
+			if (s == "24h") {
+				if ((!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now))) {
+					nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+				}
+			}
+			if (s == "week") {
+				if ((!date.toInstant().isBefore(now.minus(7, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
+					nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+				}
+			}
+			if (s == "month") {
+				if ((!date.toInstant().isBefore(now.minus(30, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
+					nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
+				}
+			}
+		}
+		Map<String, String> filterAttr = new HashMap<>();
+		filterAttr.put("value", "true");
+		if (!XMLclass.existsChildNode(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter" + s,
+				filterAttr))
+			XMLclass.addChild(XMLclass.configFile, XMLclass.emailService, emailCredential, "filter" + s, filterAttr);
+		return nova;
+	}
+
 	/**
 	 * Procedimento que filtra os emails de um utilizador consoante os emails que pertencem ao utilizador pedido
 	 * @param text String
@@ -389,81 +412,87 @@ public class Email {
 	 * @param to String
 	 * @param sub String
 	 * @param text String
+
 	 */
-	public static void sendEmails(String to, String sub, String text) {
+	
+	public static boolean sendEmails(String to, String sub, String text, Credential emailCredential) {
 		System.out.println(to + sub + text);
-		Node emailConfig = XMLclass.getElement(XMLclass.configFile,"email");
-	      // Sender's email ID needs to be mentioned
-	      String from = emailConfig.getAttributes().getNamedItem("UserName").getNodeValue();
-	      String password = emailConfig.getAttributes().getNamedItem("Password").getNodeValue();
+		// Sender's email ID needs to be mentioned
 
-	      Properties props = new Properties();
-	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.starttls.enable", "true");
-	        props.put("mail.smtp.host", "outlook.office365.com");
-	        props.put("mail.smtp.port", "587");
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "outlook.office365.com");
+		props.put("mail.smtp.port", "587");
 
-	        Session session = Session.getInstance(props,
-	          new javax.mail.Authenticator() {
-	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(from, password);
-	            }
-	          });
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(emailCredential.username, emailCredential.password);
+			}
+		});
 
-	        try {
+		try {
 
-	            Message message = new MimeMessage(session);
-	            message.setFrom(new InternetAddress(from));
-	            message.setRecipients(Message.RecipientType.TO,
-	                InternetAddress.parse(to));
-	            message.setSubject(sub);
-	            message.setText(text);
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(emailCredential.username));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+			message.setSubject(sub);
+			message.setText(text);
 
-	            Transport.send(message);
+			Transport.send(message);
 
-	            System.out.println("Done");
-	         System.out.println("Sent message successfully....");
-	      } catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
+			System.out.println("Done");
+			System.out.println("Sent message successfully....");
+			return true;
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+			return false;
+		}
 	}
-
 
 	/**
 	 * Devolve o folder atual
+	 * 
 	 * @return String folder
 	 */
 	public static String getFolder() {
 		return folder;
 	}
 
-
 	/**
 	 * Muda o folder para o folder dado como parametro
-	 * @param folder String
+	 * 
+	 * @param folder
+	 *            String
 	 */
 	public static void setFolder(String folder) {
 		Email.folder = folder;
 	}
 
-
 	/**
 	 * Retorna o destinatario de uma possivel mensagem
+	 * 
 	 * @return String to
 	 */
 	public static String getTo() {
 		return to;
 	}
 
-
 	/**
 	 * Altera o destinatario de uma possivel mensagem
-	 * @param to String
+	 * 
+	 * @param to  String
+	 *           
 	 */
 	public static void setTo(String to) {
 		Email.to = to;
 	}
-	
-	
-	
+
+	/**
+	 * devolve as credencias do email
+	 * @return Credential
+	 */
+	public Credential getCredential() {
+		return this.emailCredential;
+	}
 }

@@ -1,6 +1,10 @@
 package BDA.Email;
 
+import BDA.Credential;
 import BDA.FuncoesGerais;
+import BDA.IServiceController;
+import BDA.Main;
+import BDA.XMLclass;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -14,7 +18,9 @@ import javafx.scene.input.MouseEvent;
  * Aplicação agregadora de conteúdos académicos: controlador do Email
  *
  */
-public class novaMensagemController {
+public class novaMensagemController implements IServiceController {
+	private Credential emailCredential;
+	
 	/**
 	 *  TextField destinatario da mensagem
 	 */
@@ -33,19 +39,44 @@ public class novaMensagemController {
 	@FXML
 	private TextArea msg;
 	
-
+	/* (non-Javadoc)
+	 * @see BDA.IServiceController#init(BDA.Credential)
+	 */
+	@Override
+	public void init(Credential cred) {
+		emailCredential = cred;
+	}
+	
 	/**
 	 * Ao clicar no botao enviar chama a função do email responsavel pelo envio da mensagem com os parametros indicados pelo utilizador
 	 * @param event MouseEvent
+	 * @throws Exception e
 	 */
 	@FXML
-	public void enviar(MouseEvent event){
+	public void enviar(MouseEvent event) throws Exception{
 		if(to.getText()!=null && msg.getText()!=null && sub.getText()!=null ) {
-			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString());
-			FuncoesGerais.mudarVistaFXML(event, getClass().getResource("email.fxml"));
+			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString(), emailCredential);
+			Credential cred = new Credential(
+					XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/email.fxml"), cred);
+			
 		}
 	}
 
+	
+	/**
+	 * Ao clicar no botao voltar regressa ao seriviço email
+	 * @param event MouseEvent
+	 * @throws Exception e
+	 */
+	@FXML
+	public void voltar(MouseEvent event) throws Exception{
+		Credential cred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+		to.setText("");
+		Email.setTo("");
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/email.fxml"), cred);
+	}
+	
 	/**
 	 * Devolve o destinatario da mensagem
 	 * @return TextField
@@ -69,6 +100,4 @@ public class novaMensagemController {
 	public void initialize() {
 		to.setText(Email.getTo());
 	}
-	
-
 }

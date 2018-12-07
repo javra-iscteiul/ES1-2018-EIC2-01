@@ -5,42 +5,41 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import BDA.Credential;
 import BDA.XMLclass;
 import BDA.Email.Email;
 
 public class emailTest {
-	private static Email email = new Email();
+	
 	@Test
-    public void getTimeline() {
-		//verifica se não existem credenciais do email
-		if(!XMLclass.existsElement(XMLclass.configFile, "email")){
-			
-			//valida se existe data guardada de logins anteriores
-			if(XMLclass.existsElement(XMLclass.storedDataFile, "email")){
-				//verifica se consegue carregar esses dados offline
-				assertNotNull(email.getTimeline());
-			}else{
-				//verifica se da false quando não se consegue obter dados
-				assertNull(email.getTimeline());
-			}
-			
-			//insere as credenciais do face no config
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("UserName", "es1g1@outlook.com");
-			attributes.put("Password", "grupo1grupo");
-			XMLclass.addElement(XMLclass.configFile, "email", attributes);
-		}
+    public void getTimeline() throws Exception {
+		Email email = new Email();
+		Credential credTest = new Credential(
+				XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
+		assertTrue(XMLclass.existsNode(XMLclass.configFile, XMLclass.emailService, credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailSent", credTest));
+		assertTrue(XMLclass.existsNode(XMLclass.storedDataFile, "emailInbox", credTest));
+		email.init(credTest);
+		Email.setFolder("Sent");
+		assertNotNull(email.getTimeLine());
+		assertNotNull(email.getStoredTimeLine());
+		Email.setFolder("INBOX");
+		assertNotNull(email.getTimeLine());
+		assertNotNull(email.getStoredTimeLine());
 		
-		//se não tem data guardada e está online verifica se vai buscar os dados e guarda esses dados
-		if(!XMLclass.existsElement(XMLclass.storedDataFile, "email")){
-			if(email.getTimeline() != null){
-				assertNotNull(XMLclass.existsElement(XMLclass.storedDataFile, "email"));
-			}
-		}else{
-			//se tiver data guardada tem que dar sempre true
-			assertNotNull(email.getTimeline());
-		}
+		assertNotNull(email.setFilter("a"));
+		assertNotNull(email.filterUser("a"));
+		assertNotNull(email.getLast("24h"));
+		assertNotNull(email.getLast("week"));
+		assertNotNull(email.getLast("month"));
+		Email.setTo("ola");
+		assertNotNull(Email.getTo());
+		assertEquals("ola", Email.getTo());
+		assertNotNull(email.getCredential());
+		assertEquals(credTest, email.getCredential());
+		assertFalse(Email.sendEmails(Email.getTo(), "subject", "text", credTest));
     }
 }
