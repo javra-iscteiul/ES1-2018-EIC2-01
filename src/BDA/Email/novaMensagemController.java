@@ -3,6 +3,7 @@ package BDA.Email;
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
+import BDA.Main;
 import BDA.XMLclass;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -57,7 +58,7 @@ public class novaMensagemController implements IServiceController {
 			Email.sendEmails(to.getText().toString(), sub.getText().toString(), msg.getText().toString(), emailCredential);
 			Credential cred = new Credential(
 					XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
-			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("email.fxml"), cred);
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/email.fxml"), cred);
 			
 		}
 	}
@@ -73,7 +74,7 @@ public class novaMensagemController implements IServiceController {
 		Credential cred = new Credential(XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
 		to.setText("");
 		Email.setTo("");
-		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("email.fxml"), cred);
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/email.fxml"), cred);
 	}
 	
 	/**

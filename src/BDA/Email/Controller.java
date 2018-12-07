@@ -5,6 +5,7 @@ import java.util.Collections;
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
+import BDA.Main;
 import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
@@ -256,7 +257,7 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void sair(ActionEvent event) throws IOException {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
 
 	/**
@@ -268,7 +269,7 @@ public class Controller implements IServiceController {
 	@FXML
 	private void logout(MouseEvent event) throws Exception {
 		XMLclass.setLogin(XMLclass.configFile, XMLclass.emailService, email.getCredential(), XMLclass.Logout);
-		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.emailService);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"), XMLclass.emailService);
 	}
 
 	/**
@@ -282,7 +283,7 @@ public class Controller implements IServiceController {
 	private void responder(MouseEvent event) throws Exception {
 		Mensagem m = emailsList.getSelectionModel().getSelectedItem();
 		Email.setTo(m.getUser());
-		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"),
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/novaMensagem.fxml"),
 				email.getCredential());
 	}
 
@@ -307,7 +308,7 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	protected void novaMensagem(MouseEvent event) throws Exception {
-		FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("novaMensagem.fxml"),
+		FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/novaMensagem.fxml"),
 				email.getCredential());
 	}
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ES1-2018-EIC2-01.jnlp">
+  <information>
+    <title>ES1-2018-EIC2-01</title>
+    <vendor>ISCTE-IUL</vendor>
+    <description>ES1-2018-EIC2-01</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ES1-2018-EIC2-01.jar" size="425151" download="eager" />
+    <jar href="libs\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="libs\junit-3.8.1.jar" size="121070" download="eager" />
+    <jar href="libs\junit.jar" size="314932" download="eager" />
+    <jar href="libs\mail-1.4.7.jar" size="521157" download="eager" />
+    <jar href="libs\org.hamcrest.core_1.3.0.v201303031735.jar" size="55198" download="eager" />
+    <jar href="libs\restfb-2.11.0.jar" size="635503" download="eager" />
+    <jar href="libs\twitter4j-core-4.0.7.jar" size="318024" download="eager" />
+  </resources>
+  <application-desc main-class="BDA.Main"  name="ES1-2018-EIC2-01" >
+  </application-desc>
+  <update check="background"/>
+</jnlp>

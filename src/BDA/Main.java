@@ -1,6 +1,13 @@
 package BDA;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+
+import javax.xml.parsers.DocumentBuilder;
+
+import org.w3c.dom.Document;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +37,7 @@ public class Main extends Application {
 	public void start(Stage janelaInicial) {
 		try {
 			janelaInicial.setTitle("Bom Dia Academia");
-			janelaInicial.setScene(new Scene((Pane) FXMLLoader.load(getClass().getResource("mainWindow.fxml"))));
+			janelaInicial.setScene(new Scene((Pane) FXMLLoader.load(Main.class.getResource("mainWindow.fxml"))));
 			janelaInicial.getIcons().add(new Image("file:///../Graphics/ISCTE-IUL__360_x_358__400x400.png"));
 			janelaInicial.show();
 		} catch (Exception e) {
@@ -49,13 +56,13 @@ public class Main extends Application {
 	@FXML
 	private void twitterLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.twitterService)) {
-			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
+			FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"),
 					XMLclass.twitterService);
 		} else {
 			Credential cred = new Credential(
 					XMLclass.getLogin(XMLclass.configFile, XMLclass.twitterService).getAttributes());
 
-			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Twitter/twitter.fxml"), cred);
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Twitter/twitter.fxml"), cred);
 		}
 	}
 
@@ -69,13 +76,13 @@ public class Main extends Application {
 	@FXML
 	private void facebookLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.facebookService)) {
-			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"),
+			FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"),
 					XMLclass.facebookService);
 		} else {
 			Credential cred = new Credential(
 					XMLclass.getLogin(XMLclass.configFile, XMLclass.facebookService).getAttributes());
 
-			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Facebook/facebook.fxml"), cred);
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Facebook/facebook.fxml"), cred);
 		}
 	}
 
@@ -89,12 +96,12 @@ public class Main extends Application {
 	@FXML
 	private void emailLogo_clicked(MouseEvent event) throws Exception {
 		if (!XMLclass.existsLogin(XMLclass.configFile, XMLclass.emailService)) {
-			FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./login.fxml"), XMLclass.emailService);
+			FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"), XMLclass.emailService);
 		} else {
 			Credential cred = new Credential(
 					XMLclass.getLogin(XMLclass.configFile, XMLclass.emailService).getAttributes());
 
-			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource("./Email/email.fxml"), cred);
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource("Email/email.fxml"), cred);
 		}
 	}
 
@@ -107,7 +114,7 @@ public class Main extends Application {
 	 */
 	@FXML
 	private void apps_clicked(MouseEvent event) throws IOException {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("Timeline.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("Timeline.fxml"));
 	}
 
 	/**
@@ -118,10 +125,10 @@ public class Main extends Application {
 	 */
 	@FXML
 	private void editar(MouseEvent event) throws IOException {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("EditCredentials.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("EditCredentials.fxml"));
 	}
 
-	private static void main(String[] args) {
+	public static void main(String[] args) {
 		launch(args);
 	}
 

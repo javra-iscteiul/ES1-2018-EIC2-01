@@ -6,6 +6,7 @@ import java.util.Collections;
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
+import BDA.Main;
 import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
@@ -178,7 +179,7 @@ public class Controller implements IServiceController {
 	 */
 	@FXML
 	private void voltar_clicked(MouseEvent event) throws IOException{
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
 	
 	/**
@@ -189,6 +190,6 @@ public class Controller implements IServiceController {
 	@FXML
 	private void logout(MouseEvent event) throws Exception {
 		XMLclass.setLogin(XMLclass.configFile, XMLclass.facebookService, facebook.getCredential(), XMLclass.Logout);
-		FuncoesGerais.mudarVistaParaLoginFXML(event, getClass().getResource("./../login.fxml"), XMLclass.facebookService);
+		FuncoesGerais.mudarVistaParaLoginFXML(event, Main.class.getResource("login.fxml"), XMLclass.facebookService);
 	}
 }

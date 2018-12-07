@@ -216,7 +216,7 @@ public class ControllerCredentials {
 	 */
 	@FXML
 	private void voltar(ActionEvent event) throws IOException {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
 
 	/**

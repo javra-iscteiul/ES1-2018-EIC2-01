@@ -64,8 +64,8 @@ public class loginController {
 			
 			cred = new Credential(XMLclass.getNode(XMLclass.configFile, selectedService, cred).getAttributes());
 			
-			String fileName = "./" + selectedService + "/" + selectedService + ".fxml";
-			FuncoesGerais.mudarVistaFromLoginFXML(event, getClass().getResource(fileName), cred);
+			String fileName = selectedService + "/" + selectedService + ".fxml";
+			FuncoesGerais.mudarVistaFromLoginFXML(event, Main.class.getResource(fileName), cred);
 		}
 		
 		error.setVisible(true);
@@ -87,7 +87,7 @@ public class loginController {
 	 */
 	@FXML
 	private void voltar_clicked(MouseEvent event) throws IOException{
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
 
 

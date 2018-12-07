@@ -2,6 +2,7 @@ package BDA;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URI;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -57,18 +58,18 @@ public class XMLclass {
 	 * Atributo do tipo File responsavel por definir o destino das credenciais
 	 */
 	public static File configFile = new File("config.xml");
-
+	
 	/**
 	 * Atributo do tipo File responsavel por guardar os posts para consultar em
 	 * modo offline
 	 */
-	public static File storedDataFile = new File("storedData.xml");
-
+	public static File storedDataFile = new File("config.xml");
+	
 	/**
 	 * Atributo do tipo File responsavel pelos testes
 	 */
 	public static File testFile = new File("test.xml");
-
+	
 	/**
 	 * Atributo do tipo DocumentBuilderFactory responsavel por construir um
 	 * documento a partir do ficheiro dado

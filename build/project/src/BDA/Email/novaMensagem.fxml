@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDA.Email.novaMensagemController">
+   <children>
+      <Label layoutX="19.0" layoutY="42.0" prefHeight="25.0" prefWidth="92.0" styleClass="text-field" text="To:" />
+      <TextField id="to" fx:id="to" layoutX="14.0" layoutY="78.0" prefHeight="25.0" prefWidth="681.0" />
+      <Label layoutX="19.0" layoutY="119.0" prefHeight="14.0" prefWidth="48.0" styleClass="text-field" text="Subject:" />
+      <TextField id="sub" fx:id="sub" layoutX="14.0" layoutY="157.0" prefHeight="25.0" prefWidth="681.0" />
+      <Label layoutX="17.0" layoutY="201.0" prefHeight="25.0" prefWidth="101.0" styleClass="text-field" text="Message:" />
+      <TextArea id="msg" fx:id="msg" layoutX="6.0" layoutY="238.0" prefHeight="324.0" prefWidth="681.0" />
+      <Button layoutX="324.0" layoutY="562.0" mnemonicParsing="false" onMouseClicked="#enviar" text="Enviar" />
+      <Button layoutX="636.0" layoutY="562.0" mnemonicParsing="false" onMouseClicked="#voltar" text="Voltar" />
+   </children>
+</AnchorPane>

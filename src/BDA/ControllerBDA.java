@@ -227,6 +227,6 @@ public class ControllerBDA {
 	 */
 	@FXML
 	private void voltar(MouseEvent event) throws IOException {
-		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("mainWindow.fxml"));
+		FuncoesGerais.mudarVistaFXML(event, Main.class.getResource("mainWindow.fxml"));
 	}
 }
