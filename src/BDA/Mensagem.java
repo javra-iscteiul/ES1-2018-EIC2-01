@@ -99,7 +99,7 @@ public abstract class Mensagem {
 	
 	/**
 	 * Devolve se a mensagem pertence ao user indicado como parametro
-	 * @param filter Strinf
+	 * @param filter String
 	 * @return boolean
 	 */
 	public abstract boolean userContainsFilter(String filter);

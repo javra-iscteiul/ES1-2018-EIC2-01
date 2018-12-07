@@ -9,6 +9,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 classe do controller da interface das credenciais
+ */
 public class ControllerCredentials {
 	/**
 	 * ListView das credenciais do facebook (biblioteca Javafx)
@@ -335,8 +341,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que remove uma credencial do twitter (biblioteca Javafx)
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void removeTwitterCredencial_clicked(ActionEvent event) throws Exception {
@@ -352,7 +358,7 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que ao selecionar o email desbloqueia os botões editar e apagar e preenche as combobox's
-	 * @param event
+	 * @param event ActionEvent
 	 */
 	@FXML
 	protected void emailSelection(MouseEvent event) {
@@ -365,8 +371,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que adiciona uma credencial do email
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void addEmailCredencial_clicked(ActionEvent event) throws Exception {
@@ -381,8 +387,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que edita uma credencial do email (biblioteca Javafx)
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void editEmailCredencial_clicked(ActionEvent event) throws Exception {
@@ -400,8 +406,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Procedimento que remove uma credencial do email (biblioteca Javafx)
-	 * @param event
-	 * @throws Exception
+	 * @param event ActionEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void removeEmailCredencial_clicked(ActionEvent event) throws Exception {
@@ -417,8 +423,8 @@ public class ControllerCredentials {
 
 	/**
 	 * Metodo que recebe uma credencial pelas textbox's do serviço selecionado
-	 * @param service
-	 * @return
+	 * @param service String
+	 * @return Credential
 	 */
 	private Credential getCredencial(String service) {
 		if (service.equals(XMLclass.facebookService))

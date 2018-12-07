@@ -1,7 +1,12 @@
 package BDA;
 
-import javafx.collections.ObservableList;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 interface do Controller dos diferentes serviços
+ */
 public interface IServiceController {	
 	/**
 	 * 

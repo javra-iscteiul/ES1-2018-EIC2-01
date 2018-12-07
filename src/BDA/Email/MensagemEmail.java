@@ -29,6 +29,9 @@ public class MensagemEmail extends Mensagem{
 		
 	}
 	
+	/**
+	 * @param msg MensagemEmail
+	 */
 	public MensagemEmail(MensagemEmail msg) {
 		super(msg.getUser(),msg.getDate(),msg.getContent());
 		this.subject=msg.subject;
@@ -75,11 +78,22 @@ public class MensagemEmail extends Mensagem{
 		return null;
 	}
 
+	
+	/**
+	 * Devolve se a mensagem contem o filtro indicado como parametro
+	 * @param filter String
+	 * @return boolean
+	 */
 	@Override
 	public boolean containsFilter(String filter) {
 		return this.getSubject().contains(filter) || this.getContent().contains(filter);
 	}
 
+	/**
+	 * Devolve se a mensagem pertence ao user indicado como parametro
+	 * @param filter String
+	 * @return boolean
+	 */
 	@Override
 	public boolean userContainsFilter(String filter) {
 		return this.getUser().contains(filter);

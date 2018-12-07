@@ -7,15 +7,9 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import org.w3c.dom.Document;
@@ -326,12 +320,12 @@ public class XMLclass {
 
 	/**
 	 * Adiciona o novo serviço e respetivos atributos ao ficheiro
-	 * @param inputFile
-	 * @param service
-	 * @param serviceCredencial
-	 * @param doc
-	 * @return
-	 * @throws Exception
+	 * @param inputFile File
+	 * @param service String
+	 * @param serviceCredencial Credential
+	 * @param doc Document
+	 * @return boolean
+	 * @throws Exception e
 	 */
 	private static boolean addNode(File inputFile, String service, Credential serviceCredencial, Document doc)
 			throws Exception {
@@ -349,12 +343,12 @@ public class XMLclass {
 
 	/**
 	 * Adiciona o novo serviço e um filho e os seus respetivos atributos ao ficheiro
-	 * @param inputFile
-	 * @param service
-	 * @param serviceCredencial
-	 * @param Attributes
-	 * @return
-	 * @throws Exception
+	 * @param inputFile File
+	 * @param service String
+	 * @param serviceCredencial Credential
+	 * @param Attributes Map
+	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean addNodeAndChild(File inputFile, String service, Credential serviceCredencial,
 			Map<String, Map<String, String>> Attributes) throws Exception {
@@ -383,13 +377,13 @@ public class XMLclass {
 
 	/**
 	 * Adiciona um filho ao serviço e as credenciais do utilizador
-	 * @param inputFile
-	 * @param service
-	 * @param serviceCredencial
-	 * @param child
-	 * @param childAttributes
-	 * @return
-	 * @throws Exception
+	 * @param inputFile File
+	 * @param service String
+	 * @param serviceCredencial Credential
+	 * @param child String
+	 * @param childAttributes Map
+	 * @return boolean
+	 * @throws Exception e
 	 */
 	public static boolean addChild(File inputFile, String service, Credential serviceCredencial, String child,
 			Map<String, String> childAttributes) throws Exception {
@@ -411,9 +405,9 @@ public class XMLclass {
 
 	/**
 	 * Guarda as alterações feitas ao ficheiro XML
-	 * @param inputFile
-	 * @param doc
-	 * @throws Exception
+	 * @param inputFile File
+	 * @param doc Document
+	 * @throws Exception e
 	 */
 	private static void saveXMLfile(File inputFile, Document doc) throws Exception {
 		Transformer transformer;

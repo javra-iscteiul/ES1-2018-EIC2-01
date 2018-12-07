@@ -1,33 +1,43 @@
 package BDA.Twitter;
 
-import java.util.Date;
-
 import BDA.Mensagem;
 import twitter4j.MediaEntity;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 Classe mensagem do twitter
+ */
 public class MensagemTwitter extends Mensagem{
-
+	
 		/**
-		 * @param from_to String
-		 * @param subject String
+		 * Vetor de imagens da mensagem
+		 */
+		private MediaEntity[] media;
+	
+		/**
+		 * @param user String
 		 * @param date String
 		 * @param content String
 		 */
-	
-	
-		private MediaEntity[] media;
-	
 		public MensagemTwitter( String user,String date,  String content) {
 			super(user,date,content);
 		}
  
 
-
+		/**
+		 * Devolve o vetor de imagens da mensagem
+		 * @return MediaEntity[]
+		 */
 		public MediaEntity[] getMedia() {
 			return media;
 		}
 
-
+		/**
+		 * Altera o vetor de imagens da mensagem
+		 * @param media MediaEntity[]
+		 */
 
 		public void setMedia(MediaEntity[] media) {
 			this.media = media;
@@ -45,6 +55,11 @@ public class MensagemTwitter extends Mensagem{
 			
 		}
 
+		/**
+		 * Devolve se a mensagem contem o filtro indicado como parametro
+		 * @param filter String
+		 * @return boolean
+		 */
 		@Override
 		public boolean containsFilter(String filter) {
 			// TODO Auto-generated method stub
@@ -53,7 +68,11 @@ public class MensagemTwitter extends Mensagem{
 
 
 
-
+		/**
+		 * Devolve se a mensagem pertence ao user indicado como parametro
+		 * @param filter String
+		 * @return boolean
+		 */
 		@Override
 		public boolean userContainsFilter(String filter) {
 			// TODO Auto-generated method stub

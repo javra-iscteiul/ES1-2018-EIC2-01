@@ -3,12 +3,10 @@ package BDA.Facebook;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import com.restfb.Connection;
@@ -24,9 +22,6 @@ import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import twitter4j.TwitterException;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -64,7 +59,7 @@ public class Facebook implements IService {
 	 * na timeline do facebook (interface)
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> getTimeLine() throws Exception {
 		//variavel que vai ser utilizada para armazenar os dados recebidos no ficheiro xml, para ler que do tiver offline
@@ -121,7 +116,7 @@ public class Facebook implements IService {
 	 * na timeline do facebook da sessão anterior, ou seja está offline (interface)
 	 * 
 	 * @return retorna uma lista dos posts do utilizador no facebook da sessão anterior
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> getStoredTimeLine() throws Exception {
 			if (XMLclass.existsNode(XMLclass.storedDataFile, XMLclass.facebookService, facebookCredential)) {
@@ -172,6 +167,7 @@ public class Facebook implements IService {
 	 * na timeline filtradas pelo utilizador que fez o post com o filtro passado como parametro (interface)
 	 * @param filter String
 	 * @return retorna uma lista dos posts do utilizador no facebook
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> setUserFilter(String filter) throws Exception {
 //			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
@@ -197,6 +193,7 @@ public class Facebook implements IService {
 	 * na timeline filtradas pelo tempo o filtro é passado como parametro (interface)
 	 * @param filter String
 	 * @return retorna uma lista dos posts do utilizador no facebook
+	 * @throws Exception e
 	 */
 	public ObservableList<Mensagem> getLast(String filter) throws Exception {
 			ObservableList<Mensagem> filteredMsg = FXCollections.observableArrayList();
@@ -229,6 +226,11 @@ public class Facebook implements IService {
 			return posts;
 	}
 	
+	/**
+	 * publica um post atraves do grupo no facebook
+	 * @param publishText String
+	 * @return boolean
+	 */
 	public boolean publish(String publishText){
 		FacebookClient fbClient = new DefaultFacebookClient(facebookCredential.getAccessToken());
 		GraphResponse response = fbClient.publish(facebookCredential.getGroup() + "/feed", GraphResponse.class, Parameter.with("message", publishText));
@@ -242,10 +244,18 @@ public class Facebook implements IService {
 		return this.facebookCredential;
 	}
 	
+	/**
+	 * Altera o grupo
+	 * @param group boolean
+	 */
 	public void setGroup(boolean group){
 		this.group = group;
 	}
 	
+	/**
+	 * Devolve o grupo
+	 * @return boolean
+	 */
 	public boolean getGroup(){
 		return group;
 	}

@@ -17,7 +17,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import twitter4j.TwitterException;
 
 /**
  * Date: Oct 22 2018
@@ -65,7 +64,7 @@ public class Controller implements IServiceController {
 	 * Procedimento que adiciona posts à timeline quando a vista é selecionada (biblioteca Javafx)
 	 * e inicia o objecto facebook com as credenciais da conta logada
 	 * @param cred Credencial
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
     public void init(Credential cred) throws Exception {
     	facebook.init(cred);
@@ -76,7 +75,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que filtra os posts da timeline (biblioteca Javafx)
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void filter_clicked(ActionEvent event) throws Exception{
@@ -86,7 +85,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que filtra os posts da timeline pelo utilizador (biblioteca Javafx)
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void filterUser_clicked(ActionEvent event) throws Exception{
@@ -96,7 +95,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que ordena os posts por data mais recente
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void recent(ActionEvent event) throws Exception {
@@ -107,7 +106,7 @@ public class Controller implements IServiceController {
 	 * Procedimento que ordena os posts por data mais antiga
 	 * 
 	 * @param event MouseEvent
-	 * @throws Exception
+	 * @throws Exception e
 	 */
 	@FXML
 	private void older(ActionEvent event) throws Exception {
@@ -119,7 +118,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os posts das ultimas 24 horas
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void last24h(ActionEvent event) throws Exception {
@@ -129,7 +128,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os posts da ultima semana
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void lastWeek(ActionEvent event) throws Exception {
@@ -139,7 +138,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento que devolve apenas os posts do ultimo mes
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void lastMonth(ActionEvent event) throws Exception {
@@ -148,8 +147,8 @@ public class Controller implements IServiceController {
 	
 	/**
 	 * utilizado no evento em que o utilizador clica no botao de publicar
-	 * @param event
-	 * @throws TwitterException 
+	 * @param event ActionEvent
+	 * @throws Exception e 
 	 */
 	@FXML 
 	private void publish(ActionEvent event) throws Exception {
@@ -162,7 +161,7 @@ public class Controller implements IServiceController {
 	}
 	
 	/**
-	 * Procedimento que filtra a lista de mensagens para remover/adicionar emails
+	 * Procedimento que filtra a lista de mensagens para remover/adicionar posts
 	 * @param event ActionEvent
 	 * @throws Exception e 
 	 */
@@ -185,7 +184,7 @@ public class Controller implements IServiceController {
 	/**
 	 * Procedimento para muda a conta em utilização 
 	 * @param event MouseEvent
-	 * @throws Exception 
+	 * @throws Exception e
 	 */
 	@FXML
 	private void logout(MouseEvent event) throws Exception {

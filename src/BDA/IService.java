@@ -1,9 +1,13 @@
 package BDA;
 
-import org.w3c.dom.DOMException;
-
 import javafx.collections.ObservableList;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 interface dos diversos serviços com funçoes comuns
+ */
 public interface IService {
 	
 	/**

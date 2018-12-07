@@ -2,7 +2,6 @@ package BDA;
 
 import java.io.IOException;
 
-import org.w3c.dom.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -13,6 +12,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 classe do controller da interface BDA
+ */
 public class ControllerBDA {
 	/**
 	 * ListView (biblioteca Javafx)

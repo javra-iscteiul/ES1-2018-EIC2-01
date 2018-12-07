@@ -1,7 +1,6 @@
 package BDA;
 
 import BDA.Email.Email;
-import BDA.Email.MensagemEmail;
 import BDA.Facebook.Facebook;
 import BDA.Twitter.App_twitter;
 import javafx.collections.FXCollections;

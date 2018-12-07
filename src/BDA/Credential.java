@@ -5,6 +5,12 @@ import java.util.Map;
 
 import org.w3c.dom.NamedNodeMap;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 classe Credential, credenciais dos serviços
+ */
 public class Credential {
 	/**
 	 * Protocolo do serviço
@@ -127,127 +133,146 @@ public class Credential {
 		return protocolo;
 	}
 
-	/**
-	 * @param define o protocolo da credencial
+	
+	/** 
+	 * define o protocolo da credencial
+	 * @param protocolo String
 	 */
 	public void setProtocolo(String protocolo) {
 		this.protocolo = protocolo;
 	}
 
 	/**
-	 * @return devolve o username da credencial
+	 * devolve o username da credencial
+	 * @return String
 	 */
 	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @param define o username da credencial
+	 * define o username da credencial
+	 * @param username String
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-	 * @return devolve a password da credencial
+	 * devolve a password da credencial
+	 * @return String
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * @param define a password da credencial
+	 * define a password da credencial
+	 * @param password String
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * @return devolve o consumerKey da credencial
+	 *  devolve o consumerKey da credencial
+	 * @return String
 	 */
 	public String getConsumerKey() {
 		return consumerKey;
 	}
 
 	/**
-	 * @param define o consumerKey da credencial
+	 * define o consumerKey da credencial
+	 * @param consumerKey String
 	 */
 	public void setConsumerKey(String consumerKey) {
 		this.consumerKey = consumerKey;
 	}
 
 	/**
-	 * @return devolve o consumerSecret da credencial
+	 * devolve o consumerSecret da credencial
+	 * @return String
 	 */
 	public String getConsumerSecret() {
 		return consumerSecret;
 	}
 
 	/**
-	 * @param define o consumerSecret da credencial
+	 * define o consumerSecret da credencial
+	 * @param consumerSecret String
 	 */
 	public void setConsumerSecret(String consumerSecret) {
 		this.consumerSecret = consumerSecret;
 	}
 
 	/**
-	 * @return devolve o accessToken da credencial
+	 * devolve o accessToken da credencial
+	 * @return String
 	 */
 	public String getAccessToken() {
 		return accessToken;
 	}
 
 	/**
-	 * @param define o accessToken da credencial
+	 * define o accessToken da credencial
+	 * @param accessToken String
 	 */
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
 	}
 
 	/**
-	 * @return devolve o accessTokenSecret da credencial
+	 * devolve o accessTokenSecret da credencial
+	 * @return String
 	 */
 	public String getAccessTokenSecret() {
 		return accessTokenSecret;
 	}
 
 	/**
-	 * @param define o accessTokenSecret da credencial
+	 * define o accessTokenSecret da credencial
+	 * @param accessTokenSecret String
 	 */
 	public void setAccessTokenSecret(String accessTokenSecret) {
 		this.accessTokenSecret = accessTokenSecret;
 	}
 	
 	/**
-	 * @return devolve o group da credencial
+	 * devolve o group da credencial
+	 * @return String
 	 */
 	public String getGroup() {
 		return group;
 	}
 
 	/**
-	 * @param define o group da credencial
+	 * define o group da credencial
+	 * @param group String
 	 */
 	public void setGroup(String group) {
 		this.group = group;
 	}
 
 	/**
-	 * @return devolve o login da credencial
+	 *  devolve o login da credencial
+	 * @return String
 	 */
 	public String getLogin() {
 		return this.login;
 	}
 
 	/**
-	 * @param define o login da credencial
+	 * define o login da credencial
+	 * @param login String
 	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
 	/**
-	 * @return retrna as credencias em tipo Map<String, String>
+	 * retorna as credencias em tipo Map
+	 * @return Map
 	 */
 	public Map<String, String> getCredentiaAsMap() {
 		Map<String, String> cred = new HashMap<String, String>();
@@ -264,8 +289,9 @@ public class Credential {
 	}
 
 	/**
-	 * @param cred
-	 * @return retorna se a credencial é igual a credencial passada como parametro
+	 *  retorna se a credencial é igual a credencial passada como parametro
+	 * @param cred Credential
+	 * @return boolean
 	 */
 	public boolean equals(Credential cred) {
 		return this.username.equals(cred.username) && this.password.equals(cred.password);

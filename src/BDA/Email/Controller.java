@@ -2,21 +2,14 @@ package BDA.Email;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
-
-import org.w3c.dom.Node;
-
 import BDA.Credential;
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.Mensagem;
 import BDA.XMLclass;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;

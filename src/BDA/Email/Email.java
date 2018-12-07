@@ -4,7 +4,6 @@ import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
@@ -12,8 +11,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -239,34 +236,18 @@ public class Email implements IService {
 	 */
 	public static String writePart(Part p) throws Exception {
 		String content = "";
-		if (p instanceof Message)
-			// Call methos writeEnvelope
-			writeEnvelope((Message) p);
-
-		// System.out.println("----------------------------");
-		// System.out.println("CONTENT-TYPE: " + p.getContentType());
-		//
-		// //check if the content is plain text
 		if (p.isMimeType("text/plain")) {
-			// System.out.println("This is plain text");
-			// System.out.println("---------------------------");
 			content = (String) p.getContent();
-			// System.out.println(content);
 			return content;
 
 		}
 		// check if the content has attachment
 		else if (p.isMimeType("multipart/*")) {
-			// System.out.println("This is a Multipart");
-			// System.out.println("---------------------------");
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++) {
 				if (mp.getBodyPart(i).isMimeType("text/plain")) {
-					// System.out.println("This is plain text");
-					// System.out.println("---------------------------");
 					content = (String) mp.getBodyPart(i).getContent();
-					// System.out.println(content);
 
 				}
 				return content;
@@ -275,36 +256,6 @@ public class Email implements IService {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Procedimento que imprime na consola os dados principais da mensagem
-	 * 
-	 * @param m Message
-	 *          
-	 * @throws Exception e
-	 */
-	public static void writeEnvelope(Message m) throws Exception {
-		// System.out.println("This is the message envelope");
-		// System.out.println("---------------------------");
-		Address[] a;
-
-		// FROM
-		// if ((a = m.getFrom()) != null) {
-		// for (int j = 0; j < a.length; j++)
-		// System.out.println("FROM: " + a[j].toString());
-		// }
-
-		// TO
-		// if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
-		// for (int j = 0; j < a.length; j++)
-		// System.out.println("TO: " + a[j].toString());
-		// }
-
-		// SUBJECT
-		// if (m.getSubject() != null)
-		// System.out.println("SUBJECT: " + m.getSubject());
-
 	}
 
 	/**

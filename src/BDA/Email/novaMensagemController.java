@@ -5,11 +5,9 @@ import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.XMLclass;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
 
 
 /**

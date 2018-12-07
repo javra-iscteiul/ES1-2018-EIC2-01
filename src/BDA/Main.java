@@ -1,11 +1,6 @@
 package BDA;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import BDA.Email.Email;
-import BDA.Twitter.App_twitter;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

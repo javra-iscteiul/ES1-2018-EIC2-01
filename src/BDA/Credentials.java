@@ -5,12 +5,19 @@ import org.w3c.dom.NodeList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 classe das credenciais dos diversos serviços
+ */
 public class Credentials {
 	
 	/**
-	 * @param service
-	 * @return Lista das credenciais do serviço pedido
-	 * @throws Exception
+	 * Lista das credenciais do serviço pedido
+	 * @param service String
+	 * @return ObservableList
+	 * @throws Exception e
 	 */
 	public ObservableList<Credential> getCredentials(String service) throws Exception{
 		ObservableList<Credential> credList = FXCollections.observableArrayList();

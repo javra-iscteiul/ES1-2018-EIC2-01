@@ -7,21 +7,24 @@ import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.Mensagem;
 import BDA.XMLclass;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import twitter4j.TwitterException;
 
+/**
+ * Date: Oct 22 2018
+ * 
+ * @author ES1-2018-EIC2-01
+ * @version 1.0 Classe controller do twitter
+ */
 public class Twitter_Controller implements IServiceController {
 	
 	/**
@@ -53,6 +56,11 @@ public class Twitter_Controller implements IServiceController {
 	@FXML
 	private Label user;
 	
+	/**
+	 * Inicia o controller com os dados do serviço
+	 * @param cred Credential
+	 * @throws Exception e
+	 */
 	public void init(Credential cred) throws Exception {
 		tt.init(cred);
 		user.setText("@" +cred.getUsername());
@@ -61,8 +69,8 @@ public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * ocorre quando o utilizador clica no botao para atualizar a timeline
-	 * @param event
-	 * @throws Exception 
+	 * @param event MouseEvent
+	 * @throws Exception e 
 	 */
 	@FXML
     private void refresh_timeline_Clicked(MouseEvent event) throws Exception
@@ -73,7 +81,7 @@ public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * utilizada no evento em que o utilizador pesquisa por tweets com um certo texto
-	 * @param event
+	 * @param event ActionEvent
 	 * @throws TwitterException
 	 */
 	@FXML
@@ -83,26 +91,43 @@ public class Twitter_Controller implements IServiceController {
 		tweetsList.setItems(tt.setFilter(pesquisa.getText()));
     }
 	
+	/**
+	 * utilizada no evento em que o utilizador pesquisa por tweets de um user especifico
+	 * @param event ActionEvent
+	 * @throws TwitterException
+	 */
 	@FXML
     private void filter_users(ActionEvent event) throws TwitterException 
     {
 		System.out.println(pesquisa.getText());
 		tweetsList.setItems(tt.filter_users(pesquisa.getText()));
     }
+	
+	/**
+	 * utilizada no evento em filtra os tweets so devolvendo os das ultimas 24h
+	 * @param event ActionEvent
+	 * @throws TwitterException
+	 */
 	@FXML
 	private void lastDay(ActionEvent event) throws TwitterException{
 		String type = "lastDay";
 		tweetsList.setItems(tt.timeFilter(type));
 	}
+	
+	/**
+	 * utilizada no evento em filtra os tweets so devolvendo os do ultimo mes
+	 * @param event ActionEvent
+	 * @throws TwitterException
+	 */
 	@FXML
 	private void lastMonth(ActionEvent event) throws TwitterException{
-		String type = "lastDay";
+		String type = "lastMonth";
 		tweetsList.setItems(tt.timeFilter(type));
 	}
 	
 	/**
 	 * utilizado no evento em que o utilizado clica no botao de postar um novo tweet
-	 * @param event
+	 * @param event ActionEvent
 	 * @throws TwitterException 
 	 */
 	@FXML 
@@ -115,6 +140,7 @@ public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * Procedimento que volta para a pagina principal (biblioteca Javafx)
+	 * @param event MouseEvent
 	 * @throws IOException 
 	 */
 	@FXML
@@ -122,6 +148,11 @@ public class Twitter_Controller implements IServiceController {
 		FuncoesGerais.mudarVistaFXML(event, getClass().getResource("./../mainWindow.fxml"));
 	}
 	
+	/**
+	 * Selecionar um tweet e mostrar o mesmo expandido numa janela 
+	 * @param event MouseEvent
+	 * @throws IOException
+	 */
 	@FXML
 	protected void selection(MouseEvent event) throws IOException {
 		Stage s = new Stage();
@@ -139,8 +170,8 @@ public class Twitter_Controller implements IServiceController {
 	
 	/**
 	 * Procedimento para mudar a conta em utilização 
-	 * @param event
-	 * @throws Exception 
+	 * @param event MouseEvent
+	 * @throws Exception e
 	 */
 	@FXML
 	private void logout(MouseEvent event) throws Exception {
