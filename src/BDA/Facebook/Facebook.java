@@ -92,7 +92,7 @@ public class Facebook implements IService {
 					String userName = aPost.getName();
 					Date dateCreated = (group ? aPost.getUpdatedTime() : aPost.getCreatedTime());
 					String dateCreatedString = (dateCreated.getDate() < 10 ? "0" : "") + dateCreated.getDate() + "/" 
-							+ (dateCreated.getMonth() < 10 ? "0" : "") + dateCreated.getMonth() + "/"
+							+ ((dateCreated.getMonth() + 1) < 10 ? "0" : "") + (dateCreated.getMonth() + 1) + "/"
 							+ (dateCreated.getYear() + 1900);
 					String title = aPost.getMessage();
 
@@ -205,7 +205,6 @@ public class Facebook implements IService {
 				DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 				Date date = format.parse(post.getDate());
 				Instant now = Instant.now();
-				Date data = Date.from(now);
 				if (filter == "24h") {
 					if ((!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now))) {
 						filteredMsg.add(post);
