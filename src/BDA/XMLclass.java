@@ -77,7 +77,7 @@ public class XMLclass {
 
 	/**
 	 * Dado um determinado serviço e as credenciais do utilizador verifica se o mesmo já existe no documento
-	 *@param inputFile file
+	 *@param inputFile file 
 	 * @param service
 	 *            String
 	 *@param serviceCredencial Credential

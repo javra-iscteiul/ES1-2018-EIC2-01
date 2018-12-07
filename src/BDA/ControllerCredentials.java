@@ -438,6 +438,6 @@ public class ControllerCredentials {
 			return new Credential(null, this.userNameEmail.getText(), this.passwordEmail.getText(), null, null, null,
 					null);
 		else
-			return null;
+			return null; 
 	}
 }
