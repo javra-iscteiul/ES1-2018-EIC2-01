@@ -63,7 +63,7 @@ public class XMLclass {
 	 * Atributo do tipo File responsavel por guardar os posts para consultar em
 	 * modo offline
 	 */
-	public static File storedDataFile = new File("config.xml");
+	public static File storedDataFile = new File("storedData.xml");
 	
 	/**
 	 * Atributo do tipo File responsavel pelos testes

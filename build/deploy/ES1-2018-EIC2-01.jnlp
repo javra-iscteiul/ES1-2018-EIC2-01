@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ES1-2018-EIC2-01.jar" size="425151" download="eager" />
+    <jar href="ES1-2018-EIC2-01.jar" size="425191" download="eager" />
     <jar href="libs\activation-1.1.jar" size="62983" download="eager" />
     <jar href="libs\junit-3.8.1.jar" size="121070" download="eager" />
     <jar href="libs\junit.jar" size="314932" download="eager" />

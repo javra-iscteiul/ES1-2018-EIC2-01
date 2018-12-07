@@ -22,19 +22,19 @@
       <ListView fx:id="tweetsList" layoutX="27.0" layoutY="134.0" onMouseClicked="#selection" prefHeight="345.0" prefWidth="839.0" />
       <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="417.0" layoutY="479.0" onMouseClicked="#refresh_timeline_Clicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Graphics/refresh2.png" />
+            <Image url="@../../Graphics/refresh2.png" />
          </image>
       </ImageView>
       <Button layoutX="888.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#voltar_clicked" text="Voltar" />
        <Label layoutX="936.0" layoutY="43.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
        <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="942.0" layoutY="75.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
           <image>
-             <Image url="@../Graphics/logout.png" />
+             <Image url="@../../Graphics/logout.png" />
           </image>
        </ImageView>
       <ImageView fitHeight="59.0" fitWidth="61.0" layoutX="864.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Graphics/twitter%20logo.png" />
+            <Image url="@../../Graphics/twitter%20logo.png" />
          </image>
       </ImageView>
       <Label fx:id="user" layoutX="834.0" layoutY="43.0" styleClass="text-field" text="\@utilizador" />

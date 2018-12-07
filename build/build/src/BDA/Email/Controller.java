@@ -1,15 +1,19 @@
 package BDA.Email;
 
+
 import java.io.IOException;
 import java.util.Collections;
 import BDA.Credential;
+
 import BDA.FuncoesGerais;
 import BDA.IServiceController;
 import BDA.Main;
 import BDA.Mensagem;
 import BDA.XMLclass;
 import javafx.collections.ObservableList;
+
 import javafx.concurrent.Task;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,10 +24,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Date: Oct 24 2018
+ * Date: Oct 24 2018 
  * 
  * @author ES1-2018-EIC2-01
- * @version 1.0 Aplicação agregadora de conteúdos académicos: controlador do
+ * @version 1.0 AplicaÃ§Ã£o agregadora de conteÃºdos acadÃ©micos: controlador do
  *          Email
  *
  */
@@ -37,7 +41,7 @@ public class Controller implements IServiceController {
 	private ListView<Mensagem> emailsList;
 
 	/**
-	 * TextField correspondente à palavra ou frase a pesquisar
+	 * TextField correspondente Ã  palavra ou frase a pesquisar
 	 */
 	@FXML
 	private TextField pesquisa;
@@ -50,13 +54,13 @@ public class Controller implements IServiceController {
 
 	/**
 	 * TextField que indica a conta do utilizador que se encontra a usar a
-	 * aplicação
+	 * aplicaÃ§Ã£o
 	 */
 	@FXML
 	private TextField user;
 
 	/**
-	 * TextArea que apresenta todas as informaçoes da mensagem
+	 * TextArea que apresenta todas as informaÃ§oes da mensagem
 	 */
 	@FXML
 	private TextArea conteudo;
@@ -67,7 +71,7 @@ public class Controller implements IServiceController {
 	@FXML
 	private ImageView load;
 	/**
-	 * Email, instancia da aplicação em uso
+	 * Email, instancia da aplicaÃ§Ã£o em uso
 	 */
 	Email email = new Email();
 
@@ -96,7 +100,7 @@ public class Controller implements IServiceController {
 	}
 
 	/**
-	 * Procedimento que adiciona emails à lista cada vez que esta é clicada com
+	 * Procedimento que adiciona emails Ã  lista cada vez que esta Ã© clicada com
 	 * o rato (biblioteca Javafx)
 	 * 
 	 * @param event MouseEvent
@@ -151,12 +155,12 @@ public class Controller implements IServiceController {
 		emailsList.setItems(email.filterUser(pesquisa.getText()));
 	}
 
+
+	
 	/**
-	 * Procedimento que altera a pasta selecionada para a caixa de itens
-	 * enviados com os respetivos emails
-	 * 
-	 * @param event ActionEvent
-	 * @throws Exception e
+	 * Procedimento que altera a pasta selecionada para a caixa de itens enviados com os respetivos emails
+	 * @param event
+
 	 */
 	@FXML
 	private void sent(ActionEvent event) throws Exception {
@@ -248,9 +252,10 @@ public class Controller implements IServiceController {
 	private void lastMonth(ActionEvent event) throws Exception {
 		emailsList.setItems(email.getLast("month"));
 	}
+	
 
 	/**
-	 * Procedimento que retorna à janela principal da aplicação
+	 * Procedimento que retorna Ã  janela principal da aplicaÃ§Ã£o
 	 * 
 	 * @param event ActionEvent
 	 * @throws IOException 
@@ -261,7 +266,7 @@ public class Controller implements IServiceController {
 	}
 
 	/**
-	 * Procedimento para mudar a conta em utilização
+	 * Procedimento para mudar a conta em utilizaÃ§Ã£o
 	 * 
 	 * @param event ActionEvent
 	 * @throws Exception e

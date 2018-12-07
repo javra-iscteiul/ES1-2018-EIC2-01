@@ -46,7 +46,7 @@
             </MenuButton>
             <ImageView id="load" fx:id="load" fitHeight="419.0" fitWidth="536.0" layoutY="79.0" pickOnBounds="true">
                <image>
-                  <Image url="@../Graphics/loading.gif" /> 
+                  <Image url="@../../Graphics/loading.gif" /> 
                </image>
             </ImageView>
          </children>
@@ -57,7 +57,7 @@
       <Label layoutX="883.0" layoutY="41.0" onMouseClicked="#logout" styleClass="text-field" text="Logout" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="942.0" layoutY="37.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Graphics/logout.png" />
+            <Image url="@../../Graphics/logout.png" />
          </image>
       </ImageView>
       <TextArea id="conteudo" fx:id="conteudo" layoutX="613.0" layoutY="157.0" prefHeight="396.0" prefWidth="355.0" styleClass="text-area" text="Selecione uma mensagem para lê-la." wrapText="true" />
@@ -66,7 +66,7 @@
       <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="255.0" layoutY="581.0" onMouseClicked="#getEmailsList_Clicked">
 
          <image>
-            <Image url="@../Graphics/refresh2.png" />
+            <Image url="@../../Graphics/refresh2.png" />
          </image>
       </ImageView>
    </children>
