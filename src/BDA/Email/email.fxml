@@ -49,13 +49,6 @@
                   <Image url="@../Graphics/loading.gif" /> 
                </image>
             </ImageView>
-            <MenuButton layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Ordenar por">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#recent" text="Mais Recente" />
-                <MenuItem mnemonicParsing="false" onAction="#older" text="Mais antigo" />
-                  <MenuItem mnemonicParsing="false" onAction="#last24h" text="Ultimas 24h" />
-              </items>
-            </MenuButton>
          </children>
       </Pane>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

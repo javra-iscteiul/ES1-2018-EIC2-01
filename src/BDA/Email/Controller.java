@@ -24,7 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Date: Oct 24 2018
+ * Date: Oct 24 2018 
  * 
  * @author ES1-2018-EIC2-01
  * @version 1.0 Aplicação agregadora de conteúdos académicos: controlador do
@@ -155,15 +155,7 @@ public class Controller implements IServiceController {
 		emailsList.setItems(email.filterUser(pesquisa.getText()));
 	}
 
-	/**
-	 * Procedimento que filtra a lista de emails dado um user
-	 * @param event ActionEvent
-	 * @throws Exception e
-	 */
-	@FXML
-	private void filterUser(ActionEvent event) {
-		emailsList.setItems(email.filter(pesquisa.getText()));
-	}
+
 	
 	/**
 	 * Procedimento que altera a pasta selecionada para a caixa de itens enviados com os respetivos emails
@@ -260,32 +252,7 @@ public class Controller implements IServiceController {
 	private void lastMonth(ActionEvent event) throws Exception {
 		emailsList.setItems(email.getLast("month"));
 	}
-	/**
-	 * Procedimento que ordena emails por data mais recente
-	 * @param event
-	 */
-	@FXML
-	private void recent(ActionEvent event) {
-		emailsList.setItems(email.getTimeline());
-	}
-	/**
-	 * Procedimento que ordena emails por data mais antiga
-	 * @param event
-	 */
-	@FXML
-	private void older(ActionEvent event) {
-		ObservableList<Mensagem> nova =email.getTimeline();
-		Collections.reverse(nova);
-		emailsList.setItems(nova);
-	}
-	/**
-	 * Procedimento que devolve apenas os emails das ultimas 24 horas
-	 * @param event
-	 */
-	@FXML
-	private void last24h(ActionEvent event) {
-		emailsList.setItems(email.getLast24h());
-	}
+	
 
 	/**
 	 * Procedimento que retorna à janela principal da aplicação

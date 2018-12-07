@@ -330,7 +330,7 @@ public class Email implements IService {
 			if (s == "24h") {
 				if ((!date.toInstant().isBefore(now.minus(24, ChronoUnit.HOURS))) && (date.toInstant().isBefore(now))) {
 					nova.add(new MensagemEmail((MensagemEmail) emails.get(i)));
-				}
+				} 
 			}
 			if (s == "week") {
 				if ((!date.toInstant().isBefore(now.minus(7, ChronoUnit.DAYS))) && (date.toInstant().isBefore(now))) {
@@ -351,61 +351,9 @@ public class Email implements IService {
 		return nova;
 	}
 
-	/**
-	 * Procedimento que filtra os emails de um utilizador consoante os emails que pertencem ao utilizador pedido
-	 * @param text String
-	 * @return lista dos emails do utilizador filtrada
-	 */
-	public ObservableList<Mensagem> filterUser(String text) {
-		try {
-			
-			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
-			 for (int i = 0; i < emails.size(); i++) {
-		            if(emails.get(i).getFrom_to().contains(text) ) {
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
-				     }
-			 }
-			 
-			return nova;
 
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
 	
-	/**
-	 * Procedimento que filtra os emails de um utilizador das ultimas 24 horas
-	 * @return lista dos emails do utilizador filtrada
-	 */
-	public ObservableList<Mensagem> getLast24h() {
-		try {
-			
-			ObservableList<Mensagem> nova = FXCollections.observableArrayList();
-			 for (int i = 0; i < emails.size(); i++) {
-				 DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-				 Date date = format.parse(emails.get(i).getDate());
-				 Date today = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 Date twentyfourhoursbefore = DateFormat.getDateTimeInstance().getCalendar().getTime();
-				 twentyfourhoursbefore.setTime(twentyfourhoursbefore.getTime() - (24*60*60*1000));
-				    if(date.after(twentyfourhoursbefore) && date.before(today)){
-		            	nova.add(new Mensagem(emails.get(i).getFrom_to(),emails.get(i).getSubject(),
-								  emails.get(i).getDate().toString(),emails.get(i).getContent()));
-				     }
-			 }
-			 
-			return nova;
-
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
+	
 	
 	/**
 	 * Procedimento responsavel pelo envio de uma mensagem com os dados recebidos como parametros
